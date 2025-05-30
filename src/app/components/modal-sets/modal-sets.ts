@@ -1,0 +1,117 @@
+import {Component, computed, effect, inject, input, linkedSignal, OnInit, output, signal} from '@angular/core';
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonItem,
+  IonLabel,
+  IonList, IonInput,
+  IonModal, IonSearchbar, IonTextarea, IonTitle, IonToolbar, IonGrid, IonCol, IonRow
+} from "@ionic/angular/standalone";
+import {EXERCISES} from '../../classes/all-exercises.data';
+import {DatePipe} from '@angular/common';
+import {ExHistory} from '../ex-history/ex-history';
+import {ShowSets} from '../../pages/page-show-exercise/show-sets/show-sets';
+import {Activity} from '../../classes/state.interface';
+import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
+import {Router} from '@angular/router';
+import {SetClass} from '../../classes/set.class';
+import {CommonService} from '../../classes/common.service';
+import {OverlayEventDetail} from '@ionic/core';
+import {FormsModule} from '@angular/forms';
+
+@Component({
+  selector: 'app-modal-sets',
+  imports: [
+    IonButton,
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonModal,
+    IonSearchbar,
+    IonTitle,
+    IonToolbar,
+    DatePipe,
+    ExHistory,
+    ShowSets,
+    IonTextarea,
+    FormsModule,
+    IonInput,
+    IonGrid,
+    IonCol,
+    IonRow
+  ],
+  templateUrl: './modal-sets.html',
+  styleUrl: './modal-sets.scss'
+})
+export class ModalSets implements OnInit{
+  service = inject(CommonService)
+  activity =  input.required<Activity>();
+  open = input.required<boolean>();
+  closed = output<boolean>();
+  values = {
+    reps: "",
+    kgs: "",
+    free: "",
+  }
+  constructor() {
+    effect(() => {
+      //Default value when OPEN
+      if (this.open()){
+       this.values = { reps: "", kgs: "",free: "",}
+      }
+    });
+  }
+  note = linkedSignal(()=>{
+    return this.activity().note;
+  });
+
+  ngOnInit(): void {
+    this.service.getHistory(this.activity().id);
+  }
+  addSet(p0: Activity, values: {
+    reps: string
+    kgs: string
+    free: string
+  }) {
+    this.service.startSessionIfNotStarted();
+    let ex = Activity.exerciseById(p0.id);
+      if (ex?.weightUnit && ex?.reps)
+        this.activity().sets.push(new SetClass(values.reps, values.kgs));
+      else if  (!ex?.weightUnit && ex?.reps)
+        this.activity().sets.push(new SetClass(values.reps, ""));
+      else
+        this.activity().sets.push(new SetClass(values.free, ""));
+
+      this.service.save();
+  }
+
+  async canDismiss(data?: undefined, role?: string) {
+    return role !== 'gesture' ;//&& role !== 'backdrop';
+  }
+  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
+    this.closed.emit(true);
+    this.service.save();
+  }
+
+  // onNoteChange($event: any) {
+  //   this.activity().note = $event.valueOf();
+  //   this.service.save();
+  //   this.note = $event;
+  // }
+
+  getNote():string {
+    return this.note()
+  }
+
+  setNote(value:string) {
+    this.activity().note = value;
+    this.service.save();
+  }
+
+  protected readonly Activity = Activity;
+}

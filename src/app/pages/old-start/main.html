@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Choose Exercise</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-list>
+    @for (ex of allExercises; track $index) {
+      <ion-item routerLink="/exercise/{{ex.id}}">
+        <ion-label color="primary">{{ex.name}}</ion-label>
+      </ion-item>
+<!--      <ion-item (click)="click(ex)">-->
+<!--        <ion-label color="primary">{{ex.name}}</ion-label>-->
+<!--        <div class="metadata-end-wrapper" slot="end">-->
+<!--          <ion-icon color="medium" name="chevron-forward"></ion-icon>-->
+<!--        </div>-->
+<!--      </ion-item>-->
+
+    }
+  </ion-list>
+
+</ion-content>

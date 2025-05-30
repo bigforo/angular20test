@@ -1,0 +1,63 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]=""></ion-back-button>
+    </ion-buttons>
+    <ion-title >Let's do it</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="clickEnd()"> End </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content fullscreen="true">
+
+<div class="contact-form">
+  <div class="flow">
+    <div class="flex items-center justify-center font-extrabold text-pink-300">- {{exercise()?.name}} -</div>
+    <div class="flex items-center justify-center text-opacity-10 text-pink-700">{{ activity().created | date}} </div>
+  </div>
+
+  <div class="form-group">
+    <label for="reps">Rep Number</label>
+    <div class="button-container">
+      <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="reps">
+        @for (n of repeatOptions; track $index) {
+          <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  @if (activity().hasSize)
+  {
+    <div class="form-group">
+      <label for="weight">Weight (kg)</label>
+      <div class="button-container">
+        <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="kgs">
+          @for (n of weightOptions1; track $index) {
+            <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  }
+<!--    https://codepen.io/kevinpowell/pen/JodojoQ-->
+  <div>
+    <button class="w-full" type="button" (click)="addSet(reps,kgs)">Add Set</button>
+  </div>
+
+  <div class="flow">
+    <app-show-sets [sets]="activity().sets"/>
+  </div>
+</div>
+
+
+<div class="ion-padding">
+  <app-ex-history [id]="id()"/>
+</div>
+
+</ion-content>

@@ -1,0 +1,22 @@
+<div class="about-session">
+
+  <!--    <ion-label color="default" class="ion-padding-start ion-padding-end">-->
+  <!--      "Workout sessions are beneficial because they improve physical health,
+boost mental well-being, increase energy, and enhance overall quality of life!" - ChatGPT-->
+  <!--    </ion-label>-->
+
+<!--  <p class="ion-padding-start ion-padding-end">-->
+<!--    <ion-label color="warning">Tip #1:</ion-label>-->
+<!--    Click on the Exercise to add activity-->
+<!--  </p>-->
+<!--  <p class="ion-padding-start ion-padding-end">-->
+<!--    <ion-label color="warning">Tip #2:</ion-label>-->
+<!--    Swipe left to delete/remove Exercise-->
+<!--  </p>-->
+  @let tip =  tip$ | async;
+  <ion-item class="ion-padding-start ion-padding-end" (click)="click()">
+    <ion-label>
+      <ion-text color="warning">Tip #{{ tip?.number }} </ion-text>
+     {{tip?.text}} </ion-label>
+  </ion-item>
+</div>

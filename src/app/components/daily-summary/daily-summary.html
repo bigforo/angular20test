@@ -1,0 +1,28 @@
+
+<div class="ion-flex-1 ion-flex-column">
+@for (activity of session()?.activities; track $index) {
+  @let exercise = Activity.exerciseById(activity.id);
+    <div class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center rounded-xl">
+      <div class="font-black font-mono text-xs text-indigo-400">{{activity.created | date:'dd-MM-yy HH:mm'}}</div>
+      <div class="font-black font-mono" >- {{exercise?.name}} -</div>
+      @for (i of activity.sets; track $index){
+        <div class="flex items-center justify-center gap-2">
+
+          <div class="text-xs w-50px text-indigo-400 font-mono">{{ i.time| date:'HH:mm' }}</div>
+          <div class="text-lg">{{i.reps}}
+          @if (activity.hasSize) {
+            {{'x ' + i.size}}{{exercise?.weightUnit}}
+          }
+          </div>
+          <div></div>
+
+        </div>
+      }
+    </div>
+  @if (session()?.note) {
+  <div class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center rounded-xl">
+    {{session()?.note}}
+  </div>
+  }
+}
+</div>

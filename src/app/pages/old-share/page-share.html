@@ -1,0 +1,16 @@
+<!--<add-to-calendar-button-->
+<!--  name="Gym"-->
+<!--  options="'Apple','Google'"-->
+<!--  location="Gym"-->
+<!--  startDate="today"-->
+<!--  endDate="today"-->
+<!--  [attr.startTime]="getTime()"-->
+<!--  [attr.endTime]="getTimeLater()"-->
+<!--  [attr.description]="getDescForCal()"-->
+<!--  [attr.timeZone]="timeZone"-->
+<!--&gt;-->
+<!--</add-to-calendar-button>-->
+
+<!--<div style="width: 400px; word-break: break-all;"> {{ link  }} </div>-->
+
+<a matButton [routerLink]="['/view']" [queryParams]="{id: link()}">Share daily activity</a>
