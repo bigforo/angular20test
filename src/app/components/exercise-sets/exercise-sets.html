@@ -1,0 +1,26 @@
+<div class="ion-padding">
+
+  <ion-picker>
+    <ion-picker-column  [value]="0">
+      @for (n of repeatOptions; track $index) {
+        <ion-picker-column-option value="{{n}}">
+          {{n}}
+        </ion-picker-column-option>
+      }
+    </ion-picker-column>
+    <div>x</div>
+    <ion-picker-column [value]="0">
+      @for (n of weightOptions1; track $index) {
+        <ion-picker-column-option value="{{n}}">
+          {{n}}
+        </ion-picker-column-option>
+      }
+      <div slot="suffix">kg</div>
+    </ion-picker-column>
+  </ion-picker>
+
+
+
+
+
+</div>

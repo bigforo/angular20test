@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/app/tabs/sessions'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Workout Session EDIT</ion-title>
+  </ion-toolbar>
+</ion-header>
+@let session = session_copy;
+<ion-content fullscreen="true">
+  <ion-list inset="none">
+    <!-- Session DATE-->
+    <div class="ion-display-flex ion-justify-content-center ion-padding-bottom">
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime" presentation="date-time" [(ngModel)]="session.created"/>
+        </ng-template>
+      </ion-modal>
+    </div>
+    <!-- Session name-->
+    <ion-item>
+      <ion-input mode="md" [(ngModel)]="session.name" label="session.name" label-placement="stacked" fill="outline"/>
+    </ion-item>
+    <!-- Session type-->
+    <ion-item>
+      <ion-input mode="md" [(ngModel)]="session.type" label="session.type" label-placement="stacked" fill="outline"/>
+    </ion-item>
+    <!-- Session note-->
+    <ion-item>
+      <ion-input mode="md" [(ngModel)]="session.note" label="session.note" label-placement="stacked" fill="outline"/>
+    </ion-item>
+  @for (activity of session.activities; track $index; let j = $index) {
+    @let exercise = Activity.exerciseById(activity.id);
+    <!-- ACTIVITY NAME-->
+    <ion-list inset="none" >
+      <ion-item-sliding #sliding>
+
+          <ion-item>
+            <ion-label class="ion-text-center " size="large" color="primary"> <h1>- {{exercise?.name}} -</h1></ion-label>
+          </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="warning" (click)="sliding.close()">Change</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    @for (set of activity.sets; track set; let i = $index){
+      <div class="ion-padding-horizontal ion-display-flex ion-justify-content-center">
+        <!-- ACTIVITY SET TIME-->
+        <ion-datetime-button class="ion-padding-end" datetime="set.time{{j}}{{i}}"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="set.time{{j}}{{i}}"  presentation="time" [ngModel]="setTime(set.time)" (ngModelChange)="change($event,set)"  />
+          </ng-template>
+        </ion-modal>
+        <!-- ACTIVITY SET REPS-->
+        <ion-input style="width: 100px;" mode="md" label="set.reps" [(ngModel)]="set.reps" label-placement="stacked" fill="outline" />
+        <!-- ACTIVITY SET SIZE-->
+        <ion-input style="width: 100px;" mode="md" label="set.size" [(ngModel)]="set.size" label-placement="stacked" fill="outline" inputmode="decimal"/>
+      </div>
+    }
+    <!-- ACTIVITY NOTE-->
+    <ion-item>
+      <ion-input mode="md" [(ngModel)]="activity.note" label="activity.note" label-placement="stacked" fill="outline" />
+    </ion-item>
+  }
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+          <ion-button id="present-alert" color="light" expand="full" (click)="update()" >Update</ion-button>
+    </ion-toolbar>
+</ion-footer>

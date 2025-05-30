@@ -1,0 +1,30 @@
+@if (session().activities?.length ?? 0 > 0){
+  <!--  Session DATE TIME-->
+  @for (actEx of service.getActivitiesExBySession(session()); track $index) {
+    @let exercise = Activity.exerciseById(actEx.activity.id);
+    <ion-list inset="true">
+      <!--     Exercise NAME-->
+      <ion-label>
+        <h1 class="ion-text-capitalize">#{{$index+1}} {{exercise?.name}}</h1>
+      </ion-label>
+      <!--     SETS -->
+      <app-show-sets style="width: 100%" [actEx]="actEx" />
+      <!--     Activity Note-->
+      <ion-item>
+        @if (actEx.activity.note?.length ?? 0 > 0) {
+          <ion-label><p>{{ actEx.activity.note }} </p></ion-label>
+        }
+      </ion-item>
+
+    </ion-list>
+  }
+  <!--  Workout/Session Note-->
+  @if (session().note){
+    <div>
+      <h2 class="ion-padding-top ion-padding-start">Note</h2>
+      <p class="ion-padding-start ion-padding-end">
+        {{session().note}}
+      </p>
+    </div>
+  }
+}

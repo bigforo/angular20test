@@ -1,0 +1,15 @@
+@for (set of sets(); track set) {
+  <div class="flex items-center justify-between">
+    <div> {{set.time | date:'HH:mm:ss' }}</div>
+    @if (set.size === ""){
+      <div class="h1-text"> {{set.reps}}</div>
+    }
+    @else{
+      <div class="h1-text"> {{set.reps}} x {{set.size}} </div>
+    }
+
+    <button (click)="delete(set)" matIconButton>
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+}

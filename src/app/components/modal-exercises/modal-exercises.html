@@ -1,0 +1,37 @@
+<div class="fab-container">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" size="small" >
+    <ion-fab-button id="open-modal" [translucent]="true">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</div>
+
+<ion-modal #modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]" >
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Select an exercise</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modal.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-searchbar placeholder="Search" (ionInput)="searchInput($event)"/>
+      <ion-list>
+        @for (ex of filteredItems(); track ex){
+          <ion-item  button="false" (click)="clickToAddToCurrentWorkout(ex.id)" >
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u={{ex.color}}1"/>
+            </ion-avatar>
+            <ion-label [style.border-left-color]="ex.color">
+              <h2>{{ ex.name }}</h2>
+              <p>{{ ex.description }}</p>
+            </ion-label>
+            <ion-icon color="medium" name="add-outline"/>
+          </ion-item>
+        }
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,68 @@
+@use "sass:map";
+@use '../../../theme/variables' as *;
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(70px,250px));
+  gap: 10px;
+  //place-items: center; /* Shorthand for align-items: center; and justify-items: center; */
+  //align-items: center;
+}
+.exercise{
+  height: 50px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    //display: grid;
+    grid-template-columns: repeat(2, minmax(135px,250px));
+    //grid-auto-rows: auto;
+    //gap: 5px;
+    //row-gap: 15px;
+  }
+}
+
+.summary-exercise{
+  cursor: pointer;
+}
+
+
+ion-fab-button {
+  --background: var(--ion-color-step-150, #ffffff);
+  --background-hover: var(--ion-color-step-200, #f2f2f2);
+  --background-focused: var(--ion-color-step-250, #d9d9d9);
+  --color: var(--ion-color-primary, #3880ff);
+}
+
+/*
+ * Material Design uses the ripple for activated
+ * so only style the iOS activated background
+ */
+.ios ion-fab-button {
+  --background-activated: var(--ion-color-step-250, #d9d9d9);
+}
+
+@each $track in $tracks {
+  ion-item-sliding[track='#{$track}'] ion-label {
+    padding-left: 10px;
+
+    border-left: 2px solid var(--ion-color-#{$track});
+  }
+}
+.metadata-end-wrapper {
+  position: absolute;
+
+  top: 10px;
+  inset-inline-end: 10px;
+
+  font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+}
+
+ion-item ion-label {
+  padding-left: 10px;
+  border-left: 5px solid var(--ion-color-warning);
+}

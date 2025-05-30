@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Previous Sessions</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover($event)">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"/>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-list>
+@for (session of this.appState().history; track $index){
+  @let nextSession = $index == 0 ? null : this.appState().history[$index-1];
+  @if (diff(session.created,nextSession?.created ?? null)){
+    <ion-item-divider color="light">
+      <ion-label> Week {{ session.created | date:"w of yyyy" }}</ion-label>
+    </ion-item-divider>
+  }
+    <ion-item-sliding #sliding>
+      <ion-item lines="full" [routerLink]="['/session']" [queryParams]="{id: $index}" >
+        <ion-label color="secondary">
+         <strong>{{ session.created | date:"EEE d-MMM-yy" }}</strong>
+          <ion-text color="warning" class="ion-text-lowercase io" > -{{session.type}}- </ion-text>
+          @for (i of session.activities; track $index){
+            @let exercise = Activity.exerciseById(i.id);
+            <p>- {{exercise?.name}}</p>
+          }
+          @if(session.note){
+          <p>note: {{session.note}}</p>
+          }
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="delete(session,sliding)" >Delete</ion-item-option>
+        <ion-item-option color="warning" (click)="edit($index,sliding)" [routerLink]="['/session-edit']" [queryParams]="{id: $index}">Edit</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  }
+  </ion-list>
+
+</ion-content>
+
+<ion-alert
+  [isOpen]="alertDelete() != null"
+  header="Delete session?"
+  message="Deleting session will remove all activities/exercises history."
+  [buttons]="[{text: 'Yes', role: 'yes',},{text: 'No',role: 'no',},]"
+  (willDismiss)="deleteConfirmation($event)"
+></ion-alert>
+
+

@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Choose Exercise</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+    <ion-searchbar placeholder="Search" (ionInput)="searchInput($event)"></ion-searchbar>
+    <ion-list>
+      @for (ex of filteredItems(); track ex){
+        <ion-item  button="true" (click)="clickToNavigateToExerciseDetails(ex.id)" >
+          <ion-avatar slot="start">
+            <ion-img src="https://i.pravatar.cc/300?u={{ex.color}}1"></ion-img>
+          </ion-avatar>
+          <ion-label [style.border-left-color]="ex.color">
+            <h2>{{ ex.name }}</h2>
+            <p>{{ ex.description }}</p>
+          </ion-label>
+        </ion-item>
+      }
+  </ion-list>
+</ion-content>

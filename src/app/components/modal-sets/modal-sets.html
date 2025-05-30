@@ -1,0 +1,83 @@
+<ion-modal
+            #modal
+            [isOpen]="open()"
+            [canDismiss]="canDismiss"
+            (willDismiss)="onWillDismiss($event)"
+            [initialBreakpoint]="1"
+            [breakpoints]="[0, 0.75, 1]"
+>
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Add Activity</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closed.emit(true);">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen="true">
+      @let exercise = Activity.exerciseById(activity().id);
+      <div class="ion-padding">
+        <!--   Header-->
+        <h2 class="ion-text-center" ><ion-label style="cursor:pointer" (click)="redirect(modal)" class="ion-text-capitalize" color="primary"> - {{exercise?.name}} -</ion-label></h2>
+        <div class="ion-text-center"> <ion-label color="secondary"> {{ activity().created | date}} </ion-label></div>
+        <ion-grid>
+          <!--   SET-->
+          <ion-row>
+            @if (exercise?.reps) {
+            <ion-col>
+              <ion-input mode="md" label="REPS" label-placement="floating" fill="outline"  inputmode="numeric"
+                         [(ngModel)]="values.reps"/>
+            </ion-col>
+            }
+            @if (exercise?.weight) {
+            <ion-col>
+              <ion-input mode="md" label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal"
+                         [(ngModel)]="values.kgs" />
+            </ion-col>
+            }
+            @if (!exercise?.weight && !exercise?.reps) {
+              <ion-col>
+                <ion-input mode="md" label="FREE TEXT" label-placement="floating" fill="outline"
+                           [(ngModel)]="values.free" />
+              </ion-col>
+            }
+          </ion-row>
+
+          <!-- Comment-->
+          <ion-textarea mode="md" label-placement="floating" fill="outline"
+                        [ngModel]="getNote()"
+                        (ngModelChange)="setNote($event)"
+                        label="Activity Comments"
+                        labelPlacement="floating"
+                        rows="2">
+          </ion-textarea>
+
+          <!--   Button -->
+          <ion-row>
+            <ion-col>
+              <ion-button color="light" expand="full" (click)="addSet(activity(),values)">Add Set</ion-button>
+            </ion-col>
+          </ion-row>
+          <!--   SETS-->
+          <ion-row>
+            <ion-col>
+              <app-show-sets [sets]="activity().sets"/>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </div>
+
+      <!-- History -->
+      <div class="ion-padding">
+        <app-ex-history [id]="activity().id" (clickToNavigate)="clickToNavigate($event, modal)"/>
+      </div>
+
+
+    </ion-content>
+
+  </ng-template>
+</ion-modal>

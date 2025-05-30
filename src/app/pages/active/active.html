@@ -1,0 +1,145 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button/>
+    </ion-buttons>
+    <ion-title>Active Workout Session</ion-title>
+
+    @if (appState().current?.activities?.length ?? 0 > 0){
+    <ion-buttons slot="end">
+      <ion-button id="present-alert">
+        <ion-icon size="large" color="danger" name="stop-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+      <ion-alert
+        trigger="present-alert"
+        header="Stop Active Workout?"
+        message="Older workout sessions can be found in the history tab."
+        [buttons]="alertButtons"
+        (didDismiss)="endSessionConfirmation($event)"
+      ></ion-alert>
+    }
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+
+  @if (appState().current?.activities?.length??0>0){
+    <!-- Header -->
+    <div class="ion-text-center" >
+      <h1 >Workout session started</h1>
+    </div>
+    <!-- Chips -->
+    <div class="ion-text-center">
+      @for (item of items; track item) {
+        <ion-chip
+          [class] = "item === selectedItem ? 'selected-chip' : ''"
+          (click)="chipClick(item)">
+          <ion-label>{{ item }}</ion-label>
+        </ion-chip>
+      }
+    </div>
+    <!--  Tips -->
+    <app-session-tips/>
+  }
+  <!-- Activities -->
+  @for (actEx of service.getActivitiesExBySession(appState().current); track $index) {
+    @let exercise = Activity.exerciseById(actEx.activity.id);
+    <ion-list inset="true" style="border-right: 5px solid var(--ion-color-warning)">
+      <ion-item-sliding #sliding>
+        <ion-item button="true" lines="full" (click)="modalRedirect(actEx.activity.id)" >
+          <ion-label [style.border-left-color]="exercise?.color" class="label-color-border" >
+            <strong class="ion-text-capitalize">#{{$index+1}} {{exercise?.name}}</strong>
+            <ion-text color="medium" class="ion-text-lowercase">- {{exercise?.name}} -</ion-text>
+            @if (actEx.activity.sets.length > 0){
+              <app-show-sets style="width: 100%" [actEx]="actEx" />
+              <!--   exercise comment-->
+              @if (actEx.activity.note?.length ?? 0 > 0){
+                <ion-label> <p>{{ actEx.activity.note }} </p> </ion-label>
+              }
+            }
+          </ion-label>
+<!--          <div class="metadata-end-wrapper" slot="end">-->
+<!--            <ion-note color="medium">-->
+<!--              <ion-text style="font-size: small">{{ actEx.activity.created | date:'HH:mm' }}-->
+<!--              </ion-text>-->
+<!--            </ion-note>-->
+<!--          </div>-->
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option
+            color="danger"
+            (click)="deleteActivity(actEx.activity,sliding)">
+            Delete</ion-item-option>
+          <ion-item-option
+            [routerLink]="['/exercise/'+actEx.activity.id]"
+            (click)="sliding.close()"
+            color="warning">More</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+
+    </ion-list>
+  }
+
+  <!--Session Comment-->
+  @if (appState().current?.activities?.length ?? 0 > 0){
+    <ion-list inset="true" style="border-right: 5px solid var(--ion-color-medium)">
+      <ion-item-sliding #slidingComment >
+        <ion-item button="true" (click)="modalCommentsSetOpen.set(true)" >
+          <ion-label>
+            Session/Workout Notes
+            @if(appState().current?.note?.length ?? 0 > 0){
+              <p>{{appState().current?.note}}</p>
+            }
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option
+            color="medium"
+            (click)="clear(appState().current, slidingComment)">
+            Clear</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  }
+
+<!--   No Session -->
+  @if ( (appState().current?.activities?.length ?? 0) === 0){
+    <div
+      class="ion-display-flex ion-justify-content-center ion-align-items-center"
+      style="height:80%">
+      <div class="ion-text-center ion-padding">
+        <h2>No Active Workout Session</h2>
+        <p>
+          <ion-note class="ion-text-capitalize" color="warning">
+            Start workout session by adding exercise
+          </ion-note>
+        </p>
+      </div>
+    </div>
+  }
+
+  <div style="height: 60px"></div>
+</ion-content>
+
+<ion-footer>
+  <app-modal-exercises/>
+</ion-footer>
+
+<app-modal-sets [activity]="modalSetActivity()" [open]="modalSetOpen()" (closed)="modalClosed()"/>
+<app-modal-description [open]="modalCommentsSetOpen()" (closed)="modalCommentClosed()" />
+
+<!--  <ion-modal-->
+<!--    [isOpen]="openModal()"-->
+<!--    (didDismiss)="openModal.set(false)"-->
+<!--    [initialBreakpoint]="1"-->
+<!--    [breakpoints]="[1, 0.75]"-->
+<!--    handleBehavior="cycle">-->
+<!--    <ng-template>-->
+<!--      <div class="block">-->
+<!--        <app-exercise-sets [id]="viewId" />-->
+<!--      </div>-->
+<!--    </ng-template>-->
+<!--  </ion-modal>-->

@@ -1,0 +1,98 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/app/tabs/active'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Exercise details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (activity() != null){
+    @let exercise = Activity.exerciseById(id()??"");
+    <div class="about-header">
+      <div class="about-image ion-display-flex ion-justify-content-center ion-align-items-center ion-flex-column"
+           [ngStyle]="{'opacity': '1'}"
+           [class] = "exercise?.color??''" >
+        <div><h1>- {{ exercise?.name }} -</h1></div>
+      </div>
+    </div>
+
+    <div class="about-info">
+
+      <div class="ion-padding-top ion-padding-start ion-padding-end">
+
+        <h3>Exercise Details</h3>
+
+        <ion-list lines="none">
+<!-- Category -->
+          <ion-item>
+            <ion-label> Category </ion-label>
+            <ion-label class="ion-text-end">
+              {{exercise?.color}}
+            </ion-label>
+          </ion-item>
+<!-- Weight -->
+          <ion-item>
+            <ion-toggle [checked]="exercise?.weight">Weight</ion-toggle>
+          </ion-item>
+<!-- Reps -->
+          <ion-item>
+            <ion-toggle [checked]="exercise?.reps">Reps</ion-toggle>
+          </ion-item>
+<!-- Unit -->
+          <ion-item>
+            <ion-label> Weight Unit</ion-label>
+            <ion-label class="ion-text-end">
+              {{exercise?.weightUnit == "" ? 'none' : exercise?.weightUnit}}
+            </ion-label>
+          </ion-item>
+<!-- Description -->
+          <ion-item>
+            <ion-label> Description </ion-label>
+          </ion-item>
+          <ion-label class="ion-padding-start ion-padding-end" color="medium" slot="end">
+            {{ exercise?.description }}
+          </ion-label>
+<!-- Instructions -->
+          <ion-item>
+            <ion-label> Instructions </ion-label>
+          </ion-item>
+          <ion-label class="ion-padding-start ion-padding-end" color="medium" slot="end">
+            TODO
+          </ion-label>
+<!-- Upload -->
+          <ion-item >
+            <ion-label> Upload Image </ion-label>
+          </ion-item>
+          <ion-label class="ion-padding-start ion-padding-end" color="medium" slot="end">
+            TODO
+          </ion-label>
+
+        </ion-list>
+
+
+        <app-ex-history [id]="activity().id" (clickToNavigate)="clickToNavigate($event)"/>
+      </div>
+
+    </div>
+  }
+</ion-content>
+
+
+<ion-footer>
+  @if (activity() != null){
+  <ion-toolbar>
+    <ion-button slot="start" router-direction="back"  color="light" (click)="navBack()" >
+      <ion-icon name="chevron-back-outline"/>
+    </ion-button>
+
+    <ion-button slot="start" color="light" router-direction="root" expand="block" (click)="click(activity())" >Add</ion-button>
+    <ion-button color="light" expand="block" [routerLink]="'/app/tabs/current'" >Goto Session</ion-button>
+
+    <ion-button slot="end" router-direction="forward" color="light" (click)="navForward()" >
+      <ion-icon name="chevron-forward-outline"/>
+    </ion-button>
+  </ion-toolbar>
+  }
+</ion-footer>

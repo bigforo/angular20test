@@ -1,0 +1,28 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-item routerLink='/' slot="start">
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-item>
+    <ion-title>Shared Session</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen="true">
+  <div class="about-session ion-flex-row">
+    <h3 class="ion-padding-top ion-padding-start">Shared workout session</h3>
+
+    <p class="ion-padding-start ion-padding-end">
+      Someone shared a complete workout session with you. If you want to start new one, just go to Select Exercise from the main menu.
+    </p>
+  </div>
+<!--  <app-daily-summary [session]="uncomm()" />-->
+  @if (uncomm() != null){
+    <app-workout-details [session]="uncomm()!"/>
+  }
+
+
+</ion-content>
+
+
