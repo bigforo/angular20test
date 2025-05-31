@@ -1,0 +1,20 @@
+<div style="width: 100vw; height: 100vh">
+  <div style="text-align: center">
+  <mat-selection-list >
+    <mat-list-item>daily</mat-list-item>
+    <mat-list-item>Exercise</mat-list-item>
+    @for (exercise of week; track exercise) {
+      <mat-list-item>{{exercise.name}}</mat-list-item>
+      @for (set of exercise.sets; track set) {
+        <mat-list-item>
+           {{set.reps}} x {{set.size}}
+        </mat-list-item>
+      }
+    }
+    <mat-list-item>report</mat-list-item>
+    <mat-list-item>
+
+    </mat-list-item>
+  </mat-selection-list>
+  </div>
+</div>
