@@ -2,7 +2,8 @@
   <div style="text-align: center">
 
     <mat-list>
-      <mat-list-item (click)="click($event)">daily</mat-list-item>
+      <mat-list-item>daily</mat-list-item>
+      <mat-list-item (click)="click($event)">weekly</mat-list-item>
       @if (mainScreen()) {
         @for (day of appState.weekly; track day) {
           <mat-list-item >
@@ -38,7 +39,8 @@
           }
         }
       }
-      <mat-list-item  (click)="click($event)">report</mat-list-item>
+      <mat-list-item>report</mat-list-item>
+      <mat-list-item>settings</mat-list-item>
     </mat-list>
     </div>
 </div>
