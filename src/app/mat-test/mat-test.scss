@@ -5,9 +5,13 @@
   @include mat.list-overrides((
     active-indicator-color: orange,
     active-indicator-shape: red,
-    list-item-one-line-container-height:100px,
-    list-item-label-text-size:60px,
-    list-item-label-text-weight:300
+    //list-item-one-line-container-height:100px,
+    //list-item-label-text-size:60px,
+    //list-item-label-text-weight:300
   ));
+  //font-size: 50px;
   //--mat-list-list-item-one-line-container-height:100px;
+}
+::ng-deep .mdc-list-item__content{
+  overflow: unset !important;
 }

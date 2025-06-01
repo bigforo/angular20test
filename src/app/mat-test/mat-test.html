@@ -1,20 +1,44 @@
 <div style="width: 100vw; height: 100vh">
   <div style="text-align: center">
-  <mat-selection-list >
-    <mat-list-item>daily</mat-list-item>
-    <mat-list-item>Exercise</mat-list-item>
-    @for (exercise of week; track exercise) {
-      <mat-list-item>{{exercise.name}}</mat-list-item>
-      @for (set of exercise.sets; track set) {
-        <mat-list-item>
-           {{set.reps}} x {{set.size}}
-        </mat-list-item>
-      }
-    }
-    <mat-list-item>report</mat-list-item>
-    <mat-list-item>
 
-    </mat-list-item>
-  </mat-selection-list>
-  </div>
+    <mat-list>
+      <mat-list-item (click)="click($event)">daily</mat-list-item>
+      @if (mainScreen()) {
+        @for (day of appState.weekly; track day) {
+          <mat-list-item >
+              <span matListItemTitle style="font-style: italic;" (click)="day.toggleVisible()">{{day.name}}</span>
+              <span matListItemLine>Desc: some description</span>
+          </mat-list-item>
+          @if (day.visibility){
+            @for (exercise of day.exercises; track exercise) {
+              <mat-list-item (click)="exercise.toggleVisible()"> {{exercise.name}} </mat-list-item>
+              @if (exercise.visible){
+                @for (set of exercise.sets; track set) {
+                  <mat-list-item> {{set.reps}} x {{set.size}} </mat-list-item>
+                }
+
+                <mat-action-list>
+                  <div style="display: flex; align-items: stretch; justify-content: center;">
+                    <input style="width: 50px" matInput #reps maxlength="256" placeholder="Number">
+                    <input style="width: 50px" matInput #size maxlength="256" placeholder="Kg">
+                    <button style="width: 30px" mat-list-item (click)="exercise.addSet(reps.value,size.value)">+</button>
+                    <button style="width: 30px" mat-list-item (click)="exercise.removeSet()">-</button>
+                  </div>
+                </mat-action-list>
+              }
+            }
+
+            <mat-action-list>
+              <div style="display: flex; align-items: stretch; justify-content: center;">
+                <input style="width: 50px" matInput #exName maxlength="256" placeholder="Name">
+                <button style="width: 30px" mat-list-item (click)="day.addExercise(exName.value)">+</button>
+                <button style="width: 30px" mat-list-item (click)="day.removeExercise()">-</button>
+              </div>
+            </mat-action-list>
+          }
+        }
+      }
+      <mat-list-item  (click)="click($event)">report</mat-list-item>
+    </mat-list>
+    </div>
 </div>
