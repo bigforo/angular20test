@@ -1,3 +1,8 @@
+export interface IExerciseSet {
+  reps: string,
+  size?: string,
+}
+
 export class ExerciseSetClass implements IExerciseSet {
   public reps: string;
   public size: string;
@@ -7,7 +12,4 @@ export class ExerciseSetClass implements IExerciseSet {
     this.size = size;
   }
 }
-interface IExerciseSet {
-  reps: string,
-  size?: string,
-}
+
