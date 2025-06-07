@@ -1,16 +1,30 @@
 <div class="h-full w-full border-5 border-violet-200 bg-violet-600 p-5 text-orange-100 font-black font-mono">
-  <div class="grid h-80 grid-cols-1 space-y-3 border-5 bg-yellow-700 p-5 md:h-100 md:text-2xl lg:h-150 lg:text-4xl">
+  <div class="h-2/4 md:h-3/4 lg:h-full md:text-3xl lg:text-5xl space-y-3 border-5 bg-yellow-700 p-5 ">
+<!--    -->
     <div class="flex items-center justify-center border-2 bg-yellow-500">MONDAY</div>
+<!--    -->
     <div class="flex gap-2 border-2 bg-yellow-500">
       <div class="flex h-full w-1/5 items-center justify-center bg-amber-700"><<</div>
       <div class="flex h-full w-10 grow items-center justify-center bg-amber-600">BENCH</div>
       <div class="flex h-full w-1/5 items-center justify-center bg-amber-700">>></div>
     </div>
+    <div class="flex ">
 
-    <div class="flex border-2 bg-yellow-500">
-      <div class="flex h-full w-1/2 items-center justify-center bg-amber-950">10</div>
-      <div class="flex h-full w-1/2 items-center justify-center bg-amber-950">50kg</div>
+      <div class="mr-auto inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-300 pb-1 font-extrabold text-amber-900 md:h-9 md:w-9 lg:h-11 lg:w-11">
+        <button mat-button (click)="clickMinus()" >-</button>
+      </div>
+      <div class="ml-auto inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-300 pb-1 font-extrabold text-amber-900 md:h-9 md:w-9 lg:h-11 lg:w-11">
+        <button mat-button (click)="clickPlus()" >+</button>
+      </div>
     </div>
+<!--    -->
+    @for (item of sets;track $index){
+      <div class="flex border-2 bg-yellow-500">
+        <div class="flex h-full w-1/2 items-center justify-center bg-amber-950">10</div>
+        <div class="flex h-full w-1/2 items-center justify-center bg-amber-950">50kg</div>
+      </div>
+    }
+
     <div class="flex border-2 bg-yellow-500">
       <div class="flex h-full w-1/2 items-center justify-center bg-amber-950 p-2">
         <input class="w-1/2 px-2 outline-double" type="number" placeholder="REP" />
@@ -20,8 +34,6 @@
       </div>
     </div>
 
-    <div class="ml-auto inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-300 pb-1 font-extrabold text-amber-900 md:h-9 md:w-9 lg:h-11 lg:w-11">
-      <button>+</button>
-    </div>
+
   </div>
 </div>

@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MatListOption, MatSelectionList} from '@angular/material/list';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-list',
   imports: [
     MatSelectionList,
     MatListOption,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButton
   ],
   templateUrl: './list.html',
   styleUrl: './list.scss'
@@ -27,6 +29,14 @@ export class List {
     this.form = new FormGroup({
       clothes: this.shoesControl,
     });
+  }
+  sets= [1,1,1];
+  clickPlus() {
+    this.sets.push(1)
+  }
+
+  clickMinus() {
+    this.sets.pop();
   }
 }
 
