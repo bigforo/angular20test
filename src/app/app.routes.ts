@@ -4,7 +4,7 @@ import { MatTest } from './mat-test/mat-test';
 import {List} from './list/list';
 
 export const routes: Routes = [
-  { path:'',component:MatTest },
+  { path:'',component:List },
   { path: 'tailwind', component: Tailwind },
-  { path: 'list', component: List },
+  { path: 'mat', component: MatTest },
 ];
