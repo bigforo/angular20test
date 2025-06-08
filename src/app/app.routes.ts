@@ -5,8 +5,8 @@ import {List} from './list/list';
 import { Tail2 } from './tail2/tail2';
 
 export const routes: Routes = [
-  { path:'',component:List },
+  { path:'',component:Tail2 },
   { path: '2', component: Tailwind },
   { path: '1', component: MatTest },
-  { path: '3', component: Tail2},
+  { path: '3', component: List},
 ];
