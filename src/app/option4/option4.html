@@ -1,0 +1,33 @@
+<div class="contact-form">
+  <div class="flow">
+    <h1>Let's do it! {{internalId()}}</h1>
+    @let exercise = exercises;
+    <app-show-sets [sets]="exercise.sets"/>
+  </div>
+
+  <form>
+    <div class="form-group">
+      <label for="reps">Rep Number</label>
+      <input #r type="number" id="reps" required>
+    </div>
+    <div class="form-group">
+      <label for="weight">Weight (kg)</label>
+      <input #w type="number" id="weight" required>
+    </div>
+
+<!--    https://codepen.io/kevinpowell/pen/JodojoQ-->
+    <button type="button" (click)="exercise.addSet(r.value,w.value)">Add Rep</button>
+  </form>
+</div>
+
+<add-to-calendar-button
+  name="Title"
+  options="'Apple','Google'"
+  location="World Wide Web"
+  startDate="2025-07-18"
+  endDate="2025-07-18"
+  startTime="10:15"
+  endTime="23:30"
+  timeZone="America/Los_Angeles"
+></add-to-calendar-button>
+
