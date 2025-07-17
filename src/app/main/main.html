@@ -9,7 +9,7 @@
 
 <div class="flex items-center justify-center flex-col">
 @for (item of service.appState.daily.exercises; track $index) {
-  <div class="border-2 border-amber-800 p-2 m-2 w-100">
+  <div class="border-2 border-amber-800 p-2 m-2 w-70">
     <div class="font-black">{{item.name}}</div>
     @for (i of item.sets; track $index){
       <ul>
