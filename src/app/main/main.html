@@ -1,26 +1,38 @@
 <div class="wrapper">
   @for (item of service.exercises; track $index) {
     <div routerLink="/{{item.id}}"
-         class="flex items-center justify-center border-2 border-amber-200 bg-amber-800">
+         class="flex items-center justify-center border-2 border-amber-200 bg-amber-800 m-2">
       {{item.name.replaceAll("-"," ")}}
     </div>
   }
 </div>
 
+<div class="flex items-center justify-center flex-col">
+@for (item of service.appState.daily.exercises; track $index) {
+  <div class="border-2 border-amber-800 p-2 m-2 w-100">
+    <div class="font-black">{{item.name}}</div>
+    @for (i of item.sets; track $index){
+      <ul>
+        <li>{{i.reps}} x {{i.size}} </li>
+      </ul>
+    }
+  </div>
+}
+</div>
+
 <div class="flex items-center justify-center">
   <add-to-calendar-button
-    name="Title"
+    name="Gym"
     options="'Apple','Google'"
-    location="World Wide Web"
-    startDate="2025-07-18"
-    endDate="2025-07-18"
-    startTime="10:15"
-    endTime="23:30"
-    timeZone="America/Los_Angeles">
+    location="Gym"
+    startDate="today"
+    endDate="today"
+    [attr.startTime]="getTime()"
+    [attr.endTime]="getTimeLater()"
+    [attr.description]="getDesc()"
+    [attr.timeZone]="timeZone"
+  >
   </add-to-calendar-button>
 </div>
 
 
-<pre>
-  {{service.appState.daily | json}}
-</pre>
