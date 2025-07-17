@@ -27,10 +27,10 @@
     location="Gym"
     startDate="today"
     endDate="today"
-    [attr.startTime]="getTime()"
-    [attr.endTime]="getTimeLater()"
-    [attr.description]="getDesc()"
-    [attr.timeZone]="timeZone"
+    [attr.startTime]="getTime()??''"
+    [attr.endTime]="getTimeLater()??''"
+    [attr.description]="getDesc()??''"
+    [attr.timeZone]="timeZone??''"
   >
   </add-to-calendar-button>
 </div>
