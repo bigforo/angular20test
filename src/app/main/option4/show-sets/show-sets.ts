@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ExerciseSetClass} from '../../classes/exercise-set.class';
+import {ExerciseSetClass} from '../../../classes/exercise-set.class';
 
 @Component({
   selector: 'app-show-sets',

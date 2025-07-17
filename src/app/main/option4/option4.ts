@@ -1,10 +1,10 @@
 import {Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, input, linkedSignal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ExerciseClass} from '../classes/exercise.class';
+import {ExerciseClass} from '../../classes/exercise.class';
 import {ShowSets} from './show-sets/show-sets';
 import 'add-to-calendar-button';
-import {TruncatePipe} from '../classes/truncate-pipe';
-import {Common} from '../classes/common';
+import {TruncatePipe} from '../../classes/truncate-pipe';
+import {Common} from '../../classes/common';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import { JsonPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';

@@ -1,6 +1,9 @@
 <div class="wrapper">
   @for (item of service.exercises; track $index) {
-    <div class="flex items-center justify-center"><a routerLink="/{{item.id}}">{{item.name.replaceAll("-"," ")}}</a>  </div>
+    <div routerLink="/{{item.id}}"
+         class="flex items-center justify-center border-2 border-amber-200 bg-amber-800">
+      {{item.name.replaceAll("-"," ")}}
+    </div>
   }
 </div>
 
