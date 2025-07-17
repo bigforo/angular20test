@@ -7,6 +7,7 @@ import {TruncatePipe} from '../classes/truncate-pipe';
 import {Common} from '../classes/common';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import { JsonPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -14,12 +15,11 @@ import { JsonPipe } from '@angular/common';
   imports: [
     ReactiveFormsModule,
     ShowSets,
-    JsonPipe,
     MatButtonToggleGroup,
     MatButtonToggle,
     MatButtonToggleGroup,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    RouterLink
+],
   templateUrl: './option4.html',
   styleUrl: './option4.scss'
 })

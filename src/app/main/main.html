@@ -1,0 +1,23 @@
+<div class="wrapper">
+  @for (item of service.exercises; track $index) {
+    <div class="flex items-center justify-center"><a routerLink="/{{item.id}}">{{item.name.replaceAll("-"," ")}}</a>  </div>
+  }
+</div>
+
+<div class="flex items-center justify-center">
+  <add-to-calendar-button
+    name="Title"
+    options="'Apple','Google'"
+    location="World Wide Web"
+    startDate="2025-07-18"
+    endDate="2025-07-18"
+    startTime="10:15"
+    endTime="23:30"
+    timeZone="America/Los_Angeles">
+  </add-to-calendar-button>
+</div>
+
+
+<pre>
+  {{service.appState.daily | json}}
+</pre>
