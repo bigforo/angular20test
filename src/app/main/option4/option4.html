@@ -31,8 +31,11 @@
 
     </div>
 <!--    https://codepen.io/kevinpowell/pen/JodojoQ-->
-    <button type="button" (click)="exercise.addSet(reps,kgs)">Add Rep</button>
-    <button type="button" routerLink="/">Back</button>
+    <div class="flex justify-between ">
+      <button type="button" routerLink="/">Back</button>
+
+      <button type="button" (click)="exercise.addSet(reps,kgs)">Add Rep</button>
+    </div>
   </form>
 </div>
 

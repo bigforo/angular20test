@@ -107,7 +107,7 @@ label {
   gap: 1rem;
 
   background-color: var(--surface-1);
-  padding: 3rem;
+  padding: 1.5rem;
   border-radius: 24px;
   width: min(100% - 4rem, 1200px);
   margin-inline: auto;
@@ -133,4 +133,7 @@ button {
   overflow-x: auto; /* or scroll */
   white-space: nowrap; /* Prevents buttons from wrapping to the next line */
   scrollbar-width: none;
+}
+mat-button-toggle{
+  font-size: 2rem;
 }
