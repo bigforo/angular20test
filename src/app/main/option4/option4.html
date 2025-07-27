@@ -9,20 +9,26 @@
     <div class="form-group">
       <label for="reps">Rep Number</label>
 <!--      <input #r type="number" id="reps" required>-->
+      <div class="button-container">
         <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="reps">
           @for (n of exercise.reps; track $index) {
             <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
           }
         </mat-button-toggle-group>
+      </div>
+
     </div>
     <div class="form-group">
       <label for="weight">Weight (kg)</label>
       <!-- <input #w type="number" id="weight" required> -->
-      <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="kgs">
-        @for (n of exercise.weight; track $index) {
-          <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
-        }
-      </mat-button-toggle-group>
+      <div class="button-container">
+        <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="kgs">
+          @for (n of exercise.weight; track $index) {
+            <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
+
     </div>
 <!--    https://codepen.io/kevinpowell/pen/JodojoQ-->
     <button type="button" (click)="exercise.addSet(reps,kgs)">Add Rep</button>

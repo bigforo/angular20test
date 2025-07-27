@@ -128,3 +128,9 @@ button {
     background-color: hsl(from var(--accent) h s 30%);
   }
 }
+
+.button-container {
+  overflow-x: auto; /* or scroll */
+  white-space: nowrap; /* Prevents buttons from wrapping to the next line */
+  scrollbar-width: none;
+}
