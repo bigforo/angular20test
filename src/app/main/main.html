@@ -1,7 +1,7 @@
 <div class="wrapper">
   @for (item of service.exercises; track $index) {
     <div routerLink="/{{item.id}}"
-         class="flex items-center justify-center border-2 border-amber-200 bg-amber-800 m-2">
+         class="text-center border-2 border-amber-200 bg-amber-800 m-2">
       {{item.name.replaceAll("-"," ")}}
     </div>
   }
