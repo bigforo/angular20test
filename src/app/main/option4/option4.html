@@ -2,7 +2,7 @@
   <div class="flow">
     <h1>Let's do it!</h1>
     <div class="flex items-center justify-center">- {{internalId()}} -</div>
-    <app-show-sets [sets]="exercise.sets"/>
+
   </div>
 
   <form>
@@ -37,6 +37,9 @@
       <button type="button" (click)="exercise.addSet(reps,kgs)">Add Rep</button>
     </div>
   </form>
+  <div class="flow">
+    <app-show-sets [sets]="exercise.sets"/>
+  </div>
 </div>
 
 
