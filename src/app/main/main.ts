@@ -35,13 +35,16 @@ export class Main {
   }
   timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  public getDesc(){
+  public getDescForCal(){
     let ex = this.service.appState.daily.exercises;
     let desc:string = "";
     ex.forEach(item => {
       desc += item.name + '\r'
       item.sets.forEach(set => {
-        desc += ' - ' + set.reps + 'x' + set.size + '\r'
+        if (item.noKg?? false)
+          desc += ' - ' + set.reps + '\r'
+        else
+          desc += ' - ' + set.reps + 'x' + set.size + '\r'
       })
     })
     return desc;

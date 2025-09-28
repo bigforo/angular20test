@@ -2,7 +2,7 @@
 <div class="wrapper">
   @for (item of service.exercises; track $index) {
     <div routerLink="/{{item.id}}">
-      <div class="flex items-center justify-center border-2 border-amber-200 bg-amber-800 h-20">
+      <div class="flex items-center justify-center border-2 border-amber-200 bg-amber-800 h-100px">
         {{item.name}}
       </div>
     </div>
@@ -16,7 +16,11 @@
     <div class="font-black">{{item.name}}</div>
     @for (i of item.sets; track $index){
       <ul>
-        <li>{{i.reps}} x {{i.size}} </li>
+        <li>{{i.reps}}
+          @if (!item.noKg) {
+            {{'x ' + i.size}}
+          }
+        </li>
       </ul>
     }
   </div>
@@ -33,7 +37,7 @@
     endDate="today"
     [attr.startTime]="getTime()??''"
     [attr.endTime]="getTimeLater()??''"
-    [attr.description]="getDesc()??''"
+    [attr.description]="getDescForCal()??''"
     [attr.timeZone]="timeZone??''"
   >
   </add-to-calendar-button>
