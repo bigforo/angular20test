@@ -5,7 +5,7 @@ import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterLink, JsonPipe],
+  imports: [RouterLink],
   templateUrl: './main.html',
   styleUrl: './main.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

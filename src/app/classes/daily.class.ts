@@ -8,6 +8,7 @@ export interface IDaily {
 export class DailyClass implements IDaily {
   public name: string;
   public exercises: ExerciseClass[];
+  public time: Date;
 
   public addExercise(name: string) {
     this.exercises.push(new ExerciseClass(name));
@@ -23,6 +24,7 @@ export class DailyClass implements IDaily {
   };
 
   constructor(name: string) {
+    this.time = new Date();
     this.name = name;
     this.exercises = [];
   }

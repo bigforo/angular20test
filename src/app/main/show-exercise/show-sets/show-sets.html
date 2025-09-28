@@ -1,0 +1,9 @@
+@for (set of sets(); track set) {
+  <div class="flex items-center justify-between">
+    <div> {{set.time | date:'hh:mm:ss' }}</div>
+    <div class="h1-text"> {{set.reps}} x {{set.size}} </div>
+    <button (click)="delete(set)" matIconButton aria-label="delete">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+}

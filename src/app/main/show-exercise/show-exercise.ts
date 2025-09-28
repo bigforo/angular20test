@@ -6,7 +6,7 @@ import 'add-to-calendar-button';
 import {TruncatePipe} from '../../classes/truncate-pipe';
 import {Common} from '../../classes/common';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
-import { JsonPipe } from '@angular/common';
+import {DatePipe, JsonPipe} from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 
@@ -18,22 +18,23 @@ import { RouterLink } from '@angular/router';
     MatButtonToggleGroup,
     MatButtonToggle,
     MatButtonToggleGroup,
-    RouterLink
-],
-  templateUrl: './option4.html',
-  styleUrl: './option4.scss'
+    RouterLink,
+    DatePipe
+  ],
+  templateUrl: './show-exercise.html',
+  styleUrl: './show-exercise.scss'
 })
-export class Option4 {
+export class ShowExercise {
   service = inject(Common)
-  // id = input.required<string>()
-  // hero = computed(() => this.service.getHero(id));
 
   id = input<string|undefined>();
   internalId = linkedSignal(() => {
     let id = this.id();
-    let ex_name = this.service.exercises.find(a=> a.id === id)?.name;
+    let ex_name =
+      this.service.exercises.find(a=> a.id === id)?.name;
     if (ex_name) {
-      let exercise = this.service.appState.daily.exercises.find(a => a.name === ex_name);
+      let exercise =
+        this.service.appState.daily.exercises.find(a => a.name === ex_name);
       if (!exercise) {
         this.service.appState.daily.addExercise(ex_name);
         exercise = this.service.appState.daily.exercises.find(a => a.name === ex_name);
