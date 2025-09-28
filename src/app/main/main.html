@@ -11,13 +11,14 @@
 
 <!--Summary-->
 <div class="flex items-center justify-center flex-col">
-@for (item of service.appState.daily.exercises; track $index) {
-  <div class="border-2 border-amber-800 p-2 m-2 w-70">
-    <div class="font-black">{{item.name}}</div>
-    @for (i of item.sets; track $index){
+@for (ex of service.appState.daily.exercises; track $index) {
+  <div class="border-2 border-amber-800 p-2 m-2 w-70 text-center">
+    <div class="font-black font-mono text-xs">{{ex.time | date:'dd-MM-yy HH:mm'}}</div>
+    <div class="font-black font-mono">- {{ex.name}} -</div>
+    @for (i of ex.sets; track $index){
       <ul>
         <li>{{i.reps}}
-          @if (!item.noKg) {
+          @if (!ex.noKg) {
             {{'x ' + i.size}}
           }
         </li>

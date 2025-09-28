@@ -10,7 +10,8 @@
   .wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+    gap: 5px;
+    row-gap: 15px;
     grid-auto-rows: minmax(10px, auto);
   }
 }
