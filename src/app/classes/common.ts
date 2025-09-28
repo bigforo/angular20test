@@ -8,6 +8,7 @@ import {ExerciseClass} from './exercise.class';
 })
 export class Common {
 
+  //TODO make it ExerciseClass []
   public exercises = [
     { id: "bench01", name: "bench-machine" },
     { id: "bench02", name: "bench-bar" },
@@ -15,9 +16,9 @@ export class Common {
     { id: "bench04", name: "bench-machine-incline" },
     { id: "bench05", name: "bench-smith-incline" },
     { id: "cables01", name: "cables-upper-chest" },
-    { id: "dips", name: "dips" },
-    { id: "abs01", name: "abs-bench-decline" },
-    { id: "abs02", name: "abs-roller" },
+    { id: "dips", name: "dips", noKg:true },
+    { id: "abs01", name: "abs-bench-decline", noKg:true },
+    { id: "abs02", name: "abs-roller", noKg:true },
   ]
 
   public appState : StateInterface;

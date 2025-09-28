@@ -30,17 +30,18 @@ export class ShowExercise {
   id = input<string|undefined>();
   internalId = linkedSignal(() => {
     let id = this.id();
-    let ex_name =
-      this.service.exercises.find(a=> a.id === id)?.name;
-    if (ex_name) {
+    let ex =
+      this.service.exercises.find(a=> a.id === id);
+    // Create NEW EXERCISE
+    if (ex?.name) {
       let exercise =
-        this.service.appState.daily.exercises.find(a => a.name === ex_name);
+        this.service.appState.daily.exercises.find(a => a.name === ex.name);
       if (!exercise) {
-        this.service.appState.daily.addExercise(ex_name);
-        exercise = this.service.appState.daily.exercises.find(a => a.name === ex_name);
+        exercise = this.service.appState.daily.addExercise(ex.name);
+        exercise.noKg = ex.noKg??false;
       }
-      this.exercise = exercise ?? new ExerciseClass(ex_name ?? "UNKNOWN");
-      return ex_name;
+      this.exercise = exercise ?? new ExerciseClass(ex.name ?? "UNKNOWN");
+      return ex.name;
     }
     return "UNKNOWN";
   });

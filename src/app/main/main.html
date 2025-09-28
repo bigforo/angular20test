@@ -1,12 +1,15 @@
+<!--List Exercises-->
 <div class="wrapper">
   @for (item of service.exercises; track $index) {
-    <div routerLink="/{{item.id}}"
-         class="text-center border-2 border-amber-200 bg-amber-800 m-2">
-      {{item.name.replaceAll("-"," ")}}
+    <div routerLink="/{{item.id}}">
+      <div class="flex items-center justify-center border-2 border-amber-200 bg-amber-800 h-20">
+        {{item.name}}
+      </div>
     </div>
   }
 </div>
 
+<!--Summary-->
 <div class="flex items-center justify-center flex-col">
 @for (item of service.appState.daily.exercises; track $index) {
   <div class="border-2 border-amber-800 p-2 m-2 w-70">
@@ -20,6 +23,7 @@
 }
 </div>
 
+<!--Add to Calendar-->
 <div class="flex items-center justify-center">
   <add-to-calendar-button
     name="Gym"

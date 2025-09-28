@@ -15,16 +15,19 @@
       </mat-button-toggle-group>
     </div>
   </div>
-  <div class="form-group">
-    <label for="weight">Weight (kg)</label>
-    <div class="button-container">
-      <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="kgs">
-        @for (n of exercise.weight; track $index) {
-          <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
-        }
-      </mat-button-toggle-group>
+  @if (!exercise.noKg)
+  {
+    <div class="form-group">
+      <label for="weight">Weight (kg)</label>
+      <div class="button-container">
+        <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="kgs">
+          @for (n of exercise.weight; track $index) {
+            <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
     </div>
-  </div>
+  }
 <!--    https://codepen.io/kevinpowell/pen/JodojoQ-->
   <div class="flex justify-between ">
     <button type="button" routerLink="/">Back</button>

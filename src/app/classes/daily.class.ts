@@ -11,7 +11,9 @@ export class DailyClass implements IDaily {
   public time: Date;
 
   public addExercise(name: string) {
-    this.exercises.push(new ExerciseClass(name));
+    let newEx= new ExerciseClass(name);
+    this.exercises.push(newEx);
+    return newEx;
   }
   public addExercise2(exercise: ExerciseClass) {
     this.exercises.push(exercise);
