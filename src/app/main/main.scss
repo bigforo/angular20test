@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(70px,250px));
   gap: 10px;
-  //grid-auto-rows: 70px;
-  align-items: center;
+  //place-items: center; /* Shorthand for align-items: center; and justify-items: center; */
+  //align-items: center;
 }
 .exercise{
   height: 50px;
