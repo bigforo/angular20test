@@ -19,7 +19,6 @@ import {allExercisesData} from '../../classes/all-exercises.data';
     MatButtonToggleGroup,
     MatButtonToggle,
     MatButtonToggleGroup,
-    RouterLink,
     DatePipe
   ],
   templateUrl: './show-exercise.html',
@@ -30,7 +29,6 @@ export class ShowExercise {
 
   id = input<string>();
   internalId = linkedSignal(() => {
-
     let ex =
       allExercisesData.find(a=> a.id === this.id());
 
@@ -51,6 +49,27 @@ export class ShowExercise {
   exercise: ExerciseClass = new ExerciseClass("exercise","");
   reps: any;
   kgs: any;
-  constructor() {
+
+  addSet(reps: string, kgs: any) {
+
+    // if (this.exercise) {
+    //   let ex =
+    //     allExercisesData.find(a => a.id === this.id());
+    //   if (ex) {
+    //     // Add exercise to daily
+    //     let exercise =
+    //       this.service.appState.daily.exercises.find(a => a === ex);
+    //     if (!exercise) {
+    //       this.service.appState.daily.exercises.push(ex);
+    //     }
+    //     this.exercise = ex;
+    //   }
+    //   else {
+    //     return;
+    //   }
+    // }
+
+    if ( (!this.exercise.hasWeight && +reps > 0) || (this.exercise.hasWeight && +kgs > 0))
+      this.exercise.addSet(reps,kgs)
   }
 }

@@ -20,6 +20,10 @@ $angular-material-theming-css-vars-theme: mat.define-theme(
     )
 );
 
+html, body {
+  touch-action: manipulation;
+}
+
 html {
   color-scheme: light dark;
   @include mat.theme((
