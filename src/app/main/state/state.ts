@@ -1,12 +1,12 @@
 import {Component, inject} from '@angular/core';
-import {JsonPipe} from "@angular/common";
+import {DatePipe, JsonPipe} from "@angular/common";
 import {CommonService} from '../../classes/common.service';
 
 @Component({
   selector: 'app-state',
-    imports: [
-        JsonPipe
-    ],
+  imports: [
+    DatePipe
+  ],
   templateUrl: './state.html',
   styleUrl: './state.scss'
 })

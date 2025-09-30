@@ -12,26 +12,3 @@
 </div>
 
 
-
-<!--Add to Calendar-->
-<div class="flex items-center justify-center gap-2">
-
-
-
-<button matButton="filled" routerLink="/summary">Summary</button>
-<button matButton="filled" routerLink="/state">State</button>
-
-  <add-to-calendar-button
-    name="Gym"
-    options="'Apple','Google'"
-    location="Gym"
-    startDate="today"
-    endDate="today"
-    [attr.startTime]="getTime()"
-    [attr.endTime]="getTimeLater()"
-    [attr.description]="getDescForCal()"
-    [attr.timeZone]="timeZone"
-  >
-  </add-to-calendar-button>
-
-</div>

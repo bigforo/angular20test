@@ -1,0 +1,12 @@
+<add-to-calendar-button
+  name="Gym"
+  options="'Apple','Google'"
+  location="Gym"
+  startDate="today"
+  endDate="today"
+  [attr.startTime]="getTime()"
+  [attr.endTime]="getTimeLater()"
+  [attr.description]="getDescForCal()"
+  [attr.timeZone]="timeZone"
+>
+</add-to-calendar-button>
