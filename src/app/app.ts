@@ -6,7 +6,7 @@ import {Tailwind} from './tailwind/tailwind';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatTest, Tailwind],
+  imports: [RouterOutlet,],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

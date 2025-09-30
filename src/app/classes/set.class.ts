@@ -3,7 +3,7 @@ export interface IExerciseSet {
   size?: string,
 }
 
-export class ExerciseSetClass implements IExerciseSet {
+export class SetClass implements IExerciseSet {
   public reps: string;
   public size: string;
   public time: Date = new Date();

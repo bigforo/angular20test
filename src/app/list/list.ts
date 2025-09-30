@@ -6,8 +6,6 @@ import {MatButton} from '@angular/material/button';
 @Component({
   selector: 'app-list',
   imports: [
-    MatSelectionList,
-    MatListOption,
     ReactiveFormsModule,
     MatButton
   ],

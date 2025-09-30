@@ -2,26 +2,26 @@
   <div class="flow">
     <h1>Let's do it!</h1>
     <div class="flex items-center justify-center">- {{internalId()}} -</div>
-    <div class="flex items-center justify-center">{{ exercise.time | date}} </div>
+    <div class="flex items-center justify-center">{{ exercise.created | date}} </div>
   </div>
 
   <div class="form-group">
     <label for="reps">Rep Number</label>
     <div class="button-container">
       <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="reps">
-        @for (n of exercise.reps; track $index) {
+        @for (n of exercise.repeatOptions; track $index) {
           <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
         }
       </mat-button-toggle-group>
     </div>
   </div>
-  @if (!exercise.noKg)
+  @if (exercise.hasWeight)
   {
     <div class="form-group">
       <label for="weight">Weight (kg)</label>
       <div class="button-container">
         <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="kgs">
-          @for (n of exercise.weight; track $index) {
+          @for (n of exercise.weightOptions; track $index) {
             <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
           }
         </mat-button-toggle-group>

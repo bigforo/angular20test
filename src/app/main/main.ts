@@ -1,11 +1,11 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { Common } from '../classes/common';
 import { RouterLink } from '@angular/router';
-import {DatePipe, JsonPipe} from '@angular/common';
+import {DatePipe, JsonPipe, NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterLink, DatePipe],
+  imports: [RouterLink, DatePipe, JsonPipe, NgClass],
   templateUrl: './main.html',
   styleUrl: './main.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -35,16 +35,16 @@ export class Main {
   }
   timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  public getDescForCal(){
-    let ex = this.service.appState.daily.exercises;
+  public getDescForCal() : string{
+    let exercises = this.service.appState.daily.exercises;
     let desc:string = "";
-    ex.forEach(item => {
-      desc += item.name + '\r'
-      item.sets.forEach(set => {
-        if (item.noKg?? false)
-          desc += ' - ' + set.reps + '\r'
-        else
+    exercises.forEach(exercise => {
+      desc += exercise.name + '\r'
+      exercise.sets.forEach(set => {
+        if (exercise.hasWeight)
           desc += ' - ' + set.reps + 'x' + set.size + '\r'
+        else
+          desc += ' - ' + set.reps + '\r'
       })
     })
     return desc;

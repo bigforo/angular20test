@@ -1,9 +1,11 @@
 <!--List Exercises-->
 <div class="wrapper">
-  @for (item of service.exercises; track $index) {
-    <div routerLink="/{{item.id}}">
-      <div class="flex items-center justify-center border-2 border-amber-200 bg-amber-800 h-100px">
-        {{item.name}}
+  @for (ex of service.allExercises; track $index) {
+    <div class="exercise border-2 border-amber-200"
+         [ngClass]="{'bg-blue-500': ex.color =='orange','bg-pink-500': ex.color =='red','bg-purple-500': ex.color =='green','bg-blue-700': ex.color =='yellow',}"
+         routerLink="/{{ex.id}}">
+      <div class="text-center h-full">
+        {{ex.name}}
       </div>
     </div>
   }
@@ -12,13 +14,13 @@
 <!--Summary-->
 <div class="flex items-center justify-center flex-col">
 @for (ex of service.appState.daily.exercises; track $index) {
-  <div class="border-2 border-amber-800 p-2 m-2 w-70 text-center">
-    <div class="font-black font-mono text-xs">{{ex.time | date:'dd-MM-yy HH:mm'}}</div>
-    <div class="font-black font-mono">- {{ex.name}} -</div>
+  <div routerLink="/{{ex.id}}" class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center">
+    <div class="font-black font-mono text-xs">{{ex.created | date:'dd-MM-yy HH:mm'}}</div>
+    <div class="font-black font-mono" >- {{ex.name}} -</div>
     @for (i of ex.sets; track $index){
       <ul>
         <li>{{i.reps}}
-          @if (!ex.noKg) {
+          @if (ex.hasWeight) {
             {{'x ' + i.size}}
           }
         </li>
@@ -36,12 +38,13 @@
     location="Gym"
     startDate="today"
     endDate="today"
-    [attr.startTime]="getTime()??''"
-    [attr.endTime]="getTimeLater()??''"
-    [attr.description]="getDescForCal()??''"
-    [attr.timeZone]="timeZone??''"
+    [attr.startTime]="getTime()"
+    [attr.endTime]="getTimeLater()"
+    [attr.description]="getDescForCal()"
+    [attr.timeZone]="timeZone"
   >
   </add-to-calendar-button>
 </div>
 
 
+<!--<pre>{{ service.appState | json}}</pre>-->

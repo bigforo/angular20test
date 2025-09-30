@@ -27,27 +27,27 @@ import { RouterLink } from '@angular/router';
 export class ShowExercise {
   service = inject(Common)
 
-  id = input<string|undefined>();
+  id = input<string>();
   internalId = linkedSignal(() => {
     let id = this.id();
     let ex =
-      this.service.exercises.find(a=> a.id === id);
+      this.service.allExercises.find(a=> a.id === id);
     // Create NEW EXERCISE
-    if (ex?.name) {
+    if (ex) {
       let exercise =
-        this.service.appState.daily.exercises.find(a => a.name === ex.name);
+        this.service.appState.daily.exercises.find(a => a === ex);
       if (!exercise) {
-        exercise = this.service.appState.daily.addExercise(ex.name);
-        exercise.noKg = ex.noKg??false;
+        this.service.appState.daily.exercises.push(ex);
       }
-      this.exercise = exercise ?? new ExerciseClass(ex.name ?? "UNKNOWN");
+
+      this.exercise = ex;
       return ex.name;
     }
     return "UNKNOWN";
   });
 
 
-  exercise: ExerciseClass = new ExerciseClass("exercise");
+  exercise: ExerciseClass = new ExerciseClass("exercise","");
   reps: any;
   kgs: any;
   constructor() {
