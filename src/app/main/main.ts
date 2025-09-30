@@ -1,17 +1,19 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
-import { Common } from '../classes/common';
+import {CommonService} from '../classes/common.service';
 import { RouterLink } from '@angular/router';
-import {DatePipe, JsonPipe, NgClass} from '@angular/common';
+import { NgClass} from '@angular/common';
+import {allExercisesData} from '../classes/all-exercises.data';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterLink, DatePipe, JsonPipe, NgClass],
+  imports: [RouterLink, NgClass, MatButton],
   templateUrl: './main.html',
   styleUrl: './main.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class Main {
-  service = inject(Common);
+  service = inject(CommonService);
 
   protected readonly Date = Date;
 
@@ -49,4 +51,6 @@ export class Main {
     })
     return desc;
   }
+
+  protected readonly allExercises = allExercisesData;
 }

@@ -4,10 +4,11 @@ import {ExerciseClass} from '../../classes/exercise.class';
 import {ShowSets} from './show-sets/show-sets';
 import 'add-to-calendar-button';
 import {TruncatePipe} from '../../classes/truncate-pipe';
-import {Common} from '../../classes/common';
+import {CommonService} from '../../classes/common.service';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {DatePipe, JsonPipe} from '@angular/common';
 import { RouterLink } from '@angular/router';
+import {allExercisesData} from '../../classes/all-exercises.data';
 
 
 @Component({
@@ -25,25 +26,25 @@ import { RouterLink } from '@angular/router';
   styleUrl: './show-exercise.scss'
 })
 export class ShowExercise {
-  service = inject(Common)
+  service = inject(CommonService)
 
   id = input<string>();
   internalId = linkedSignal(() => {
-    let id = this.id();
-    let ex =
-      this.service.allExercises.find(a=> a.id === id);
-    // Create NEW EXERCISE
-    if (ex) {
-      let exercise =
-        this.service.appState.daily.exercises.find(a => a === ex);
-      if (!exercise) {
-        this.service.appState.daily.exercises.push(ex);
-      }
 
-      this.exercise = ex;
-      return ex.name;
+    let ex =
+      allExercisesData.find(a=> a.id === this.id());
+
+    if (!ex)
+      return "UNKNOWN";
+    // Add exercise to daily
+    let exercise =
+      this.service.appState.daily.exercises.find(a => a === ex);
+    if (!exercise) {
+      this.service.appState.daily.exercises.push(ex);
     }
-    return "UNKNOWN";
+    this.exercise = ex;
+
+    return ex.name;
   });
 
 

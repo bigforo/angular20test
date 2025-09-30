@@ -1,0 +1,18 @@
+<!--Summary-->
+<div class="flex items-center justify-center flex-col">
+  @for (ex of service.appState.daily.exercises; track $index) {
+    <div routerLink="/{{ex.id}}" class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center">
+      <div class="font-black font-mono text-xs">{{ex.created | date:'dd-MM-yy HH:mm'}}</div>
+      <div class="font-black font-mono" >- {{ex.name}} -</div>
+      @for (i of ex.sets; track $index){
+        <ul>
+          <li>{{i.reps}}
+            @if (ex.hasWeight) {
+              {{'x ' + i.size}}
+            }
+          </li>
+        </ul>
+      }
+    </div>
+  }
+</div>

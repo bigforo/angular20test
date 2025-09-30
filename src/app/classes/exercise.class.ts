@@ -29,6 +29,14 @@ export class ExerciseClass implements IExercise {
     this.visible = true;
     this.color = options.color ?? "orange";
   }
+
+  get Date(){
+    return this.created.toDateString();
+  }
+  get Time(){
+    return this.created.toTimeString();
+  }
+
   toggleVisible(): void {
     this.visible = !this.visible;
   }

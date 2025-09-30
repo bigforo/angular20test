@@ -11,5 +11,5 @@ import {Tailwind} from './tailwind/tailwind';
   styleUrl: './app.scss'
 })
 export class App {
-  protected title = 'angular-test-20';
+  protected title = 'gym.foro.mk';
 }

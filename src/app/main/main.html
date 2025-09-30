@@ -1,6 +1,6 @@
 <!--List Exercises-->
 <div class="wrapper">
-  @for (ex of service.allExercises; track $index) {
+  @for (ex of allExercises; track $index) {
     <div class="exercise border-2 border-amber-200"
          [ngClass]="{'bg-blue-500': ex.color =='orange','bg-pink-500': ex.color =='red','bg-purple-500': ex.color =='green','bg-blue-700': ex.color =='yellow',}"
          routerLink="/{{ex.id}}">
@@ -11,27 +11,16 @@
   }
 </div>
 
-<!--Summary-->
-<div class="flex items-center justify-center flex-col">
-@for (ex of service.appState.daily.exercises; track $index) {
-  <div routerLink="/{{ex.id}}" class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center">
-    <div class="font-black font-mono text-xs">{{ex.created | date:'dd-MM-yy HH:mm'}}</div>
-    <div class="font-black font-mono" >- {{ex.name}} -</div>
-    @for (i of ex.sets; track $index){
-      <ul>
-        <li>{{i.reps}}
-          @if (ex.hasWeight) {
-            {{'x ' + i.size}}
-          }
-        </li>
-      </ul>
-    }
-  </div>
-}
-</div>
+
 
 <!--Add to Calendar-->
-<div class="flex items-center justify-center">
+<div class="flex items-center justify-center gap-2">
+
+
+
+<button matButton="filled" routerLink="/summary">Summary</button>
+<button matButton="filled" routerLink="/state">State</button>
+
   <add-to-calendar-button
     name="Gym"
     options="'Apple','Google'"
@@ -44,7 +33,5 @@
     [attr.timeZone]="timeZone"
   >
   </add-to-calendar-button>
+
 </div>
-
-
-<!--<pre>{{ service.appState | json}}</pre>-->
