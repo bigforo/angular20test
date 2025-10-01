@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgClass} from '@angular/common';
-import {allExercisesData} from '../classes/all-exercises.data';
-import {MatButton} from '@angular/material/button';
+import {allExercisesData} from '../../classes/all-exercises.data';
 
 @Component({
   selector: 'app-main',

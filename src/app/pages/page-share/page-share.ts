@@ -6,16 +6,16 @@ import {LocalStorageService} from '../../classes/ls';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-calendar',
+  selector: 'page-share',
   imports: [
     MatButton,
     RouterLink
   ],
-  templateUrl: './calendar.html',
-  styleUrl: './calendar.scss',
+  templateUrl: './page-share.html',
+  styleUrl: './page-share.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class Calendar {
+export class PageShare {
   service = inject(CommonService);
 
   protected readonly Date = Date;

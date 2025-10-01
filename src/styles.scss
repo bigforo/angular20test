@@ -25,7 +25,7 @@ html, body {
 }
 
 html {
-  color-scheme: light dark;
+  color-scheme: dark;
   @include mat.theme((
     color: (
       theme-type: dark,

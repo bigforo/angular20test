@@ -1,20 +1,20 @@
 import {Component, inject, input, linkedSignal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {LocalStorageService} from '../../classes/ls';
-import {JsonPipe} from '@angular/common';
 import {MatButton} from '@angular/material/button';
 import {DailyClass} from '../../classes/daily.class';
+import {DailySummary} from '../../components/daily-summary/daily-summary';
 
 @Component({
-  selector: 'app-share',
+  selector: 'page-all',
   imports: [
-    JsonPipe,
-    MatButton
+    MatButton,
+    DailySummary
   ],
-  templateUrl: './share.html',
-  styleUrl: './share.scss'
+  templateUrl: './page-import.html',
+  styleUrl: './page-import.scss'
 })
-export class Share {
+export class PageImport {
   id = input<string>();
   uncomm = linkedSignal(
     ()=>{

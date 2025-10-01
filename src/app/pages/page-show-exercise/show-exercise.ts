@@ -1,13 +1,11 @@
-import {Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, input, linkedSignal} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Component, inject, input, linkedSignal} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
 import {ExerciseClass} from '../../classes/exercise.class';
 import {ShowSets} from './show-sets/show-sets';
 import 'add-to-calendar-button';
-import {TruncatePipe} from '../../classes/truncate-pipe';
 import {CommonService} from '../../classes/common.service';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {DatePipe, JsonPipe} from '@angular/common';
-import { RouterLink } from '@angular/router';
 import {allExercisesData} from '../../classes/all-exercises.data';
 
 
@@ -44,6 +42,7 @@ export class ShowExercise {
         );
     if (!dailyExercise) {
       dailyExercise = ExerciseClass.fromObject(ex);
+      dailyExercise.created = new Date();
       this.service.appState.daily.exercises.push(dailyExercise);
     }
     this.exercise = dailyExercise as ExerciseClass;

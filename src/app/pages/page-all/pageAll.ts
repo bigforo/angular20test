@@ -1,15 +1,15 @@
 import {Component, inject} from '@angular/core';
-import {DatePipe, JsonPipe} from "@angular/common";
 import {CommonService} from '../../classes/common.service';
+import {DailySummary} from '../../components/daily-summary/daily-summary';
 
 @Component({
   selector: 'app-state',
   imports: [
-    DatePipe
+    DailySummary
   ],
-  templateUrl: './state.html',
-  styleUrl: './state.scss'
+  templateUrl: './pageAll.html',
+  styleUrl: './pageAll.scss'
 })
-export class State {
+export class PageAll {
   service = inject(CommonService);
 }
