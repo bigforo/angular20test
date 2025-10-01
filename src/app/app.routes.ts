@@ -8,8 +8,8 @@ import {PageImport} from './pages/page-import/page-import';
 
 export const routes: Routes = [
   { path:'',component:Main },
-  { path: 'summary', component: Summary },
-  { path: 'state', component: PageAll },
+  { path: 'daily', component: Summary },
+  { path: 'all', component: PageAll },
   { path: 'share', component: PageShare },
   { path: 'view',  component: PageImport },
 
