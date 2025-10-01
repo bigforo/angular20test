@@ -18,8 +18,7 @@
   }
   <div class="flex">
     <button matButton="elevated" (click)="load()">Load</button>
-    @if(service.appState.daily.exercises.length > 0){
-      <button matButton="elevated" (click)="save()">Save</button>
-    }
+    <button matButton="elevated" (click)="save()">Save</button>
+    <button matButton="elevated" (click)="reset()">Reset</button>
   </div>
 </div>

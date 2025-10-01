@@ -31,18 +31,23 @@ export class ShowExercise {
   internalId = linkedSignal(() => {
     let ex =
       allExercisesData.find(a=> a.id === this.id());
-
-    if (!ex)
+    if (!ex){
       return "UNKNOWN";
-    // Add exercise to daily
-    let exercise =
-      this.service.appState.daily.exercises.find(a => a === ex);
-    if (!exercise) {
-      this.service.appState.daily.exercises.push(ex);
     }
-    this.exercise = ex;
-
-    return ex.name;
+    // Add exercise to daily
+    let dailyExercise =
+      this.service.appState.daily.exercises
+        .find(dayExercise =>
+          dayExercise.id === ex.id
+          // &&
+          // dayExercise.Date === ex?.Date
+        );
+    if (!dailyExercise) {
+      dailyExercise = ExerciseClass.fromObject(ex);
+      this.service.appState.daily.exercises.push(dailyExercise);
+    }
+    this.exercise = dailyExercise as ExerciseClass;
+    return dailyExercise.name;
   });
 
 

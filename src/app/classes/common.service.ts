@@ -6,10 +6,21 @@ import {DailyClass} from './daily.class';
   providedIn: 'root'
 })
 export class CommonService {
-  public appState : StateInterface;
+  public appState : StateInterface =  {
+    daily:
+      new DailyClass("daily"),
+    weekly:[
+      new DailyClass("Monday"),
+      new DailyClass("Wednesday"),
+      new DailyClass("Friday"),
+    ]
+  };
 
   constructor() {
-    this.appState = {
+
+  }
+  static reset() {
+    return {
       daily:
         new DailyClass("daily"),
       weekly:[

@@ -1,9 +1,16 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import {CommonService} from '../../classes/common.service';
+import {MatButton} from '@angular/material/button';
+import {share} from 'rxjs';
+import {LocalStorageService} from '../../classes/ls';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
-  imports: [],
+  imports: [
+    MatButton,
+    RouterLink
+  ],
   templateUrl: './calendar.html',
   styleUrl: './calendar.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -31,6 +38,7 @@ export class Calendar {
     return this.formatTimeHHMMSS(this.addMinutes(now, 30));
   }
   timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  link: string = "";
 
   public getDescForCal() : string{
     let exercises = this.service.appState.daily.exercises;
@@ -45,5 +53,12 @@ export class Calendar {
       })
     })
     return desc;
+  }
+  ngOnInit(): void {
+    this.share();
+  }
+  ls = inject(LocalStorageService);
+  public share(){
+    this.link = this.ls.getCompressed(this.service.appState.daily) ?? "";
   }
 }

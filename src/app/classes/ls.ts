@@ -25,13 +25,24 @@ export class LocalStorageService {
       console.error('Error saving to local storage', error);
     }
   }
-  setItemCompressed(key: string, value: any): void {
+  getCompressed(value: any) : string | null {
     try {
       let jsonValue = JSON.stringify(value);
       jsonValue = LZString.compressToBase64(jsonValue);
-      localStorage.setItem(key, encodeURIComponent(jsonValue));
+      return encodeURIComponent(jsonValue);
     } catch (error) {
       console.error('Error saving to local storage', error);
+      return null
+    }
+  }
+  getUncompressed<T>(value: any): T | null {
+    try {
+      let decode = decodeURIComponent(value);
+      let uncompressed = LZString.decompressFromBase64(decode);
+      return value ? JSON.parse(uncompressed) : null;
+    } catch (error) {
+      console.error('Error reading from local storage', error);
+      return null;
     }
   }
 
@@ -45,6 +56,7 @@ export class LocalStorageService {
       return null;
     }
   }
+
   // Remove item from local storage
   removeItem(key: string): void {
     localStorage.removeItem(key);

@@ -5,6 +5,7 @@ import {CommonService} from '../../classes/common.service';
 import {MatButton} from '@angular/material/button';
 import {LocalStorageService} from '../../classes/ls';
 import {StateInterface} from '../../classes/state.interface';
+import {ExerciseClass} from '../../classes/exercise.class';
 
 @Component({
   selector: 'app-summary',
@@ -24,9 +25,15 @@ export class Summary {
     this.ls.setItem("gym-day",this.service.appState);
   }
   load(){
+    this.reset();
     let day = this.ls.getItem<StateInterface>("gym-day");
-    console.log("loaded",day);
-    if (day)
-      this.service.appState = day;
+    day?.daily.exercises.forEach(ex => {
+      this.service.appState.daily.exercises.push(ExerciseClass.fromObject(ex));
+    })
+
+  }
+
+  reset() {
+    this.service.appState = CommonService.reset();
   }
 }
