@@ -53,15 +53,6 @@ export class ExerciseClass implements IExercise {
     else
       this.sets.splice(index, 1);
   }
-
-  static fromObject(obj:any) {
-    const ee = new ExerciseClass(obj.name, obj.id);
-    ee.created = obj.created;
-    ee.sets = obj.sets;
-    ee.color =  obj.color;
-    ee.hasWeight = obj.hasWeight;
-    return ee;
-  }
 }
 
 export function defaultOptions(): ExerciseOptions {
@@ -69,5 +60,11 @@ export function defaultOptions(): ExerciseOptions {
     hasWeight: true,
     color: "orange"
   }
+}
+export function newExercise(ex:any) {
+  const ee = new ExerciseClass(ex.name, ex.id,  {color : ex.color, hasWeight:ex.hasWeight});
+  ee.created = ex.created;
+  ee.sets = ex.sets;
+  return ee;
 }
 

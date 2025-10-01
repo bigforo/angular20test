@@ -5,7 +5,8 @@ import {CommonService} from '../../classes/common.service';
 import {MatButton} from '@angular/material/button';
 import {LocalStorageService} from '../../classes/ls';
 import {StateInterface} from '../../classes/state.interface';
-import {ExerciseClass} from '../../classes/exercise.class';
+import {DailyClass} from '../../classes/daily.class';
+import {ExerciseClass, newExercise} from '../../classes/exercise.class';
 
 @Component({
   selector: 'app-summary',
@@ -22,18 +23,18 @@ export class Summary {
   ls = inject(LocalStorageService)
 
   save() {
-    this.ls.setItem("gym-day",this.service.appState);
+    this.ls.setItem("gym-day",this.service.appState.daily.exercises);
   }
   load(){
     this.reset();
-    let day = this.ls.getItem<StateInterface>("gym-day");
-    day?.daily.exercises.forEach(ex => {
-      this.service.appState.daily.exercises.push(ExerciseClass.fromObject(ex));
+    let list = this.ls.getItem<ExerciseClass[]>("gym-day");
+    list?.forEach(ex => {
+      this.service.appState.daily.exercises.push(newExercise(ex));
     })
 
   }
 
   reset() {
-    this.service.appState = CommonService.reset();
+    this.service.appState.daily = new DailyClass("daily");
   }
 }

@@ -41,8 +41,7 @@ export class ShowExercise {
           // dayExercise.Date === ex?.Date
         );
     if (!dailyExercise) {
-      dailyExercise = ExerciseClass.fromObject(ex);
-      dailyExercise.created = new Date();
+      dailyExercise = new ExerciseClass(ex.name,ex.id);
       this.service.appState.daily.exercises.push(dailyExercise);
     }
     this.exercise = dailyExercise as ExerciseClass;
@@ -75,5 +74,7 @@ export class ShowExercise {
 
     if ( (!this.exercise.hasWeight && +reps > 0) || (this.exercise.hasWeight && +kgs > 0))
       this.exercise.addSet(reps,kgs)
+
+    console.log(allExercisesData[1].sets)
   }
 }
