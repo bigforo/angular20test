@@ -1,11 +1,11 @@
 import {Component, inject} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
-import {DailySummary} from '../../components/daily-summary/daily-summary';
+import {AllSummary} from '../../components/all-summary/all-summary';
 
 @Component({
   selector: 'app-state',
   imports: [
-    DailySummary
+    AllSummary
   ],
   templateUrl: './pageAll.html',
   styleUrl: './pageAll.scss'

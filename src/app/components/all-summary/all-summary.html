@@ -1,0 +1,12 @@
+<div class="flex flex-col items-center w-400px">
+  @if (daily())
+  {
+    {{daily()?.created | date:"dd-MM-yyyy"}}
+    @for (ex of daily()?.exercises; track ex.id) {
+      <div>[{{ ex.name }}] started at {{ ex.created| date:"HH:mm"}} number of sets: <span>{{ ex.sets.length }}</span></div>
+    }
+  } @else {
+    <div> no data </div>
+  }
+</div>
+

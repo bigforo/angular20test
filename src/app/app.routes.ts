@@ -4,7 +4,7 @@ import { Main } from './pages/page-main/main';
 import { Summary } from './pages/page-daily/summary';
 import { PageAll } from './pages/page-all/pageAll';
 import {PageShare} from './pages/page-share/page-share';
-import {PageImport} from './pages/page-import/page-import';
+import {PageImport} from './pages/page-view/page-import';
 
 export const routes: Routes = [
   { path:'',component:Main },

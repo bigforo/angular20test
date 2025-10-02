@@ -1,13 +1,21 @@
+@for (ex of daily()?.exercises; track $index) {
+  <div routerLink="/{{ex.id}}" class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center">
+    <div class="font-black font-mono text-xs text-indigo-400">{{ex.created | date:'dd-MM-yy HH:mm'}}</div>
+    <div class="font-black font-mono" >- {{ex.name}} -</div>
+    @for (i of ex.sets; track $index){
+      <div class="flex items-center justify-center gap-2">
 
-<div class="flex flex-col items-center w-400px">
-  @if (daily())
-  {
-    {{daily()?.created | date:"dd-MM-yyyy"}}
-    @for (ex of daily()?.exercises; track ex.id) {
-      <div>[{{ ex.name }}] started at {{ ex.created| date:"HH:mm"}} number of sets: <span>{{ ex.sets.length }}</span></div>
+        <div class="text-xs w-50px text-indigo-400 font-mono">{{ i.time| date:'HH:mm' }}</div>
+        <div class="text-lg">{{i.reps}}
+        @if (ex.hasWeight) {
+          {{'x ' + i.size}}
+        }
+        </div>
+        <div></div>
+
+      </div>
     }
-  } @else {
-    <div> no data </div>
-  }
-</div>
+<!--    <div class="font-black font-mono" >notes:</div>-->
+  </div>
 
+}

@@ -42,6 +42,7 @@ export class ShowExercise {
         );
     if (!dailyExercise) {
       dailyExercise = new ExerciseClass(ex.name,ex.id);
+      dailyExercise.hasWeight = ex.hasWeight;
       this.service.appState.daily.exercises.push(dailyExercise);
     }
     this.exercise = dailyExercise as ExerciseClass;

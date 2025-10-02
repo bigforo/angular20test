@@ -1,17 +1,15 @@
 import {Component, input} from '@angular/core';
 import {DailyClass} from '../../classes/daily.class';
-import {RouterLink} from '@angular/router';
 import {DatePipe} from '@angular/common';
 
 @Component({
-  selector: 'app-daily-summary',
+  selector: 'all-summary',
   imports: [
-    RouterLink,
     DatePipe
   ],
-  templateUrl: './daily-summary.html',
-  styleUrl: './daily-summary.scss'
+  templateUrl: './all-summary.html',
+  styleUrl: './all-summary.scss'
 })
-export class DailySummary {
+export class AllSummary {
   daily = input<DailyClass | null>();
 }

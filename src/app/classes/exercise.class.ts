@@ -5,6 +5,15 @@ export interface IExercise{
   sets?: IExerciseSet [],
   repeatOptions: number[]
 }
+export interface Exercise{
+  id: string,
+  name?: string,
+  repeatOptions?: number[],
+  weightOptions?: number[],
+  color?:string,
+  weightUnit?:string,
+  description?:string,
+}
 
 export interface ExerciseOptions {
   hasWeight?:boolean,

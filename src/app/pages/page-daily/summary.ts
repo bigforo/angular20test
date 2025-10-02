@@ -7,13 +7,13 @@ import {LocalStorageService} from '../../classes/ls';
 import {StateInterface} from '../../classes/state.interface';
 import {DailyClass} from '../../classes/daily.class';
 import {ExerciseClass, newExercise} from '../../classes/exercise.class';
+import {DailySummary} from '../../components/daily-summary/daily-summary';
 
 @Component({
   selector: 'app-summary',
   imports: [
-    DatePipe,
-    RouterLink,
-    MatButton
+    MatButton,
+    DailySummary
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
