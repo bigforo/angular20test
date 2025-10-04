@@ -2,8 +2,8 @@ import {Component, inject, input, linkedSignal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {LocalStorageService} from '../../classes/ls';
 import {MatButton} from '@angular/material/button';
-import {DailyClass} from '../../classes/daily.class';
 import {DailySummary} from '../../components/daily-summary/daily-summary';
+import {Session} from '../../classes/state.interface';
 
 @Component({
   selector: 'page-all',
@@ -18,7 +18,7 @@ export class PageImport {
   id = input<string>();
   uncomm = linkedSignal(
     ()=>{
-      return this.ls.getUncompressed<DailyClass>(this.id());
+      return this.ls.getUncompressed<Session>(this.id());
     }
   )
 
@@ -26,6 +26,6 @@ export class PageImport {
   ls = inject(LocalStorageService);
   load(){
     if (this.uncomm())
-      this.service.appState.daily = this.uncomm() as DailyClass;
+      this.service.appState.current = this.uncomm() as  Session ;
   }
 }

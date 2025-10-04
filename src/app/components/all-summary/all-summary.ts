@@ -1,15 +1,19 @@
 import {Component, input} from '@angular/core';
-import {DailyClass} from '../../classes/daily.class';
 import {DatePipe} from '@angular/common';
+import {Session} from '../../classes/state.interface';
+import {RouterLink} from '@angular/router';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'all-summary',
   imports: [
-    DatePipe
+    DatePipe,
+    RouterLink,
+    MatButton
   ],
   templateUrl: './all-summary.html',
   styleUrl: './all-summary.scss'
 })
 export class AllSummary {
-  daily = input<DailyClass | null>();
+  sessions = input<Session[]>();
 }

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgClass} from '@angular/common';
-import {allExercisesData} from '../../classes/all-exercises.data';
+import {EXERCISES} from '../../classes/all-exercises.data';
 
 @Component({
   selector: 'app-main',
@@ -10,5 +10,5 @@ import {allExercisesData} from '../../classes/all-exercises.data';
   styleUrl: './main.scss',
 })
 export class Main {
-  protected readonly allExercises = allExercisesData;
+  protected readonly allExercises = EXERCISES;
 }

@@ -1,0 +1,5 @@
+@if (session()){
+  <app-daily-summary [session]="session()" [showDelete]="false"/>
+} @else {
+  no history data
+}

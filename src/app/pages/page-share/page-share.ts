@@ -1,7 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {MatButton} from '@angular/material/button';
-import {share} from 'rxjs';
 import {LocalStorageService} from '../../classes/ls';
 import {RouterLink} from '@angular/router';
 
@@ -41,12 +40,12 @@ export class PageShare {
   link: string = "";
 
   public getDescForCal() : string{
-    let exercises = this.service.appState.daily.exercises;
+    let exercises = this.service.appState.current?.activities;
     let desc:string = "";
-    exercises.forEach(exercise => {
-      desc += exercise.name + '\r'
+    exercises?.forEach(exercise => {
+      desc += exercise.exercise.name + '\r'
       exercise.sets.forEach(set => {
-        if (exercise.hasWeight)
+        if (exercise.hasSize)
           desc += ' - ' + set.reps + 'x' + set.size + '\r'
         else
           desc += ' - ' + set.reps + '\r'
@@ -59,6 +58,6 @@ export class PageShare {
   }
   ls = inject(LocalStorageService);
   public share(){
-    this.link = this.ls.getCompressed(this.service.appState.daily) ?? "";
+    this.link = this.ls.getCompressed(this.service.appState.current) ?? "";
   }
 }

@@ -1,12 +1,12 @@
-import {Component, inject, input, linkedSignal} from '@angular/core';
+import {Component, inject, input, linkedSignal, signal} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {ExerciseClass} from '../../classes/exercise.class';
 import {ShowSets} from './show-sets/show-sets';
 import 'add-to-calendar-button';
 import {CommonService} from '../../classes/common.service';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
-import {DatePipe, JsonPipe} from '@angular/common';
-import {allExercisesData} from '../../classes/all-exercises.data';
+import {DatePipe} from '@angular/common';
+import {EXERCISES} from '../../classes/all-exercises.data';
+import {Activity, Exercise, Session} from '../../classes/state.interface';
 
 
 @Component({
@@ -27,55 +27,22 @@ export class ShowExercise {
 
   id = input<string>();
   internalId = linkedSignal(() => {
-    let ex =
-      allExercisesData.find(a=> a.id === this.id());
+    let ex = EXERCISES.find(a=> a.id === this.id());
     if (!ex){
       return "UNKNOWN";
     }
-    // Add exercise to daily
-    let dailyExercise =
-      this.service.appState.daily.exercises
-        .find(dayExercise =>
-          dayExercise.id === ex.id
-          // &&
-          // dayExercise.Date === ex?.Date
-        );
-    if (!dailyExercise) {
-      dailyExercise = new ExerciseClass(ex.name,ex.id);
-      dailyExercise.hasWeight = ex.hasWeight;
-      this.service.appState.daily.exercises.push(dailyExercise);
-    }
-    this.exercise = dailyExercise as ExerciseClass;
-    return dailyExercise.name;
+    this.service.startSessionIfNotStarted();
+    this.activity = this.service.startActivity(ex);
+    return ex.name;
   });
 
-
-  exercise: ExerciseClass = new ExerciseClass("exercise","");
+  activity = new Activity(EXERCISES[0]);
   reps: any;
   kgs: any;
 
   addSet(reps: string, kgs: any) {
-
-    // if (this.exercise) {
-    //   let ex =
-    //     allExercisesData.find(a => a.id === this.id());
-    //   if (ex) {
-    //     // Add exercise to daily
-    //     let exercise =
-    //       this.service.appState.daily.exercises.find(a => a === ex);
-    //     if (!exercise) {
-    //       this.service.appState.daily.exercises.push(ex);
-    //     }
-    //     this.exercise = ex;
-    //   }
-    //   else {
-    //     return;
-    //   }
-    // }
-
-    if ( (!this.exercise.hasWeight && +reps > 0) || (this.exercise.hasWeight && +kgs > 0))
-      this.exercise.addSet(reps,kgs)
-
-    console.log(allExercisesData[1].sets)
+    if ( (!this.activity.hasSize && +reps > 0) || (this.activity.hasSize && +kgs > 0))
+      this.activity.addSet(reps,kgs)
   }
+
 }

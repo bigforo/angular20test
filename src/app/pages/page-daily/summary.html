@@ -1,9 +1,10 @@
 <!--Summary-->
 <div class="flex items-center justify-center flex-col">
-  <app-daily-summary [daily]="service.appState.daily"/>
+  <app-daily-summary [session]="service.appState.current"/>
   <div class="flex">
-    <button matButton="elevated" (click)="load()">Load</button>
-    <button matButton="elevated" (click)="save()">Save</button>
-    <button matButton="elevated" (click)="reset()">Reset</button>
+    <button matButton="elevated" (click)="service.load()">Load</button>
+    <button matButton="elevated" (click)="service.save()">Save</button>
+    <button matButton="elevated" (click)="service.clearSession()">Reset</button>
+    <button matButton="elevated" (click)="new()">New</button>
   </div>
 </div>
