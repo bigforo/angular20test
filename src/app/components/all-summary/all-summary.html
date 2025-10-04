@@ -1,12 +1,12 @@
-<div class="flex flex-col items-center w-400px">
+<div class="flex flex-col content-start w-400px">
   @if (sessions()){
     @for (session of sessions(); track $index){
       <div [routerLink]="['/session']" [queryParams]="{id: $index}">
-        {{session?.created | date:"dd-MM-yyyy"}}
+        <span class="text-yellow-500 font-mono">{{session?.created | date:"dd MMM"}}</span>
       </div>
       @for (activity of session?.activities; track activity.id) {
         <div>
-          [{{ activity.exercise.name }}] started at {{ activity.created| date:"HH:mm"}} number of sets: <span>{{ activity.sets.length }}</span>
+          <span class="text-indigo-400 font-mono">[{{ activity.exercise.name }}]</span> started at {{ activity.created| date:"HH:mm"}} number of sets: <span>{{ activity.sets.length }}</span>
         </div>
       }
 

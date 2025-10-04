@@ -1,10 +1,10 @@
 <!--List Exercises-->
 <div class="wrapper">
   @for (ex of allExercises; track $index) {
-    <div class="exercise border-2 border-amber-200"
+    <div class="exercise border-2"
          [ngClass]="{'bg-blue-500': ex.color =='orange','bg-pink-500': ex.color =='red','bg-purple-500': ex.color =='green','bg-blue-700': ex.color =='yellow',}"
          routerLink="/{{ex.id}}">
-      <div class="text-center h-full">
+      <div class="font-mono  text-center h-full">
         {{ex.name}}
       </div>
     </div>
