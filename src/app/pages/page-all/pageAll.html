@@ -1,4 +1,10 @@
-<all-summary [sessions]="sessions"/>
 @if (service.appState.history.length > 0){
-<button matButton="elevated" (click)="clear()">Clear sessions</button>
+  <div class="flex items-center justify-center flex-col">
+<div class="text-lg text-indigo-400 font-mono"> Previous sessions  </div>
+  </div>
+<all-summary [sessions]="sessions"/>
+
+  <div class="flex items-center justify-center flex-col">
+    <button matButton="elevated" (click)="clear()">Clear all sessions</button>
+  </div>
 }

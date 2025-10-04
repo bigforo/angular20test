@@ -3,7 +3,7 @@ import {CommonService} from '../../classes/common.service';
 import {MatButton} from '@angular/material/button';
 import {DailySummary} from '../../components/daily-summary/daily-summary';
 import {LocalStorageService} from '../../classes/ls';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -17,10 +17,12 @@ import {RouterLink} from '@angular/router';
 })
 export class Summary {
   service = inject(CommonService)
+  router = inject(Router);
 
   new() {
     this.service.stopSession();
     this.service.save();
+    this.router.navigate(['/']);
   }
 
   ls = inject(LocalStorageService);
