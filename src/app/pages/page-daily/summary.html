@@ -8,6 +8,8 @@
     @if (service.appState.current?.activities?.length??0>0){
       <button matButton="elevated" (click)="new()">New Session</button>
       <a matButton [routerLink]="['/view']" [queryParams]="{id: link()}">Share Session</a>
+    } @else{
+      No activity started
     }
   </div>
 </div>
