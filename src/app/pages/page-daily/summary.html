@@ -2,9 +2,12 @@
 <div class="flex items-center justify-center flex-col">
   <app-daily-summary [session]="service.appState.current"/>
   <div class="flex">
-    <button matButton="elevated" (click)="service.load()">Load</button>
-    <button matButton="elevated" (click)="service.save()">Save</button>
-    <button matButton="elevated" (click)="service.clearSession()">Reset</button>
-    <button matButton="elevated" (click)="new()">New</button>
+<!--    <button matButton="elevated" (click)="service.load()">Load</button>-->
+<!--    <button matButton="elevated" (click)="service.save()">Save</button>-->
+<!--    <button matButton="elevated" (click)="service.clearSession()">Reset</button>-->
+    @if (service.appState.current?.activities?.length??0>0){
+      <button matButton="elevated" (click)="new()">New</button>
+      <a matButton [routerLink]="['/view']" [queryParams]="{id: link()}">Share</a>
+    }
   </div>
 </div>

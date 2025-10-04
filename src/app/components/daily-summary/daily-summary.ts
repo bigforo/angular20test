@@ -23,5 +23,6 @@ export class DailySummary {
   service = inject(CommonService);
   delete(activity: Activity) {
     this.service.deleteActivity(activity);
+    this.service.save();
   }
 }

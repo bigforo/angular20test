@@ -43,17 +43,19 @@ export class Activity  {
   created = new Date();
   sets: SetClass[] = [];
   visible: boolean;
+  readonly hasSize;
   public readonly exercise : Exercise;
 
   constructor(exercise : Exercise) {
     this.id = exercise.id;
     this.visible = true;
     this.exercise = exercise;
+    this.hasSize = exercise.weightOptions.length > 0;
   }
 
-  get hasSize(){
-    return this.exercise.weightOptions.length > 0;
-  }
+  // get hasSize(){
+  //   return this.exercise.weightOptions.length > 0;
+  // }
   get date(){
     return this.created.toDateString();
   }

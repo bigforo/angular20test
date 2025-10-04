@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {MatButton} from '@angular/material/button';
+import {CommonService} from './classes/common.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,8 @@ import {MatButton} from '@angular/material/button';
 })
 export class App {
   protected title = 'gym.foro.mk';
+  service = inject(CommonService);
+  ngOnInit() {
+    this.service.load();
+  }
 }

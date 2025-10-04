@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, inject, linkedSignal, signal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {MatButton} from '@angular/material/button';
 import {LocalStorageService} from '../../classes/ls';
@@ -37,7 +37,7 @@ export class PageShare {
     return this.formatTimeHHMMSS(this.addMinutes(now, 30));
   }
   timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  link: string = "";
+
 
   public getDescForCal() : string{
     let exercises = this.service.appState.current?.activities;
@@ -53,11 +53,9 @@ export class PageShare {
     })
     return desc;
   }
-  ngOnInit(): void {
-    this.share();
-  }
+
   ls = inject(LocalStorageService);
-  public share(){
-    this.link = this.ls.getCompressed(this.service.appState.current) ?? "";
-  }
+  link = linkedSignal(()=>{
+    return this.ls.getCompressed(this.service.appState.current) ?? "";
+  });
 }

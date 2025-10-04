@@ -57,6 +57,11 @@ export class CommonService {
   clearSession() {
     this.appState.current = null;
   }
+  clearHistory() {
+    this.appState.current = null;
+    this.appState.history = [];
+    this.save();
+  }
 
   save() {
     // if (this.appState.current?.activities) {

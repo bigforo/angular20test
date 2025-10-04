@@ -41,8 +41,10 @@ export class ShowExercise {
   kgs: any;
 
   addSet(reps: string, kgs: any) {
-    if ( (!this.activity.hasSize && +reps > 0) || (this.activity.hasSize && +kgs > 0))
-      this.activity.addSet(reps,kgs)
+    if ( (!this.activity.hasSize && +reps > 0) || (this.activity.hasSize && +kgs > 0)) {
+      this.activity.addSet(reps, kgs);
+      this.service.save();
+    }
   }
 
 }

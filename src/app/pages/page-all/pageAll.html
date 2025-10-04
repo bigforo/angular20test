@@ -1,1 +1,4 @@
 <all-summary [sessions]="sessions"/>
+@if (service.appState.history.length > 0){
+<button matButton="elevated" (click)="clear()">Clear sessions</button>
+}
