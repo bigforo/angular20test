@@ -8,7 +8,6 @@ import {Session} from '../../classes/state.interface';
 @Component({
   selector: 'page-all',
   imports: [
-    MatButton,
     DailySummary
   ],
   templateUrl: './page-import.html',

@@ -1,5 +1,6 @@
+
 @for (activity of session()?.activities; track $index) {
-  <div class="flex  ">
+  <div class="flex">
     <div routerLink="{{showDelete()? '/'+activity.id : ''}}" class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center">
       <div class="font-black font-mono text-xs text-indigo-400">{{activity.created | date:'dd-MM-yy HH:mm'}}</div>
       <div class="font-black font-mono" >- {{activity.exercise.name}} -</div>

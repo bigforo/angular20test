@@ -4,13 +4,16 @@ import {MatButton} from '@angular/material/button';
 import {DailySummary} from '../../components/daily-summary/daily-summary';
 import {LocalStorageService} from '../../classes/ls';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
+import {MatChipListbox, MatChipListboxChange, MatChipOption} from '@angular/material/chips';
 
 @Component({
   selector: 'app-summary',
   imports: [
     MatButton,
     DailySummary,
-    RouterLink
+    RouterLink,
+    MatChipListbox,
+    MatChipOption
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -29,4 +32,10 @@ export class Summary {
   link = linkedSignal(()=>{
     return this.ls.getCompressed(this.service.appState.current) ?? "";
   });
+
+  chipChange($event: MatChipListboxChange) {
+    if ($event.value) {
+      console.log($event.value);
+    }
+  }
 }
