@@ -4,10 +4,11 @@ import {CommonService} from '../../classes/common.service';
 import {LocalStorageService} from '../../classes/ls';
 import {MatButton} from '@angular/material/button';
 import {Session} from '../../classes/state.interface';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-page-import-export',
-  imports: [ MatInput, MatButton ],
+  imports: [MatInput, MatButton, FormsModule],
   templateUrl: './page-import-export.html',
   styleUrl: './page-import-export.scss'
 })
@@ -21,8 +22,10 @@ export class PageImportExport {
 
   import() {
     const val = JSON.parse(this.data) as Session[];
+    console.log(val);
     if (val){
       this.service.appState.history = val;
     }
   }
+
 }
