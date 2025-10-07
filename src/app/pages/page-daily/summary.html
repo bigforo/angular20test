@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Current Session</ion-title>
+    <ion-title>Active Workout</ion-title>
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/view']" [queryParams]="{id: link()}">
         <ion-icon slot="icon-only" name="share"></ion-icon>
@@ -14,7 +14,7 @@
 
 <ion-content fullscreen="true">
   <!--Summary-->
-  <div class="flex items-center justify-center flex-col">
+  <div style="display: flex; align-items: center; flex-direction: column;">
     <mat-chip-listbox (change)="chipChange($event)" aria-label="select a shirt size">
       <mat-chip-option> Chest day </mat-chip-option>
       <mat-chip-option> Back day </mat-chip-option>
@@ -28,9 +28,10 @@
     <app-daily-summary [session]="service.appState.current"/>
     <div class="flex">
       @if (service.appState.current?.activities?.length??0>0){
-        <button matButton="elevated" (click)="new()">New Session</button>
+        <ion-button color="light" expand="block" (click)="new()">Stop Current Workout Session</ion-button>
+<!--        <button matButton="elevated" >Stop Workout Session</button>-->
       } @else{
-        No activity started
+        No session started. Select Exercise to start Workout Session
       }
     </div>
   </div>

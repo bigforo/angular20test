@@ -74,7 +74,6 @@ export class CommonService {
     // if(session) {
     //   this.loadSession(session);
     // }
-
     let state = this.ls.getItem<StateInterface>("gym-day-state");
     if (state)
       this.appState = state;

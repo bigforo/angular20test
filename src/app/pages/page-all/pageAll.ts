@@ -5,6 +5,7 @@ import {Session} from '../../classes/state.interface';
 import {MatButton} from '@angular/material/button';
 import {Router, RouterLink} from '@angular/router';
 import {
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader, IonItem, IonItemDivider,
@@ -33,7 +34,8 @@ import {DatePipe} from '@angular/common';
     IonItem,
     IonList,
     IonItemOptions,
-    IonItemOption
+    IonItemOption,
+    IonButton
   ],
   templateUrl: './pageAll.html',
   styleUrl: './pageAll.scss'
@@ -43,9 +45,11 @@ export class PageAll {
   sessions = [...this.service.appState.history] as Session[];
   router = inject(Router);
 
+  constructor() {
+    this.service.load();
+  }
   clear() {
     this.service.clearHistory();
-    this.service.load();
-    this.router.navigate(['/']);
+    this.router.navigate(['/app/tabs/all']);
   }
 }

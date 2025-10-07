@@ -15,24 +15,26 @@
         <ion-list lines="none">
           <ion-list-header> Sessions </ion-list-header>
 
+
+
           <ion-menu-toggle autoHide="false">
             <ion-item [routerLink]="'/app/tabs/start'" routerLinkActive="selected" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="radio-button-on"></ion-icon>
-              <ion-label> Start </ion-label>
+              <ion-icon slot="start" name="walk"></ion-icon>
+              <ion-label> Select Exercise </ion-label>
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
             <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="walk"></ion-icon>
-              <ion-label> Current </ion-label>
+              <ion-icon slot="start" name="radio-button-on"></ion-icon>
+              <ion-label> Active Workout </ion-label>
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
             <ion-item [routerLink]="'/app/tabs/all'" routerLinkActive="selected" routerDirection="root" detail="false">
               <ion-icon slot="start" name="logo-buffer"></ion-icon>
-              <ion-label> Sessions </ion-label>
+              <ion-label> History </ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

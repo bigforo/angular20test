@@ -4,9 +4,15 @@
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Let's do it</ion-title>
+    <ion-title >Let's do it</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="clickEnd()"> End </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content fullscreen="true">
 @if (activity) {

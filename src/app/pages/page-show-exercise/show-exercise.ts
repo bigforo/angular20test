@@ -8,7 +8,7 @@ import {DatePipe} from '@angular/common';
 import {EXERCISES} from '../../classes/all-exercises.data';
 import {Activity, Exercise, Session} from '../../classes/state.interface';
 import {
-  IonBackButton,
+  IonBackButton, IonButton,
   IonButtons,
   IonContent,
   IonHeader,
@@ -16,6 +16,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -32,7 +33,9 @@ import {
     IonTitle,
     IonToolbar,
     IonContent,
-    IonBackButton
+    IonBackButton,
+    IonMenuButton,
+    IonButton
   ],
   templateUrl: './show-exercise.html',
   styleUrl: './show-exercise.scss'
@@ -54,6 +57,7 @@ export class ShowExercise {
   activity = new Activity(EXERCISES[0]);
   reps: any;
   kgs: any;
+  private router = inject(Router);
 
   addSet(reps: string, kgs: any) {
     if ( (!this.activity.hasSize && +reps > 0) || (this.activity.hasSize && +kgs > 0)) {
@@ -62,4 +66,7 @@ export class ShowExercise {
     }
   }
 
+  clickEnd() {
+    this.router.navigate(['/app/tabs/current']);
+  }
 }
