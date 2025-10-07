@@ -8,18 +8,6 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-<!--  &lt;!&ndash;List Exercises&ndash;&gt;-->
-<!--  <div class="wrapper">-->
-<!--    @for (ex of allExercises; track $index) {-->
-<!--      <div class="exercise border-2"-->
-<!--           [ngClass]="{'bg-blue-500': ex.color =='orange','bg-pink-500': ex.color =='red','bg-purple-500': ex.color =='green','bg-blue-700': ex.color =='yellow',}"-->
-<!--           routerLink="/{{ex.id}}">-->
-<!--        <div class="font-mono  text-center h-full">-->
-<!--          {{ex.name}}-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    }-->
-<!--  </div>-->
   <ion-list>
     @for (ex of allExercises; track $index) {
       <ion-item routerLink="/{{ex.id}}">
@@ -29,27 +17,3 @@
   </ion-list>
 
 </ion-content>
-
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="schedule">
-      <ion-icon name="calendar"></ion-icon>
-      <ion-label>Schedule</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="speakers">
-      <ion-icon name="people"></ion-icon>
-      <ion-label>Speakers</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="map">
-      <ion-icon name="location"></ion-icon>
-      <ion-label>Map</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="about">
-      <ion-icon name="information-circle"></ion-icon>
-      <ion-label>About</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
