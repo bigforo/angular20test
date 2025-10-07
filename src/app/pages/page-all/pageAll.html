@@ -1,14 +1,54 @@
-@if (service.appState.history.length > 0){
-  <div class="flex flex-col">
-  <div class="text-lg text-indigo-400 font-mono"> Previous sessions  </div>
-  </div>
-  <all-summary [sessions]="sessions"/>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sessions</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <div class="flex flex-col">
-    <button matButton="elevated" (click)="clear()">Clear all sessions</button>
-  </div>
-} @else {
-  <div class="flex items-center justify-center flex-col">
-    No previous sessions
-  </div>
-}
+<ion-content fullscreen="true">
+
+    <ion-list #scheduleList [hidden]="service.appState.history.length === 0">
+      @for (session of sessions; track $index){
+        @let ix= $index;
+        <ion-item-group>
+          <ion-item-divider sticky>
+            <ion-label> {{session?.created | date:"dd MMM"}} </ion-label>
+          </ion-item-divider>
+          <ion-item-sliding #slidingItem>
+            <ion-item [routerLink]="['/session']" [queryParams]="{id: ix}">
+              <ion-label>
+          @for (activity of session?.activities; track activity) {
+
+                  <h3>{{activity.exercise.name}}</h3>
+                  <p>
+                    {{activity.time}}
+                  </p>
+
+          }
+              </ion-label>
+            </ion-item>
+
+            <ion-item-options>
+              <ion-item-option color="danger">
+                Remove
+              </ion-item-option>
+            </ion-item-options>
+
+          </ion-item-sliding>
+        </ion-item-group>
+
+      }
+    </ion-list>
+
+    <div class="flex flex-col">
+      <button matButton="elevated" (click)="clear()">Clear all sessions</button>
+    </div>
+
+<!--  @else {-->
+<!--    <div class="flex items-center justify-center flex-col">-->
+<!--      No previous sessions-->
+<!--    </div>-->
+<!--  }-->
+</ion-content>

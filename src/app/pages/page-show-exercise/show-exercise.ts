@@ -7,6 +7,15 @@ import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-to
 import {DatePipe} from '@angular/common';
 import {EXERCISES} from '../../classes/all-exercises.data';
 import {Activity, Exercise, Session} from '../../classes/state.interface';
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 
 
 @Component({
@@ -17,7 +26,14 @@ import {Activity, Exercise, Session} from '../../classes/state.interface';
     MatButtonToggleGroup,
     MatButtonToggle,
     MatButtonToggleGroup,
-    DatePipe
+    DatePipe,
+    IonButtons,
+    IonHeader,
+    IonMenuButton,
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonBackButton
   ],
   templateUrl: './show-exercise.html',
   styleUrl: './show-exercise.scss'

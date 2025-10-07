@@ -5,6 +5,7 @@ import {DailySummary} from '../../components/daily-summary/daily-summary';
 import {LocalStorageService} from '../../classes/ls';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {MatChipListbox, MatChipListboxChange, MatChipOption} from '@angular/material/chips';
+import {IonButtons, IonContent, IonHeader, IonMenuButton, IonTitle, IonToolbar} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-summary',
@@ -13,7 +14,13 @@ import {MatChipListbox, MatChipListboxChange, MatChipOption} from '@angular/mate
     DailySummary,
     RouterLink,
     MatChipListbox,
-    MatChipOption
+    MatChipOption,
+    IonButtons,
+    IonHeader,
+    IonMenuButton,
+    IonTitle,
+    IonToolbar,
+    IonContent
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'

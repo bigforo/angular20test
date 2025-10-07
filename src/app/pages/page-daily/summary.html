@@ -1,22 +1,33 @@
-<!--Summary-->
-<div class="flex items-center justify-center flex-col">
-  <mat-chip-listbox (change)="chipChange($event)" aria-label="select a shirt size">
-    <mat-chip-option> Chest day </mat-chip-option>
-    <mat-chip-option> Back day </mat-chip-option>
-    <mat-chip-option> Shoulders </mat-chip-option>
-  </mat-chip-listbox>
-  <mat-chip-listbox (change)="chipChange($event)" aria-label="select a shirt size">
-    <mat-chip-option> Push </mat-chip-option>
-    <mat-chip-option> Pull </mat-chip-option>
-    <mat-chip-option> Legs </mat-chip-option>
-  </mat-chip-listbox>
-  <app-daily-summary [session]="service.appState.current"/>
-  <div class="flex">
-    @if (service.appState.current?.activities?.length??0>0){
-      <button matButton="elevated" (click)="new()">New Session</button>
-      <a matButton [routerLink]="['/view']" [queryParams]="{id: link()}">Share Session</a>
-    } @else{
-      No activity started
-    }
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Current Session</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <!--Summary-->
+  <div class="flex items-center justify-center flex-col">
+    <mat-chip-listbox (change)="chipChange($event)" aria-label="select a shirt size">
+      <mat-chip-option> Chest day </mat-chip-option>
+      <mat-chip-option> Back day </mat-chip-option>
+      <mat-chip-option> Shoulders </mat-chip-option>
+    </mat-chip-listbox>
+    <mat-chip-listbox (change)="chipChange($event)" aria-label="select a shirt size">
+      <mat-chip-option> Push </mat-chip-option>
+      <mat-chip-option> Pull </mat-chip-option>
+      <mat-chip-option> Legs </mat-chip-option>
+    </mat-chip-listbox>
+    <app-daily-summary [session]="service.appState.current"/>
+    <div class="flex">
+      @if (service.appState.current?.activities?.length??0>0){
+        <button matButton="elevated" (click)="new()">New Session</button>
+        <a matButton [routerLink]="['/view']" [queryParams]="{id: link()}">Share Session</a>
+      } @else{
+        No activity started
+      }
+    </div>
   </div>
-</div>
+</ion-content>

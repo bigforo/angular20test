@@ -1,14 +1,19 @@
-<!--List Exercises-->
-<div class="wrapper">
-  @for (ex of allExercises; track $index) {
-    <div class="exercise border-2"
-         [ngClass]="{'bg-blue-500': ex.color =='orange','bg-pink-500': ex.color =='red','bg-purple-500': ex.color =='green','bg-blue-700': ex.color =='yellow',}"
-         routerLink="/{{ex.id}}">
-      <div class="font-mono  text-center h-full">
-        {{ex.name}}
-      </div>
-    </div>
-  }
-</div>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Choose Exercise</ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content fullscreen="true">
+  <ion-list>
+    @for (ex of allExercises; track $index) {
+      <ion-item routerLink="/{{ex.id}}">
+        <ion-label color="primary">{{ex.name}}</ion-label>
+      </ion-item>
+    }
+  </ion-list>
 
+</ion-content>
