@@ -4,11 +4,28 @@ import {LocalStorageService} from '../../classes/ls';
 import {MatButton} from '@angular/material/button';
 import {DailySummary} from '../../components/daily-summary/daily-summary';
 import {Session} from '../../classes/state.interface';
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'page-all',
   imports: [
-    DailySummary
+    DailySummary,
+    IonBackButton,
+    IonButtons,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonContent,
+    IonMenuButton,
   ],
   templateUrl: './page-import.html',
   styleUrl: './page-import.scss'
