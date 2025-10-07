@@ -14,18 +14,19 @@ import {
   calendarOutline,
   hammer,
   help,
-  informationCircleOutline, logIn,
+  informationCircleOutline, logIn, logoBuffer,
   logOut,
   mapOutline, moonOutline,
   peopleOutline,
-  person, personAdd
+  person, personAdd, radioButtonOn, walk
 } from 'ionicons/icons';
 import {addIcons} from 'ionicons';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   imports: [IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonMenuToggle, IonItem, IonLabel
-    , IonToggle, FormsModule, IonIcon,],
+    , IonToggle, FormsModule, IonIcon, RouterLink, RouterLinkActive,],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -62,6 +63,9 @@ export class App {
       personAdd,
       moonOutline,
       hammer,
+      radioButtonOn,
+      walk,
+      logoBuffer
     });
   }
 }

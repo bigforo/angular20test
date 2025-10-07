@@ -1,11 +1,31 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
-import {MatButton} from '@angular/material/button';
+import {MatButton, MatIconButton} from '@angular/material/button';
 import {DailySummary} from '../../components/daily-summary/daily-summary';
 import {LocalStorageService} from '../../classes/ls';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {MatChipListbox, MatChipListboxChange, MatChipOption} from '@angular/material/chips';
-import {IonButtons, IonContent, IonHeader, IonMenuButton, IonTitle, IonToolbar} from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonItemDivider,
+  IonItemGroup,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
+  IonLabel,
+  IonList,
+  IonMenuButton,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
+import {addIcons} from 'ionicons';
+import {cloudDownload, shareOutline, star, starOutline, share} from 'ionicons/icons';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-summary',
@@ -20,7 +40,19 @@ import {IonButtons, IonContent, IonHeader, IonMenuButton, IonTitle, IonToolbar} 
     IonMenuButton,
     IonTitle,
     IonToolbar,
-    IonContent
+    IonContent,
+    IonButton,
+    IonIcon,
+    DatePipe,
+    IonItem,
+    IonItemDivider,
+    IonItemGroup,
+    IonItemOption,
+    IonItemOptions,
+    IonItemSliding,
+    IonLabel,
+    IonList,
+    MatIconButton
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -44,5 +76,12 @@ export class Summary {
     if ($event.value) {
       console.log($event.value);
     }
+  }
+
+  shareSession() {
+
+  }
+  constructor() {
+    addIcons({ shareOutline, starOutline, star, cloudDownload, share });
   }
 }

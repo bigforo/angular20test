@@ -29,7 +29,6 @@ import {
     DatePipe,
     IonButtons,
     IonHeader,
-    IonMenuButton,
     IonTitle,
     IonToolbar,
     IonContent,

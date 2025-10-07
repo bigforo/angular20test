@@ -14,55 +14,62 @@
       <ion-content>
         <ion-list lines="none">
           <ion-list-header> Sessions </ion-list-header>
-<!--          @for(p of appPages; track p.url; let i = $index) {-->
-<!--            <ion-menu-toggle autoHide="false">-->
-<!--              <ion-item-->
-<!--                [routerLink]="p.url"-->
-<!--                routerLinkActive="selected"-->
-<!--                routerDirection="root"-->
-<!--                detail="false"-->
-<!--              >-->
-<!--                <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon>-->
-<!--                <ion-label>-->
-<!--                  {{ p.title }}-->
-<!--                </ion-label>-->
-<!--              </ion-item>-->
-<!--            </ion-menu-toggle>-->
-<!--          }-->
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item [routerLink]="'/app/tabs/start'" routerLinkActive="selected" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="radio-button-on"></ion-icon>
+              <ion-label> Start </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="walk"></ion-icon>
+              <ion-label> Current </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item [routerLink]="'/app/tabs/all'" routerLinkActive="selected" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="logo-buffer"></ion-icon>
+              <ion-label> Sessions </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
         </ion-list>
+
         @if(!loggedIn) {
         <ion-list lines="none">
           <ion-list-header> Account </ion-list-header>
 
-          <ion-menu-toggle autoHide="false">
-            <ion-item
-              routerDirection="root"
-              detail="false"
-            >
-              <ion-icon slot="start" name="log-in"></ion-icon>
-              <ion-label> Login </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+<!--          <ion-menu-toggle autoHide="false">-->
+<!--            <ion-item-->
+<!--              routerDirection="root"-->
+<!--              detail="false"-->
+<!--            >-->
+<!--              <ion-icon slot="start" name="log-in"></ion-icon>-->
+<!--              <ion-label> Login </ion-label>-->
+<!--            </ion-item>-->
+<!--          </ion-menu-toggle>-->
 
-          <ion-menu-toggle autoHide="false">
-            <ion-item
-              routerDirection="root"
-              detail="false"
-            >
-              <ion-icon slot="start" name="help"></ion-icon>
-              <ion-label> Support </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+<!--          <ion-menu-toggle autoHide="false">-->
+<!--            <ion-item-->
+<!--              routerDirection="root"-->
+<!--              detail="false"-->
+<!--            >-->
+<!--              <ion-icon slot="start" name="help"></ion-icon>-->
+<!--              <ion-label> Support </ion-label>-->
+<!--            </ion-item>-->
+<!--          </ion-menu-toggle>-->
 
-          <ion-menu-toggle autoHide="false">
-            <ion-item
-              routerDirection="root"
-              detail="false"
-            >
-              <ion-icon slot="start" name="person-add"></ion-icon>
-              <ion-label> Signup </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+<!--          <ion-menu-toggle autoHide="false">-->
+<!--            <ion-item-->
+<!--              routerDirection="root"-->
+<!--              detail="false"-->
+<!--            >-->
+<!--              <ion-icon slot="start" name="person-add"></ion-icon>-->
+<!--              <ion-label> Signup </ion-label>-->
+<!--            </ion-item>-->
+<!--          </ion-menu-toggle>-->
 
           <ion-item>
             <ion-icon slot="start" name="moon-outline"></ion-icon>

@@ -5,7 +5,6 @@ import {Activity, Session} from '../../classes/state.interface';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {CommonService} from '../../classes/common.service';
-import {MatChip, MatChipListbox, MatChipOption, MatChipSet} from '@angular/material/chips';
 
 @Component({
   selector: 'app-daily-summary',
