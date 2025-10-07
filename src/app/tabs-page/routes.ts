@@ -10,15 +10,15 @@ export const TABS_ROUTES: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'schedule',
+        path: 'all',
         component:PageAll,
       },
       {
-        path: 'speakers',
+        path: 'current',
         component:Summary,
       },
       {
-        path: 'map',
+        path: 'start',
         component:Main,
       },
       {
@@ -32,9 +32,15 @@ export const TABS_ROUTES: Routes = [
       },
       {
         path: '',
-        redirectTo: '/app/tabs/schedule',
+        redirectTo: '/app/tabs/all',
         pathMatch: 'full',
       },
     ],
   },
+  {
+    path: '',
+    redirectTo: '/app/tabs/all',
+    pathMatch: 'full',
+  },
+
 ];

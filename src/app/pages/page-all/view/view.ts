@@ -2,12 +2,28 @@ import {Component, inject, input, linkedSignal} from '@angular/core';
 import {DailySummary} from "../../../components/daily-summary/daily-summary";
 import {Session} from '../../../classes/state.interface';
 import {CommonService} from '../../../classes/common.service';
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-view',
-    imports: [
-        DailySummary
-    ],
+  imports: [
+    DailySummary,
+    IonButtons,
+    IonHeader,
+    IonMenuButton,
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonBackButton
+  ],
   templateUrl: './view.html',
   styleUrl: './view.scss'
 })

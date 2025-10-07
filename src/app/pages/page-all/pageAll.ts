@@ -3,13 +3,39 @@ import {CommonService} from '../../classes/common.service';
 import {AllSummary} from '../../components/all-summary/all-summary';
 import {Session} from '../../classes/state.interface';
 import {MatButton} from '@angular/material/button';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {
+  IonButtons,
+  IonContent,
+  IonHeader, IonItem, IonItemDivider,
+  IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList,
+  IonMenuButton,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-state',
   imports: [
     AllSummary,
-    MatButton
+    MatButton,
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonMenuButton,
+    IonTitle,
+    IonToolbar,
+    DatePipe,
+    RouterLink,
+    IonItemGroup,
+    IonItemDivider,
+    IonLabel,
+    IonItemSliding,
+    IonItem,
+    IonList,
+    IonItemOptions,
+    IonItemOption
   ],
   templateUrl: './pageAll.html',
   styleUrl: './pageAll.scss'
