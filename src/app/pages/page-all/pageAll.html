@@ -16,26 +16,27 @@
           <ion-item-divider sticky>
             <ion-label> {{session?.created | date:"dd MMM"}} </ion-label>
           </ion-item-divider>
-
+          <ion-item-sliding #slidingItem>
+            <ion-item [routerLink]="['/session']" [queryParams]="{id: ix}">
+              <ion-label>
           @for (activity of session?.activities; track activity) {
-            <ion-item-sliding #slidingItem>
-              <ion-item [routerLink]="['/session']" [queryParams]="{id: ix}">
-                <ion-label>
+
                   <h3>{{activity.exercise.name}}</h3>
                   <p>
                     {{activity.time}}
                   </p>
-                </ion-label>
-              </ion-item>
 
-              <ion-item-options>
-                <ion-item-option color="danger">
-                  Remove
-                </ion-item-option>
-              </ion-item-options>
-
-            </ion-item-sliding>
           }
+              </ion-label>
+            </ion-item>
+
+            <ion-item-options>
+              <ion-item-option color="danger">
+                Remove
+              </ion-item-option>
+            </ion-item-options>
+
+          </ion-item-sliding>
         </ion-item-group>
 
       }
