@@ -18,8 +18,6 @@ import {DatePipe} from '@angular/common';
 @Component({
   selector: 'app-state',
   imports: [
-    AllSummary,
-    MatButton,
     IonButtons,
     IonContent,
     IonHeader,

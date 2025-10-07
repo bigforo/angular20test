@@ -9,9 +9,9 @@ import {View} from './pages/page-all/view/view';
 import {PageImportExport} from './pages/page-import-export/page-import-export';
 
 export const routes: Routes = [
-  { path: '', component: Main },
-  { path: 'current', component: Summary },
-  { path: 'all', component: PageAll },
+  { path: '', redirectTo: '/app/tabs/start', pathMatch: 'full',},
+  // { path: 'current', component: Summary },
+  // { path: 'all', component: PageAll },
   { path: 'share', component: PageShare },
   { path: 'view', component: PageImport },
   { path: 'session', component: View },

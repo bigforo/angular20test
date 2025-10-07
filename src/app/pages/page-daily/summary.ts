@@ -43,16 +43,7 @@ import {DatePipe} from '@angular/common';
     IonContent,
     IonButton,
     IonIcon,
-    DatePipe,
-    IonItem,
-    IonItemDivider,
-    IonItemGroup,
-    IonItemOption,
-    IonItemOptions,
-    IonItemSliding,
-    IonLabel,
-    IonList,
-    MatIconButton
+
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -64,7 +55,7 @@ export class Summary {
   new() {
     this.service.stopSession();
     this.service.save();
-    this.router.navigate(['/']);
+    this.router.navigate(['/app/tabs/all']);
   }
 
   ls = inject(LocalStorageService);

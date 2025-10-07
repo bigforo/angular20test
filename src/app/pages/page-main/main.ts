@@ -26,11 +26,7 @@ import {calendar, informationCircle,location, people} from 'ionicons/icons';
 @Component({
   selector: 'app-main',
   imports: [RouterLink,
-    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonMenuButton, IonTabs, IonTabBar, IonTabButton, IonLabel
-    , IonTabs,
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
+    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonMenuButton, IonLabel,
     IonLabel, IonList, IonItem,],
   templateUrl: './main.html',
   styleUrl: './main.scss',

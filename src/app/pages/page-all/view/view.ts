@@ -18,7 +18,6 @@ import {
     DailySummary,
     IonButtons,
     IonHeader,
-    IonMenuButton,
     IonTitle,
     IonToolbar,
     IonContent,
