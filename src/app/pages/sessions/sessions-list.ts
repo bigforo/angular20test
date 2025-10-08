@@ -5,12 +5,13 @@ import {Session} from '../../classes/state.interface';
 import {MatButton} from '@angular/material/button';
 import {Router, RouterLink} from '@angular/router';
 import {
+  IonAlert,
   IonButton,
   IonButtons,
-  IonContent,
+  IonContent, IonFooter,
   IonHeader, IonItem, IonItemDivider,
   IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList,
-  IonMenuButton,
+  IonMenuButton, IonNote,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -35,12 +36,15 @@ import {DatePipe} from '@angular/common';
     IonList,
     IonItemOptions,
     IonItemOption,
-    IonButton
+    IonButton,
+    IonFooter,
+    IonNote,
+    IonAlert
   ],
-  templateUrl: './pageAll.html',
-  styleUrl: './pageAll.scss'
+  templateUrl: './sessions-list.html',
+  styleUrl: './sessions-list.scss'
 })
-export class PageAll {
+export class SessionsList {
   service = inject(CommonService);
   appState = this.service.appState;
   sessions = linkedSignal(()=>{
@@ -53,6 +57,24 @@ export class PageAll {
   }
   clear() {
     this.service.clearHistory();
-    this.router.navigate(['/app/tabs/all']);
+    this.router.navigate(['/app/tabs/sessions']);
   }
+
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        // console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'OK',
+      role: 'confirm',
+      handler: () => {
+        this.clear();
+      },
+    },
+  ];
+
 }

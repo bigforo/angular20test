@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
-import {PageAll} from '../pages/page-all/pageAll';
-import {Summary} from '../pages/page-daily/summary';
-import {Main} from '../pages/page-main/main';
+import { SessionsList} from '../pages/sessions/sessions-list';
+import { Summary} from '../pages/current/summary';
+import { Main} from '../pages/start/main';
 
 export const TABS_ROUTES: Routes = [
   {
@@ -10,8 +10,8 @@ export const TABS_ROUTES: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'all',
-        component:PageAll,
+        path: 'sessions',
+        component:SessionsList,
       },
       {
         path: 'current',
@@ -22,24 +22,15 @@ export const TABS_ROUTES: Routes = [
         component:Main,
       },
       {
-        path: 'about',
-        children: [
-          {
-            path: '',
-            component:PageAll,
-          },
-        ],
-      },
-      {
         path: '',
-        redirectTo: '/app/tabs/all',
+        redirectTo: '/app/tabs/current',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/app/tabs/all',
+    redirectTo: '/app/tabs/current',
     pathMatch: 'full',
   },
 

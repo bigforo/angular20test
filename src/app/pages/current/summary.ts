@@ -1,40 +1,33 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
-import {MatButton, MatIconButton} from '@angular/material/button';
-import {DailySummary} from '../../components/daily-summary/daily-summary';
 import {LocalStorageService} from '../../classes/ls';
-import {Router, RouterLink, RouterOutlet} from '@angular/router';
-import {MatChipListbox, MatChipListboxChange, MatChipOption} from '@angular/material/chips';
+import {Router, RouterLink} from '@angular/router';
 import {
   IonButton,
   IonButtons,
-  IonContent,
+  IonContent, IonFooter,
   IonHeader,
   IonIcon,
   IonItem,
-  IonItemDivider,
-  IonItemGroup,
   IonItemOption,
   IonItemOptions,
   IonItemSliding,
   IonLabel,
   IonList,
-  IonMenuButton,
+  IonMenuButton, IonNote, IonSelect, IonSelectOption, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
 import {cloudDownload, shareOutline, star, starOutline, share} from 'ionicons/icons';
 import {DatePipe} from '@angular/common';
+import {Activity} from '../../classes/state.interface';
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-summary',
   imports: [
-    MatButton,
-    DailySummary,
     RouterLink,
-    MatChipListbox,
-    MatChipOption,
     IonButtons,
     IonHeader,
     IonMenuButton,
@@ -43,7 +36,17 @@ import {DatePipe} from '@angular/common';
     IonContent,
     IonButton,
     IonIcon,
-
+    IonList,
+    IonItem,
+    IonSelect,
+    IonSelectOption,
+    IonLabel,
+    DatePipe,
+    IonItemOptions,
+    IonItemOption,
+    IonItemSliding,
+    IonNote,
+    IonFooter,
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -53,27 +56,41 @@ export class Summary {
   appState = this.service.appState;
   router = inject(Router);
 
-  new() {
-    this.service.stopSession();
-    this.service.save();
-    this.router.navigate(['/app/tabs/all']);
-  }
+
 
   ls = inject(LocalStorageService);
   link = linkedSignal(()=>{
     return this.ls.getCompressed(this.appState().current) ?? "";
   });
 
-  chipChange($event: MatChipListboxChange) {
-    if ($event.value) {
-      console.log($event.value);
-    }
-  }
 
-  shareSession() {
-
-  }
   constructor() {
     addIcons({ shareOutline, starOutline, star, cloudDownload, share });
+  }
+  stop() {
+    this.service.stopSession();
+    this.service.save();
+    // this.router.navigate(['/app/tabs/sessions']);
+  }
+  delete(activity: Activity) {
+    this.service.deleteActivity(activity);
+    this.service.save();
+  }
+
+  alertController = inject(AlertController);
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Are you sure?',
+      message: 'Older workout sessions can be found in the history tab.',
+      buttons: [
+        {text:"Yes",  handler: () => {this.stop()}},
+        {text:"No",  handler: () => {}},
+      ],
+    });
+    await alert.present();
+  }
+
+  edit(activity: Activity) {
+    this.router.navigate(['/'+activity.id]);
   }
 }

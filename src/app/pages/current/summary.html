@@ -1,0 +1,86 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Active Workout</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/view']" [queryParams]="{id: link()}">
+        <ion-icon slot="icon-only" name="share"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  @if (appState().current?.activities?.length??0>0){
+
+  <div class="about-info">
+    <h3 class="ion-padding-top ion-padding-start">Workout session started</h3>
+
+    <p class="ion-padding-start ion-padding-end">
+      "Workout sessions are beneficial because they improve physical health, boost mental well-being, increase energy, and enhance overall quality of life!" - ChatGPT
+    </p>
+  </div>
+
+
+
+  <ion-item lines="full">
+    <ion-select label="Set session type" interface="action-sheet" placeholder="Session type">
+      <ion-select-option value="chest">Chest day</ion-select-option>
+      <ion-select-option value="back">Back day</ion-select-option>
+      <ion-select-option value="shoulders">Shoulders</ion-select-option>
+      <ion-select-option value="push">Push</ion-select-option>
+      <ion-select-option value="pull">Pull</ion-select-option>
+      <ion-select-option value="legs">Legs</ion-select-option>
+    </ion-select>
+  </ion-item>
+  }
+
+
+  @for (activity of appState().current?.activities; track $index) {
+
+    <ion-list>
+      <ion-item-sliding>
+        <ion-item lines="full">
+          <ion-label>
+            <h1>{{activity.exercise.name}}</h1>
+            <p>{{ activity.created | date:'HH:mm:ss' }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="edit(activity)">Edit</ion-item-option>
+          <ion-item-option color="danger" (click)="delete(activity)">Delete</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+      @for (i of activity.sets; track $index){
+        <ion-item>
+          <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>
+          <ion-label color="tertiary">
+            {{i.reps}}
+            @if (activity.hasSize) {
+              {{'x ' + i.size}}{{activity.exercise.weightUnit}}
+            }
+          </ion-label>
+          <ion-label> </ion-label>
+        </ion-item>
+      }
+
+    </ion-list>
+
+  }
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    @if (appState().current?.activities?.length??0>0){
+      <ion-button color="light" expand="block" (click)="presentAlert()">Stop Current Workout Session</ion-button>
+    }
+    @if ( (appState().current?.activities?.length ?? 0) === 0){
+      <ion-note color="warning">No session </ion-note>
+      <ion-note >Select Exercise to start Workout Session</ion-note>
+    }
+  </ion-toolbar>
+</ion-footer>

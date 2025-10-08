@@ -1,20 +1,15 @@
 import { Routes } from '@angular/router';
 import {ShowExercise} from './pages/page-show-exercise/show-exercise';
-import { Main } from './pages/page-main/main';
-import { Summary } from './pages/page-daily/summary';
-import { PageAll } from './pages/page-all/pageAll';
-import {PageShare} from './pages/page-share/page-share';
-import {PageImport} from './pages/page-view/page-import';
-import {View} from './pages/page-all/view/view';
-import {PageImportExport} from './pages/page-import-export/page-import-export';
+import {PageShare} from './pages/share/page-share';
+import {ViewExternal} from './pages/view/view-external';
+import {SessionDetails} from './pages/sessions/view/session-details';
+import {PageImportExport} from './pages/import/page-import-export';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/app/tabs/start', pathMatch: 'full',},
-  // { path: 'current', component: Summary },
-  // { path: 'all', component: PageAll },
-  { path: 'share', component: PageShare },
-  { path: 'view', component: PageImport },
-  { path: 'session', component: View },
+  { path: '', redirectTo: '/app/tabs/current', pathMatch: 'full',},
+  // { path: 'share', component: PageShare },
+  { path: 'view', component: ViewExternal },
+  { path: 'session', component: SessionDetails },
   { path: 'import', component: PageImportExport },
   {
     path: 'app',

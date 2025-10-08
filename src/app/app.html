@@ -8,7 +8,7 @@
 <!--<div class="flex items-center justify-center">-->
 <!--  <router-outlet />-->
 <!--</div>-->
-<ion-app [class.ion-palette-dark]="dark">
+<ion-app [class.ion-palette-dark]="false">
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content">
       <ion-content>
@@ -32,7 +32,7 @@
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
-            <ion-item [routerLink]="'/app/tabs/all'" routerLinkActive="selected" routerDirection="root" detail="false">
+            <ion-item [routerLink]="'/app/tabs/sessions'" routerLinkActive="selected" routerDirection="root" detail="false">
               <ion-icon slot="start" name="logo-buffer"></ion-icon>
               <ion-label> History </ion-label>
             </ion-item>

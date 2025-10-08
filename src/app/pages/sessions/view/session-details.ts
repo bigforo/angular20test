@@ -23,10 +23,10 @@ import {
     IonContent,
     IonBackButton
   ],
-  templateUrl: './view.html',
-  styleUrl: './view.scss'
+  templateUrl: './session-details.html',
+  styleUrl: './session-details.scss'
 })
-export class View {
+export class SessionDetails {
   service = inject(CommonService);
   appState = this.service.appState;
   id = input<string>();

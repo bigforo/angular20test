@@ -24,10 +24,10 @@ import {
     IonContent,
     IonMenuButton,
   ],
-  templateUrl: './page-import.html',
-  styleUrl: './page-import.scss'
+  templateUrl: './view-external.html',
+  styleUrl: './view-external.scss'
 })
-export class PageImport {
+export class ViewExternal {
   service = inject(CommonService);
   ls = inject(LocalStorageService);
   id = input<string>();

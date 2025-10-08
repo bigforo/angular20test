@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Sessions</ion-title>
+    <ion-title>Previous Sessions</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,12 +20,10 @@
             <ion-item [routerLink]="['/session']" [queryParams]="{id: ix}">
               <ion-label>
           @for (activity of session?.activities; track activity) {
-
                   <h3>{{activity.exercise.name}}</h3>
                   <p>
                     {{activity.time}}
                   </p>
-
           }
               </ion-label>
             </ion-item>
@@ -41,17 +39,16 @@
 
       }
     </ion-list>
-
-  <ion-button color="light" expand="block" (click)="clear()">Clear all saved sessions</ion-button>
-<!--  <ion-list>-->
-<!--    <ion-item (click)="clear()" button>-->
-<!--      <ion-label color="primary">Clear all sessions</ion-label>-->
-<!--    </ion-item>-->
-<!--  </ion-list>-->
-
-<!--  @else {-->
-<!--    <div class="flex items-center justify-center flex-col">-->
-<!--      No previous sessions-->
-<!--    </div>-->
-<!--  }-->
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-button id="present-alert" color="light" expand="block" >Reset all sessions</ion-button>
+    <ion-alert
+      trigger="present-alert"
+      header="Are you sure?"
+      [buttons]="alertButtons"
+    ></ion-alert>
+  </ion-toolbar>
+</ion-footer>

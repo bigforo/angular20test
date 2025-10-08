@@ -71,16 +71,9 @@ export class CommonService {
   }
 
   save() {
-    // if (this.appState.current?.activities) {
-    //   this.ls.setItem("gym-day-session", this.appState.current);
-    // }
     this.ls.setItem("gym-day-state", this.appState());
   }
   load(){
-    // let session = this.ls.getItem<Session>("gym-day-session");
-    // if(session) {
-    //   this.loadSession(session);
-    // }
     let state = this.ls.getItem<StateInterface>("gym-day-state");
     if (state)
       this.appState.set(state);
