@@ -16,6 +16,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {DatePipe} from '@angular/common';
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-state',
@@ -77,4 +78,20 @@ export class SessionsList {
     },
   ];
 
+  // alertController = inject(AlertController);
+  // async presentAlert(session: Session) {
+  //     const alert = await this.alertController.create({
+  //       header: 'Are you sure?',
+  //       // message: 'Older workout sessions can be found in the history tab.',
+  //       buttons: [
+  //         {text:"Yes",  handler: () => {this.service.deleteSessionFromHis(session)}},
+  //         {text:"No",  handler: () => {}},
+  //       ],
+  //     });
+  //     await alert.present();
+  // }
+  delete(session: Session, sliding: IonItemSliding) {
+    this.service.deleteSessionFromHis(session);
+    sliding.close();
+  }
 }

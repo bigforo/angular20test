@@ -25,6 +25,10 @@ export class CommonService {
       this.appState.set(cc);
     }
   }
+  public deleteSessionFromHis(session: Session) {
+    this.appState().history.splice(this.appState().history.indexOf(session), 1);
+  }
+
   public findActivityByExercise(ex: Exercise):Activity|undefined {
     return this.appState().current?.activities.find(dayExercise =>
       dayExercise.id === ex.id

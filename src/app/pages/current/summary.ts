@@ -74,9 +74,10 @@ export class Summary {
     this.service.save();
     this.router.navigate(['/app/tabs/sessions']);
   }
-  delete(activity: Activity) {
+  delete(activity: Activity, sliding: IonItemSliding) {
     this.service.deleteActivity(activity);
     this.service.save();
+    sliding.close();
   }
 
 
