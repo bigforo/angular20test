@@ -14,17 +14,17 @@ import {FormsModule} from '@angular/forms';
 })
 export class PageImportExport {
   data: any;
-  service = inject(CommonService)
+  service = inject(CommonService);
+  appState = this.service.appState;
   ls = inject(LocalStorageService)
   constructor() {
-    this.data = JSON.stringify(this.service.appState.history);
+    this.data = JSON.stringify(this.appState().history);
   }
 
   import() {
     const val = JSON.parse(this.data) as Session[];
-    console.log(val);
     if (val){
-      this.service.appState.history = val;
+      this.service.setHistory(val);
     }
   }
 

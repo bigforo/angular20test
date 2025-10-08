@@ -49,7 +49,8 @@ import {DatePipe} from '@angular/common';
   styleUrl: './summary.scss'
 })
 export class Summary {
-  service = inject(CommonService)
+  service = inject(CommonService);
+  appState = this.service.appState;
   router = inject(Router);
 
   new() {
@@ -60,7 +61,7 @@ export class Summary {
 
   ls = inject(LocalStorageService);
   link = linkedSignal(()=>{
-    return this.ls.getCompressed(this.service.appState.current) ?? "";
+    return this.ls.getCompressed(this.appState().current) ?? "";
   });
 
   chipChange($event: MatChipListboxChange) {

@@ -25,9 +25,9 @@
       <mat-chip-option> Pull </mat-chip-option>
       <mat-chip-option> Legs </mat-chip-option>
     </mat-chip-listbox>
-    <app-daily-summary [session]="service.appState.current"/>
+    <app-daily-summary [session]="appState().current"/>
     <div class="flex">
-      @if (service.appState.current?.activities?.length??0>0){
+      @if (appState().current?.activities?.length??0>0){
         <ion-button color="light" expand="block" (click)="new()">Stop Current Workout Session</ion-button>
 <!--        <button matButton="elevated" >Stop Workout Session</button>-->
       } @else{

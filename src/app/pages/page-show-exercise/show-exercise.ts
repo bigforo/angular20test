@@ -34,7 +34,6 @@ import {Router} from '@angular/router';
     IonToolbar,
     IonContent,
     IonBackButton,
-    IonMenuButton,
     IonButton
   ],
   templateUrl: './show-exercise.html',
@@ -44,24 +43,30 @@ export class ShowExercise {
   service = inject(CommonService)
 
   id = input<string>();
-  internalId = linkedSignal(() => {
+  activity = linkedSignal(() => {
     let ex = EXERCISES.find(a=> a.id === this.id());
     if (!ex){
-      return "UNKNOWN";
+      return new Activity({weightOptions: [], name:"Unknown",id:"00"});
     }
-    this.service.startSessionIfNotStarted();
-    this.activity = this.service.startActivity(ex);
-    return ex.name;
+    let act = this.service.findActivityByExercise(ex);
+    if (act === undefined) {
+      return new Activity(ex);
+    }
+    return act;
   });
 
-  activity = new Activity(EXERCISES[0]);
   reps: any;
   kgs: any;
   private router = inject(Router);
 
   addSet(reps: string, kgs: any) {
-    if ( (!this.activity.hasSize && +reps > 0) || (this.activity.hasSize && +kgs > 0)) {
-      this.activity.addSet(reps, kgs);
+
+    this.service.startSessionIfNotStarted();
+    let act = this.service.findOrStartActivityByExercise(this.activity().exercise);
+    this.activity.set(act);
+
+    if ( (!this.activity().hasSize && +reps > 0) || (this.activity().hasSize && +kgs > 0)) {
+      this.activity().addSet(reps, kgs);
       this.service.save();
     }
   }

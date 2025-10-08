@@ -16,6 +16,7 @@ import {RouterLink} from '@angular/router';
 })
 export class PageShare {
   service = inject(CommonService);
+  appState = this.service.appState;
 
   protected readonly Date = Date;
   formatTimeHHMMSS(date: Date): string {
@@ -40,7 +41,7 @@ export class PageShare {
 
 
   public getDescForCal() : string{
-    let exercises = this.service.appState.current?.activities;
+    let exercises = this.appState().current?.activities;
     let desc:string = "";
     exercises?.forEach(exercise => {
       desc += exercise.exercise.name + '\r'
@@ -56,6 +57,6 @@ export class PageShare {
 
   ls = inject(LocalStorageService);
   link = linkedSignal(()=>{
-    return this.ls.getCompressed(this.service.appState.current) ?? "";
+    return this.ls.getCompressed(this.appState().current) ?? "";
   });
 }

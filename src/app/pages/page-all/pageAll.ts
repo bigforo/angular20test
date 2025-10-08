@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, linkedSignal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {AllSummary} from '../../components/all-summary/all-summary';
 import {Session} from '../../classes/state.interface';
@@ -42,7 +42,10 @@ import {DatePipe} from '@angular/common';
 })
 export class PageAll {
   service = inject(CommonService);
-  sessions = [...this.service.appState.history] as Session[];
+  appState = this.service.appState;
+  sessions = linkedSignal(()=>{
+    return this.appState().history
+  })
   router = inject(Router);
 
   constructor() {

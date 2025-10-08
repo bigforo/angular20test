@@ -9,8 +9,8 @@
 
 <ion-content fullscreen="true">
 
-    <ion-list #scheduleList [hidden]="service.appState.history.length === 0">
-      @for (session of sessions; track $index){
+    <ion-list #scheduleList [hidden]="sessions().length === 0">
+      @for (session of sessions(); track $index){
         @let ix= $index;
         <ion-item-group>
           <ion-item-divider sticky>

@@ -28,11 +28,12 @@ import {
 })
 export class View {
   service = inject(CommonService);
+  appState = this.service.appState;
   id = input<string>();
   session = linkedSignal(()=>{
       if (this.id()){
         let id = +(this.id()??"0");
-        return this.service.appState.history[id];
+        return this.appState().history[id];
       }
       return null;
     }
