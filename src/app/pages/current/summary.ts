@@ -1,4 +1,4 @@
-import {Component, inject, linkedSignal} from '@angular/core';
+import {Component, inject, linkedSignal, signal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {LocalStorageService} from '../../classes/ls';
 import {Router, RouterLink} from '@angular/router';
@@ -47,6 +47,7 @@ import {AlertController} from '@ionic/angular';
     IonItemSliding,
     IonNote,
     IonFooter,
+    IonText,
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -70,12 +71,13 @@ export class Summary {
   stop() {
     this.service.stopSession();
     this.service.save();
-    // this.router.navigate(['/app/tabs/sessions']);
+    this.router.navigate(['/app/tabs/sessions']);
   }
   delete(activity: Activity) {
     this.service.deleteActivity(activity);
     this.service.save();
   }
+
 
   alertController = inject(AlertController);
   async presentAlert() {
