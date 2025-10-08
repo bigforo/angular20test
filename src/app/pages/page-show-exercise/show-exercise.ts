@@ -17,6 +17,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {Router} from '@angular/router';
+import {SetClass} from '../../classes/set.class';
 
 
 @Component({
@@ -66,7 +67,11 @@ export class ShowExercise {
     this.activity.set(act);
 
     if ( (!this.activity().hasSize && +reps > 0) || (this.activity().hasSize && +kgs > 0)) {
-      this.activity().addSet(reps, kgs);
+      if (this.activity().hasSize)
+        this.activity().sets.push(new SetClass(reps, kgs));
+      else
+        this.activity().sets.push(new SetClass(reps, ""));
+
       this.service.save();
     }
   }

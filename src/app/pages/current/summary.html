@@ -71,9 +71,16 @@
       }
     </ion-list>
   }
+  <ion-item>
+    <ion-textarea placeholder="Type something notes here" [autoGrow]="true" (ionChange)="change($event)" [value]="appState().current?.note" />
+  </ion-item>
   @if (appState().current?.activities?.length??0>0){
-    <ion-button color="light" expand="full" (click)="presentAlert()">Finish Session</ion-button>
+    <ion-button expand="full" (click)="presentAlert()">Finish Session</ion-button>
   }
+
+
+
+
 </ion-content>
 @if ( (appState().current?.activities?.length ?? 0) === 0){
 <ion-footer>

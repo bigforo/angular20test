@@ -44,7 +44,7 @@ export class App {
   }
 
   toggleDarkMode() {
-    this.dark = !this.dark;
+    document.documentElement.classList.toggle('ion-palette-dark', this.dark);
   }
 
   openTutorial() {

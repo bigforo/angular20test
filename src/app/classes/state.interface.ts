@@ -10,6 +10,7 @@ export class Session{
   public name: string;
   public activities: Activity[];
   public created: Date;
+  public note?:string = "";
   // public addExercise(name: Exercise) {
   //   let newEx= new Activity(name);
   //   this.activities.push(newEx);

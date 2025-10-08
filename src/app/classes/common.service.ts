@@ -54,6 +54,13 @@ export class CommonService {
     cc.current?.activities.splice(cc.current?.activities.indexOf(activity), 1);
     this.appState.set(cc);
   }
+  public addNoteToCurrentActivity(note:string) {
+    let cc = this.appState();
+    if (cc.current)
+      cc.current.note = note;
+    this.appState.set(cc);
+    this.save();
+  }
 
   loadSession(session: Session) {
     // this.appState.current = session;
@@ -75,7 +82,9 @@ export class CommonService {
   }
   load(){
     let state = this.ls.getItem<StateInterface>("gym-day-state");
-    if (state)
+    if (state){
       this.appState.set(state);
+    }
+
   }
 }

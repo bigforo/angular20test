@@ -14,7 +14,7 @@ import {
   IonItemSliding,
   IonLabel,
   IonList,
-  IonMenuButton, IonNote, IonSelect, IonSelectOption, IonText,
+  IonMenuButton, IonNote, IonSelect, IonSelectOption, IonText, IonTextarea,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -48,6 +48,7 @@ import {AlertController} from '@ionic/angular';
     IonNote,
     IonFooter,
     IonText,
+    IonTextarea,
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -94,5 +95,9 @@ export class Summary {
 
   edit(activity: Activity) {
     this.router.navigate(['/'+activity.id]);
+  }
+
+  change($event: any) {
+    this.service.addNoteToCurrentActivity($event.target.value);
   }
 }

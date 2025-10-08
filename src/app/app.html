@@ -8,7 +8,7 @@
 <!--<div class="flex items-center justify-center">-->
 <!--  <router-outlet />-->
 <!--</div>-->
-<ion-app [class.ion-palette-dark]="false">
+<ion-app [class.ion-palette-dark]="dark">
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content">
       <ion-content>
@@ -41,38 +41,7 @@
 
         @if(!loggedIn) {
         <ion-list lines="none">
-          <ion-list-header> Account </ion-list-header>
-
-<!--          <ion-menu-toggle autoHide="false">-->
-<!--            <ion-item-->
-<!--              routerDirection="root"-->
-<!--              detail="false"-->
-<!--            >-->
-<!--              <ion-icon slot="start" name="log-in"></ion-icon>-->
-<!--              <ion-label> Login </ion-label>-->
-<!--            </ion-item>-->
-<!--          </ion-menu-toggle>-->
-
-<!--          <ion-menu-toggle autoHide="false">-->
-<!--            <ion-item-->
-<!--              routerDirection="root"-->
-<!--              detail="false"-->
-<!--            >-->
-<!--              <ion-icon slot="start" name="help"></ion-icon>-->
-<!--              <ion-label> Support </ion-label>-->
-<!--            </ion-item>-->
-<!--          </ion-menu-toggle>-->
-
-<!--          <ion-menu-toggle autoHide="false">-->
-<!--            <ion-item-->
-<!--              routerDirection="root"-->
-<!--              detail="false"-->
-<!--            >-->
-<!--              <ion-icon slot="start" name="person-add"></ion-icon>-->
-<!--              <ion-label> Signup </ion-label>-->
-<!--            </ion-item>-->
-<!--          </ion-menu-toggle>-->
-
+          <ion-list-header> Settings </ion-list-header>
           <ion-item>
             <ion-icon slot="start" name="moon-outline"></ion-icon>
             <ion-toggle [(ngModel)]="dark" (ionChange)="toggleDarkMode()">
