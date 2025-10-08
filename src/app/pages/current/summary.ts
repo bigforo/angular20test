@@ -3,6 +3,7 @@ import {CommonService} from '../../classes/common.service';
 import {LocalStorageService} from '../../classes/ls';
 import {Router, RouterLink} from '@angular/router';
 import {
+  IonAlert,
   IonButton,
   IonButtons,
   IonContent, IonFooter,
@@ -23,6 +24,7 @@ import {cloudDownload, shareOutline, star, starOutline, share} from 'ionicons/ic
 import {DatePipe} from '@angular/common';
 import {Activity} from '../../classes/state.interface';
 import {AlertController} from '@ionic/angular';
+import type { OverlayEventDetail } from '@ionic/core';
 
 @Component({
   selector: 'app-summary',
@@ -49,6 +51,7 @@ import {AlertController} from '@ionic/angular';
     IonFooter,
     IonText,
     IonTextarea,
+    IonAlert,
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -72,7 +75,7 @@ export class Summary {
   stop() {
     this.service.stopSession();
     this.service.save();
-    this.router.navigate(['/app/tabs/sessions']);
+    // this.router.navigate(['/app/tabs/sessions']);
   }
   delete(activity: Activity, sliding: IonItemSliding) {
     this.service.deleteActivity(activity);
@@ -81,18 +84,18 @@ export class Summary {
   }
 
 
-  alertController = inject(AlertController);
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Are you sure?',
-      message: 'Older workout sessions can be found in the history tab.',
-      buttons: [
-        {text:"Yes",  handler: () => {this.stop()}},
-        {text:"No",  handler: () => {}},
-      ],
-    });
-    await alert.present();
-  }
+  // alertController = inject(AlertController);
+  // async presentAlert() {
+  //   const alert = await this.alertController.create({
+  //     header: 'Are you sure?',
+  //     message: 'Older workout sessions can be found in the history tab.',
+  //     buttons: [
+  //       {text:"Yes",  handler: () => {this.stop()}},
+  //       {text:"No",  handler: () => {}},
+  //     ],
+  //   });
+  //   await alert.present();
+  // }
 
   edit(activity: Activity) {
     this.router.navigate(['/'+activity.id]);
@@ -101,4 +104,20 @@ export class Summary {
   change($event: any) {
     this.service.addNoteToCurrentActivity($event.target.value);
   }
+
+  delete213(event: CustomEvent<OverlayEventDetail>) {
+    if (event.detail.role === 'yes') {
+      this.stop();
+    }
+  }
+  public alertButtons = [
+    {
+      text: 'Yes',
+      role: 'yes',
+    },
+    {
+      text: 'No',
+      role: 'no',
+    },
+  ];
 }

@@ -80,7 +80,15 @@
       </ion-item>
     </ion-list>
 
-    <ion-button expand="full" (click)="presentAlert()">Finish Session</ion-button>
+    <ion-button expand="full" id="present-alert">Finish Session</ion-button>
+
+    <ion-alert
+      trigger="present-alert"
+      header="Are you sure?"
+      message="Older workout sessions can be found in the history tab."
+      [buttons]="alertButtons"
+      (didDismiss)="delete213($event)"
+    ></ion-alert>
   }
 
 
