@@ -27,6 +27,7 @@ export class CommonService {
   }
   public deleteSessionFromHis(session: Session) {
     this.appState().history.splice(this.appState().history.indexOf(session), 1);
+    this.save();
   }
 
   public findActivityByExercise(ex: Exercise):Activity|undefined {
