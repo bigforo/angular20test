@@ -1,13 +1,11 @@
 import {Component, inject, input, linkedSignal} from '@angular/core';
-import {DailySummary} from "../../../components/daily-summary/daily-summary";
-import {Session} from '../../../classes/state.interface';
-import {CommonService} from '../../../classes/common.service';
+import {DailySummary} from "../../components/daily-summary/daily-summary";
+import {CommonService} from '../../classes/common.service';
 import {
   IonBackButton,
   IonButtons,
   IonContent,
   IonHeader,
-  IonMenuButton,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';

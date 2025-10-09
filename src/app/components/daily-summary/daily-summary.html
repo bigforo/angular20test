@@ -1,7 +1,7 @@
 
+<div class="ion-flex-1 ion-flex-column">
 @for (activity of session()?.activities; track $index) {
-  <div class="flex">
-    <div class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center">
+    <div class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center rounded-xl">
       <div class="font-black font-mono text-xs text-indigo-400">{{activity.created | date:'dd-MM-yy HH:mm'}}</div>
       <div class="font-black font-mono" >- {{activity.exercise.name}} -</div>
       @for (i of activity.sets; track $index){
@@ -17,15 +17,11 @@
 
         </div>
       }
-  <!--    <div class="font-black font-mono" >notes:</div>-->
     </div>
-    @if (showDelete()){
-    <div>
-      <button (click)="delete(activity)" matIconButton aria-label="delete">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-    }
+  @if (session()?.note) {
+  <div class="summary-exercise border-2 border-amber-800 p-2 m-2 w-70 text-center rounded-xl">
+    {{session()?.note}}
   </div>
-
+  }
 }
+</div>

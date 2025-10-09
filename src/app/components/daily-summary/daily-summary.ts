@@ -19,10 +19,5 @@ import {CommonService} from '../../classes/common.service';
 })
 export class DailySummary {
   session = input<Session | null>();
-  showDelete = input<boolean>(true);
   service = inject(CommonService);
-  delete(activity: Activity) {
-    this.service.deleteActivity(activity);
-    this.service.save();
-  }
 }
