@@ -18,6 +18,11 @@
     </p>
   </div>
 
+  <div class="ion-padding-start">
+    <ion-chip [outline]="true"  color="secondary">Back Day</ion-chip>
+    <ion-chip [outline]="true"  color="success">Shoulder Day</ion-chip>
+    <ion-chip [outline]="true"  color="warning">Chest Day</ion-chip>
+  </div>
 
 
 <!--  <ion-item lines="full">-->
@@ -93,7 +98,7 @@
 
 </ion-content>
 @if ( (appState().current?.activities?.length ?? 0) === 0){
-<ion-footer>
+<ion-footer id="footer">
   <ion-toolbar >
       <div class="ion-text-center">
         <ion-note>No session started</ion-note>

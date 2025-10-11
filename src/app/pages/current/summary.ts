@@ -5,7 +5,7 @@ import {Router, RouterLink} from '@angular/router';
 import {
   IonAlert,
   IonButton,
-  IonButtons,
+  IonButtons, IonChip,
   IonContent, IonFooter,
   IonHeader,
   IonIcon,
@@ -52,6 +52,7 @@ import type { OverlayEventDetail } from '@ionic/core';
     IonText,
     IonTextarea,
     IonAlert,
+    IonChip,
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'

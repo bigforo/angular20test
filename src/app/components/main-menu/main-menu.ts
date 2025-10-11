@@ -24,7 +24,8 @@ import {
 import {CommonService} from '../../classes/common.service';
 import {FormsModule} from '@angular/forms';
 import {EXERCISES} from '../../classes/all-exercises.data';
-import {Activity} from '../../classes/state.interface';
+import {Activity, Session} from '../../classes/state.interface';
+import {ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-main-menu',
@@ -78,36 +79,50 @@ export class MainMenu {
 
   }
   router = inject(Router);
-  presets(preset: string) {
-    console.log('preset', preset);
+  toast = inject(ToastController);
 
-    if (preset === 'chest') {
-      EXERCISES.forEach(ele => {
-        if (
-          ele.id === 'b1' ||
-          ele.id === 'b2' ||
-          ele.id === 'b3'
-        ){
-          const act = new Activity(ele);
-          this.service.appState().current?.activities.push(act);
-        }
+  async presets(preset: string) {
+    if (!this.service.appState().current != null && ((this.service.appState().current?.activities?.length??0) > 0))
+    {
+      await this.router.navigate(['/app/tabs/current']);
+      const toast = await this.toast.create({
+        message: 'Finish current workout session!',
+        duration: 2500,
+        position: 'bottom',
+        color:'warning'
       });
-    } else if (preset === 'back') {
-      EXERCISES.forEach(ele => {
-        if (
-          ele.id === 'bk1' ||
-          ele.id === 'bk2' ||
-          ele.id === 'bk3'
-        ){
-          const act = new Activity(ele);
-          this.service.appState().current?.activities.push(act);
-        }
-      });
+      await toast.present();
     }
+    else {
+      this.service.appState().current = new Session("session-" + preset);
+
+      if (preset === 'chest') {
+        EXERCISES.forEach(ele => {
+          if (
+            ele.id === 'b1' ||
+            ele.id === 'b2' ||
+            ele.id === 'b3'
+          ) {
+            const act = new Activity(ele);
+            this.service.appState().current?.activities.push(act);
+          }
+        });
+      } else if (preset === 'back') {
+        EXERCISES.forEach(ele => {
+          if (
+            ele.id === 'bk1' ||
+            ele.id === 'bk2' ||
+            ele.id === 'bk3'
+          ) {
+            const act = new Activity(ele);
+            this.service.appState().current?.activities.push(act);
+          }
+        });
+      }
 
 
-    this.router.navigate(['/app/tabs/current']);
-
+      this.router.navigate(['/app/tabs/current']);
+    }
 
   }
 }
