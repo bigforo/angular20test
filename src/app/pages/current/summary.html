@@ -4,6 +4,22 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Active Workout</ion-title>
+
+    @if (appState().current?.activities?.length??0>0){
+    <ion-buttons slot="end">
+      <ion-button id="present-alert">
+        <ion-icon size="large" color="danger" name="stop-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+      <ion-alert
+        trigger="present-alert"
+        header="Are you sure?"
+        message="Older workout sessions can be found in the history tab."
+        [buttons]="alertButtons"
+        (didDismiss)="delete213($event)"
+      ></ion-alert>
+    }
+
   </ion-toolbar>
 </ion-header>
 
@@ -19,9 +35,21 @@
   </div>
 
   <div class="ion-padding-start">
-    <ion-chip [outline]="true"  color="secondary">Back Day</ion-chip>
-    <ion-chip [outline]="true"  color="success">Shoulder Day</ion-chip>
-    <ion-chip [outline]="true"  color="warning">Chest Day</ion-chip>
+    <ion-chip
+      [ngClass]="{ 'selected-chip': selectedBackDay }"
+      [outline]="true"
+      (click) = "selectedBackDay = !selectedBackDay"
+      color="warning">Back Day</ion-chip>
+    <ion-chip
+      [ngClass]="{ 'selected-chip': selectedShoulderDay }"
+      [outline]="true"
+      (click)="selectedShoulderDay=!selectedShoulderDay"
+      color="warning">Shoulder Day</ion-chip>
+    <ion-chip
+      [ngClass]="{ 'selected-chip': selectedChestDay }"
+      [outline]="true"
+      (click)="selectedChestDay=!selectedChestDay"
+      color="warning">Chest Day</ion-chip>
   </div>
 
 
@@ -46,10 +74,15 @@
     <ion-list>
       <ion-item-sliding #sliding>
         <ion-item lines="full" [routerLink]="'/'+activity.id" >
+          <ion-icon aria-hidden="true" name="timer-outline" slot="start"></ion-icon>
           <ion-label>
-            <h1 class="ion-text-capitalize">{{activity.exercise.name}}</h1>
-            <p>started at {{ activity.created | date:'HH:mm' }}</p>
+            <strong class="ion-text-capitalize">{{activity.exercise.name}}</strong>
+            <ion-text color="medium">- {{activity.exercise.name}} -</ion-text>
           </ion-label>
+          <div class="metadata-end-wrapper" slot="end">
+            <ion-note color="medium">{{ activity.created | date:'HH:mm' }}</ion-note>
+            <ion-icon color="medium" name="chevron-forward"></ion-icon>
+          </div>
         </ion-item>
         <ion-item-options side="end">
 <!--          <ion-item-option (click)="edit(activity)">Edit</ion-item-option>-->
@@ -57,8 +90,36 @@
         </ion-item-options>
       </ion-item-sliding>
 
+<!--      <ion-item [button]="true" detail="false">-->
+<!--        <div class="unread-indicator-wrapper" slot="start">-->
+<!--          <div class="unread-indicator"></div>-->
+<!--        </div>-->
+<!--        <ion-label>-->
+<!--          <strong>Rick Astley</strong>-->
+<!--          <ion-text>Never Gonna Give You Up</ion-text><br />-->
+<!--          <ion-note color="medium" class="ion-text-wrap">-->
+<!--            Never gonna give you up Never gonna let you down Never gonna run...-->
+<!--          </ion-note>-->
+<!--        </ion-label>-->
+<!--        <div class="metadata-end-wrapper" slot="end">-->
+<!--          <ion-note color="medium">06:11</ion-note>-->
+<!--          <ion-icon color="medium" name="chevron-forward"></ion-icon>-->
+<!--        </div>-->
+<!--      </ion-item>-->
+
       @for (i of activity.sets; track $index){
         <ion-item>
+<!--          <ion-grid>-->
+<!--            <ion-row>-->
+<!--              <ion-col color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub> </ion-col>-->
+<!--              <ion-col color="tertiary"> set {{ $index + 1 }} </ion-col>-->
+<!--              <ion-col color="tertiary">-->
+<!--                {{i.reps}}-->
+<!--                @if (activity.hasSize) {-->
+<!--                  {{'x ' + i.size}}{{activity.exercise.weightUnit}}-->
+<!--                }</ion-col>-->
+<!--            </ion-row>-->
+<!--          </ion-grid>-->
           <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>
           <ion-label color="tertiary"> set {{ $index + 1 }} </ion-label>
           <ion-label color="tertiary">
@@ -81,17 +142,9 @@
     </ion-list>
   }
 
-  @if (appState().current?.activities?.length??0>0){
-    <ion-button expand="full" id="present-alert">Finish Session</ion-button>
-
-    <ion-alert
-      trigger="present-alert"
-      header="Are you sure?"
-      message="Older workout sessions can be found in the history tab."
-      [buttons]="alertButtons"
-      (didDismiss)="delete213($event)"
-    ></ion-alert>
-  }
+<!--  @if (appState().current?.activities?.length??0>0){-->
+<!--    <ion-button expand="full" id="present-alert">Finish Session</ion-button>-->
+<!--  }-->
 
 
 

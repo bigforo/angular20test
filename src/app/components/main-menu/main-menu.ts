@@ -88,10 +88,12 @@ export class MainMenu {
       const toast = await this.toast.create({
         message: 'Finish current workout session!',
         duration: 2500,
-        position: 'bottom',
+        // position: 'bottom',
+        // positionAnchor:'footer',
         color:'warning'
       });
       await toast.present();
+      return;
     }
     else {
       this.service.appState().current = new Session("session-" + preset);
@@ -121,7 +123,7 @@ export class MainMenu {
       }
 
 
-      this.router.navigate(['/app/tabs/current']);
+      await this.router.navigate(['/app/tabs/current']);
     }
 
   }

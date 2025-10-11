@@ -46,7 +46,6 @@ export class SessionDetails {
   ls = inject(LocalStorageService);
   generatedLink = linkedSignal(()=>{
     const linkId = this.ls.getCompressed(this.session());
-    console.log("generated Id",linkId);
     return  linkId;
   });
   constructor() {

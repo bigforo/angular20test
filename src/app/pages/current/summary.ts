@@ -5,8 +5,8 @@ import {Router, RouterLink} from '@angular/router';
 import {
   IonAlert,
   IonButton,
-  IonButtons, IonChip,
-  IonContent, IonFooter,
+  IonButtons, IonChip, IonCol,
+  IonContent, IonFooter, IonGrid,
   IonHeader,
   IonIcon,
   IonItem,
@@ -15,13 +15,13 @@ import {
   IonItemSliding,
   IonLabel,
   IonList,
-  IonMenuButton, IonNote, IonSelect, IonSelectOption, IonText, IonTextarea,
+  IonMenuButton, IonNote, IonRow, IonSelect, IonSelectOption, IonText, IonTextarea,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
-import {cloudDownload, shareOutline, star, starOutline, share} from 'ionicons/icons';
-import {DatePipe} from '@angular/common';
+import {cloudDownload, shareOutline, star, starOutline, share, stopCircleOutline, chevronForward, people, timerOutline} from 'ionicons/icons';
+import {DatePipe, NgClass} from '@angular/common';
 import {Activity} from '../../classes/state.interface';
 import {AlertController} from '@ionic/angular';
 import type { OverlayEventDetail } from '@ionic/core';
@@ -53,6 +53,10 @@ import type { OverlayEventDetail } from '@ionic/core';
     IonTextarea,
     IonAlert,
     IonChip,
+    NgClass,
+    IonGrid,
+    IonRow,
+    IonCol,
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -63,7 +67,7 @@ export class Summary {
   router = inject(Router);
 
   constructor() {
-    addIcons({ shareOutline, starOutline, star, cloudDownload, share });
+    addIcons({ shareOutline, starOutline, star, cloudDownload, share, stopCircleOutline, chevronForward, timerOutline });
   }
   stop() {
     this.service.stopSession();
@@ -113,4 +117,8 @@ export class Summary {
       role: 'no',
     },
   ];
+  selected: boolean = false;
+  selectedBackDay: boolean = false;
+  selectedShoulderDay: boolean = false;
+  selectedChestDay: boolean = false;
 }

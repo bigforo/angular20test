@@ -10,9 +10,13 @@
 <ion-content fullscreen="true">
   <ion-list>
     @for (ex of allExercises; track $index) {
-      <ion-item routerLink="/{{ex.id}}">
+<!--      <ion-item routerLink="/{{ex.id}}">-->
+<!--        <ion-label color="primary">{{ex.name}}</ion-label>-->
+<!--      </ion-item>-->
+      <ion-item (click)="click(ex)">
         <ion-label color="primary">{{ex.name}}</ion-label>
       </ion-item>
+
     }
   </ion-list>
 

@@ -32,13 +32,14 @@
       </ion-item>
       }
     </ion-list>
-    @if (session()?.note){
+
+  }
+  @if (session()?.note){
     <div>
       <h2 class="ion-padding-top ion-padding-start">Note</h2>
       <p class="ion-padding-start ion-padding-end">
         {{session()?.note}}
       </p>
     </div>
-    }
   }
 }

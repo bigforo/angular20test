@@ -21,7 +21,7 @@ export const EXERCISES: Exercise[] = [
     description: '',
   },
   {
-    id: 'b2',
+    id: 'b22',
     name: 'bench dumbbells flat',
     repeatOptions,
     color: 'orange',
