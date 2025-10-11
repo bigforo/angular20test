@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'import', component: PageImportExport },
   { path: 'app', loadChildren: () => import('./tabs-page/routes').then(m => m.TABS_ROUTES)},
   { path: 'exercise', loadChildren: () => import('./exercise/routes').then(m => m.EXERCISE_ROUTES)},
+  { path: 'work', loadChildren: () => import('./exercise/routes').then(m => m.WORK_ROUTES)},
   { path: ':id', component: ShowExercise, children: [{ path: '**', redirectTo: '/' }]},
 
 ];

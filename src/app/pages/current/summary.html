@@ -49,7 +49,8 @@
 
     <ion-list inset="true">
       <ion-item-sliding #sliding>
-        <ion-item lines="full" (click)="redirect(activity.id)" >
+        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >
+<!--        <ion-item lines="full" (click)="redirect(activity.id)" >-->
           <ion-icon aria-hidden="true" name="timer-outline" slot="start"></ion-icon>
           <ion-label>
             <strong class="ion-text-capitalize">{{activity.exercise.name}}</strong>
@@ -101,9 +102,9 @@
       class="ion-display-flex ion-justify-content-center ion-align-items-center"
       style="height: 100%">
       <ion-label class="ion-text-center">
-        <ion-note>No session started</ion-note>
+        <ion-note>No Workout</ion-note>
         <p>
-          <ion-note color="warning">To start Workout Session select Exercise</ion-note>
+          <ion-note class="ion-text-capitalize" color="warning">Start workout session by selecting exercise</ion-note>
         </p>
       </ion-label>
     </div>

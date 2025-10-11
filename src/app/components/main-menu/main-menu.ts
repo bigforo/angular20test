@@ -88,7 +88,7 @@ export class MainMenu {
     if (!this.service.appState().current != null && ((this.service.appState().current?.activities?.length??0) > 0))
     {
       await this.router.navigate(['/app/tabs/current']);
-      let ref = this._snackBar.open("Can't add. Finish current workout session!", "Close");
+      let ref = this._snackBar.open("Can't add! Finish current workout session!", "Close");
       return;
     }
     else {

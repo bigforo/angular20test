@@ -49,7 +49,8 @@ export class Main {
     let activity = this.service.findActivityByExercise(ex);
     this.service.findOrStartActivityByExercise(activity?.exercise ?? ex);
     this._snackBar.open('Exercise added to Workout Session. Click on it to start.', 'Close', {
-      duration: 5000
+      duration: 5000,
+      verticalPosition: 'top',
     });
     await this.router.navigate(['/app/tabs/current']);
   }
