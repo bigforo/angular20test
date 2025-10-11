@@ -117,8 +117,11 @@ export class Summary {
       role: 'no',
     },
   ];
-  selected: boolean = false;
-  selectedBackDay: boolean = false;
-  selectedShoulderDay: boolean = false;
-  selectedChestDay: boolean = false;
+
+  items = ['Chest Day', 'Medium', 'Large'];
+  selectedItem : string | null = null;
+
+  redirect(id: string) {
+    this.router.navigate(['/'+id]);
+  }
 }

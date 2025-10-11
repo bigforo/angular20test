@@ -15,6 +15,9 @@
 <!--      </ion-item>-->
       <ion-item (click)="click(ex)">
         <ion-label color="primary">{{ex.name}}</ion-label>
+        <div class="metadata-end-wrapper" slot="end">
+          <ion-icon color="medium" name="chevron-forward"></ion-icon>
+        </div>
       </ion-item>
 
     }

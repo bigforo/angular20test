@@ -34,46 +34,22 @@
     </p>
   </div>
 
-  <div class="ion-padding-start">
-    <ion-chip
-      [ngClass]="{ 'selected-chip': selectedBackDay }"
-      [outline]="true"
-      (click) = "selectedBackDay = !selectedBackDay"
-      color="warning">Back Day</ion-chip>
-    <ion-chip
-      [ngClass]="{ 'selected-chip': selectedShoulderDay }"
-      [outline]="true"
-      (click)="selectedShoulderDay=!selectedShoulderDay"
-      color="warning">Shoulder Day</ion-chip>
-    <ion-chip
-      [ngClass]="{ 'selected-chip': selectedChestDay }"
-      [outline]="true"
-      (click)="selectedChestDay=!selectedChestDay"
-      color="warning">Chest Day</ion-chip>
+  <div class="ion-text-center ion-padding-bottom">
+      @for (item of items; track item) {
+        <ion-chip
+          [class] = "item === selectedItem ? 'selected-chip' : ''"
+          (click)="selectedItem = item">
+          <ion-label>{{ item }}</ion-label>
+        </ion-chip>
+      }
   </div>
-
-
-<!--  <ion-item lines="full">-->
-<!--    <ion-select label="Set session type" interface="action-sheet" placeholder="Session type">-->
-<!--      <ion-select-option value="chest">Chest day</ion-select-option>-->
-<!--      <ion-select-option value="back">Back day</ion-select-option>-->
-<!--      <ion-select-option value="shoulders">Shoulders</ion-select-option>-->
-<!--      <ion-select-option value="push">Push</ion-select-option>-->
-<!--      <ion-select-option value="pull">Pull</ion-select-option>-->
-<!--      <ion-select-option value="legs">Legs</ion-select-option>-->
-<!--    </ion-select>-->
-<!--  </ion-item>-->
   }
 
-
-<!--  <div>-->
-<!--    <h1 class="ion-padding-top ion-padding-start"><ion-text color="primary">Activities</ion-text> </h1>-->
-<!--  </div>-->
   @for (activity of appState().current?.activities; track $index) {
 
     <ion-list>
       <ion-item-sliding #sliding>
-        <ion-item lines="full" [routerLink]="'/'+activity.id" >
+        <ion-item lines="full" [routerLink]="'/'+activity.id" (click)="redirect(activity.id)" >
           <ion-icon aria-hidden="true" name="timer-outline" slot="start"></ion-icon>
           <ion-label>
             <strong class="ion-text-capitalize">{{activity.exercise.name}}</strong>

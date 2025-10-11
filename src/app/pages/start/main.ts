@@ -29,7 +29,7 @@ import {CommonService} from '../../classes/common.service';
   selector: 'app-main',
   imports: [RouterLink,
     IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonMenuButton, IonLabel,
-    IonLabel, IonList, IonItem,],
+    IonLabel, IonList, IonItem, IonIcon,],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })
