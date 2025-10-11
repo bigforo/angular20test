@@ -14,7 +14,8 @@
     <ion-item-sliding #sliding>
       <ion-item lines="full" [routerLink]="['/session']" [queryParams]="{id: $index}" >
         <ion-label color="secondary">
-         <h2 >{{session.name}} {{ session.created | date:"d-MMM-yy" }}</h2>
+         <strong>{{session.name}} {{ session.created | date:"EEE d-MMM-yy" }}</strong>
+          <ion-text color="warning" class="ion-text-lowercase" > {{session.type}} </ion-text>
          <p>
            &mdash;
           @for (i of session.activities; track $index){

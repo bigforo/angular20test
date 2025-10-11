@@ -27,6 +27,7 @@ import {EXERCISES} from '../../classes/all-exercises.data';
 import {Activity, Session} from '../../classes/state.interface';
 import {ToastController} from '@ionic/angular';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {tap} from 'rxjs';
 
 @Component({
   selector: 'app-main-menu',
@@ -87,17 +88,7 @@ export class MainMenu {
     if (!this.service.appState().current != null && ((this.service.appState().current?.activities?.length??0) > 0))
     {
       await this.router.navigate(['/app/tabs/current']);
-      this._snackBar.open("Can't add. Finish current workout session!", "Close", {
-        duration: 2500
-      });
-      // const toast = await this.toast.create({
-      //   message: 'Finish current workout session!',
-      //   duration: 2500,
-      //   // position: 'bottom',
-      //   // positionAnchor:'footer',
-      //   color:'warning'
-      // });
-      // await toast.present();
+      let ref = this._snackBar.open("Can't add. Finish current workout session!", "Close");
       return;
     }
     else {

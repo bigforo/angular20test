@@ -60,10 +60,18 @@ export class CommonService {
     cc.current?.activities.splice(cc.current?.activities.indexOf(activity), 1);
     this.appState.set(cc);
   }
-  public addNoteToCurrentActivity(note:string) {
+  public addNoteToCurrentSession(note:string) {
     let cc = this.appState();
     if (cc.current)
       cc.current.note = note;
+    this.appState.set(cc);
+    this.save();
+  }
+
+  public addTypeToCurrentSession(type:string | undefined) {
+    let cc = this.appState();
+    if (cc.current)
+      cc.current.type = type;
     this.appState.set(cc);
     this.save();
   }

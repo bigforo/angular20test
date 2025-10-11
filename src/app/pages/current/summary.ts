@@ -99,7 +99,7 @@ export class Summary {
   }
 
   change($event: any) {
-    this.service.addNoteToCurrentActivity($event.target.value);
+    this.service.addNoteToCurrentSession($event.target.value);
   }
 
   delete213(event: CustomEvent<OverlayEventDetail>) {
@@ -118,10 +118,20 @@ export class Summary {
     },
   ];
 
-  items = ['Chest Day', 'Medium', 'Large'];
-  selectedItem : string | null = null;
+  items = ['Chest Day', 'Back Day', 'Shoulders Day'];
+  selectedItem? : string = this.service.appState().current?.type;
+  chipClick(item: string) {
+    if (this.selectedItem === item)
+      this.selectedItem = undefined;
+    else {
+      this.selectedItem = item;
+    }
+    this.service.addTypeToCurrentSession(this.selectedItem);
+  }
 
   redirect(id: string) {
     this.router.navigate(['/'+id]);
   }
+
+
 }

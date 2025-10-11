@@ -45,10 +45,11 @@ export class Main {
   private _snackBar = inject(MatSnackBar);
 
   async click(ex: Exercise) {
-    const activity = this.service.findActivityByExercise(ex);
+    this.service.startSessionIfNotStarted();
+    let activity = this.service.findActivityByExercise(ex);
     this.service.findOrStartActivityByExercise(activity?.exercise ?? ex);
     this._snackBar.open('Exercise added to Workout Session. Click on it to start.', 'Close', {
-      duration: 2000
+      duration: 5000
     });
     await this.router.navigate(['/app/tabs/current']);
   }

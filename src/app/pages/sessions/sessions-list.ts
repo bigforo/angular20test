@@ -11,7 +11,7 @@ import {
   IonContent, IonFooter,
   IonHeader, IonItem, IonItemDivider,
   IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList,
-  IonMenuButton, IonNote,
+  IonMenuButton, IonNote, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -40,7 +40,8 @@ import {AlertController} from '@ionic/angular';
     IonButton,
     IonFooter,
     IonNote,
-    IonAlert
+    IonAlert,
+    IonText
   ],
   templateUrl: './sessions-list.html',
   styleUrl: './sessions-list.scss'

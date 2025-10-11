@@ -38,7 +38,7 @@
       @for (item of items; track item) {
         <ion-chip
           [class] = "item === selectedItem ? 'selected-chip' : ''"
-          (click)="selectedItem = item">
+          (click)="chipClick(item)">
           <ion-label>{{ item }}</ion-label>
         </ion-chip>
       }
@@ -47,7 +47,7 @@
 
   @for (activity of appState().current?.activities; track $index) {
 
-    <ion-list>
+    <ion-list inset="true">
       <ion-item-sliding #sliding>
         <ion-item lines="full" (click)="redirect(activity.id)" >
           <ion-icon aria-hidden="true" name="timer-outline" slot="start"></ion-icon>
@@ -66,36 +66,8 @@
         </ion-item-options>
       </ion-item-sliding>
 
-<!--      <ion-item [button]="true" detail="false">-->
-<!--        <div class="unread-indicator-wrapper" slot="start">-->
-<!--          <div class="unread-indicator"></div>-->
-<!--        </div>-->
-<!--        <ion-label>-->
-<!--          <strong>Rick Astley</strong>-->
-<!--          <ion-text>Never Gonna Give You Up</ion-text><br />-->
-<!--          <ion-note color="medium" class="ion-text-wrap">-->
-<!--            Never gonna give you up Never gonna let you down Never gonna run...-->
-<!--          </ion-note>-->
-<!--        </ion-label>-->
-<!--        <div class="metadata-end-wrapper" slot="end">-->
-<!--          <ion-note color="medium">06:11</ion-note>-->
-<!--          <ion-icon color="medium" name="chevron-forward"></ion-icon>-->
-<!--        </div>-->
-<!--      </ion-item>-->
-
       @for (i of activity.sets; track $index){
         <ion-item>
-<!--          <ion-grid>-->
-<!--            <ion-row>-->
-<!--              <ion-col color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub> </ion-col>-->
-<!--              <ion-col color="tertiary"> set {{ $index + 1 }} </ion-col>-->
-<!--              <ion-col color="tertiary">-->
-<!--                {{i.reps}}-->
-<!--                @if (activity.hasSize) {-->
-<!--                  {{'x ' + i.size}}{{activity.exercise.weightUnit}}-->
-<!--                }</ion-col>-->
-<!--            </ion-row>-->
-<!--          </ion-grid>-->
           <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>
           <ion-label color="tertiary"> set {{ $index + 1 }} </ion-label>
           <ion-label color="tertiary">
