@@ -95,19 +95,21 @@
 <!--  }-->
 
 
+  @if ( (appState().current?.activities?.length ?? 0) === 0){
 
+    <div
+      class="ion-display-flex ion-justify-content-center ion-align-items-center"
+      style="height: 100%">
+      <ion-label class="ion-text-center">
+        <ion-note>No session started</ion-note>
+        <p>
+          <ion-note color="warning">To start Workout Session select Exercise</ion-note>
+        </p>
+      </ion-label>
+    </div>
+
+
+  }
 
 </ion-content>
-@if ( (appState().current?.activities?.length ?? 0) === 0){
-<ion-footer id="footer">
-  <ion-toolbar >
-      <div class="ion-text-center">
-        <ion-note>No session started</ion-note>
-      </div>
-      <div class="ion-text-center">
-        <ion-note color="warning">To start Workout Session select Exercise</ion-note>
-      </div>
 
-  </ion-toolbar>
-</ion-footer>
-}

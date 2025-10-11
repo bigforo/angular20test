@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Exercise details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div
+    class="ion-display-flex ion-justify-content-center ion-align-items-center"
+    style="height: 100%">
+    <ion-label class="ion-text-center">
+      <h1>- {{ activity().exercise.name }} -</h1>
+      <p>todo: add exercise details</p>
+    </ion-label>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button id="present-alert" color="light" expand="full" (click)="click(activity().exercise)" >Add to workout</ion-button>
+  </ion-toolbar>
+</ion-footer>
