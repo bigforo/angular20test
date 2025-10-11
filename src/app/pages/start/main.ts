@@ -24,6 +24,7 @@ import {addIcons} from 'ionicons';
 import {calendar, informationCircle,location, people} from 'ionicons/icons';
 import {Activity, Exercise} from '../../classes/state.interface';
 import {CommonService} from '../../classes/common.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-main',
@@ -41,10 +42,14 @@ export class Main {
 
   service = inject(CommonService);
   private router = inject(Router);
+  private _snackBar = inject(MatSnackBar);
 
   async click(ex: Exercise) {
     const activity = this.service.findActivityByExercise(ex);
-    let act = this.service.findOrStartActivityByExercise(activity?.exercise ?? ex);
+    this.service.findOrStartActivityByExercise(activity?.exercise ?? ex);
+    this._snackBar.open('Exercise added to Workout Session. Click on it to start.', 'Close', {
+      duration: 2000
+    });
     await this.router.navigate(['/app/tabs/current']);
   }
 }

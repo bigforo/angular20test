@@ -26,6 +26,7 @@ import {FormsModule} from '@angular/forms';
 import {EXERCISES} from '../../classes/all-exercises.data';
 import {Activity, Session} from '../../classes/state.interface';
 import {ToastController} from '@ionic/angular';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-main-menu',
@@ -80,19 +81,23 @@ export class MainMenu {
   }
   router = inject(Router);
   toast = inject(ToastController);
+  _snackBar = inject(MatSnackBar);
 
   async presets(preset: string) {
     if (!this.service.appState().current != null && ((this.service.appState().current?.activities?.length??0) > 0))
     {
       await this.router.navigate(['/app/tabs/current']);
-      const toast = await this.toast.create({
-        message: 'Finish current workout session!',
-        duration: 2500,
-        // position: 'bottom',
-        // positionAnchor:'footer',
-        color:'warning'
+      this._snackBar.open("Can't add. Finish current workout session!", "Close", {
+        duration: 2500
       });
-      await toast.present();
+      // const toast = await this.toast.create({
+      //   message: 'Finish current workout session!',
+      //   duration: 2500,
+      //   // position: 'bottom',
+      //   // positionAnchor:'footer',
+      //   color:'warning'
+      // });
+      // await toast.present();
       return;
     }
     else {
