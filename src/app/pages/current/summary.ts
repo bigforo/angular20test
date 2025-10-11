@@ -61,14 +61,6 @@ export class Summary {
   appState = this.service.appState;
   router = inject(Router);
 
-
-
-  ls = inject(LocalStorageService);
-  link = linkedSignal(()=>{
-    return this.ls.getCompressed(this.appState().current) ?? "";
-  });
-
-
   constructor() {
     addIcons({ shareOutline, starOutline, star, cloudDownload, share });
   }

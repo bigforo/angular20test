@@ -28,7 +28,7 @@ export class LocalStorageService {
   getCompressed(value: any) : string | null {
     try {
       let jsonValue = JSON.stringify(value);
-      // jsonValue = LZString.compressToBase64(jsonValue);
+      jsonValue = LZString.compressToBase64(jsonValue);
       return encodeURIComponent(jsonValue);
     } catch (error) {
       console.error('Error saving to local storage', error);
@@ -38,7 +38,7 @@ export class LocalStorageService {
   getUncompressed<T>(value: any): T | null {
     try {
       let decode = decodeURIComponent(value);
-      // let uncompressed = LZString.decompressFromBase64(decode);
+      decode = LZString.decompressFromBase64(decode);
       return value ? JSON.parse(decode) : null;
     } catch (error) {
       console.error('Error reading from local storage', error);

@@ -1,7 +1,6 @@
 import {Component, inject, input, linkedSignal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {LocalStorageService} from '../../classes/ls';
-import {DailySummary} from '../../components/daily-summary/daily-summary';
 import {Session} from '../../classes/state.interface';
 import {
   IonButtons,
@@ -11,11 +10,11 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {WorkoutDetails} from '../../components/workout-details/workout-details';
 
 @Component({
   selector: 'page-all',
   imports: [
-    DailySummary,
     IonButtons,
     IonHeader,
     IonTitle,
@@ -23,6 +22,7 @@ import {
     IonContent,
     IonContent,
     IonMenuButton,
+    WorkoutDetails,
   ],
   templateUrl: './view-external.html',
   styleUrl: './view-external.scss'

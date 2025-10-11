@@ -2,13 +2,17 @@ import {Component, inject, input, linkedSignal} from '@angular/core';
 import {DailySummary} from "../../components/daily-summary/daily-summary";
 import {CommonService} from '../../classes/common.service';
 import {
-  IonBackButton,
+  IonBackButton, IonButton,
   IonButtons,
   IonContent,
-  IonHeader,
+  IonHeader, IonIcon,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {RouterLink} from '@angular/router';
+import {LocalStorageService} from '../../classes/ls';
+import {addIcons} from 'ionicons';
+import {cloudDownload, share, shareOutline, star, starOutline} from 'ionicons/icons';
 
 @Component({
   selector: 'app-view',
@@ -19,7 +23,10 @@ import {
     IonTitle,
     IonToolbar,
     IonContent,
-    IonBackButton
+    IonBackButton,
+    IonButton,
+    IonIcon,
+    RouterLink
   ],
   templateUrl: './session-details.html',
   styleUrl: './session-details.scss'
@@ -36,4 +43,14 @@ export class SessionDetails {
       return null;
     }
   );
+  ls = inject(LocalStorageService);
+  generatedLink = linkedSignal(()=>{
+    const linkId = this.ls.getCompressed(this.session());
+    console.log("generated Id",linkId);
+    return  linkId;
+  });
+  constructor() {
+    addIcons({ shareOutline, starOutline, star, cloudDownload, share });
+  }
+
 }

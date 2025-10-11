@@ -4,6 +4,12 @@
       <ion-back-button [defaultHref]=""></ion-back-button>
     </ion-buttons>
     <ion-title>Activity Details</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/view']" [queryParams]="{id: generatedLink()}">
+        <ion-icon slot="icon-only" name="share"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

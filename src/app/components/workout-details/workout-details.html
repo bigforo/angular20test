@@ -1,0 +1,44 @@
+
+@if (session()?.activities?.length??0>0){
+
+  <div class="about-session">
+    <h3 class="ion-padding-top ion-padding-start">Shared workout session</h3>
+
+    <p class="ion-padding-start ion-padding-end">
+      Someone shared a complete workout session with you. If you want to start new one, just go to Select Exercise from the main menu.
+    </p>
+  </div>
+
+  @for (activity of session()?.activities; track $index) {
+
+    <ion-list>
+      <ion-item lines="full" >
+        <ion-label>
+          <h1 class="ion-text-capitalize">{{activity.exercise.name}}</h1>
+          <p>started at {{ activity.created | date:'HH:mm' }}</p>
+        </ion-label>
+      </ion-item>
+
+      @for (i of activity.sets; track $index){
+      <ion-item>
+        <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>
+        <ion-label color="tertiary"> set {{ $index + 1 }} </ion-label>
+        <ion-label color="tertiary">
+          {{i.reps}}
+          @if (activity.hasSize) {
+            {{'x ' + i.size}}{{activity.exercise.weightUnit}}
+          }
+        </ion-label>
+      </ion-item>
+      }
+    </ion-list>
+    @if (session()?.note){
+    <div>
+      <h2 class="ion-padding-top ion-padding-start">Note</h2>
+      <p class="ion-padding-start ion-padding-end">
+        {{session()?.note}}
+      </p>
+    </div>
+    }
+  }
+}

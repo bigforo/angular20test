@@ -4,18 +4,13 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Active Workout</ion-title>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/view']" [queryParams]="{id: link()}">
-        <ion-icon slot="icon-only" name="share"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen="true">
   @if (appState().current?.activities?.length??0>0){
 
-  <div class="about-info">
+  <div class="about-session">
     <h3 class="ion-padding-top ion-padding-start">Workout session started</h3>
 
     <p class="ion-padding-start ion-padding-end">
@@ -79,7 +74,9 @@
         <ion-textarea (ionChange)="change($event)" [value]="appState().current?.note" label="Comments" labelPlacement="floating" rows="5"></ion-textarea>
       </ion-item>
     </ion-list>
+  }
 
+  @if (appState().current?.activities?.length??0>0){
     <ion-button expand="full" id="present-alert">Finish Session</ion-button>
 
     <ion-alert

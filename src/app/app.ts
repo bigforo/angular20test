@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {CommonService} from './classes/common.service';
 import {
   IonApp,
@@ -11,6 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import {FormsModule} from '@angular/forms';
 import {
+  accessibilityOutline,
   calendarOutline,
   hammer,
   help,
@@ -22,34 +23,24 @@ import {
 } from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {RouterLink, RouterLinkActive} from '@angular/router';
+import {MainMenu} from './components/main-menu/main-menu';
 
 @Component({
   selector: 'app-root',
   imports: [IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonMenuToggle, IonItem, IonLabel
-    , IonToggle, FormsModule, IonIcon, RouterLink, RouterLinkActive,],
+    , IonToggle, FormsModule, IonIcon, RouterLink, RouterLinkActive, MainMenu,],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  title = 'gym.foro.mk';
+export class App implements  OnInit {
   service = inject(CommonService);
-  loggedIn: boolean = false;
-  dark: boolean = true;
+  dark = this.service.darkModeOn;
+
   ngOnInit() {
     this.service.load();
   }
 
-  logout() {
 
-  }
-
-  toggleDarkMode() {
-    document.documentElement.classList.toggle('ion-palette-dark', this.dark);
-  }
-
-  openTutorial() {
-
-  }
   constructor() {
     addIcons({
       calendarOutline,
@@ -65,7 +56,8 @@ export class App {
       hammer,
       radioButtonOn,
       walk,
-      logoBuffer
+      logoBuffer,
+      accessibilityOutline
     });
   }
 }

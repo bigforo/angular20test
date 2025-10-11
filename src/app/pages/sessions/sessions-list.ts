@@ -50,7 +50,7 @@ export class SessionsList {
   appState = this.service.appState;
   sessions = linkedSignal(()=>{
     return this.appState().history
-  })
+  });
   router = inject(Router);
 
   constructor() {

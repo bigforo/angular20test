@@ -1,0 +1,71 @@
+<ion-menu contentId="main-content">
+  <ion-content>
+    <ion-list lines="none">
+      <ion-list-header> Sessions </ion-list-header>
+
+      <ion-menu-toggle autoHide="false">
+        <ion-item [routerLink]="'/app/tabs/start'" routerLinkActive="selected" routerDirection="root" detail="false">
+          <ion-icon slot="start" name="walk"></ion-icon>
+          <ion-label> Select Exercise </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle autoHide="false">
+        <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">
+          <ion-icon slot="start" name="radio-button-on"></ion-icon>
+          <ion-label> Active Workout </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle autoHide="false">
+        <ion-item [routerLink]="'/app/tabs/sessions'" routerLinkActive="selected" routerDirection="root" detail="false">
+          <ion-icon slot="start" name="logo-buffer"></ion-icon>
+          <ion-label> History </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+    <ion-list lines="none">
+      <ion-list-header> Load Presets </ion-list-header>
+      <ion-menu-toggle autoHide="false">
+        <ion-item button (click)="presets('chest')" detail="false">
+          <ion-icon slot="start" name="accessibility-outline"></ion-icon>
+          <ion-label>Chest day</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
+        <ion-item button (click)="presets('back')" detail="false">
+          <ion-icon slot="start" name="accessibility-outline"></ion-icon>
+          <ion-label>Back day</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle autoHide="false">
+        <ion-item button (click)="presets('shoulders')" detail="false">
+          <ion-icon slot="start" name="accessibility-outline"></ion-icon>
+          <ion-label>Shoulders day</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+
+    <ion-list lines="none">
+      <ion-list-header> Settings </ion-list-header>
+      <ion-item>
+        <ion-icon slot="start" name="moon-outline"></ion-icon>
+        <ion-toggle [(ngModel)] ="dark_" (ionChange)="toggleDarkMode()">
+          Dark Mode
+        </ion-toggle>
+      </ion-item>
+    </ion-list>
+
+
+
+    <ion-list lines="none">
+      <ion-list-header> Tutorial </ion-list-header>
+      <ion-menu-toggle autoHide="false">
+        <ion-item button (click)="openTutorial()" detail="false">
+          <ion-icon slot="start" name="hammer"></ion-icon>
+          <ion-label>Show Tutorial</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>

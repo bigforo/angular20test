@@ -6,6 +6,7 @@ import {LocalStorageService} from './ls';
   providedIn: 'root'
 })
 export class CommonService {
+  public darkModeOn = signal<boolean>(true);
   public appState  = signal<StateInterface>({ history: [] });
   ls = inject(LocalStorageService);
 
