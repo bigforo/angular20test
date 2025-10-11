@@ -49,7 +49,7 @@
 
     <ion-list>
       <ion-item-sliding #sliding>
-        <ion-item lines="full" [routerLink]="'/'+activity.id" (click)="redirect(activity.id)" >
+        <ion-item lines="full" (click)="redirect(activity.id)" >
           <ion-icon aria-hidden="true" name="timer-outline" slot="start"></ion-icon>
           <ion-label>
             <strong class="ion-text-capitalize">{{activity.exercise.name}}</strong>
