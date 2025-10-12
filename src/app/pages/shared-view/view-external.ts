@@ -6,30 +6,41 @@ import {
   IonButton,
   IonButtons,
   IonContent, IonFooter,
-  IonHeader,
+  IonHeader, IonIcon, IonItem,
   IonMenuButton,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+
 import {WorkoutDetails} from '../../components/workout-details/workout-details';
 import {MatButton} from '@angular/material/button';
+import {addIcons} from 'ionicons';
+import {
+  home,
+  homeOutline
+} from 'ionicons/icons';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'page-all',
   imports: [
-    IonButtons,
     IonHeader,
     IonTitle,
     IonToolbar,
     IonContent,
     IonContent,
-    IonMenuButton,
     WorkoutDetails,
-  ],
+    IonIcon,
+    IonItem,
+    RouterLink
+],
   templateUrl: './view-external.html',
   styleUrl: './view-external.scss'
 })
 export class ViewExternal {
+  constructor() {
+    addIcons({home,homeOutline})
+  }
   service = inject(CommonService);
   ls = inject(LocalStorageService);
   id = input<string>();

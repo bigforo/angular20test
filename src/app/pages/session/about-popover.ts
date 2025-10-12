@@ -31,7 +31,7 @@ import {
       </ion-item>
     </ion-list>
   `,
-  imports: [IonList, IonItem, IonLabel, IonButton, IonIcon, RouterLink],
+  imports: [IonList, IonItem, IonLabel],
     providers: [PopoverController]
 })
 export class PopoverPage {

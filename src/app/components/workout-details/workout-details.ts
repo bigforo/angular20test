@@ -9,12 +9,9 @@ import {IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonLis
   imports: [
     DatePipe,
     IonItem,
-    IonItemOption,
-    IonItemOptions,
-    IonItemSliding,
     IonLabel,
     IonList
-  ],
+],
   templateUrl: './workout-details.html',
   styleUrl: './workout-details.scss'
 })

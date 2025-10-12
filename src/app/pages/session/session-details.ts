@@ -29,7 +29,6 @@ import {Session} from '../../classes/state.interface';
 @Component({
   selector: 'app-view',
   imports: [
-    DailySummary,
     IonButtons,
     IonHeader,
     IonTitle,
@@ -41,7 +40,7 @@ import {Session} from '../../classes/state.interface';
     RouterLink,
     WorkoutDetails,
     IonFooter
-  ],
+],
   templateUrl: './session-details.html',
   styleUrl: './session-details.scss'
 })

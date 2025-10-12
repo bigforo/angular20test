@@ -30,7 +30,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   selector: 'app-main',
   imports: [RouterLink,
     IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonMenuButton, IonLabel,
-    IonLabel, IonList, IonItem, IonIcon,],
+    IonLabel, IonList, IonItem],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })

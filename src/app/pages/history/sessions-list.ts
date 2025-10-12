@@ -29,20 +29,14 @@ import {AlertController} from '@ionic/angular';
     IonToolbar,
     DatePipe,
     RouterLink,
-    IonItemGroup,
-    IonItemDivider,
     IonLabel,
     IonItemSliding,
     IonItem,
     IonList,
     IonItemOptions,
     IonItemOption,
-    IonButton,
-    IonFooter,
-    IonNote,
-    IonAlert,
     IonText
-  ],
+],
   templateUrl: './sessions-list.html',
   styleUrl: './sessions-list.scss'
 })

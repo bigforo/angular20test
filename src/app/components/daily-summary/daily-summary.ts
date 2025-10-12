@@ -1,19 +1,13 @@
 import {Component, inject, input} from '@angular/core';
-import {RouterLink} from '@angular/router';
 import {DatePipe} from '@angular/common';
-import {Activity, Session} from '../../classes/state.interface';
-import {MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
+import {Session} from '../../classes/state.interface';
 import {CommonService} from '../../classes/common.service';
 
 @Component({
   selector: 'app-daily-summary',
   imports: [
-    RouterLink,
-    DatePipe,
-    MatIcon,
-    MatIconButton,
-  ],
+    DatePipe
+],
   templateUrl: './daily-summary.html',
   styleUrl: './daily-summary.scss'
 })
