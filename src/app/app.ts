@@ -81,7 +81,11 @@ export class App implements  OnInit {
     if (!this.service.appState().current != null && ((this.service.appState().current?.activities?.length??0) > 0))
     {
       await this.router.navigate(['/app/tabs/current']);
-      let ref = this._snackBar.open("Can't add! Finish current workout session!", "Close");
+
+      this._snackBar.open("Can't add! Stop current workout session or swipe right to remove exercise!", "Close",{
+        duration: 5000,
+        verticalPosition: "top"
+      });
       return;
     }
     else {
@@ -110,10 +114,10 @@ export class App implements  OnInit {
           }
         });
       }
-
-
       await this.router.navigate(['/app/tabs/current']);
     }
 
   }
+
+  protected readonly allExercises = EXERCISES;
 }
