@@ -25,7 +25,8 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/_redirects"
+              "src/_redirects",
+              "src/assets"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/magenta-violet.css",
