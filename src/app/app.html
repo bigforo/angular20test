@@ -12,7 +12,12 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content">
       <ion-content>
-
+        <ion-menu-toggle autoHide="false">
+          <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">
+            <ion-icon slot="start" name="radio-button-on"></ion-icon>
+            <ion-label> Workout </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
         <ion-list lines="none">
           <ion-list-header> Exercises </ion-list-header>
           @for (ex of allExercises; track $index) {

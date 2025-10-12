@@ -82,7 +82,7 @@ export class App implements  OnInit {
     {
       await this.router.navigate(['/app/tabs/current']);
 
-      this._snackBar.open("Can't add! Stop current workout session or swipe right to remove exercise!", "Close",{
+      this._snackBar.open("Can't add! Stop current workout session or swipe sright to remove exercise!", "Close",{
         duration: 5000,
         verticalPosition: "top"
       });
