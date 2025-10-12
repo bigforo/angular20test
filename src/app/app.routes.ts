@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import {ShowExercise} from './pages/page-show-exercise/show-exercise';
-import {ViewExternal} from './pages/view/view-external';
+import {ViewExternal} from './pages/shared-view/view-external';
 import {SessionDetails} from './pages/session/session-details';
 import {PageImportExport} from './pages/import/page-import-export';
 

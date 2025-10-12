@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
-import { SessionsList} from '../pages/sessions/sessions-list';
-import { Summary} from '../pages/current/summary';
-import { Main} from '../pages/start/main';
+import { SessionsList} from '../pages/history/sessions-list';
+import { Summary} from '../pages/active/summary';
+import { Main} from '../pages/old-start/main';
 
 export const TABS_ROUTES: Routes = [
   {
