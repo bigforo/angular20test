@@ -22,13 +22,16 @@ import {
   person, personAdd, radioButtonOn, walk
 } from 'ionicons/icons';
 import {addIcons} from 'ionicons';
-import {RouterLink, RouterLinkActive} from '@angular/router';
-import {MainMenu} from './components/main-menu/main-menu';
+import {Router, RouterLink, RouterLinkActive} from '@angular/router';
+import {ToastController} from '@ionic/angular';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Activity, Session} from './classes/state.interface';
+import {EXERCISES} from './classes/all-exercises.data';
 
 @Component({
   selector: 'app-root',
   imports: [IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonMenuToggle, IonItem, IonLabel
-    , IonToggle, FormsModule, IonIcon, RouterLink, RouterLinkActive, MainMenu,],
+    , IonToggle, FormsModule, IonIcon, RouterLink, RouterLinkActive],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -59,5 +62,58 @@ export class App implements  OnInit {
       logoBuffer,
       accessibilityOutline
     });
+  }
+  dark_: boolean = true;
+
+  toggleDarkMode() {
+    this.dark.set(this.dark_);
+    document.documentElement.classList.toggle('ion-palette-dark', this.dark());
+  }
+
+  openTutorial() {
+
+  }
+  router = inject(Router);
+  toast = inject(ToastController);
+  _snackBar = inject(MatSnackBar);
+
+  async presets(preset: string) {
+    if (!this.service.appState().current != null && ((this.service.appState().current?.activities?.length??0) > 0))
+    {
+      await this.router.navigate(['/app/tabs/current']);
+      let ref = this._snackBar.open("Can't add! Finish current workout session!", "Close");
+      return;
+    }
+    else {
+      this.service.appState().current = new Session("session-" + preset);
+
+      if (preset === 'chest') {
+        EXERCISES.forEach(ele => {
+          if (
+            ele.id === 'b1' ||
+            ele.id === 'b2' ||
+            ele.id === 'b3'
+          ) {
+            const act = new Activity(ele);
+            this.service.appState().current?.activities.push(act);
+          }
+        });
+      } else if (preset === 'back') {
+        EXERCISES.forEach(ele => {
+          if (
+            ele.id === 'bk1' ||
+            ele.id === 'bk2' ||
+            ele.id === 'bk3'
+          ) {
+            const act = new Activity(ele);
+            this.service.appState().current?.activities.push(act);
+          }
+        });
+      }
+
+
+      await this.router.navigate(['/app/tabs/current']);
+    }
+
   }
 }
