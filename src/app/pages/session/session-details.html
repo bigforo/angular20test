@@ -14,12 +14,13 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-  <div class="flex items-center justify-center flex-col">
+
 
     @if (session()){
-      <app-daily-summary [session]="session()" />
+<!--      <app-daily-summary [session]="session()" />-->
+        <app-workout-details [session]="session()"/>
     } @else {
       no history data
     }
-  </div>
+
 </ion-content>

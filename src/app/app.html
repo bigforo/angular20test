@@ -15,7 +15,7 @@
         <ion-menu-toggle autoHide="false">
           <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">
             <ion-icon slot="start" name="radio-button-on"></ion-icon>
-            <ion-label> Workout </ion-label>
+            <ion-label> Home - Active Workout </ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-list lines="none">
@@ -57,19 +57,19 @@
         <ion-list lines="none">
           <ion-list-header> Load Presets </ion-list-header>
           <ion-menu-toggle autoHide="false">
-            <ion-item button (click)="presets('chest')" detail="false">
+            <ion-item button (click)="presets('Chest day')" detail="false">
               <ion-icon slot="start" name="accessibility-outline"></ion-icon>
               <ion-label>Chest day</ion-label>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle autoHide="false">
-            <ion-item button (click)="presets('back')" detail="false">
+            <ion-item button (click)="presets('Back day')" detail="false">
               <ion-icon slot="start" name="accessibility-outline"></ion-icon>
               <ion-label>Back day</ion-label>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle autoHide="false">
-            <ion-item button (click)="presets('shoulders')" detail="false">
+            <ion-item button (click)="presets('Shoulders day')" detail="false">
               <ion-icon slot="start" name="accessibility-outline"></ion-icon>
               <ion-label>Shoulders day</ion-label>
             </ion-item>

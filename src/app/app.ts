@@ -82,16 +82,19 @@ export class App implements  OnInit {
     {
       await this.router.navigate(['/app/tabs/current']);
 
-      this._snackBar.open("Can't add! Stop current workout session or swipe sright to remove exercise!", "Close",{
+      this._snackBar.open("Can't add! Stop current workout session or swipe left to remove exercise!", "Close",{
         duration: 5000,
         verticalPosition: "top"
       });
       return;
     }
     else {
-      this.service.appState().current = new Session("session-" + preset);
+      const ses = new Session("session");
+      ses.type = preset;
+      this.service.appState().current = ses;
 
-      if (preset === 'chest') {
+
+      if (preset === 'Chest day') {
         EXERCISES.forEach(ele => {
           if (
             ele.id === 'b1' ||
@@ -102,12 +105,22 @@ export class App implements  OnInit {
             this.service.appState().current?.activities.push(act);
           }
         });
-      } else if (preset === 'back') {
+      } else if (preset === 'Back day') {
         EXERCISES.forEach(ele => {
           if (
             ele.id === 'bk1' ||
             ele.id === 'bk2' ||
             ele.id === 'bk3'
+          ) {
+            const act = new Activity(ele);
+            this.service.appState().current?.activities.push(act);
+          }
+        });
+      } else if (preset === 'Shoulders day'){
+        EXERCISES.forEach(ele => {
+          if (
+            ele.id === 'ab1' ||
+            ele.id === 'ab2'
           ) {
             const act = new Activity(ele);
             this.service.appState().current?.activities.push(act);

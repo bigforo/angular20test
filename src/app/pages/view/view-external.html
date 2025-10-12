@@ -9,10 +9,16 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-  <div class="flex items-center justify-center flex-col">
+  <div class="about-session ion-flex-row">
+    <h3 class="ion-padding-top ion-padding-start">Shared workout session</h3>
+
+    <p class="ion-padding-start ion-padding-end">
+      Someone shared a complete workout session with you. If you want to start new one, just go to Select Exercise from the main menu.
+    </p>
+  </div>
 <!--  <app-daily-summary [session]="uncomm()" />-->
     <app-workout-details [session]="uncomm()"/>
-  </div>
+
 </ion-content>
 <!--<div class="p-5">-->
 <!--  <a matButton (click)="load()">Load this daily activity</a>-->
