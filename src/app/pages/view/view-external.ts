@@ -3,14 +3,16 @@ import {CommonService} from '../../classes/common.service';
 import {LocalStorageService} from '../../classes/ls';
 import {Session} from '../../classes/state.interface';
 import {
+  IonButton,
   IonButtons,
-  IonContent,
+  IonContent, IonFooter,
   IonHeader,
   IonMenuButton,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {WorkoutDetails} from '../../components/workout-details/workout-details';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'page-all',

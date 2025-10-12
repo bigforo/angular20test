@@ -1,6 +1,9 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {Activity, Exercise, Session, StateInterface} from './state.interface';
 import {LocalStorageService} from './ls';
+import {EXERCISES} from './all-exercises.data';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -101,4 +104,28 @@ export class CommonService {
     }
 
   }
+  router = inject(Router);
+  _snackBar = inject(MatSnackBar);
+  createSessionBasedOnOlderSession(session: Session) {
+    if (!this.appState().current != null && ((this.appState().current?.activities?.length??0) > 0))
+    {
+      // await this.router.navigate(['/app/tabs/current']);
+
+      this._snackBar.open("Can't add! Stop current workout session or swipe left to remove exercise!", "Close",{
+        duration: 5000,
+        verticalPosition: "top"
+      });
+      return;
+    }
+
+    const ses = new Session("session");
+    this.appState().current = ses;
+
+    session.activities.forEach(activity => {
+      ses.activities.push(new Activity(activity.exercise))
+    });
+    this.router.navigate(['/app/tabs/current']);
+  }
+
+
 }

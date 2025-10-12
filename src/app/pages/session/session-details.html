@@ -1,26 +1,54 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+    <ion-toolbar>
+
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Activity Details</ion-title>
+
+    <ion-title>Workout Session Details</ion-title>
 
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/view']" [queryParams]="{id: generatedLink()}">
         <ion-icon slot="icon-only" name="share"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+<!--        <ion-buttons slot="end">-->
+<!--            <ion-button (click)="shareLink()">-->
+<!--                <ion-icon slot="icon-only" name="share"></ion-icon>-->
+<!--            </ion-button>-->
+<!--        </ion-buttons>-->
+
+<!--        <ion-buttons slot="end">-->
+<!--            <ion-button (click)="presentPopover($event)">-->
+<!--                <ion-icon-->
+<!--                        slot="icon-only"-->
+<!--                        ios="ellipsis-horizontal"-->
+<!--                        md="ellipsis-vertical"-->
+<!--                ></ion-icon>-->
+<!--            </ion-button>-->
+<!--        </ion-buttons>-->
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen="true">
-
-
+    <button
+            (click)="shareLink()"
+            class="fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg"
+    >
+        <ion-icon name="share-outline"></ion-icon>
+    </button>
     @if (session()){
-<!--      <app-daily-summary [session]="session()" />-->
         <app-workout-details [session]="session()"/>
     } @else {
       no history data
     }
-
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-button id="present-alert" color="light" expand="full" (click)="copy()" >Copy This Session</ion-button>
+<!--        <ion-button id="present-alert" color="light" expand="full" (click)="shareLink()" >Share</ion-button>-->
+    </ion-toolbar>
+</ion-footer>
