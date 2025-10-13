@@ -13,7 +13,7 @@
     </ion-buttons>
       <ion-alert
         trigger="present-alert"
-        header="Are you sure?"
+        header="Stop Active Workout?"
         message="Older workout sessions can be found in the history tab."
         [buttons]="alertButtons"
         (didDismiss)="delete213($event)"
@@ -69,7 +69,9 @@
 
       @for (i of activity.sets; track $index){
         <ion-item>
-          <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>
+          <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }} </sub>
+<!--            <ion-text color="warning"><sub>[+9]</sub></ion-text>   -->
+          </ion-label>
           <ion-label color="tertiary"> set {{ $index + 1 }} </ion-label>
           <ion-label color="tertiary">
             {{i.reps}}
@@ -102,9 +104,9 @@
       class="ion-display-flex ion-justify-content-center ion-align-items-center"
       style="height: 100%">
       <ion-label class="ion-text-center">
-        <ion-note>No Workout</ion-note>
+        <ion-note>No Active Workout</ion-note>
         <p>
-          <ion-note class="ion-text-capitalize" color="warning">Start workout session by selecting exercise</ion-note>
+          <ion-note class="ion-text-capitalize" color="warning">Start workout session. Add Exercise from side menu.</ion-note>
         </p>
       </ion-label>
     </div>

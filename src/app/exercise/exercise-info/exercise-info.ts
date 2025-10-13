@@ -4,7 +4,7 @@ import {
   IonButton,
   IonButtons, IonContent,
   IonFooter,
-  IonHeader, IonLabel,
+  IonHeader, IonLabel, IonMenuButton,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -25,8 +25,9 @@ import {EXERCISES} from '../../classes/all-exercises.data';
     IonButton,
     IonContent,
     IonLabel,
-    IonBackButton
-],
+    IonBackButton,
+    IonMenuButton
+  ],
   templateUrl: './exercise-info.html',
   styleUrl: './exercise-info.scss'
 })
