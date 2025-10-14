@@ -95,5 +95,5 @@ export interface Exercise{
 
 export const repeatOptions = [8,9,10,11,12,13,14,15,16,17,18,19,20,21];
 export const weightOptions1 = [5,7.5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100];
-export const weightOptions2 = [5,7.5,10, 15, 22.5, 30, 37.5, 45, 52.5, 60, 67.5, 75, 82.5, 90, 97.5];
+export const weightOptions2 = [5,7.5,10, 12.5, 15, 17, 22.5, 30, 37.5, 45, 52.5, 60, 67.5, 75, 82.5, 90, 97.5];
 

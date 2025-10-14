@@ -25,7 +25,6 @@ import {EXERCISES} from '../../classes/all-exercises.data';
     IonButton,
     IonContent,
     IonLabel,
-    IonBackButton,
     IonMenuButton
   ],
   templateUrl: './exercise-info.html',
@@ -34,31 +33,22 @@ import {EXERCISES} from '../../classes/all-exercises.data';
 export class ExerciseInfo {
   service = inject(CommonService);
   private router = inject(Router);
-  private _snackBar = inject(MatSnackBar);
 
   id = input<string>();
   activity = linkedSignal(() => {
     let ex = EXERCISES.find(a=> a.id === this.id());
-    if (!ex){
-      return new Activity({weightOptions: [], name:"Unknown",id:"00"});
-    }
+    if (ex === undefined) return null;
     let act = this.service.findActivityByExercise(ex);
-    if (act === undefined) {
-      return new Activity(ex);
-    }
+    if (act === undefined) return new Activity(ex);
     return act;
   });
 
-  async click(ex: Exercise) {
+  async click(activity: Activity | null) {
+    if (activity == null) return;
     this.service.startSessionIfNotStarted();
-    let activity = this.service.findActivityByExercise(ex);
-    this.service.findOrStartActivityByExercise(activity?.exercise ?? ex);
-    // this._snackBar.open('Exercise added to Workout Session. Click on it to start.', 'Close', {
-    //   duration: 5000,
-    //   politeness: "assertive",
-    //   verticalPosition: "top",
-    //   announcementMessage: "Exercise added to Workout Session.",
-    // });
+    this.service.findOrStartActivityByExercise(activity.exercise);
     await this.router.navigate(['/app/tabs/current']);
   }
+
+  protected readonly Activity = Activity;
 }

@@ -8,19 +8,39 @@
 </ion-header>
 
 <ion-content>
-  <div
-    class="ion-display-flex ion-justify-content-center ion-align-items-center"
+  @if (activity() != null){
+  <div class="ion-display-flex ion-justify-content-center ion-align-items-center ion-padding-start ion-padding-end"
     style="height: 100%">
     <ion-label class="ion-text-center">
-      <h1>- {{ activity().exercise.name }} -</h1>
+      <h1>- {{ activity()?.exercise?.name }} -</h1>
       <p>todo: add exercise details</p>
+      <p> unit: {{activity()?.exercise?.weightUnit}}</p>
+      <p> Weights:</p>
+      <p>
+        <sub>@for (item of activity()?.exercise?.weightOptions; track item) {
+          | {{item}}
+        }|</sub>
+      </p>
+      <p> Repeat:</p>
+      <p>
+        <sub>|@for (item of activity()?.exercise?.repeatOptions; track item) {
+          {{item}} |
+        }</sub>
+      </p>
+      <p> Color: {{activity()?.exercise?.color}}</p>
+      <p> Description:</p>
+      <p>{{activity()?.exercise?.description}}</p>
+
     </ion-label>
   </div>
+  }
 </ion-content>
 
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button id="present-alert" color="light" expand="full" (click)="click(activity().exercise)" >Add to workout</ion-button>
+    @if (activity() != null){
+        <ion-button id="present-alert" color="light" expand="full" (click)="click(activity())" >Add to workout</ion-button>
+    }
   </ion-toolbar>
 </ion-footer>
