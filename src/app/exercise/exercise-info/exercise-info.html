@@ -11,7 +11,9 @@
   @if (activity() != null){
 
     <div class="about-header">
-      <div class="about-image ion-display-flex ion-justify-content-center ion-align-items-center" [ngStyle]="{'opacity': '1'}">
+      <div class="about-image ion-display-flex ion-justify-content-center ion-align-items-center"
+           [ngStyle]="{'opacity': '1'}"
+           [class] = "activity()?.exercise?.color??''">
         <h1>- {{ activity()?.exercise?.name }} -</h1>
       </div>
     </div>

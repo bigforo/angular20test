@@ -3,6 +3,7 @@
 
   width: 100%;
   height: 30%;
+  background-color: #4e4cbe;
 }
 .about-header .about-image {
   position: absolute;
@@ -17,7 +18,19 @@
   background-size: cover;
 
   opacity: 0;
-  background-color: #4e4cbe;
+
+}s
+.yellow{
+  background-color: #737300;
+}
+.orange{
+  background-color: #916000;
+}
+.red{
+  background-color: #6e0101;
+}
+.green{
+  background-color: #008100;
 }
 
 .about-header  {
