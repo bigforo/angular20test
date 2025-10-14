@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Activity, Exercise} from '../../classes/state.interface';
 import {EXERCISES} from '../../classes/all-exercises.data';
+import {NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-exercise-info',
@@ -25,7 +26,8 @@ import {EXERCISES} from '../../classes/all-exercises.data';
     IonButton,
     IonContent,
     IonLabel,
-    IonMenuButton
+    IonMenuButton,
+    NgStyle
   ],
   templateUrl: './exercise-info.html',
   styleUrl: './exercise-info.scss'
