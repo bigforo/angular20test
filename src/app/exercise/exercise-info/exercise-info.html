@@ -26,8 +26,8 @@
 
           <p>todo: add exercise details</p>
           <p> unit: {{activity()?.exercise?.weightUnit}}</p>
-          <p> Weights:</p>
-          <p>
+          <p *ngIf="(activity()?.exercise?.weightOptions?.length??0) > 0"> Weights:</p>
+          <p *ngIf="(activity()?.exercise?.weightOptions?.length??0) > 0">
             <sub>@for (item of activity()?.exercise?.weightOptions; track item) {
               | {{item}}
             }|</sub>
@@ -51,9 +51,18 @@
 
 
 <ion-footer>
+  @if (activity() != null){
   <ion-toolbar>
-    @if (activity() != null){
-        <ion-button id="present-alert" color="light" expand="full" (click)="click(activity())" >Add to workout</ion-button>
-    }
+    <ion-button slot="start" router-direction="back"  color="light" expand="full" (click)="navBack()" >
+
+      <ion-icon name="chevron-back-outline"/>
+    </ion-button>
+
+    <ion-button id="present-alert" color="light" expand="full" (click)="click(activity())" >Add to workout</ion-button>
+
+    <ion-button slot="end" router-direction="forward"   color="light" expand="full" (click)="navForward()" >
+      <ion-icon name="chevron-forward-outline"/>
+    </ion-button>
   </ion-toolbar>
+  }
 </ion-footer>
