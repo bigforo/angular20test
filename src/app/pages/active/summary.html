@@ -73,7 +73,8 @@
           <ion-item-option color="danger" (click)="delete(activity,sliding)">Delete</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-
+    </ion-list>
+    <ion-list lines="none" inset="true">
       @for (i of activity.sets; track $index){
         <ion-item>
           <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }} </sub>
