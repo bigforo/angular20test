@@ -20,29 +20,103 @@
 
     <div class="about-info">
 
-      <div class="ion-padding-top ion-padding-start ion-padding-end"
-        style="height: 100%">
-        <ion-label class="ion-text-center">
+      <div class="ion-padding-top ion-padding-start ion-padding-end">
+<!--        <ion-label class="ion-text-center">-->
 
-          <p>todo: add exercise details</p>
-          <p> unit: {{activity()?.exercise?.weightUnit}}</p>
-          <p *ngIf="(activity()?.exercise?.weightOptions?.length??0) > 0"> Weights:</p>
-          <p *ngIf="(activity()?.exercise?.weightOptions?.length??0) > 0">
-            <sub>@for (item of activity()?.exercise?.weightOptions; track item) {
-              | {{item}}
-            }|</sub>
-          </p>
-          <p> Repeat:</p>
-          <p>
-            <sub>|@for (item of activity()?.exercise?.repeatOptions; track item) {
-              {{item}} |
-            }</sub>
-          </p>
-          <p> Color: {{activity()?.exercise?.color}}</p>
-          <p> Description:</p>
-          <p>{{activity()?.exercise?.description}}</p>
+<!--          <p>todo: add exercise details</p>-->
+<!--          <p> unit: {{activity()?.exercise?.weightUnit}}</p>-->
+<!--          <p *ngIf="(activity()?.exercise?.weightOptions?.length??0) > 0"> Weights:</p>-->
+<!--          <p *ngIf="(activity()?.exercise?.weightOptions?.length??0) > 0">-->
+<!--            <sub>@for (item of activity()?.exercise?.weightOptions; track item) {-->
+<!--              | {{item}}-->
+<!--            }|</sub>-->
+<!--          </p>-->
+<!--          <p> Repeat:</p>-->
+<!--          <p>-->
+<!--            <sub>|@for (item of activity()?.exercise?.repeatOptions; track item) {-->
+<!--              {{item}} |-->
+<!--            }</sub>-->
+<!--          </p>-->
+<!--          <p> Color: {{activity()?.exercise?.color}}</p>-->
+<!--          <p> Description:</p>-->
+<!--          <p>{{activity()?.exercise?.description}}</p>-->
 
-        </ion-label>
+<!--        </ion-label>-->
+
+        <h3>Exercise Details</h3>
+
+        <ion-list lines="none">
+          <ion-item>
+            <ion-select
+              label="Category"
+              [(ngModel)]="category"
+              [interfaceOptions]="selectCategory"
+            >
+              <ion-select-option value="chest">Chest Day</ion-select-option>
+              <ion-select-option value="back">Back Day</ion-select-option>
+              <ion-select-option value="shoulders">Shoulders</ion-select-option>
+              <ion-select-option value="push">Push Day</ion-select-option>
+              <ion-select-option value="pull">Pull Day</ion-select-option>
+              <ion-select-option value="leg">Legs</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> Color </ion-label>
+            <ion-label class="ion-text-end">
+              {{activity()?.exercise?.color}}
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-select label="Weights">
+              @for (item of activity()?.exercise?.weightOptions; track item) {
+                <ion-select-option value="{{item}}">{{ item }}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> Weight Unit</ion-label>
+            <ion-label class="ion-text-end">
+              {{activity()?.exercise?.weightUnit}}
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-select label="Repeats">
+              @for (item of activity()?.exercise?.repeatOptions; track item) {
+                <ion-select-option value="{{item}}">{{ item }}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+
+
+          <ion-item button="true" id="open-date-input">
+            <ion-label> Description </ion-label>
+            <ion-text slot="end">
+              ...
+            </ion-text>
+            <ion-popover
+              id="date-input-popover"
+              trigger="open-date-input"
+              [showBackdrop]="false"
+              side="top"
+              alignment="end"
+            >
+              <ng-template>
+                <ion-textarea
+                  [disabled]="true"
+                  label="Description"
+                  value="Test Text 234 234 234 234 234 234 est Text 234 234 234 234 234 234est Text 234 234 234 234 234 234est Text 234 234 234 234 234 234est Text 234 234 234 234 234 234est Text 234 234 234 234 234 234">
+
+                </ion-textarea>
+
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+
+        </ion-list>
       </div>
 
     </div>
