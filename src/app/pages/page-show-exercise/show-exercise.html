@@ -55,4 +55,19 @@
     </div>
   </div>
 }
+
+  <ion-picker>
+    <ion-picker-column [value]="0">
+      @for (n of activity().exercise.repeatOptions; track $index) {
+        <ion-picker-column-option value="{{n}}">{{n}}</ion-picker-column-option>
+      }
+    </ion-picker-column>
+    <div>x</div>
+      <ion-picker-column [value]="0">
+    @for (n of activity().exercise.weightOptions; track $index) {
+      <ion-picker-column-option value="{{n}}">{{n}}</ion-picker-column-option>
+    }
+        <div slot="suffix">kg</div>
+    </ion-picker-column>
+  </ion-picker>
 </ion-content>

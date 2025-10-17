@@ -12,7 +12,7 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonMenuButton,
+  IonMenuButton, IonPicker, IonPickerColumn, IonPickerColumnOption,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -35,7 +35,10 @@ import {SetClass} from '../../classes/set.class';
     IonToolbar,
     IonContent,
     IonBackButton,
-    IonButton
+    IonButton,
+    IonPicker,
+    IonPickerColumn,
+    IonPickerColumnOption
   ],
   templateUrl: './show-exercise.html',
   styleUrl: './show-exercise.scss'
@@ -79,4 +82,6 @@ export class ShowExercise {
   clickEnd() {
     this.router.navigate(['/app/tabs/current']);
   }
+
+
 }

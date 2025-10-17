@@ -30,7 +30,8 @@
     <h3 class="ion-padding">Workout session started</h3>
 
 <!--    <ion-label color="default" class="ion-padding-start ion-padding-end">-->
-<!--      "Workout sessions are beneficial because they improve physical health, boost mental well-being, increase energy, and enhance overall quality of life!" - ChatGPT-->
+<!--      "Workout sessions are beneficial because they improve physical health,
+boost mental well-being, increase energy, and enhance overall quality of life!" - ChatGPT-->
 <!--    </ion-label>-->
 
     <p class="ion-padding-start ion-padding-end">
@@ -97,18 +98,18 @@
   @if (appState().current?.activities?.length??0>0){
     <ion-list [inset]="true">
       <ion-item>
-        <ion-textarea (ionChange)="change($event)" [value]="appState().current?.note" label="Comments" labelPlacement="floating" rows="5"></ion-textarea>
+        <ion-textarea (ionChange)="change($event)"
+                      [value]="appState().current?.note" label="Comments"
+                      labelPlacement="floating" rows="5">
+
+        </ion-textarea>
       </ion-item>
     </ion-list>
 
-    <ion-button fill="full" (click)="clear()">
-      Clear all exercises
-    </ion-button>
+<!--    <ion-button fill="full" (click)="clear()">-->
+<!--      Clear all exercises-->
+<!--    </ion-button>-->
   }
-
-<!--  @if (appState().current?.activities?.length??0>0){-->
-<!--    <ion-button expand="full" id="present-alert">Finish Session</ion-button>-->
-<!--  }-->
 
 
   @if ( (appState().current?.activities?.length ?? 0) === 0){
@@ -119,7 +120,9 @@
       <ion-label class="ion-text-center">
         <ion-note>No Active Workout</ion-note>
         <p>
-          <ion-note class="ion-text-capitalize" color="warning">Start workout session. Add Exercise from side menu.</ion-note>
+          <ion-note class="ion-text-capitalize" color="warning">
+            Start workout session. Add Exercise from side menu.
+          </ion-note>
         </p>
       </ion-label>
     </div>
