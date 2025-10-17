@@ -27,11 +27,11 @@
   @if (appState().current?.activities?.length??0>0){
 
   <div class="about-session">
-    <h3 class="ion-padding-top ion-padding-start">Workout session started</h3>
+    <h3 class="ion-padding">Workout session started</h3>
 
-    <ion-label color="default" class="ion-padding-start ion-padding-end">
-      "Workout sessions are beneficial because they improve physical health, boost mental well-being, increase energy, and enhance overall quality of life!" - ChatGPT
-    </ion-label>
+<!--    <ion-label color="default" class="ion-padding-start ion-padding-end">-->
+<!--      "Workout sessions are beneficial because they improve physical health, boost mental well-being, increase energy, and enhance overall quality of life!" - ChatGPT-->
+<!--    </ion-label>-->
 
     <p class="ion-padding-start ion-padding-end">
       <ion-label color="warning">Tip #1: </ion-label> Click on the Exercise to add activity
@@ -74,7 +74,7 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
-    <ion-list lines="none" inset="true">
+    <ion-list lines="full" inset="true">
       @for (i of activity.sets; track $index){
         <ion-item>
           <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }} </sub>
@@ -89,6 +89,7 @@
           </ion-label>
         </ion-item>
       }
+
     </ion-list>
   }
 
@@ -99,6 +100,10 @@
         <ion-textarea (ionChange)="change($event)" [value]="appState().current?.note" label="Comments" labelPlacement="floating" rows="5"></ion-textarea>
       </ion-item>
     </ion-list>
+
+    <ion-button fill="full" (click)="clear()">
+      Clear all exercises
+    </ion-button>
   }
 
 <!--  @if (appState().current?.activities?.length??0>0){-->

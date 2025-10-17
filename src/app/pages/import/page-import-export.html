@@ -1,8 +1,19 @@
-<div class="flex flex-col">
-  <div class="font-mono text-lg pb-3"> Export Import</div>
-<textarea style="width: 90vw; height: 70vh" matInput placeholder="Ex. It makes me feel..."
-  [(ngModel)]="data"
-></textarea>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Import/Export</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<button matButton (click)="import()"> import </button>
-</div>
+<ion-content fullscreen="true">
+  <ion-textarea [autoGrow]="true" style="width: 90vw; height: 70vh"
+  [(ngModel)]="data"
+></ion-textarea>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button fill="full" (click)="import()" >
+      Import (OVERWRITES!)
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

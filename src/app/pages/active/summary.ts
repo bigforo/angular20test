@@ -122,9 +122,7 @@ export class Summary {
     this.service.addTypeToCurrentSession(this.selectedItem);
   }
 
-  redirect(id: string) {
-    this.router.navigate(['/'+id]);
+  clear() {
+    this.service.clearSession()
   }
-
-
 }

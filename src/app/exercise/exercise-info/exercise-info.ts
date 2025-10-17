@@ -1,4 +1,4 @@
-import {Component, inject, input, linkedSignal} from '@angular/core';
+import {Component, inject, input, linkedSignal, ViewChild} from '@angular/core';
 import {
   IonBackButton,
   IonButton,
@@ -12,7 +12,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
-  IonMenuButton,
+  IonMenuButton, IonModal,
   IonPopover,
   IonSelect,
   IonSelectOption,
@@ -30,6 +30,7 @@ import {DatePipe, NgIf, NgStyle} from '@angular/common';
 import {addIcons} from 'ionicons';
 import {chevronBackOutline, chevronForwardOutline, location} from 'ionicons/icons';
 import {FormsModule} from '@angular/forms';
+import {OverlayEventDetail} from '@ionic/core';
 
 @Component({
   selector: 'app-exercise-info',
@@ -56,7 +57,8 @@ import {FormsModule} from '@angular/forms';
     DatePipe,
     IonDatetime,
     IonInput,
-    IonTextarea
+    IonTextarea,
+    IonModal
   ],
   templateUrl: './exercise-info.html',
   styleUrl: './exercise-info.scss'
@@ -107,4 +109,24 @@ export class ExerciseInfo {
 
   category = "";
   createDate = "1980-09-02";
+
+
+
+  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  name!: string;
+
+  @ViewChild(IonModal) modal!: IonModal;
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+  }
+
+  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
+    if (event.detail.role === 'confirm') {
+      this.message = `Hello, ${event.detail.data}!`;
+    }
+  }
 }

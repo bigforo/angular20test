@@ -149,6 +149,15 @@ export const EXERCISES: Exercise[] = [
     description: '',
   },
   {
+    id: 'bk7',
+    name: 'back',
+    repeatOptions,
+    weightOptions: weightOptions2,
+    color: 'yellow',
+    weightUnit: 'kg',
+    description: '',
+  },
+  {
     id: 'bi1',
     name: 'bicep bar',
     repeatOptions,

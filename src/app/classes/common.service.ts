@@ -84,14 +84,16 @@ export class CommonService {
   }
 
   clearSession() {
-    // this.appState.current = null;
+    this.appState().current = null;
+    this.save();
   }
   clearHistory() {
     this.appState.set({...this.appState(), history:[]});
     this.save();
   }
   setHistory(history: Session[]) {
-    this.appState.set({...this.appState(), history});
+    this.appState.set({...this.appState(), history:history});
+    this.save();
   }
 
   save() {
@@ -106,26 +108,34 @@ export class CommonService {
   }
   router = inject(Router);
   _snackBar = inject(MatSnackBar);
-  createSessionBasedOnOlderSession(session: Session) {
-    if (!this.appState().current != null && ((this.appState().current?.activities?.length??0) > 0))
-    {
-      // await this.router.navigate(['/app/tabs/current']);
+  createSessionBasedOnOlderSession(oldSession: Session) {
 
-      this._snackBar.open("Can't add! Stop current workout session or swipe left to remove exercise!", "Close",{
-        duration: 5000,
+    const ses = this.appState().current ?? new Session("session");
+    let num = 0;
+    oldSession.activities.forEach(activity => {
+      if (!ses.activities.some(a => a.id == activity.id)){
+        const ex = EXERCISES.find(a => a.id == activity.id);
+        if (ex){
+          ses.activities.push(new Activity(ex));
+          num++;
+        }
+      }
+    }); //forEach
+    if (num == 0){
+      this._snackBar.open(`Activities already active!`, "Close",{
+        duration: 3000,
         verticalPosition: "top"
       });
-      return;
+      this.router.navigate(['/app/tabs/current']);
     }
-
-    const ses = new Session("session");
-    this.appState().current = ses;
-
-    session.activities.forEach(activity => {
-      ses.activities.push(new Activity(activity.exercise))
-    });
-    this.router.navigate(['/app/tabs/current']);
+    if (num > 0) {
+      this._snackBar.open(`Copied ${num} exercises!`, "Close", {
+        duration: 3000,
+        verticalPosition: "top"
+      });
+      this.appState().current = ses;
+      this.router.navigate(['/app/tabs/current']);
+    }
+    this.save();
   }
-
-
 }

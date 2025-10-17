@@ -5,10 +5,19 @@ import {LocalStorageService} from '../../classes/ls';
 import {MatButton} from '@angular/material/button';
 import {Session} from '../../classes/state.interface';
 import {FormsModule} from '@angular/forms';
+import {
+  IonAlert,
+  IonButton,
+  IonButtons,
+  IonContent, IonFooter,
+  IonHeader,
+  IonIcon,
+  IonMenuButton, IonTextarea, IonTitle, IonToolbar
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-page-import-export',
-  imports: [MatInput, MatButton, FormsModule],
+  imports: [MatInput, MatButton, FormsModule, IonAlert, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonTitle, IonToolbar, IonTextarea, IonFooter],
   templateUrl: './page-import-export.html',
   styleUrl: './page-import-export.scss'
 })
