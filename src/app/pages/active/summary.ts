@@ -38,6 +38,7 @@ import {DatePipe, NgClass} from '@angular/common';
 import {Activity, repeatOptions, weightOptions1} from '../../classes/state.interface';
 import {AlertController} from '@ionic/angular';
 import type { OverlayEventDetail } from '@ionic/core';
+import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
 
 @Component({
   selector: 'app-summary',
@@ -69,7 +70,8 @@ import type { OverlayEventDetail } from '@ionic/core';
     IonPicker,
     IonPickerColumn,
     IonPickerColumnOption,
-    IonRow
+    IonRow,
+    ExerciseSets
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'

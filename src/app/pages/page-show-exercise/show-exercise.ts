@@ -18,6 +18,7 @@ import {
 } from '@ionic/angular/standalone';
 import {Router} from '@angular/router';
 import {SetClass} from '../../classes/set.class';
+import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
 
 
 @Component({
@@ -38,7 +39,8 @@ import {SetClass} from '../../classes/set.class';
     IonButton,
     IonCol,
     IonGrid,
-    IonRow
+    IonRow,
+    ExerciseSets
   ],
   templateUrl: './show-exercise.html',
   styleUrl: './show-exercise.scss'
@@ -61,13 +63,6 @@ export class ShowExercise implements  OnInit {
     }
     return act;
   });
-  histActivities = linkedSignal(() => {
-    let ex = EXERCISES.find(a=> a.id === this.id());
-    if (ex){
-      return this.service.getHistory(ex.id as string);
-    }
-    return null;
-  })
 
 
   reps: any;

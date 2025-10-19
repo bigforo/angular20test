@@ -1,0 +1,38 @@
+<div class="ion-padding">
+
+  <ion-picker>
+    <ion-picker-column  [value]="0">
+      @for (n of repeatOptions; track $index) {
+        <ion-picker-column-option value="{{n}}">
+          {{n}}
+        </ion-picker-column-option>
+      }
+    </ion-picker-column>
+    <div>x</div>
+    <ion-picker-column [value]="0">
+      @for (n of weightOptions1; track $index) {
+        <ion-picker-column-option value="{{n}}">
+          {{n}}
+        </ion-picker-column-option>
+      }
+      <div slot="suffix">kg</div>
+    </ion-picker-column>
+  </ion-picker>
+
+  <ion-grid [fixed]="true">
+    @for (activity of histActivities(); track activity) {
+      <ion-row>
+        <ion-col offset="4">{{activity.created | date:'dd-MMM'}}</ion-col>
+      </ion-row>
+      @for (set of activity.sets; track set){
+        <ion-row>
+          <ion-col offset="2">{{set.time | date:'HH:mm'}}</ion-col>
+          <ion-col>{{set.reps}} x {{set.size}}</ion-col>
+        </ion-row>
+      }
+    }
+  </ion-grid>
+
+
+
+</div>
