@@ -1,4 +1,4 @@
-import {Component, inject, input, linkedSignal, signal} from '@angular/core';
+import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ShowSets} from './show-sets/show-sets';
 import 'add-to-calendar-button';
@@ -6,13 +6,13 @@ import {CommonService} from '../../classes/common.service';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {DatePipe} from '@angular/common';
 import {EXERCISES} from '../../classes/all-exercises.data';
-import {Activity, Exercise, Session} from '../../classes/state.interface';
+import {Activity} from '../../classes/state.interface';
 import {
   IonBackButton, IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonMenuButton, IonPicker, IonPickerColumn, IonPickerColumnOption,
+  IonButtons, IonCol,
+  IonContent, IonGrid,
+  IonHeader, IonLabel,
+  IonPicker, IonPickerColumn, IonPickerColumnOption, IonRow, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -36,14 +36,17 @@ import {SetClass} from '../../classes/set.class';
     IonContent,
     IonBackButton,
     IonButton,
-    IonPicker,
-    IonPickerColumn,
-    IonPickerColumnOption
+    IonCol,
+    IonGrid,
+    IonRow
   ],
   templateUrl: './show-exercise.html',
   styleUrl: './show-exercise.scss'
 })
-export class ShowExercise {
+export class ShowExercise implements  OnInit {
+  ngOnInit(): void {
+      this.service.getHistory(this.id() as string);
+  }
   service = inject(CommonService)
 
   id = input<string>();
@@ -58,6 +61,14 @@ export class ShowExercise {
     }
     return act;
   });
+  histActivities = linkedSignal(() => {
+    let ex = EXERCISES.find(a=> a.id === this.id());
+    if (ex){
+      return this.service.getHistory(ex.id as string);
+    }
+    return null;
+  })
+
 
   reps: any;
   kgs: any;

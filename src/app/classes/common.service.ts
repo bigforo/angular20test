@@ -138,4 +138,18 @@ export class CommonService {
     }
     this.save();
   }
+  getHistory(exId: string) {
+    let hist = this.appState().history;
+    let foundActivities : Activity[] = [];
+    hist.forEach(session => {
+      session.activities.forEach(activity => {
+        if (activity.id == exId) {
+          foundActivities.push(activity);
+          // console.log("Activity found",activity.created);
+          // console.log(activity.sets);
+        }
+      })
+    });
+    return foundActivities;
+  }
 }

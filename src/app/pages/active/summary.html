@@ -126,9 +126,51 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
         </p>
       </ion-label>
     </div>
-
-
   }
+
+  <ion-button id="open-modal" expand="block">Details</ion-button>
+
+  <ion-modal trigger="open-modal"
+             [initialBreakpoint]="1"
+             [breakpoints]="[0, 0.25, 0.5, 0.75]"
+             handleBehavior="cycle">
+    <ng-template>
+      <div class="block">Block of Content
+
+      </div>
+
+      <ion-picker>
+        <ion-picker-column  [value]="0">
+          @for (n of repeatOptions; track $index) {
+            <ion-picker-column-option value="{{n}}">
+              {{n}}
+            </ion-picker-column-option>
+          }
+        </ion-picker-column>
+        <div>x</div>
+        <ion-picker-column [value]="0">
+          @for (n of weightOptions1; track $index) {
+            <ion-picker-column-option value="{{n}}">
+              {{n}}
+            </ion-picker-column-option>
+          }
+          <div slot="suffix">kg</div>
+        </ion-picker-column>
+      </ion-picker>
+
+
+      <div>
+        <ion-grid [fixed]="true">
+          <ion-row>
+            <ion-col>1</ion-col>
+            <ion-col>2</ion-col>
+            <ion-col>3</ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      
+    </ng-template>
+  </ion-modal>
 
 </ion-content>
 

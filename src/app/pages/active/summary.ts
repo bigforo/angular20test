@@ -5,8 +5,12 @@ import {Router, RouterLink} from '@angular/router';
 import {
   IonAlert,
   IonButton,
-  IonButtons, IonChip, IonCol,
-  IonContent, IonFooter, IonGrid,
+  IonButtons,
+  IonChip,
+  IonCol,
+  IonContent,
+  IonFooter,
+  IonGrid,
   IonHeader,
   IonIcon,
   IonItem,
@@ -15,14 +19,23 @@ import {
   IonItemSliding,
   IonLabel,
   IonList,
-  IonMenuButton, IonNote, IonRow, IonSelect, IonSelectOption, IonText, IonTextarea,
+  IonMenuButton,
+  IonModal,
+  IonNote,
+  IonPicker,
+  IonPickerColumn, IonPickerColumnOption,
+  IonRow,
+  IonSelect,
+  IonSelectOption,
+  IonText,
+  IonTextarea,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
 import {cloudDownload, shareOutline, star, starOutline, share, stopCircleOutline, chevronForward, people, timerOutline} from 'ionicons/icons';
 import {DatePipe, NgClass} from '@angular/common';
-import {Activity} from '../../classes/state.interface';
+import {Activity, repeatOptions, weightOptions1} from '../../classes/state.interface';
 import {AlertController} from '@ionic/angular';
 import type { OverlayEventDetail } from '@ionic/core';
 
@@ -49,8 +62,15 @@ import type { OverlayEventDetail } from '@ionic/core';
     IonText,
     IonTextarea,
     IonAlert,
-    IonChip
-],
+    IonChip,
+    IonModal,
+    IonCol,
+    IonGrid,
+    IonPicker,
+    IonPickerColumn,
+    IonPickerColumnOption,
+    IonRow
+  ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
 })
@@ -125,4 +145,7 @@ export class Summary {
   clear() {
     this.service.clearSession()
   }
+
+  protected readonly repeatOptions = repeatOptions;
+  protected readonly weightOptions1 = weightOptions1;
 }
