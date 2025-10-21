@@ -144,16 +144,13 @@ export class Summary {
     this.service.addTypeToCurrentSession(this.selectedItem);
   }
 
-  clear() {
-    this.service.clearSession()
-  }
-
   protected readonly repeatOptions = repeatOptions;
   protected readonly weightOptions1 = weightOptions1;
   openModal = signal<boolean>(false);
   viewId: string | undefined;
-  addSet(id: string) {
+  addSet(id: string, sliding: IonItemSliding) {
     this.viewId = id;
     this.openModal.set(true);
+    sliding.close();
   }
 }

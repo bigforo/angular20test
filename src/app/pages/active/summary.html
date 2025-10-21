@@ -70,16 +70,18 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
 <!--          </div>-->
         </ion-item>
         <ion-item-options side="start">
-          <ion-item-option  (click)="addSet(activity.id)"
-
+          <ion-item-option  (click)="addSet(activity.id, sliding)"
             color="warning">Add</ion-item-option>
           <ion-item-option
             [routerLink]="['/exercise/'+activity.id]"
+            (click)="sliding.close()"
             color="primary">View</ion-item-option>
         </ion-item-options>
         <ion-item-options side="end">
-<!--          <ion-item-option (click)="edit(activity)">Edit</ion-item-option>-->
-          <ion-item-option color="danger" (click)="delete(activity,sliding)">Delete</ion-item-option>
+          <ion-item-option
+            color="danger"
+            (click)="delete(activity,sliding)">
+            Delete</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
@@ -87,6 +89,7 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
       @for (i of activity.sets; track $index){
         <ion-item>
           <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }} </sub>
+<!--            DELTA-->
 <!--            <ion-text color="warning"><sub>[+9]</sub></ion-text>   -->
           </ion-label>
           <ion-label color="tertiary"> set {{ $index + 1 }} </ion-label>
@@ -102,7 +105,7 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
     </ion-list>
   }
 
-
+<!--Activity Comment-->
   @if (appState().current?.activities?.length??0>0){
     <ion-list [inset]="true">
       <ion-item>
@@ -115,10 +118,6 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
         </ion-textarea>
       </ion-item>
     </ion-list>
-
-<!--    <ion-button fill="full" (click)="clear()">-->
-<!--      Clear all exercises-->
-<!--    </ion-button>-->
   }
 
 
@@ -137,8 +136,6 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
       </ion-label>
     </div>
   }
-
-<!--  <ion-button (click)="openModal.set(true)" expand="block">Details</ion-button>-->
 
   <ion-modal
     [isOpen]="openModal()"
