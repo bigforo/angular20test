@@ -59,9 +59,9 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
       <ion-item-sliding #sliding>
         <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >
 <!--        <ion-item lines="full" (click)="redirect(activity.id)" >-->
-          <ion-icon aria-hidden="true" name="timer-outline" slot="start"></ion-icon>
+          <ion-icon aria-hidden="true" name="timer-outline" slot="start"/>
           <ion-label>
-            <strong class="ion-text-capitalize">{{activity.exercise.name}}</strong>
+            <strong class="ion-text-capitalize">#{{$index+1}} {{activity.exercise.name}}</strong>
             <ion-text color="medium">- {{activity.exercise.name}} -</ion-text>
           </ion-label>
 <!--          <div class="metadata-end-wrapper" slot="end">-->
@@ -106,10 +106,12 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
   @if (appState().current?.activities?.length??0>0){
     <ion-list [inset]="true">
       <ion-item>
-        <ion-textarea (ionChange)="change($event)"
-                      [value]="appState().current?.note" label="Comments"
-                      labelPlacement="floating" rows="5">
-
+        <ion-textarea
+          (ionChange)="change($event)"
+          [value]="appState().current?.note"
+          label="Comments"
+          labelPlacement="floating"
+          rows="5">
         </ion-textarea>
       </ion-item>
     </ion-list>

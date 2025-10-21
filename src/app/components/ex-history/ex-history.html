@@ -1,0 +1,13 @@
+<ion-grid [fixed]="true">
+  @for (activity of histActivities(); track activity) {
+    <ion-row>
+      <ion-col offset="4">{{activity.created | date:'dd-MMM'}}</ion-col>
+    </ion-row>
+    @for (set of activity.sets; track set){
+      <ion-row>
+        <ion-col offset="2">{{set.time | date:'HH:mm'}}</ion-col>
+        <ion-col>{{set.reps}} x {{set.size}}</ion-col>
+      </ion-row>
+    }
+  }
+</ion-grid>

@@ -19,6 +19,7 @@ import {
 import {Router} from '@angular/router';
 import {SetClass} from '../../classes/set.class';
 import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
+import {ExHistory} from '../../components/ex-history/ex-history';
 
 
 @Component({
@@ -40,7 +41,8 @@ import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
     IonCol,
     IonGrid,
     IonRow,
-    ExerciseSets
+    ExerciseSets,
+    ExHistory
   ],
   templateUrl: './show-exercise.html',
   styleUrl: './show-exercise.scss'

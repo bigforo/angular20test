@@ -22,13 +22,6 @@ import {CommonService} from '../../classes/common.service';
 export class ExerciseSets {
   service = inject(CommonService)
   id = input<string>();
-  histActivities = linkedSignal(() => {
-    let ex = EXERCISES.find(a=> a.id === this.id());
-    if (ex){
-      return this.service.getHistory(ex.id as string);
-    }
-    return null;
-  })
   protected readonly weightOptions1 = weightOptions1;
   protected readonly repeatOptions = repeatOptions;
 }

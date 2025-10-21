@@ -13,7 +13,7 @@ import {
   IonLabel,
   IonList,
   IonMenuButton, IonModal,
-  IonPopover,
+  IonPopover, IonRouterLink,
   IonSelect,
   IonSelectOption,
   IonText, IonTextarea,
@@ -22,7 +22,7 @@ import {
   NavController
 } from '@ionic/angular/standalone';
 import {CommonService} from '../../classes/common.service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Activity, Exercise} from '../../classes/state.interface';
 import {EXERCISES} from '../../classes/all-exercises.data';
@@ -58,7 +58,9 @@ import {OverlayEventDetail} from '@ionic/core';
     IonDatetime,
     IonInput,
     IonTextarea,
-    IonModal
+    IonModal,
+    IonRouterLink,
+    RouterLink
   ],
   templateUrl: './exercise-info.html',
   styleUrl: './exercise-info.scss'

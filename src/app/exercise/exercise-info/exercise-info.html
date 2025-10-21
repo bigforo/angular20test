@@ -136,14 +136,14 @@
 <ion-footer>
   @if (activity() != null){
   <ion-toolbar>
-    <ion-button slot="start" router-direction="back"  color="light" expand="full" (click)="navBack()" >
-
+    <ion-button slot="start" router-direction="back"  color="light" (click)="navBack()" >
       <ion-icon name="chevron-back-outline"/>
     </ion-button>
 
-    <ion-button id="present-alert" color="light" expand="full" (click)="click(activity())" >Add to workout</ion-button>
+    <ion-button slot="start" color="light" router-direction="root" expand="block" (click)="click(activity())" >Add</ion-button>
+    <ion-button color="light" expand="block" [routerLink]="'/app/tabs/current'" >Goto Session</ion-button>
 
-    <ion-button slot="end" router-direction="forward"   color="light" expand="full" (click)="navForward()" >
+    <ion-button slot="end" router-direction="forward" color="light" (click)="navForward()" >
       <ion-icon name="chevron-forward-outline"/>
     </ion-button>
   </ion-toolbar>
