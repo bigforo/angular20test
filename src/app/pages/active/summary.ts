@@ -39,6 +39,7 @@ import {Activity, repeatOptions, weightOptions1} from '../../classes/state.inter
 import {AlertController} from '@ionic/angular';
 import type { OverlayEventDetail } from '@ionic/core';
 import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
+import {SessionTips} from '../../components/session-tips/session-tips';
 
 @Component({
   selector: 'app-summary',
@@ -71,7 +72,8 @@ import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
     IonPickerColumn,
     IonPickerColumnOption,
     IonRow,
-    ExerciseSets
+    ExerciseSets,
+    SessionTips
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -133,7 +135,7 @@ export class Summary {
     },
   ];
 
-  items = ['Chest Day', 'Back Day', 'Shoulders Day'];
+  items = ['Chest', 'Back', 'Shoulders', 'Legs'];
   selectedItem? : string = this.service.appState().current?.type;
   chipClick(item: string) {
     if (this.selectedItem === item)

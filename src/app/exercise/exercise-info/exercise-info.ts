@@ -1,4 +1,4 @@
-import {Component, inject, input, linkedSignal, ViewChild} from '@angular/core';
+import {Component, inject, input, linkedSignal, signal, ViewChild} from '@angular/core';
 import {
   IonBackButton,
   IonButton,
@@ -110,25 +110,19 @@ export class ExerciseInfo {
   }
 
   category = "";
-  createDate = "1980-09-02";
 
 
-
-  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  showDescModal = signal<boolean>(false);
   name!: string;
-
   @ViewChild(IonModal) modal!: IonModal;
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }
-
   confirm() {
     this.modal.dismiss(this.name, 'confirm');
   }
-
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
-    if (event.detail.role === 'confirm') {
-      this.message = `Hello, ${event.detail.data}!`;
-    }
+    this.showDescModal.set(false);
   }
+
 }
