@@ -250,9 +250,9 @@ export const EXERCISES: Exercise[] = [
   {
     id: 'run',
     name: 'running',
-    repeatOptions: [3,5,10,15,20],
+    repeatOptions: [3, 5, 10, 15, 20],
     weightOptions: [],
-    color: 'red', 
+    color: 'red',
     weightUnit: 'km',
     description: '',
   },
