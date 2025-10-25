@@ -18,6 +18,7 @@ import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-to
 import {Router} from '@angular/router';
 import {SetClass} from '../../classes/set.class';
 import {CommonService} from '../../classes/common.service';
+import {OverlayEventDetail} from '@ionic/core';
 
 @Component({
   selector: 'app-modal-sets',
@@ -62,15 +63,12 @@ export class ModalSets {
       this.service.save();
     }
   }
-  private router = inject(Router);
 
-
-  onModalWillDismiss($event: any) {
-    this.closed.emit(true);
-    console.log($event);
-  }
   async canDismiss(data?: undefined, role?: string) {
-    console.log("candismiss",role)
-    return role !== 'gesture' && role !== 'backdrop';
+    return role !== 'gesture' ;//&& role !== 'backdrop';
+
+  }
+  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
+    this.closed.emit(true);
   }
 }

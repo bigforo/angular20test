@@ -44,6 +44,7 @@ import {ShowSets} from '../../components/show-sets/show-sets';
 import {ModalExercises} from '../../components/modal-exercises/modal-exercises';
 import {ModalSets} from '../../components/modal-sets/modal-sets';
 import {EXERCISES} from '../../classes/all-exercises.data';
+import {ModalDescription} from '../../components/modal-description/modal-description';
 
 @Component({
   selector: 'app-summary',
@@ -81,7 +82,8 @@ import {EXERCISES} from '../../classes/all-exercises.data';
     ShowSets,
     ModalExercises,
     IonFooter,
-    ModalSets
+    ModalSets,
+    ModalDescription
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -180,5 +182,10 @@ export class Summary {
   }
   modalClosed() {
     this.modalSetOpen.set(false);
+  }
+
+  modalCommentsSetOpen = signal<boolean> (false);
+  modalCommentClosed() {
+    this.modalCommentsSetOpen.set(false);
   }
 }

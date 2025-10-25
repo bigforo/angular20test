@@ -24,10 +24,16 @@
 </ion-header>
 
 <ion-content fullscreen="true">
+
+<!--  Tips -->
+  <app-session-tips/>
+
   @if (appState().current?.activities?.length??0>0){
-
-    <app-session-tips/>
-
+<!-- Header -->
+    <div class="about-session">
+      <h3 class="ion-padding">Workout session started</h3>
+    </div>
+<!-- Chips -->
     <div class="ion-text-center ion-padding-bottom">
         @for (item of items; track item) {
           <ion-chip
@@ -38,11 +44,8 @@
         }
     </div>
   }
-
-
-
+<!-- Activities -->
   @for (activity of appState().current?.activities; track $index) {
-
     <ion-list inset="true">
       <ion-item-sliding #sliding>
 <!--        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >-->
@@ -81,21 +84,16 @@
     }
   }
 
-<!--Activity Comment-->
+<!--Session Comment-->
   @if (appState().current?.activities?.length??0>0){
     <ion-list [inset]="true">
-      <ion-item>
-        <ion-textarea
-          (ionChange)="change($event)"
-          [value]="appState().current?.note"
-          label="Comments"
-          labelPlacement="floating"
-          rows="5">
-        </ion-textarea>
+      <ion-item button="true" (click)="modalCommentsSetOpen.set(true)">
+        <ion-label> Comment </ion-label>
       </ion-item>
     </ion-list>
   }
 
+<!--   No Session -->
   @if ( (appState().current?.activities?.length ?? 0) === 0){
 
     <div
@@ -111,23 +109,24 @@
       </ion-label>
     </div>
   }
-
-  <ion-modal
-    [isOpen]="openModal()"
-    (didDismiss)="openModal.set(false)"
-    [initialBreakpoint]="1"
-    [breakpoints]="[1, 0.75]"
-    handleBehavior="cycle">
-    <ng-template>
-      <div class="block">
-        <app-exercise-sets [id]="viewId" />
-      </div>
-    </ng-template>
-  </ion-modal>
-
 </ion-content>
+
 <ion-footer>
   <app-modal-exercises/>
 </ion-footer>
 
 <app-modal-sets [activity]="modalSetActivity()" [open]="modalSetOpen()" (closed)="modalClosed()"/>
+<app-modal-description [open]="modalCommentsSetOpen()" (closed)="modalCommentClosed()" />
+
+<!--  <ion-modal-->
+<!--    [isOpen]="openModal()"-->
+<!--    (didDismiss)="openModal.set(false)"-->
+<!--    [initialBreakpoint]="1"-->
+<!--    [breakpoints]="[1, 0.75]"-->
+<!--    handleBehavior="cycle">-->
+<!--    <ng-template>-->
+<!--      <div class="block">-->
+<!--        <app-exercise-sets [id]="viewId" />-->
+<!--      </div>-->
+<!--    </ng-template>-->
+<!--  </ion-modal>-->
