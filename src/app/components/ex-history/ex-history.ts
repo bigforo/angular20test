@@ -25,4 +25,10 @@ export class ExHistory {
     }
     return null;
   })
+
+  checkSize(size: string) {
+    if (size !== "")
+      return " x " + size ;
+    return "";
+  }
 }
