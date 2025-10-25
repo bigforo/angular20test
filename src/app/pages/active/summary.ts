@@ -41,6 +41,7 @@ import type { OverlayEventDetail } from '@ionic/core';
 import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
 import {SessionTips} from '../../components/session-tips/session-tips';
 import {ShowSets} from '../../components/show-sets/show-sets';
+import {ModalExercises} from '../../components/modal-exercises/modal-exercises';
 
 @Component({
   selector: 'app-summary',
@@ -75,7 +76,9 @@ import {ShowSets} from '../../components/show-sets/show-sets';
     IonRow,
     ExerciseSets,
     SessionTips,
-    ShowSets
+    ShowSets,
+    ModalExercises,
+    IonFooter
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
@@ -93,10 +96,11 @@ export class Summary {
     this.service.save();
     // this.router.navigate(['/app/tabs/sessions']);
   }
-  delete(activity: Activity, sliding: IonItemSliding) {
+  async delete(activity: Activity, sliding: IonItemSliding) {
+    await sliding.close();
     this.service.deleteActivity(activity);
     this.service.save();
-    sliding.close();
+
   }
 
 
