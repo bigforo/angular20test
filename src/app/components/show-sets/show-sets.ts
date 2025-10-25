@@ -17,6 +17,9 @@ import {Activity, Exercise} from '../../classes/state.interface';
   styleUrl: './show-sets.scss'
 })
 export class ShowSets {
-  activity = input<Activity>();
+  diff(time: Date, time1: Date) {
+      console.log("diff",time,time1);
+  }
+  activity = input.required<Activity>();
 
 }
