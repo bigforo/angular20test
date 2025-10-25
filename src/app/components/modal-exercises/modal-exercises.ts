@@ -2,7 +2,7 @@ import {Component, inject, ViewChild} from '@angular/core';
 import {
   IonAvatar,
   IonButton, IonButtons,
-  IonContent, IonHeader,
+  IonContent, IonFab, IonFabButton, IonHeader, IonIcon,
   IonImg,
   IonItem, IonLabel,
   IonList,
@@ -12,6 +12,8 @@ import {
 import {EXERCISES} from '../../classes/all-exercises.data';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {CommonService} from '../../classes/common.service';
+import {addCircleOutline, addOutline, shareSocial} from 'ionicons/icons';
+import {addIcons} from 'ionicons';
 
 @Component({
   selector: 'app-modal-exercises',
@@ -30,7 +32,10 @@ import {CommonService} from '../../classes/common.service';
     IonTitle,
     IonButtons,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    IonFab,
+    IonFabButton,
+    IonIcon
   ],
   templateUrl: './modal-exercises.html',
   styleUrl: './modal-exercises.scss'
@@ -40,7 +45,13 @@ export class ModalExercises {
   service = inject(CommonService);
   router = inject(Router);
   protected readonly EXERCISES = EXERCISES;
-
+  constructor() {
+    addIcons({
+      shareSocial,
+      addCircleOutline,
+      addOutline,
+    });
+  }
   click(id: string) {
     let ex = EXERCISES.find(a => a.id === id);
     if (ex != undefined) {

@@ -9,7 +9,7 @@
     @for (set of activity.sets; track set){
       <ion-row>
         <ion-col size="3" offset="3" class="ion-text-center">{{set.time | date:'HH:mm'}}</ion-col>
-        <ion-col size="3" class="ion-text-center">{{set.reps}} {{checkSize(set.size, activity.)}}</ion-col>
+        <ion-col size="3" class="ion-text-center">{{set.reps}} {{checkSize(set.size)}}</ion-col>
       </ion-row>
     }
   }
