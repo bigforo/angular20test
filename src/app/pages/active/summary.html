@@ -39,13 +39,14 @@
     </div>
   }
 
+
+
   @for (activity of appState().current?.activities; track $index) {
 
     <ion-list inset="true">
       <ion-item-sliding #sliding>
-        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >
-<!--        <ion-item lines="full" (click)="redirect(activity.id)" >-->
-<!--          <ion-icon aria-hidden="true" name="timer-outline" slot="start"/>-->
+<!--        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >-->
+        <ion-item lines="full" (click)="modalRedirect(activity.id)" >
           <ion-label>
             <strong class="ion-text-capitalize">#{{$index+1}} {{activity.exercise.name}}</strong>
             <ion-text color="medium">- {{activity.exercise.name}} -</ion-text>
@@ -56,12 +57,12 @@
 <!--          </div>-->
         </ion-item>
         <ion-item-options side="start">
-          <ion-item-option  (click)="addSet(activity.id, sliding)"
-            color="warning">Add</ion-item-option>
+<!--          <ion-item-option  (click)="addSet(activity.id, sliding)"-->
+<!--            color="warning">Add</ion-item-option>-->
           <ion-item-option
             [routerLink]="['/exercise/'+activity.id]"
             (click)="sliding.close()"
-            color="primary">View</ion-item-option>
+            color="primary">More</ion-item-option>
         </ion-item-options>
         <ion-item-options side="end">
           <ion-item-option
@@ -129,3 +130,4 @@
   <app-modal-exercises/>
 </ion-footer>
 
+<app-modal-sets [activity]="modalSetActivity()" [open]="modalSetOpen()" (closed)="modalClosed()"/>

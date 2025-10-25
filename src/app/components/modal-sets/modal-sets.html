@@ -1,0 +1,63 @@
+<ion-modal [isOpen]="open()" [canDismiss]="canDismiss"  [initialBreakpoint]="0.75" [breakpoints]="[0, 0.25, 0.5, 0.75, 1]" >
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Click to add exercise</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closed.emit(true);">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen="true">
+      @if (activity()) {
+        <div class="contact-form">
+          <div class="flow">
+            <div class="flex items-center justify-center font-extrabold text-pink-300">- {{activity().exercise.name}} -</div>
+            <div class="flex items-center justify-center text-opacity-10 text-pink-700">{{ activity().created | date}} </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reps">Rep Number</label>
+            <div class="button-container">
+              <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="reps">
+                @for (n of activity().exercise.repeatOptions; track $index) {
+                  <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
+                }
+              </mat-button-toggle-group>
+            </div>
+          </div>
+          @if (activity().hasSize)
+          {
+            <div class="form-group">
+              <label for="weight">Weight (kg)</label>
+              <div class="button-container">
+                <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="kgs">
+                  @for (n of activity().exercise.weightOptions; track $index) {
+                    <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
+                  }
+                </mat-button-toggle-group>
+              </div>
+            </div>
+          }
+          <!--    https://codepen.io/kevinpowell/pen/JodojoQ-->
+          <div>
+            <button class="w-full" type="button" (click)="addSet(reps,kgs)">Add Set</button>
+          </div>
+
+          <div class="flow">
+            <app-show-sets [sets]="activity().sets"/>
+          </div>
+        </div>
+      }
+
+      <div class="ion-padding">
+        <app-ex-history [id]="activity().id"/>
+      </div>
+
+    </ion-content>
+
+
+  </ng-template>
+</ion-modal>

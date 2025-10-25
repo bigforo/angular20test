@@ -42,6 +42,8 @@ import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
 import {SessionTips} from '../../components/session-tips/session-tips';
 import {ShowSets} from '../../components/show-sets/show-sets';
 import {ModalExercises} from '../../components/modal-exercises/modal-exercises';
+import {ModalSets} from '../../components/modal-sets/modal-sets';
+import {EXERCISES} from '../../classes/all-exercises.data';
 
 @Component({
   selector: 'app-summary',
@@ -78,12 +80,14 @@ import {ModalExercises} from '../../components/modal-exercises/modal-exercises';
     SessionTips,
     ShowSets,
     ModalExercises,
-    IonFooter
+    IonFooter,
+    ModalSets
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'
 })
 export class Summary {
+
   service = inject(CommonService);
   appState = this.service.appState;
   router = inject(Router);
@@ -156,9 +160,25 @@ export class Summary {
   protected readonly weightOptions1 = weightOptions1;
   openModal = signal<boolean>(false);
   viewId: string | undefined;
+
   addSet(id: string, sliding: IonItemSliding) {
     this.viewId = id;
     this.openModal.set(true);
     sliding.close();
+  }
+
+
+  modalSetActivity = signal<Activity>(new Activity(EXERCISES[0]));
+  modalSetOpen = signal<boolean> (false);
+  modalRedirect(id: string) {
+    let ex = EXERCISES.find(a=> a.id === id);
+    if (!ex) return;
+    let act = this.service.findActivityByExercise(ex);
+    if (!act) return;
+    this.modalSetActivity.set(act);
+    this.modalSetOpen.set(true);
+  }
+  modalClosed() {
+    this.modalSetOpen.set(false);
   }
 }
