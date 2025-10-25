@@ -145,11 +145,9 @@ export class CommonService {
       session.activities.forEach(activity => {
         if (activity.id == exId) {
           foundActivities.push(activity);
-          // console.log("Activity found",activity.created);
-          // console.log(activity.sets);
         }
       })
     });
-    return foundActivities;
+    return foundActivities.reverse();
   }
 }

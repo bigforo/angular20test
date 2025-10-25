@@ -46,11 +46,13 @@
   }
 <!-- Activities -->
   @for (activity of appState().current?.activities; track $index) {
-    <ion-list inset="true" style="border-left: 5px solid var(--ion-color-warning)">
+    @let ex = findEx(activity);
+    <ion-list inset="true"
+              style="border-right: 5px solid var(--ion-color-warning)">
       <ion-item-sliding #sliding>
 <!--        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >-->
         <ion-item lines="full" (click)="modalRedirect(activity.id)" >
-          <ion-label>
+          <ion-label               [style.border-left-color]="ex?.color">
             <strong class="ion-text-capitalize">#{{$index+1}} {{activity.exercise.name}}</strong>
             <ion-text color="medium">- {{activity.exercise.name}} -</ion-text>
           </ion-label>

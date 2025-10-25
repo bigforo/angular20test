@@ -18,17 +18,17 @@
             <ion-label> Home - Active Workout </ion-label>
           </ion-item>
         </ion-menu-toggle>
-        <ion-list lines="none">
-          <ion-list-header> Exercises </ion-list-header>
-          @for (ex of allExercises; track $index) {
-            <ion-menu-toggle autoHide="false">
-              <ion-item routerLink="/exercise/{{ex.id}}" routerLinkActive="selected" routerDirection="root" detail="false">
-                <ion-icon slot="start" name="walk"></ion-icon>
-                <ion-label color="primary">{{ex.name}}</ion-label>
-              </ion-item>
-            </ion-menu-toggle>
-          }
-        </ion-list>
+<!--        <ion-list lines="none">-->
+<!--          <ion-list-header> Exercises </ion-list-header>-->
+<!--          @for (ex of allExercises; track $index) {-->
+<!--            <ion-menu-toggle autoHide="false">-->
+<!--              <ion-item routerLink="/exercise/{{ex.id}}" routerLinkActive="selected" routerDirection="root" detail="false">-->
+<!--                <ion-icon slot="start" name="walk"></ion-icon>-->
+<!--                <ion-label color="primary">{{ex.name}}</ion-label>-->
+<!--              </ion-item>-->
+<!--            </ion-menu-toggle>-->
+<!--          }-->
+<!--        </ion-list>-->
 
 <!--        <ion-list lines="none">-->
 <!--          <ion-list-header> Sessions </ion-list-header>-->

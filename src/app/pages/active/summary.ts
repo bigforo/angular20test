@@ -188,4 +188,8 @@ export class Summary {
   modalCommentClosed() {
     this.modalCommentsSetOpen.set(false);
   }
+
+  findEx(activity: Activity) {
+    return EXERCISES.find(a=> a.id === activity.id);
+  }
 }
