@@ -46,7 +46,7 @@
   }
 <!-- Activities -->
   @for (activity of appState().current?.activities; track $index) {
-    <ion-list inset="true">
+    <ion-list inset="true" style="border-left: 5px solid var(--ion-color-warning)">
       <ion-item-sliding #sliding>
 <!--        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >-->
         <ion-item lines="full" (click)="modalRedirect(activity.id)" >
@@ -74,14 +74,15 @@
             Delete</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-    </ion-list>
+<!--    </ion-list>-->
     @if (activity.sets.length > 0){
-      <ion-list lines="full" inset="true">
+<!--      <ion-list lines="full" inset="true">-->
         <ion-item>
           <app-show-sets style="width: 100%" [activity]="activity" />
         </ion-item>
-      </ion-list>
+
     }
+    </ion-list>
   }
 
 <!--Session Comment-->

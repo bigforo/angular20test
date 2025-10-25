@@ -15,7 +15,7 @@
       <ion-searchbar placeholder="Search" (click)="modal.setCurrentBreakpoint(0.75)"></ion-searchbar>
       <ion-list>
         @for (ex of EXERCISES; track ex){
-          <ion-item (click)="click(ex.id)" >
+          <ion-item  button="true" (click)="click(ex.id)" >
 <!--            <ion-avatar slot="start">-->
 <!--              <ion-img src="https://i.pravatar.cc/300?u={{ex.id}}"></ion-img>-->
 <!--            </ion-avatar>-->
