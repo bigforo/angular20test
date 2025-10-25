@@ -40,6 +40,7 @@ import {AlertController} from '@ionic/angular';
 import type { OverlayEventDetail } from '@ionic/core';
 import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
 import {SessionTips} from '../../components/session-tips/session-tips';
+import {ShowSets} from '../../components/show-sets/show-sets';
 
 @Component({
   selector: 'app-summary',
@@ -73,7 +74,8 @@ import {SessionTips} from '../../components/session-tips/session-tips';
     IonPickerColumnOption,
     IonRow,
     ExerciseSets,
-    SessionTips
+    SessionTips,
+    ShowSets
   ],
   templateUrl: './summary.html',
   styleUrl: './summary.scss'

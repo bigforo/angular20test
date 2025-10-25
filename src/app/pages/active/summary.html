@@ -71,51 +71,13 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
-
-    <ion-list lines="full" inset="true">
-      <ion-item>
-        <ion-grid>
-      @for (i of activity.sets; track $index){
-
-            <ion-row>
-<!--              <ion-col></ion-col>-->
-
-              <ion-col size="60px">
-                <ion-label color="secondary"><small> #{{ $index + 1 }} </small> </ion-label>
-              </ion-col>
-              <ion-col>
-                <ion-label color="secondary"> <small>{{ i.time| date:'HH:mm' }} </small>
-                  <!--            DELTA-->
-                  <!--            <ion-text color="warning"><sub>[+9]</sub></ion-text>   -->
-                </ion-label>
-              </ion-col>
-              <ion-col size="100px">
-                <ion-label color="tertiary">
-                  {{i.reps}}
-                  @if (activity.hasSize) {
-                    {{'x ' + i.size}}{{activity.exercise.weightUnit}}
-                  }
-                </ion-label>
-              </ion-col>
-              <ion-col/>
-            </ion-row>
-
-<!--          <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }} </sub>-->
-<!--&lt;!&ndash;            DELTA&ndash;&gt;-->
-<!--&lt;!&ndash;            <ion-text color="warning"><sub>[+9]</sub></ion-text>   &ndash;&gt;-->
-<!--          </ion-label>-->
-<!--          <ion-label color="tertiary"> set {{ $index + 1 }} </ion-label>-->
-<!--          <ion-label color="tertiary">-->
-<!--            {{i.reps}}-->
-<!--            @if (activity.hasSize) {-->
-<!--              {{'x ' + i.size}}{{activity.exercise.weightUnit}}-->
-<!--            }-->
-<!--          </ion-label>-->
-
-      }
-        </ion-grid>
-      </ion-item>
-    </ion-list>
+    @if (activity.sets.length > 0){
+      <ion-list lines="full" inset="true">
+        <ion-item>
+          <app-show-sets [activity]="activity" />
+        </ion-item>
+      </ion-list>
+    }
   }
 
 <!--Activity Comment-->
