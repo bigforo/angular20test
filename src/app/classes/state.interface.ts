@@ -47,12 +47,14 @@ export class Activity  {
   visible: boolean;
   readonly hasSize;
   public readonly exercise : Exercise;
+  note: string;
 
   constructor(exercise : Exercise) {
     this.id = exercise.id;
     this.visible = true;
     this.exercise = exercise;
     this.hasSize = exercise.weightOptions.length > 0;
+    this.note = "";
   }
 
   // get hasSize(){

@@ -23,7 +23,7 @@ export class ExHistory {
     if (ex){
       return this.service.getHistory(ex.id as string);
     }
-    return null;
+    return [];
   })
 
   checkSize(size: string) {

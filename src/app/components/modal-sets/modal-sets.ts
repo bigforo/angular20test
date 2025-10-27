@@ -1,13 +1,13 @@
-import {Component, inject, input, output, signal} from '@angular/core';
+import {Component, computed, inject, input, linkedSignal, output, signal} from '@angular/core';
 import {
-    IonButton,
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonModal, IonSearchbar, IonTitle, IonToolbar
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonModal, IonSearchbar, IonTextarea, IonTitle, IonToolbar
 } from "@ionic/angular/standalone";
 import {EXERCISES} from '../../classes/all-exercises.data';
 import {DatePipe} from '@angular/common';
@@ -19,6 +19,7 @@ import {Router} from '@angular/router';
 import {SetClass} from '../../classes/set.class';
 import {CommonService} from '../../classes/common.service';
 import {OverlayEventDetail} from '@ionic/core';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-modal-sets',
@@ -38,7 +39,9 @@ import {OverlayEventDetail} from '@ionic/core';
     ExHistory,
     MatButtonToggle,
     MatButtonToggleGroup,
-    ShowSets
+    ShowSets,
+    IonTextarea,
+    FormsModule
   ],
   templateUrl: './modal-sets.html',
   styleUrl: './modal-sets.scss'
@@ -50,6 +53,7 @@ export class ModalSets {
   closed = output<boolean>();
   reps: any;
   kgs: any;
+
   ngOnInit(): void {
     this.service.getHistory(this.activity().id);
   }
@@ -70,5 +74,18 @@ export class ModalSets {
   }
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
     this.closed.emit(true);
+  }
+
+  note = linkedSignal(()=>{
+    return this.activity().note;
+  })
+  // change($event: any) {
+  //   this.note = $event.value;
+  // }
+
+  change($event: any) {
+    console.log($event);
+    // this.activity().note = $event;
+    // console.log(this.note());
   }
 }

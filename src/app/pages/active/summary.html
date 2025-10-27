@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Active Workout</ion-title>
+    <ion-title>Active Workout Session</ion-title>
 
     @if (appState().current?.activities?.length??0>0){
     <ion-buttons slot="end">
@@ -52,7 +52,7 @@
       <ion-item-sliding #sliding>
 <!--        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >-->
         <ion-item lines="full" (click)="modalRedirect(activity.id)" >
-          <ion-label               [style.border-left-color]="ex?.color">
+          <ion-label [style.border-left-color]="ex?.color">
             <strong class="ion-text-capitalize">#{{$index+1}} {{activity.exercise.name}}</strong>
             <ion-text color="medium">- {{activity.exercise.name}} -</ion-text>
           </ion-label>
@@ -60,29 +60,26 @@
 <!--            <ion-note color="medium">{{ activity.created | date:'HH:mm' }}</ion-note>-->
 <!--            <ion-icon color="medium" name="chevron-forward"></ion-icon>-->
 <!--          </div>-->
+            <div slot="end">
+              <ion-icon color="medium" name="chevron-forward"></ion-icon>
+            </div>
         </ion-item>
-        <ion-item-options side="start">
-<!--          <ion-item-option  (click)="addSet(activity.id, sliding)"-->
-<!--            color="warning">Add</ion-item-option>-->
-          <ion-item-option
-            [routerLink]="['/exercise/'+activity.id]"
-            (click)="sliding.close()"
-            color="primary">More</ion-item-option>
-        </ion-item-options>
         <ion-item-options side="end">
           <ion-item-option
             color="danger"
             (click)="delete(activity,sliding)">
             Delete</ion-item-option>
+          <ion-item-option
+            [routerLink]="['/exercise/'+activity.id]"
+            (click)="sliding.close()"
+            color="warning">More</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-<!--    </ion-list>-->
+
     @if (activity.sets.length > 0){
-<!--      <ion-list lines="full" inset="true">-->
         <ion-item>
           <app-show-sets style="width: 100%" [activity]="activity" />
         </ion-item>
-
     }
     </ion-list>
   }
@@ -98,18 +95,17 @@
 
 <!--   No Session -->
   @if ( (appState().current?.activities?.length ?? 0) === 0){
-
     <div
       class="ion-display-flex ion-justify-content-center ion-align-items-center"
-      style="height: 100%">
-      <ion-label class="ion-text-center">
-        <ion-note>No Active Workout</ion-note>
+      style="height:80%">
+      <div class="ion-text-center ion-padding">
+        <h2>No Active Workout Session</h2>
         <p>
           <ion-note class="ion-text-capitalize" color="warning">
-            Start workout session. Add Exercise from side menu.
+            Start workout session by adding exercise
           </ion-note>
         </p>
-      </ion-label>
+      </div>
     </div>
   }
 </ion-content>
