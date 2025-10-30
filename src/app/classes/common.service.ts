@@ -15,7 +15,7 @@ export class CommonService {
 
   public startSessionIfNotStarted() {
     let currentSession = this.appState().current;
-    if (!currentSession) {
+    if (!currentSession || currentSession.activities.length === 0) {
       let session = new Session("session");
       session.created = new Date();
       this.appState().current = session;

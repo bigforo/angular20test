@@ -11,25 +11,30 @@
     </ion-header>
 
     <ion-content fullscreen="true">
+
       <div class="ion-padding">
-            <h2 class="ion-text-center"><ion-label class="ion-text-capitalize" color="primary"> - {{activity().exercise.name}} -</ion-label></h2>
-            <h3 class="ion-text-center">{{ activity().created | date}} </h3>
+<!--   Header-->
+        <h2 class="ion-text-center"><ion-label class="ion-text-capitalize" color="primary"> - {{activity().exercise.name}} -</ion-label></h2>
+        <div class="ion-text-center"> <ion-label color="secondary"> {{ activity().created | date}} </ion-label></div>
         <ion-grid>
+<!--   SET-->
           <ion-row>
             <ion-col>
-              <ion-input label="REPS" label-placement="floating" fill="solid" inputmode="numeric" placeholder="#" [(ngModel)]="reps"></ion-input>
+              <ion-input mode="md" label="REPS" label-placement="floating" fill="outline"  inputmode="numeric" placeholder="" [(ngModel)]="reps"></ion-input>
             </ion-col>
             @if (activity().hasSize) {
             <ion-col>
-              <ion-input label="WEIGHT (KG)" label-placement="floating" fill="solid" inputmode="decimal" placeholder="#" [(ngModel)]="kgs" ></ion-input>
+              <ion-input mode="md" label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal" placeholder="" [(ngModel)]="kgs" ></ion-input>
             </ion-col>
             }
           </ion-row>
+<!--   Button -->
           <ion-row>
             <ion-col>
               <ion-button color="light" expand="full" (click)="addSet(reps,kgs)">Add Set</ion-button>
             </ion-col>
           </ion-row>
+<!--   SETS-->
           <ion-row>
             <ion-col>
               <app-show-sets [sets]="activity().sets"/>
