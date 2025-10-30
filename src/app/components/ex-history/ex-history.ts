@@ -1,17 +1,19 @@
 import {Component, inject, input, linkedSignal} from '@angular/core';
 import {DatePipe} from "@angular/common";
-import {IonCol, IonGrid, IonRow} from "@ionic/angular/standalone";
+import {IonCol, IonGrid, IonLabel, IonRow, IonText} from "@ionic/angular/standalone";
 import {CommonService} from '../../classes/common.service';
 import {EXERCISES} from '../../classes/all-exercises.data';
 
 @Component({
   selector: 'app-ex-history',
-    imports: [
-        DatePipe,
-        IonCol,
-        IonGrid,
-        IonRow
-    ],
+  imports: [
+    DatePipe,
+    IonCol,
+    IonGrid,
+    IonRow,
+    IonLabel,
+    IonText
+  ],
   templateUrl: './ex-history.html',
   styleUrl: './ex-history.scss'
 })

@@ -12,7 +12,7 @@
 
     <ion-content fullscreen="true">
       <div class="ion-padding">
-            <h2 class="ion-text-center">- {{activity().exercise.name}} -</h2>
+            <h2 class="ion-text-center"><ion-label class="ion-text-capitalize" color="primary"> - {{activity().exercise.name}} -</ion-label></h2>
             <h3 class="ion-text-center">{{ activity().created | date}} </h3>
         <ion-grid>
           <ion-row>
@@ -45,7 +45,7 @@
 
       <!-- Comment-->
       <ion-item class="ion-padding">
-        <ion-textarea
+        <ion-textarea label-placement="floating" fill="outline"
           [ngModel]="getNote()"
           (ngModelChange)="setNote($event)"
           label="Comments"

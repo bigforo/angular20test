@@ -1,11 +1,11 @@
 @if (histActivities().length > 0){
 <ion-grid [fixed]="true">
   <ion-row class="ion-justify-content-center">
-    <h2>History</h2>
+    <h2><ion-label color="medium"> History </ion-label> </h2>
   </ion-row>
   @for (activity of histActivities(); track activity) {
     <ion-row class="ion-justify-content-center">
-      {{activity.created | date:'EEE dd-MMM'}}
+      <ion-label color="secondary"> {{activity.created | date:'EEE dd-MMM'}} </ion-label>
     </ion-row>
     @for (set of activity.sets; track set){
       <ion-row>
@@ -13,6 +13,14 @@
         <ion-col size="3" class="ion-text-center">{{set.reps}} {{checkSize(set.size)}}</ion-col>
       </ion-row>
     }
+    @if (activity?.note?.length ?? 0 > 0){
+      <ion-row>
+        <ion-col class="ion-text-center">
+          Comment: <ion-text color="medium">{{activity.note }}</ion-text>
+        </ion-col>
+      </ion-row>
+    }
+
   }
 </ion-grid>
 }
