@@ -1,4 +1,4 @@
-import {Component, computed, inject, input, linkedSignal, output, signal} from '@angular/core';
+import {Component, computed, inject, input, linkedSignal, OnInit, output, signal} from '@angular/core';
 import {
   IonButton,
   IonButtons,
@@ -6,8 +6,8 @@ import {
   IonHeader,
   IonItem,
   IonLabel,
-  IonList,
-  IonModal, IonSearchbar, IonTextarea, IonTitle, IonToolbar
+  IonList, IonInput,
+  IonModal, IonSearchbar, IonTextarea, IonTitle, IonToolbar, IonGrid, IonCol, IonRow
 } from "@ionic/angular/standalone";
 import {EXERCISES} from '../../classes/all-exercises.data';
 import {DatePipe} from '@angular/common';
@@ -41,12 +41,16 @@ import {FormsModule} from '@angular/forms';
     MatButtonToggleGroup,
     ShowSets,
     IonTextarea,
-    FormsModule
+    FormsModule,
+    IonInput,
+    IonGrid,
+    IonCol,
+    IonRow
   ],
   templateUrl: './modal-sets.html',
   styleUrl: './modal-sets.scss'
 })
-export class ModalSets {
+export class ModalSets implements OnInit{
   service = inject(CommonService)
   activity =  input.required<Activity>();
   open = input.required<boolean>();
@@ -54,18 +58,20 @@ export class ModalSets {
   reps: any;
   kgs: any;
 
+  note = linkedSignal(()=>{
+    return this.activity().note;
+  });
+
   ngOnInit(): void {
     this.service.getHistory(this.activity().id);
   }
   addSet(reps: string, kgs: any) {
     this.service.startSessionIfNotStarted();
-    if ( (!this.activity().hasSize && +reps > 0) || (this.activity().hasSize && +kgs > 0)) {
       if (this.activity().hasSize)
         this.activity().sets.push(new SetClass(reps, kgs));
       else
         this.activity().sets.push(new SetClass(reps, ""));
       this.service.save();
-    }
   }
 
   async canDismiss(data?: undefined, role?: string) {
@@ -74,18 +80,21 @@ export class ModalSets {
   }
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
     this.closed.emit(true);
+    this.service.save();
   }
 
-  note = linkedSignal(()=>{
-    return this.activity().note;
-  })
-  // change($event: any) {
-  //   this.note = $event.value;
-  // }
+  onNoteChange($event: any) {
+    this.activity().note = $event.valueOf();
+    this.service.save();
+    this.note = $event;
+  }
 
-  change($event: any) {
-    console.log($event);
-    // this.activity().note = $event;
-    // console.log(this.note());
+  getNote():string {
+    return this.note()
+  }
+
+  setNote(value:string) {
+    this.activity().note = value;
+    this.service.save();
   }
 }

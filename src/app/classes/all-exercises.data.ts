@@ -296,7 +296,6 @@ export const EXERCISES: Exercise[] = [
   { id: 'sh6', name: 'face pull',              color: 'green', weightUnit: 'kg', repeatOptions,  weightOptions: weightOptions1, description: '' },
   { id: 'sh7', name: 'rear deltoid fly machin',color: 'green', weightUnit: 'kg', repeatOptions, weightOptions: weightOptions1,  description: '' },
   { id: 'sh8', name: 'shrugs',                 color: 'green', weightUnit: 'kg', repeatOptions,  weightOptions: weightOptions1, description: '' },
-  { id: 'run', name: 'running',                color: 'red',   weightUnit: 'kg', repeatOptions: [3, 5, 10, 15, 20], weightOptions: [], description: '' },
   { id: 'l1',  name: 'hip-thrust',             color: 'blue',  weightUnit: 'kg', repeatOptions, weightOptions: weightOptions1, description: '' },
   { id: 'l2',  name: 'rdl-dumbbells',          color: 'blue',  weightUnit: 'kg', repeatOptions, weightOptions: weightOptions1, description: '' },
   { id: 'l3',  name: 'rdl-bar',                color: 'blue',  weightUnit: 'kg', repeatOptions, weightOptions: weightOptions1, description: '' },
@@ -306,4 +305,7 @@ export const EXERCISES: Exercise[] = [
   { id: 'l7',  name: 'leg-curl-quad',          color: 'blue',  weightUnit: 'kg', repeatOptions, weightOptions: weightOptions1, description: '' },
   { id: 'l8',  name: 'squats',                 color: 'blue',  weightUnit: 'kg', repeatOptions, weightOptions: weightOptions1, description: '' },
   { id: 'l9',  name: 'lunges',                 color: 'blue',  weightUnit: 'kg', repeatOptions, weightOptions: weightOptions1, description: '' },
+  { id: 'run', name: 'running',                color: 'red',   weightUnit: 'kg', repeatOptions: [3, 5, 10, 15, 20], weightOptions: [], description: '' },
+  { id: 'hike', name: 'hike',                   color: 'red',   weightUnit: 'kg', repeatOptions: [10, 15, 20, 25, 30, 35], weightOptions: [], description: 'Hiking around' },
+
 ];

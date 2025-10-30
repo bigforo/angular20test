@@ -18,6 +18,7 @@
 <!--            </ion-text>-->
 <!--        }-->
 <!--      </ion-col>-->
+
 <!-- Reps X Sets -->
       <ion-col class="ion-text-center">
         <ion-label color="tertiary">
@@ -27,8 +28,17 @@
           }
         </ion-label>
       </ion-col>
-
     </ion-row>
+  }
+  @if (activity().note.length > 0){
+  <ion-row>
+    <!--      COMMENT -->
+    <ion-col class="ion-text-center">
+      <ion-label color="medium">
+        {{ activity().note }}
+      </ion-label>
+    </ion-col>
+  </ion-row>
   }
 </ion-grid>
 
