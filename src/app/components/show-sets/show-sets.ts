@@ -1,7 +1,8 @@
-import {Component, input} from '@angular/core';
+import {Component, inject, input} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {IonCol, IonGrid, IonLabel, IonRow, IonText} from "@ionic/angular/standalone";
 import {Activity, Exercise} from '../../classes/state.interface';
+import {CommonService} from '../../classes/common.service';
 
 @Component({
   selector: 'app-show-sets',
@@ -21,5 +22,6 @@ export class ShowSets {
       console.log("diff",time,time1);
   }
   activity = input.required<Activity>();
+  service = inject(CommonService);
 
 }

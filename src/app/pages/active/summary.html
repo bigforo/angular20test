@@ -16,7 +16,7 @@
         header="Stop Active Workout?"
         message="Older workout sessions can be found in the history tab."
         [buttons]="alertButtons"
-        (didDismiss)="delete213($event)"
+        (didDismiss)="deleteConfirmation($event)"
       ></ion-alert>
     }
 
@@ -25,10 +25,9 @@
 
 <ion-content fullscreen="true">
 
-<!--  Tips -->
-  <app-session-tips/>
-
   @if (appState().current?.activities?.length??0>0){
+<!--  Tips -->
+    <app-session-tips/>
 <!-- Header -->
     <div class="about-session">
       <h3 class="ion-padding">Workout session started</h3>
@@ -46,14 +45,13 @@
   }
 <!-- Activities -->
   @for (activity of appState().current?.activities; track $index) {
-    @let ex = findEx(activity);
+    @let exercise = service.findExerciseById(activity.id);
     <ion-list inset="true" style="border-right: 5px solid var(--ion-color-warning)">
       <ion-item-sliding #sliding>
-<!--        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >-->
         <ion-item button="true" lines="full" (click)="modalRedirect(activity.id)" >
-          <ion-label [style.border-left-color]="ex?.color" class="label-color-border" >
-            <strong class="ion-text-capitalize">#{{$index+1}} {{activity.exercise.name}}</strong>
-            <ion-text color="medium">- {{activity.exercise.name}} -</ion-text>
+          <ion-label [style.border-left-color]="exercise?.color" class="label-color-border" >
+            <strong class="ion-text-capitalize">#{{$index+1}} {{exercise.name}}</strong>
+            <ion-text color="medium">- {{exercise.name}} -</ion-text>
           </ion-label>
 <!--          <div class="metadata-end-wrapper" slot="end">-->
 <!--            <ion-note color="medium">{{ activity.created | date:'HH:mm' }}</ion-note>-->
@@ -66,7 +64,7 @@
         <ion-item-options side="end">
           <ion-item-option
             color="danger"
-            (click)="delete(activity,sliding)">
+            (click)="deleteActivity(activity,sliding)">
             Delete</ion-item-option>
           <ion-item-option
             [routerLink]="['/exercise/'+activity.id]"

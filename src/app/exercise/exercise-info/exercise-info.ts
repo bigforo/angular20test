@@ -72,18 +72,19 @@ export class ExerciseInfo {
   id = input<string>();
   activity = linkedSignal(() => {
     let ex = EXERCISES.find(a=> a.id === this.id());
-    if (ex === undefined) return null;
-    let act = this.service.findActivityByExercise(ex);
-    if (act === undefined) return new Activity(ex);
+    if (ex === undefined) return Activity.unknowActivity();
+    let act = this.service.findActivityByExercise(ex.id);
+    if (act === undefined) return new Activity(ex.id);
     return act;
   });
+
   constructor() {
     addIcons({chevronForwardOutline, chevronBackOutline});
   }
   async click(activity: Activity | null) {
     if (activity == null) return;
     this.service.startSessionIfNotStarted();
-    this.service.findOrStartActivityByExercise(activity.exercise);
+    this.service.findOrStartActivityByExercise(activity.id);
     await this.router.navigate(['/app/tabs/current']);
   }
 

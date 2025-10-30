@@ -1,4 +1,5 @@
 import {SetClass} from './set.class';
+import {EXERCISES} from './all-exercises.data';
 
 
 export interface StateInterface {
@@ -46,20 +47,16 @@ export class Activity  {
   sets: SetClass[] = [];
   visible: boolean;
   readonly hasSize;
-  public readonly exercise : Exercise;
   note: string;
 
-  constructor(exercise : Exercise) {
-    this.id = exercise.id;
+  constructor(exerciseId : string) {
+    this.id = exerciseId;
     this.visible = true;
-    this.exercise = exercise;
-    this.hasSize = exercise.weightOptions.length > 0;
+    let exercise = EXERCISES.find(ex => ex.id === exerciseId);
+    this.hasSize = exercise?.weightOptions.length ?? 0 > 0;
     this.note = "";
   }
 
-  // get hasSize(){
-  //   return this.exercise.weightOptions.length > 0;
-  // }
   get date(){
     return this.created.toDateString();
   }
@@ -82,6 +79,10 @@ export class Activity  {
       this.sets.pop();
     else
       this.sets.splice(index, 1);
+  }
+
+  static unknowActivity(){
+    return new Activity("");
   }
 }
 

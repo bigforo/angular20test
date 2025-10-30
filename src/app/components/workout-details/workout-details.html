@@ -2,11 +2,11 @@
 @if (session()?.activities?.length ?? 0 > 0){
 
   @for (activity of session()?.activities; track $index) {
-
+    @let exercise = service.findExerciseById(activity.id);
     <ion-list inset="true">
       <ion-item lines="full" >
         <ion-label>
-          <h1 class="ion-text-capitalize">{{activity.exercise.name}}</h1>
+          <h1 class="ion-text-capitalize">{{exercise.name}}</h1>
           <p>started at {{ activity.created | date:'HH:mm' }}</p>
         </ion-label>
       </ion-item>
@@ -18,7 +18,7 @@
         <ion-label color="tertiary">
           {{i.reps}}
           @if (activity.hasSize) {
-            {{'x ' + i.size}}{{activity.exercise.weightUnit}}
+            {{'x ' + i.size}}{{exercise.weightUnit}}
           }
         </ion-label>
       </ion-item>

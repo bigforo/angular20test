@@ -11,10 +11,10 @@
     </ion-header>
 
     <ion-content fullscreen="true">
-
+      @let exercise = service.findExerciseById(activity().id);
       <div class="ion-padding">
 <!--   Header-->
-        <h2 class="ion-text-center"><ion-label class="ion-text-capitalize" color="primary"> - {{activity().exercise.name}} -</ion-label></h2>
+        <h2 class="ion-text-center"><ion-label class="ion-text-capitalize" color="primary"> - {{exercise.name}} -</ion-label></h2>
         <div class="ion-text-center"> <ion-label color="secondary"> {{ activity().created | date}} </ion-label></div>
         <ion-grid>
 <!--   SET-->

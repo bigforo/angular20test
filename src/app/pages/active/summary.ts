@@ -97,55 +97,20 @@ export class Summary {
   constructor() {
     addIcons({ shareOutline, starOutline, star, cloudDownload, share, stopCircleOutline, chevronForward, timerOutline });
   }
-  stop() {
-    this.service.stopSession();
-    this.service.save();
-    // this.router.navigate(['/app/tabs/sessions']);
-  }
-  async delete(activity: Activity, sliding: IonItemSliding) {
+
+  async deleteActivity(activity: Activity, sliding: IonItemSliding) {
     await sliding.close();
     this.service.deleteActivity(activity);
     this.service.save();
-
   }
 
-
-  // alertController = inject(AlertController);
-  // async presentAlert() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Are you sure?',
-  //     message: 'Older workout sessions can be found in the history tab.',
-  //     buttons: [
-  //       {text:"Yes",  handler: () => {this.stop()}},
-  //       {text:"No",  handler: () => {}},
-  //     ],
-  //   });
-  //   await alert.present();
-  // }
-
-  edit(activity: Activity) {
-    this.router.navigate(['/'+activity.id]);
-  }
-
-  change($event: any) {
-    this.service.addNoteToCurrentSession($event.target.value);
-  }
-
-  delete213(event: CustomEvent<OverlayEventDetail>) {
+  deleteConfirmation(event: CustomEvent<OverlayEventDetail>) {
     if (event.detail.role === 'yes') {
-      this.stop();
+      this.service.stopSession();
+      this.service.save();
     }
   }
-  public alertButtons = [
-    {
-      text: 'Yes',
-      role: 'yes',
-    },
-    {
-      text: 'No',
-      role: 'no',
-    },
-  ];
+  public alertButtons = [{text: 'Yes', role: 'yes',},{text: 'No',role: 'no',},];
 
   items = ['Chest', 'Back', 'Shoulders', 'Legs'];
   selectedItem? : string = this.service.appState().current?.type;
@@ -158,24 +123,12 @@ export class Summary {
     this.service.addTypeToCurrentSession(this.selectedItem);
   }
 
-  protected readonly repeatOptions = repeatOptions;
-  protected readonly weightOptions1 = weightOptions1;
-  openModal = signal<boolean>(false);
-  viewId: string | undefined;
-
-  addSet(id: string, sliding: IonItemSliding) {
-    this.viewId = id;
-    this.openModal.set(true);
-    sliding.close();
-  }
-
-
-  modalSetActivity = signal<Activity>(new Activity(EXERCISES[0]));
+  modalSetActivity = signal<Activity>(Activity.unknowActivity());
   modalSetOpen = signal<boolean> (false);
   modalRedirect(id: string) {
     let ex = EXERCISES.find(a=> a.id === id);
     if (!ex) return;
-    let act = this.service.findActivityByExercise(ex);
+    let act = this.service.findActivityByExercise(id);
     if (!act) return;
     this.modalSetActivity.set(act);
     this.modalSetOpen.set(true);
@@ -187,9 +140,5 @@ export class Summary {
   modalCommentsSetOpen = signal<boolean> (false);
   modalCommentClosed() {
     this.modalCommentsSetOpen.set(false);
-  }
-
-  findEx(activity: Activity) {
-    return EXERCISES.find(a=> a.id === activity.id);
   }
 }

@@ -10,7 +10,6 @@
 <ion-content fullscreen="true">
   <ion-list>
 @for (session of sessions(); track $index){
-
     <ion-item-sliding #sliding>
       <ion-item lines="full" [routerLink]="['/session']" [queryParams]="{id: $index}" >
         <ion-label color="secondary">
@@ -19,7 +18,8 @@
          <p>
            &mdash;
           @for (i of session.activities; track $index){
-            {{i.exercise.name}}  &mdash;
+            @let exercise = service.findExerciseById(i.id);
+            {{exercise.name}}  &mdash;
           }
          </p>
           @if(session.note){

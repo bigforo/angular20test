@@ -34,20 +34,23 @@ export class CommonService {
     this.save();
   }
 
-  public findActivityByExercise(ex: Exercise):Activity|undefined {
+  public findExerciseById(exerciseId: string){
+    return EXERCISES.find(a=>a.id == exerciseId) ?? EXERCISES[0];
+  }
+  public findActivityByExercise(exerciseId: string):Activity|undefined {
     return this.appState().current?.activities.find(dayExercise =>
-      dayExercise.id === ex.id
+      dayExercise.id === exerciseId
     );
   }
 
-  public findOrStartActivityByExercise(ex: Exercise) : Activity {
+  public findOrStartActivityByExercise(exerciseId: string) : Activity {
     if (this.appState().current) {
       // Add exercise to daily
-      let findActivity = this.findActivityByExercise(ex);
-
+      let findActivity = this.findActivityByExercise(exerciseId);
+      // If not found:
       if (findActivity === undefined) {
         let ss = this.appState();
-        const act : Activity = new Activity(ex);
+        const act : Activity = new Activity(exerciseId);
         ss.current?.activities.push(act);
         this.appState.set(ss);
         return act;
@@ -110,15 +113,14 @@ export class CommonService {
   _snackBar = inject(MatSnackBar);
   createSessionBasedOnOlderSession(oldSession: Session) {
 
-    const ses = this.appState().current ?? new Session("session");
+    const currentSession = this.appState().current ?? new Session("session");
     let num = 0;
     oldSession.activities.forEach(activity => {
-      if (!ses.activities.some(a => a.id == activity.id)){
-        const ex = EXERCISES.find(a => a.id == activity.id);
-        if (ex){
-          ses.activities.push(new Activity(ex));
-          num++;
-        }
+      // If activity isn't found in currentSession.activities
+      if (!currentSession.activities.some(a => a.id == activity.id)){
+        // Create new activity with same id
+        currentSession.activities.push(new Activity(activity.id));
+        num++;
       }
     }); //forEach
     if (num == 0){
@@ -133,7 +135,7 @@ export class CommonService {
         duration: 3000,
         verticalPosition: "top"
       });
-      this.appState().current = ses;
+      this.appState().current = currentSession;
       this.router.navigate(['/app/tabs/current']);
     }
     this.save();

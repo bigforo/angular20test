@@ -56,7 +56,7 @@ export class ModalExercises {
     let ex = EXERCISES.find(a => a.id === id);
     if (ex != undefined) {
       this.service.startSessionIfNotStarted();
-      this.service.findOrStartActivityByExercise(ex);
+      this.service.findOrStartActivityByExercise(id);
       this.modal.dismiss(null);
     }
   }

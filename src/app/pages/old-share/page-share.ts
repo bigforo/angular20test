@@ -40,20 +40,20 @@ export class PageShare {
   timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 
-  public getDescForCal() : string{
-    let exercises = this.appState().current?.activities;
-    let desc:string = "";
-    exercises?.forEach(exercise => {
-      desc += exercise.exercise.name + '\r'
-      exercise.sets.forEach(set => {
-        if (exercise.hasSize)
-          desc += ' - ' + set.reps + 'x' + set.size + '\r'
-        else
-          desc += ' - ' + set.reps + '\r'
-      })
-    })
-    return desc;
-  }
+  // public getDescForCal() : string{
+  //   let exercises = this.appState().current?.activities;
+  //   let desc:string = "";
+  //   exercises?.forEach(exercise => {
+  //     desc += exercise.exercise.name + '\r'
+  //     exercise.sets.forEach(set => {
+  //       if (exercise.hasSize)
+  //         desc += ' - ' + set.reps + 'x' + set.size + '\r'
+  //       else
+  //         desc += ' - ' + set.reps + '\r'
+  //     })
+  //   })
+  //   return desc;
+  // }
 
   ls = inject(LocalStorageService);
   link = linkedSignal(()=>{
