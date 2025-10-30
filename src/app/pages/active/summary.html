@@ -85,11 +85,18 @@
   }
 
 <!--Session Comment-->
-  @if (appState().current?.activities?.length??0>0){
+  @if (appState().current?.activities?.length ?? 0 > 0){
     <ion-list [inset]="true">
       <ion-item button="true" (click)="modalCommentsSetOpen.set(true)">
-        <ion-label> Add Notes  </ion-label>
+        <ion-label> Add Note  </ion-label>
       </ion-item>
+      @if(appState().current?.note?.length ?? 0 > 0){
+        <ion-item>
+          <ion-label color="medium">
+            {{appState().current?.note}}
+          </ion-label>
+        </ion-item>
+      }
     </ion-list>
   }
 

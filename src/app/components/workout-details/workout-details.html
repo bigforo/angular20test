@@ -25,6 +25,11 @@
         </ion-label>
       </ion-item>
       }
+      @if (activity.note.length > 0){
+      <ion-item>
+        <ion-label color="medium"> {{activity.note}} </ion-label>
+      </ion-item>
+      }
     </ion-list>
 
   }

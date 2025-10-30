@@ -3,7 +3,7 @@
 
     <ion-header>
       <ion-toolbar>
-        <ion-title>Click to add exercise</ion-title>
+        <ion-title>Add activity</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="closed.emit(true);">Close</ion-button>
         </ion-buttons>
@@ -21,7 +21,7 @@
             </ion-col>
             @if (activity().hasSize) {
             <ion-col>
-              <ion-input label="WEIGHT" label-placement="floating" fill="outline" inputmode="decimal" placeholder="#" [(ngModel)]="kgs" ></ion-input>
+              <ion-input label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal" placeholder="#" [(ngModel)]="kgs" ></ion-input>
             </ion-col>
             }
           </ion-row>
@@ -42,6 +42,7 @@
       <div class="ion-padding">
         <app-ex-history [id]="activity().id"/>
       </div>
+
       <!-- Comment-->
       <ion-item class="ion-padding">
         <ion-textarea
