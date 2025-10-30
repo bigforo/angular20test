@@ -75,8 +75,8 @@ export class ModalSets implements OnInit{
   }
 
   async canDismiss(data?: undefined, role?: string) {
-    return role !== 'gesture' ;//&& role !== 'backdrop';
-
+    // return role !== 'gesture' ;//&& role !== 'backdrop';
+    return true;
   }
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
     this.closed.emit(true);

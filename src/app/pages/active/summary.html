@@ -47,8 +47,7 @@
 <!-- Activities -->
   @for (activity of appState().current?.activities; track $index) {
     @let ex = findEx(activity);
-    <ion-list inset="true"
-              style="border-right: 5px solid var(--ion-color-warning)">
+    <ion-list inset="true" style="border-right: 5px solid var(--ion-color-warning)">
       <ion-item-sliding #sliding>
 <!--        <ion-item lines="full" [routerLink]="['/work/'+activity.id]" >-->
         <ion-item lines="full" (click)="modalRedirect(activity.id)" >
@@ -86,15 +85,19 @@
 
 <!--Session Comment-->
   @if (appState().current?.activities?.length ?? 0 > 0){
-    <ion-list [inset]="true">
-      <ion-item button="true" (click)="modalCommentsSetOpen.set(true)">
-        <ion-label> Add Note  </ion-label>
-      </ion-item>
+    <ion-list inset="true" style="border-right: 5px solid var(--ion-color-medium)">
+      <ion-item-sliding >
+        <ion-item button="true" (click)="modalCommentsSetOpen.set(true)" >
+        <ion-label> Session/Workout Notes  </ion-label>
+          <div slot="end">
+            <ion-icon color="medium" name="chevron-forward"></ion-icon>
+          </div>
+        </ion-item>
+
+      </ion-item-sliding>
       @if(appState().current?.note?.length ?? 0 > 0){
         <ion-item>
-          <ion-label color="medium">
-            {{appState().current?.note}}
-          </ion-label>
+          <ion-text color="medium"><small>{{appState().current?.note}} </small></ion-text>
         </ion-item>
       }
     </ion-list>
