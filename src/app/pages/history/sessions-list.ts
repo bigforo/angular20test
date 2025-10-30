@@ -44,47 +44,14 @@ export class SessionsList {
   service = inject(CommonService);
   appState = this.service.appState;
   sessions = linkedSignal(()=>{
-    return this.appState().history
+    return this.appState().history.reverse()
   });
   router = inject(Router);
 
   constructor() {
     this.service.load();
   }
-  clear() {
-    this.service.clearHistory();
-    this.router.navigate(['/app/tabs/sessions']);
-  }
 
-  public alertButtons = [
-    {
-      text: 'Cancel',
-      role: 'cancel',
-      handler: () => {
-        // console.log('Alert canceled');
-      },
-    },
-    {
-      text: 'OK',
-      role: 'confirm',
-      handler: () => {
-        this.clear();
-      },
-    },
-  ];
-
-  // alertController = inject(AlertController);
-  // async presentAlert(session: Session) {
-  //     const alert = await this.alertController.create({
-  //       header: 'Are you sure?',
-  //       // message: 'Older workout sessions can be found in the history tab.',
-  //       buttons: [
-  //         {text:"Yes",  handler: () => {this.service.deleteSessionFromHis(session)}},
-  //         {text:"No",  handler: () => {}},
-  //       ],
-  //     });
-  //     await alert.present();
-  // }
   delete(session: Session, sliding: IonItemSliding) {
     this.service.deleteSessionFromHis(session);
     sliding.close();

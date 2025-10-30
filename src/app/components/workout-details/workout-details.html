@@ -1,7 +1,5 @@
 
-@if (session()?.activities?.length??0>0){
-
-
+@if (session()?.activities?.length ?? 0 > 0){
 
   @for (activity of session()?.activities; track $index) {
 
@@ -25,7 +23,7 @@
         </ion-label>
       </ion-item>
       }
-      @if (activity.note.length > 0){
+      @if (activity?.note?.length ?? 0 > 0){
       <ion-item>
         <ion-label color="medium"> {{activity.note}} </ion-label>
       </ion-item>

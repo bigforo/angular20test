@@ -49,15 +49,14 @@
       </div>
 
       <!-- Comment-->
-      <ion-item class="ion-padding">
-        <ion-textarea label-placement="floating" fill="outline"
-          [ngModel]="getNote()"
-          (ngModelChange)="setNote($event)"
-          label="Activity Comments"
-          labelPlacement="floating"
-          rows="5">
-        </ion-textarea>
-      </ion-item>
+      <ion-textarea mode="md" class="ion-padding" label-placement="floating" fill="outline"
+        [ngModel]="getNote()"
+        (ngModelChange)="setNote($event)"
+        label="Activity Comments"
+        labelPlacement="floating"
+        rows="5">
+      </ion-textarea>
+
 
     </ion-content>
 
