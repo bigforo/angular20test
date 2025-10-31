@@ -31,7 +31,7 @@
       </ion-col>
     </ion-row>
   }
-  @if (activity().note.length > 0){
+  @if (activity()?.note?.length ?? 0 > 0){
   <ion-row>
     <!--      COMMENT -->
     <ion-col class="ion-text-center">
