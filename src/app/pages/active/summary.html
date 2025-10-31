@@ -26,12 +26,13 @@
 <ion-content fullscreen="true">
 
   @if (appState().current?.activities?.length??0>0){
+  <!-- Header -->
+    <div class="ion-text-center" >
+      <h1 >Workout session started</h1>
+    </div>
 <!--  Tips -->
     <app-session-tips/>
-<!-- Header -->
-    <div class="about-session">
-      <h3 class="ion-padding">Workout session started</h3>
-    </div>
+
 <!-- Chips -->
     <div class="ion-text-center ion-padding-bottom">
         @for (item of items; track item) {
