@@ -150,6 +150,8 @@ export class CommonService {
         }
       })
     });
-    return foundActivities.reverse();
+    return [...foundActivities].sort(
+      (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
+    );
   }
 }
