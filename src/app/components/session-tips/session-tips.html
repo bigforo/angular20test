@@ -14,8 +14,9 @@ boost mental well-being, increase energy, and enhance overall quality of life!" 
 <!--    Swipe left to delete/remove Exercise-->
 <!--  </p>-->
   @let tip =  tip$ | async;
-  <p class="ion-padding-start ion-padding-end" (click)="click()">
-    <ion-label color="warning">Tip #{{ tip?.number }}:</ion-label>
-     {{tip?.text}}
-  </p>
+  <ion-item class="ion-padding-start ion-padding-end" (click)="click()">
+    <ion-label>
+      <ion-text color="warning">Tip #{{ tip?.number }} </ion-text>
+     {{tip?.text}} </ion-label>
+  </ion-item>
 </div>

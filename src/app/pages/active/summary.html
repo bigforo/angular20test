@@ -30,19 +30,18 @@
     <div class="ion-text-center" >
       <h1 >Workout session started</h1>
     </div>
+<!-- Chips -->
+    <div class="ion-text-center">
+      @for (item of items; track item) {
+        <ion-chip
+          [class] = "item === selectedItem ? 'selected-chip' : ''"
+          (click)="chipClick(item)">
+          <ion-label>{{ item }}</ion-label>
+        </ion-chip>
+      }
+    </div>
 <!--  Tips -->
     <app-session-tips/>
-
-<!-- Chips -->
-    <div class="ion-text-center ion-padding-bottom">
-        @for (item of items; track item) {
-          <ion-chip
-            [class] = "item === selectedItem ? 'selected-chip' : ''"
-            (click)="chipClick(item)">
-            <ion-label>{{ item }}</ion-label>
-          </ion-chip>
-        }
-    </div>
   }
 <!-- Activities -->
   @for (activity of appState().current?.activities; track $index) {
@@ -85,16 +84,23 @@
 <!--Session Comment-->
   @if (appState().current?.activities?.length ?? 0 > 0){
     <ion-list inset="true" style="border-right: 5px solid var(--ion-color-medium)">
-      <ion-item-sliding >
+      <ion-item-sliding #slidingComment >
         <ion-item button="true" (click)="modalCommentsSetOpen.set(true)" >
-          <ion-label> Session/Workout Notes  </ion-label>
+          <ion-label> Session/Workout Notes
+          @if(appState().current?.note?.length ?? 0 > 0){
+            <p>{{appState().current?.note}}</p>
+          }
+          </ion-label>
         </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option
+            color="medium"
+            (click)="clear(appState().current, slidingComment)">
+            Clear</ion-item-option>
+        </ion-item-options>
       </ion-item-sliding>
-      @if(appState().current?.note?.length ?? 0 > 0){
-        <ion-item>
-          <ion-text color="medium"><small>{{appState().current?.note}} </small></ion-text>
-        </ion-item>
-      }
+
     </ion-list>
   }
 

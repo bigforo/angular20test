@@ -15,8 +15,10 @@ export class RandomTip {
   constructor() { }
   sub = new BehaviorSubject<{ text: string, number: number }>(this.quotes[0]);
   public randomTip$ = this.sub.asObservable();
+  inx = 0;
   getNewRandomTip() {
-    const randomIndex = Math.floor(Math.random() * this.quotes.length);
-    this.sub.next(this.quotes[randomIndex]);
+    // const randomIndex = Math.floor(Math.random() * this.quotes.length);
+    this.inx = this.inx >= this.quotes.length-1 ? 0 : this.inx+1
+    this.sub.next(this.quotes[this.inx]);
   }
 }

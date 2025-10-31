@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {IonLabel} from '@ionic/angular/standalone';
+import {IonItem, IonLabel, IonText} from '@ionic/angular/standalone';
 import {RandomTip} from '../../classes/random-tip';
 import {AsyncPipe} from '@angular/common';
 import {delay} from 'rxjs';
@@ -8,7 +8,9 @@ import {delay} from 'rxjs';
   selector: 'app-session-tips',
   imports: [
     IonLabel,
-    AsyncPipe
+    AsyncPipe,
+    IonItem,
+    IonText
   ],
   templateUrl: './session-tips.html',
   styleUrl: './session-tips.scss'

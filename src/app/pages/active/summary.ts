@@ -35,7 +35,7 @@ import {
 import {addIcons} from 'ionicons';
 import {cloudDownload, shareOutline, star, starOutline, share, stopCircleOutline, chevronForward, people, timerOutline} from 'ionicons/icons';
 import {DatePipe, NgClass} from '@angular/common';
-import {Activity, repeatOptions, weightOptions1} from '../../classes/state.interface';
+import {Activity, repeatOptions, Session, weightOptions1} from '../../classes/state.interface';
 import {AlertController} from '@ionic/angular';
 import type { OverlayEventDetail } from '@ionic/core';
 import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
@@ -140,5 +140,14 @@ export class Summary {
   modalCommentsSetOpen = signal<boolean> (false);
   modalCommentClosed() {
     this.modalCommentsSetOpen.set(false);
+  }
+
+  clear(current: Session | null | undefined, sliding: IonItemSliding) {
+    if (current) {
+      current.note = "";
+      this.service.save();
+    }
+
+    sliding.close();
   }
 }
