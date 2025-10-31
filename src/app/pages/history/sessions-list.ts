@@ -44,9 +44,7 @@ export class SessionsList {
   service = inject(CommonService);
   appState = this.service.appState;
   sessions = linkedSignal(()=>{
-    return [...this.appState().history].sort(
-      (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
-    );
+    return this.appState().history
   });
   router = inject(Router);
 

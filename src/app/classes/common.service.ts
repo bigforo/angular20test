@@ -25,6 +25,10 @@ export class CommonService {
     if (this.appState().current) {
       let cc = this.appState();
       cc.history.push(this.appState().current as Session);
+      // Sort na History by Date Desc... Newest first
+      cc.history = [...cc.history].sort(
+        (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
+      );
       cc.current = null;
       this.appState.set(cc);
     }
