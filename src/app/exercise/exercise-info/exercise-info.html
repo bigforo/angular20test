@@ -9,122 +9,65 @@
 
 <ion-content>
   @if (activity() != null){
-    @let exercise = Activity.exerciseById(activity().id);
+    @let exercise = Activity.exerciseById(id()??"");
     <div class="about-header">
-      <div class="about-image ion-display-flex ion-justify-content-center ion-align-items-center"
+      <div class="about-image ion-display-flex ion-justify-content-center ion-align-items-center ion-flex-column"
            [ngStyle]="{'opacity': '1'}"
-           [class] = "exercise?.color??''">
-        <h1>- {{ exercise?.name }} -</h1>
+           [class] = "exercise?.color??''" >
+        <div><h1>- {{ exercise?.name }} -</h1></div>
       </div>
     </div>
 
     <div class="about-info">
 
       <div class="ion-padding-top ion-padding-start ion-padding-end">
-<!--        <ion-label class="ion-text-center">-->
-
-<!--          <p>todo: add exercise details</p>-->
-<!--          <p> unit: {{activity()?.exercise?.weightUnit}}</p>-->
-<!--          <p *ngIf="(activity()?.exercise?.weightOptions?.length??0) > 0"> Weights:</p>-->
-<!--          <p *ngIf="(activity()?.exercise?.weightOptions?.length??0) > 0">-->
-<!--            <sub>@for (item of activity()?.exercise?.weightOptions; track item) {-->
-<!--              | {{item}}-->
-<!--            }|</sub>-->
-<!--          </p>-->
-<!--          <p> Repeat:</p>-->
-<!--          <p>-->
-<!--            <sub>|@for (item of activity()?.exercise?.repeatOptions; track item) {-->
-<!--              {{item}} |-->
-<!--            }</sub>-->
-<!--          </p>-->
-<!--          <p> Color: {{activity()?.exercise?.color}}</p>-->
-<!--          <p> Description:</p>-->
-<!--          <p>{{activity()?.exercise?.description}}</p>-->
-
-<!--        </ion-label>-->
 
         <h3>Exercise Details</h3>
 
         <ion-list lines="none">
+<!-- Category -->
           <ion-item>
-            <ion-select
-              label="Category"
-              [(ngModel)]="category"
-              [interfaceOptions]="selectCategory"
-            >
-              <ion-select-option value="chest">Chest Day</ion-select-option>
-              <ion-select-option value="back">Back Day</ion-select-option>
-              <ion-select-option value="shoulders">Shoulders</ion-select-option>
-              <ion-select-option value="push">Push Day</ion-select-option>
-              <ion-select-option value="pull">Pull Day</ion-select-option>
-              <ion-select-option value="leg">Legs</ion-select-option>
-            </ion-select>
-          </ion-item>
-
-          <ion-item>
-            <ion-label> Color </ion-label>
+            <ion-label> Category </ion-label>
             <ion-label class="ion-text-end">
               {{exercise?.color}}
             </ion-label>
           </ion-item>
-
+<!-- Weight -->
           <ion-item>
-            <ion-select label="Weights">
-              @for (item of weightOptions1; track item) {
-                <ion-select-option value="{{item}}">{{ item }}</ion-select-option>
-              }
-            </ion-select>
+            <ion-toggle [checked]="exercise?.weight">Weight</ion-toggle>
           </ion-item>
-
+<!-- Reps -->
+          <ion-item>
+            <ion-toggle [checked]="exercise?.reps">Reps</ion-toggle>
+          </ion-item>
+<!-- Unit -->
           <ion-item>
             <ion-label> Weight Unit</ion-label>
             <ion-label class="ion-text-end">
-              {{exercise?.weightUnit}}
+              {{exercise?.weightUnit == "" ? 'none' : exercise?.weightUnit}}
             </ion-label>
           </ion-item>
-
+<!-- Description -->
           <ion-item>
-            <ion-select label="Repeats">
-              @for (item of repeatOptions; track item) {
-                <ion-select-option value="{{item}}">{{ item }}</ion-select-option>
-              }
-            </ion-select>
-          </ion-item>
-
-
-          <ion-item button="true" (click)="showDescModal.set(true)">
             <ion-label> Description </ion-label>
-            <ion-text slot="end">
-              {{ 'lorem lorem' }}
-            </ion-text>
-            <ion-modal [isOpen]="showDescModal()" (willDismiss)="onWillDismiss($event)">
-              <ng-template>
-                <ion-header>
-                  <ion-toolbar>
-                    <ion-buttons slot="start">
-                      <ion-button (click)="cancel()">Cancel</ion-button>
-                    </ion-buttons>
-                    <ion-title>Welcome</ion-title>
-                    <ion-buttons slot="end">
-                      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ion-header>
-                <ion-content class="ion-padding">
-                  <ion-item>
-                    <ion-textarea
-                      rows="20"
-                      label="Enter description"
-                      labelPlacement="stacked"
-                      type="text"
-                      placeholder="Description"
-                      [(ngModel)]="name"
-                    ></ion-textarea>
-                  </ion-item>
-                </ion-content>
-              </ng-template>
-            </ion-modal>
           </ion-item>
+          <ion-label class="ion-padding-start ion-padding-end" color="medium" slot="end">
+            {{ exercise?.description }}
+          </ion-label>
+<!-- Instructions -->
+          <ion-item>
+            <ion-label> Instructions </ion-label>
+          </ion-item>
+          <ion-label class="ion-padding-start ion-padding-end" color="medium" slot="end">
+            TODO
+          </ion-label>
+<!-- Upload -->
+          <ion-item >
+            <ion-label> Upload Image </ion-label>
+          </ion-item>
+          <ion-label class="ion-padding-start ion-padding-end" color="medium" slot="end">
+            TODO
+          </ion-label>
 
         </ion-list>
       </div>

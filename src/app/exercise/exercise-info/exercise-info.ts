@@ -13,11 +13,11 @@ import {
   IonLabel,
   IonList,
   IonMenuButton, IonModal,
-  IonPopover, IonRouterLink,
+  IonPopover, IonRouterLink, IonRow,
   IonSelect,
   IonSelectOption,
   IonText, IonTextarea,
-  IonTitle,
+  IonTitle, IonToggle,
   IonToolbar,
   NavController
 } from '@ionic/angular/standalone';
@@ -26,14 +26,13 @@ import {Router, RouterLink} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Activity, Exercise, repeatOptions, weightOptions1} from '../../classes/state.interface';
 import {EXERCISES} from '../../classes/all-exercises.data';
-import {DatePipe, NgIf, NgStyle} from '@angular/common';
+import {DatePipe, JsonPipe, NgIf, NgStyle} from '@angular/common';
 import {addIcons} from 'ionicons';
 import {chevronBackOutline, chevronForwardOutline, location} from 'ionicons/icons';
 import {FormsModule} from '@angular/forms';
 import {OverlayEventDetail} from '@ionic/core';
 
 @Component({
-  selector: 'app-exercise-info',
   imports: [
     IonButtons,
     IonHeader,
@@ -45,7 +44,6 @@ import {OverlayEventDetail} from '@ionic/core';
     IonLabel,
     IonMenuButton,
     NgStyle,
-    NgIf,
     IonIcon,
     IonList,
     IonItem,
@@ -53,17 +51,17 @@ import {OverlayEventDetail} from '@ionic/core';
     FormsModule,
     IonSelectOption,
     IonText,
-    IonPopover,
-    DatePipe,
-    IonDatetime,
-    IonInput,
     IonTextarea,
     IonModal,
     IonRouterLink,
-    RouterLink
+    RouterLink,
+    IonToggle,
+    JsonPipe,
+    IonRow
   ],
-  templateUrl: './exercise-info.html',
-  styleUrl: './exercise-info.scss'
+  selector: 'app-exercise-info',
+  styleUrl: './exercise-info.scss',
+  templateUrl: './exercise-info.html'
 })
 export class ExerciseInfo {
   service = inject(CommonService);
@@ -91,9 +89,6 @@ export class ExerciseInfo {
   protected readonly Activity = Activity;
 
   navyController = inject(NavController);
-  selectCategory = {
-    header: 'Select a Category',
-  };
   navBack() {
     let exIndex = EXERCISES.findIndex(a=> a.id === this.id());
     if (exIndex == 0)
@@ -110,22 +105,4 @@ export class ExerciseInfo {
     this.navyController.navigateForward("exercise/" + ex.id)
   }
 
-  category = "";
-
-
-  showDescModal = signal<boolean>(false);
-  name!: string;
-  @ViewChild(IonModal) modal!: IonModal;
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-  }
-  confirm() {
-    this.modal.dismiss(this.name, 'confirm');
-  }
-  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
-    this.showDescModal.set(false);
-  }
-
-  protected readonly repeatOptions = repeatOptions;
-  protected readonly weightOptions1 = weightOptions1;
 }

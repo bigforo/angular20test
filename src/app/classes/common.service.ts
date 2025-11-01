@@ -37,7 +37,7 @@ export class CommonService {
     this.appState().history.splice(this.appState().history.indexOf(session), 1);
     this.save();
   }
-  
+
   public findActivityByExercise(exerciseId: string):Activity|undefined {
     return this.appState().current?.activities.find(dayExercise =>
       dayExercise.id === exerciseId
