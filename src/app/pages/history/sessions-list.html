@@ -18,8 +18,8 @@
          <p>
            &mdash;
           @for (i of session.activities; track $index){
-            @let exercise = service.findExerciseById(i.id);
-            {{exercise.name}}  &mdash;
+            @let exercise = Activity.exerciseById(i.id);
+            {{exercise?.name}}  &mdash;
           }
          </p>
           @if(session.note){

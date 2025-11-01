@@ -1,7 +1,7 @@
 import {Component, inject, linkedSignal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {AllSummary} from '../../components/all-summary/all-summary';
-import {Session} from '../../classes/state.interface';
+import {Activity, Session} from '../../classes/state.interface';
 import {MatButton} from '@angular/material/button';
 import {Router, RouterLink} from '@angular/router';
 import {
@@ -56,4 +56,6 @@ export class SessionsList {
     this.service.deleteSessionFromHis(session);
     sliding.close();
   }
+
+  protected readonly Activity = Activity;
 }

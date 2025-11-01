@@ -18,7 +18,7 @@
 
 <div class="contact-form">
   <div class="flow">
-    <div class="flex items-center justify-center font-extrabold text-pink-300">- {{service.findExerciseById(activity().id).name}} -</div>
+    <div class="flex items-center justify-center font-extrabold text-pink-300">- {{exercise()?.name}} -</div>
     <div class="flex items-center justify-center text-opacity-10 text-pink-700">{{ activity().created | date}} </div>
   </div>
 
@@ -26,7 +26,7 @@
     <label for="reps">Rep Number</label>
     <div class="button-container">
       <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="reps">
-        @for (n of service.findExerciseById(activity().id).repeatOptions; track $index) {
+        @for (n of repeatOptions; track $index) {
           <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
         }
       </mat-button-toggle-group>
@@ -38,7 +38,7 @@
       <label for="weight">Weight (kg)</label>
       <div class="button-container">
         <mat-button-toggle-group [hideSingleSelectionIndicator]="true" [(value)]="kgs">
-          @for (n of service.findExerciseById(activity().id).weightOptions; track $index) {
+          @for (n of weightOptions1; track $index) {
             <mat-button-toggle value="{{n}}">{{n}}</mat-button-toggle>
           }
         </mat-button-toggle-group>

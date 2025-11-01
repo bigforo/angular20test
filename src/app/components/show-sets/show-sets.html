@@ -1,5 +1,5 @@
 <ion-grid [fixed]="true">
-  @let exercise = service.findExerciseById(activity().id);
+  @let exercise = Activity.exerciseById(activity().id);
   @for (i of activity().sets; track $index) {
     <ion-row>
 <!--  Index -->
@@ -23,9 +23,14 @@
 <!-- Reps X Sets -->
       <ion-col class="ion-text-center">
         <ion-label color="tertiary">
+          @if (exercise?.reps) {
           {{ i.reps }}
-          @if (activity()?.hasSize) {
-            {{ 'x ' + i.size }}{{ exercise.weightUnit }}
+          }
+          @if (exercise?.weight) {
+            {{ 'x ' + i.size }}{{ exercise?.weightUnit }}
+          }
+          @if (!exercise?.reps && !exercise?.weight){
+            {{ i.reps }}
           }
         </ion-label>
       </ion-col>

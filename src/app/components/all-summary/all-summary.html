@@ -5,9 +5,9 @@
         <span class=" text-yellow-500 font-mono">{{session?.created | date:"dd MMM"}}</span>
       </div>
       @for (activity of session?.activities; track activity.id) {
-        @let exercise = service.findExerciseById(activity.id);
+        @let exercise = Activity.exerciseById(activity.id);
         <div class="text-sm">
-          <span class="text-sm text-indigo-400 font-mono">[{{ exercise.name }}]</span> started at {{ activity.created| date:"HH:mm"}} number of sets: <span>{{ activity.sets.length }}</span>
+          <span class="text-sm text-indigo-400 font-mono">[{{ exercise?.name }}]</span> started at {{ activity.created| date:"HH:mm"}} number of sets: <span>{{ activity.sets.length }}</span>
         </div>
       }
     }

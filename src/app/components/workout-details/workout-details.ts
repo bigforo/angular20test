@@ -1,5 +1,5 @@
 import {Component, inject, input} from '@angular/core';
-import {Session} from '../../classes/state.interface';
+import {Activity, Session} from '../../classes/state.interface';
 import {CommonService} from '../../classes/common.service';
 import {DatePipe} from '@angular/common';
 import {IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList} from '@ionic/angular/standalone';
@@ -18,4 +18,5 @@ import {IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonLis
 export class WorkoutDetails {
   session = input<Session | null>();
   service = inject(CommonService);
+  protected readonly Activity = Activity;
 }

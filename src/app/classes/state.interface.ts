@@ -53,7 +53,7 @@ export class Activity  {
     this.id = exerciseId;
     this.visible = true;
     let exercise = EXERCISES.find(ex => ex.id === exerciseId);
-    this.hasSize = exercise?.weightOptions.length ?? 0 > 0;
+    this.hasSize = exercise?.weightUnit;
     this.note = "";
   }
 
@@ -84,15 +84,18 @@ export class Activity  {
   static unknowActivity(){
     return new Activity("");
   }
+  static exerciseById(id:string){
+    return EXERCISES.find((x) => x.id == id);
+  }
 }
 
 export interface Exercise{
   id: string,
   name?: string,
-  repeatOptions?: number[],
-  weightOptions: number[],
   color?:string,
   weightUnit?:string,
+  reps: boolean,
+  weight: boolean,
   description?:string,
 }
 

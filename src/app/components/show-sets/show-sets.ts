@@ -24,4 +24,5 @@ export class ShowSets {
   activity = input.required<Activity>();
   service = inject(CommonService);
 
+  protected readonly Activity = Activity;
 }

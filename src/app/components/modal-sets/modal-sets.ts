@@ -57,6 +57,7 @@ export class ModalSets implements OnInit{
   closed = output<boolean>();
   reps: any;
   kgs: any;
+  free: string = "";
 
   note = linkedSignal(()=>{
     return this.activity().note;
@@ -65,12 +66,16 @@ export class ModalSets implements OnInit{
   ngOnInit(): void {
     this.service.getHistory(this.activity().id);
   }
-  addSet(reps: string, kgs: any) {
+  addSet(p0: Activity, reps: string, kgs: any, free: string) {
     this.service.startSessionIfNotStarted();
-      if (this.activity().hasSize)
+    let ex = Activity.exerciseById(p0.id);
+      if (ex?.weightUnit && ex?.reps)
         this.activity().sets.push(new SetClass(reps, kgs));
-      else
+      else if  (!ex?.weightUnit && ex?.reps)
         this.activity().sets.push(new SetClass(reps, ""));
+      else
+        this.activity().sets.push(new SetClass(free, ""));
+
       this.service.save();
   }
 
@@ -96,4 +101,6 @@ export class ModalSets implements OnInit{
     this.activity().note = value;
     this.service.save();
   }
+
+  protected readonly Activity = Activity;
 }

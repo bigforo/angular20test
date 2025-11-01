@@ -24,7 +24,7 @@ import {
 import {CommonService} from '../../classes/common.service';
 import {Router, RouterLink} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Activity, Exercise} from '../../classes/state.interface';
+import {Activity, Exercise, repeatOptions, weightOptions1} from '../../classes/state.interface';
 import {EXERCISES} from '../../classes/all-exercises.data';
 import {DatePipe, NgIf, NgStyle} from '@angular/common';
 import {addIcons} from 'ionicons';
@@ -126,4 +126,6 @@ export class ExerciseInfo {
     this.showDescModal.set(false);
   }
 
+  protected readonly repeatOptions = repeatOptions;
+  protected readonly weightOptions1 = weightOptions1;
 }

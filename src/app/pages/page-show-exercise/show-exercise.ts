@@ -6,7 +6,7 @@ import {CommonService} from '../../classes/common.service';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {DatePipe} from '@angular/common';
 import {EXERCISES} from '../../classes/all-exercises.data';
-import {Activity} from '../../classes/state.interface';
+import {Activity, repeatOptions, weightOptions1} from '../../classes/state.interface';
 import {
   IonBackButton, IonButton,
   IonButtons, IonCol,
@@ -61,6 +61,9 @@ export class ShowExercise implements  OnInit {
     if (act === undefined) return new Activity(ex.id);
     return act;
   });
+  exercise = linkedSignal(() => {
+    return Activity.exerciseById(this.id()??"");
+  })
 
 
   reps: any;
@@ -90,4 +93,6 @@ export class ShowExercise implements  OnInit {
 
   protected readonly Activity = Activity;
   protected readonly EXERCISES = EXERCISES;
+  protected readonly weightOptions1 = weightOptions1;
+  protected readonly repeatOptions = repeatOptions;
 }

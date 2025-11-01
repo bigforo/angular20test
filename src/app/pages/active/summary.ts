@@ -150,4 +150,6 @@ export class Summary {
 
     sliding.close();
   }
+
+  protected readonly Activity = Activity;
 }

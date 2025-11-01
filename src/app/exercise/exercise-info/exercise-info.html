@@ -9,12 +9,12 @@
 
 <ion-content>
   @if (activity() != null){
-    @let exercise = service.findExerciseById(activity().id);
+    @let exercise = Activity.exerciseById(activity().id);
     <div class="about-header">
       <div class="about-image ion-display-flex ion-justify-content-center ion-align-items-center"
            [ngStyle]="{'opacity': '1'}"
-           [class] = "exercise.color??''">
-        <h1>- {{ exercise.name }} -</h1>
+           [class] = "exercise?.color??''">
+        <h1>- {{ exercise?.name }} -</h1>
       </div>
     </div>
 
@@ -64,13 +64,13 @@
           <ion-item>
             <ion-label> Color </ion-label>
             <ion-label class="ion-text-end">
-              {{exercise.color}}
+              {{exercise?.color}}
             </ion-label>
           </ion-item>
 
           <ion-item>
             <ion-select label="Weights">
-              @for (item of exercise.weightOptions; track item) {
+              @for (item of weightOptions1; track item) {
                 <ion-select-option value="{{item}}">{{ item }}</ion-select-option>
               }
             </ion-select>
@@ -79,13 +79,13 @@
           <ion-item>
             <ion-label> Weight Unit</ion-label>
             <ion-label class="ion-text-end">
-              {{exercise.weightUnit}}
+              {{exercise?.weightUnit}}
             </ion-label>
           </ion-item>
 
           <ion-item>
             <ion-select label="Repeats">
-              @for (item of exercise.repeatOptions; track item) {
+              @for (item of repeatOptions; track item) {
                 <ion-select-option value="{{item}}">{{ item }}</ion-select-option>
               }
             </ion-select>
