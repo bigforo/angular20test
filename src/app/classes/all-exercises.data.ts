@@ -8,7 +8,7 @@ export const EXERCISES: Exercise[] = [
   { id: 'b4',  name: 'bench machine incline',    color: 'orange',weightUnit: 'kg',reps:true,  weight:true,   description: '' },
   { id: 'b5',  name: 'bench smith incline',      color: 'orange',weightUnit: 'kg',reps:true,  weight:true,   description: '' },
   { id: 'c1',  name: 'cables upper chest',       color: 'orange',weightUnit: 'kg',reps:true,  weight:true,   description: '' },
-  { id: 'dips',name: 'dips',                     color: 'orange',weightUnit: 'kg',reps:true,  weight:true,   description: '' },
+  { id: 'dips',name: 'dips',                     color: 'orange',weightUnit: 'kg',reps:true,  weight:false,   description: '' },
   { id: 'ab1', name: 'abs bench decline',        color: 'red',   weightUnit: 'kg',reps:true,  weight:true,   description: '' },
   { id: 'ab2', name: 'abs roller',               color: 'red',   weightUnit: 'kg',reps:true,  weight:false,  description: '' },
   { id: 'ab3', name: 'abs hang',                 color: 'red',   weightUnit: 'kg',reps:true,  weight:false,  description: '' },
@@ -38,7 +38,7 @@ export const EXERCISES: Exercise[] = [
   { id: 'l7',  name: 'leg-curl-quad',            color: 'blue',  weightUnit: 'kg',reps:true,  weight:true,   description: '' },
   { id: 'l8',  name: 'squats',                   color: 'blue',  weightUnit: 'kg',reps:true,  weight:true,   description: '' },
   { id: 'l9',  name: 'lunges',                   color: 'blue',  weightUnit: 'kg',reps:true,  weight:true,   description: '' },
-  { id: 'run', name: 'running',                  color: 'red',   weightUnit: 'kg',reps:true,  weight:false,  description: '' },
+  { id: 'run', name: 'running',                  color: 'red',   weightUnit: 'kg',reps:false,  weight:false,  description: 'Running around. Zone 2 baby!' },
   { id: 'hike', name: 'hike',                    color: 'red',   weightUnit: 'kg',reps:false, weight:false,  description: 'Hiking around' },
   { id: 'hang', name: 'dead hang',               color: 'purple',weightUnit: '',  reps:false, weight:false,  description: 'Daily Hang for 60 sec lats engaged' },
 ];
