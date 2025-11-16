@@ -51,7 +51,7 @@
         <ion-item button="true" lines="full" (click)="modalRedirect(activity.id)" >
           <ion-label [style.border-left-color]="exercise?.color" class="label-color-border" >
             <strong class="ion-text-capitalize">#{{$index+1}} {{exercise?.name}}</strong>
-            <ion-text color="medium" class="ion-text-lowercase">- {{exercise?.description}} -</ion-text>
+            <ion-text color="medium" class="ion-text-lowercase">- {{exercise?.name}} -</ion-text>
             @if (activity.sets.length > 0){
               <app-show-sets style="width: 100%" [activity]="activity" />
             }
