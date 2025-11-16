@@ -1,4 +1,10 @@
-<ion-modal [isOpen]="open()" [canDismiss]="canDismiss" (willDismiss)="onWillDismiss($event)"  [initialBreakpoint]="1" [breakpoints]="[0, 0.75, 1]" >
+<ion-modal
+            [isOpen]="open()"
+            [canDismiss]="canDismiss"
+            (willDismiss)="onWillDismiss($event)"
+            [initialBreakpoint]="1"
+            [breakpoints]="[0, 0.75, 1]"
+>
   <ng-template>
 
     <ion-header>
@@ -21,24 +27,24 @@
           <ion-row>
             @if (exercise?.reps) {
             <ion-col>
-              <ion-input mode="md" label="REPS" label-placement="floating" fill="outline"  inputmode="numeric" placeholder="" [(ngModel)]="reps"></ion-input>
+              <ion-input mode="md" label="REPS" label-placement="floating" fill="outline"  inputmode="numeric" placeholder="" [(ngModel)]="values.reps"></ion-input>
             </ion-col>
             }
             @if (exercise?.weight) {
             <ion-col>
-              <ion-input mode="md" label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal" placeholder="" [(ngModel)]="kgs" ></ion-input>
+              <ion-input mode="md" label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal" placeholder="" [(ngModel)]="values.kgs" ></ion-input>
             </ion-col>
             }
             @if (!exercise?.weight && !exercise?.reps) {
               <ion-col>
-                <ion-input mode="md" label="FREE TEXT" label-placement="floating" fill="outline" placeholder="" [(ngModel)]="free" ></ion-input>
+                <ion-input mode="md" label="FREE TEXT" label-placement="floating" fill="outline" placeholder="" [(ngModel)]="values.free" ></ion-input>
               </ion-col>
             }
           </ion-row>
 <!--   Button -->
           <ion-row>
             <ion-col>
-              <ion-button color="light" expand="full" (click)="addSet(activity(),reps,kgs,free)">Add Set</ion-button>
+              <ion-button color="light" expand="full" (click)="addSet(activity(),values)">Add Set</ion-button>
             </ion-col>
           </ion-row>
 <!--   SETS-->

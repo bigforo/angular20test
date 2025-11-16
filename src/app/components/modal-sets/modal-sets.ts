@@ -1,4 +1,4 @@
-import {Component, computed, inject, input, linkedSignal, OnInit, output, signal} from '@angular/core';
+import {Component, computed, effect, inject, input, linkedSignal, OnInit, output, signal} from '@angular/core';
 import {
   IonButton,
   IonButtons,
@@ -37,8 +37,6 @@ import {FormsModule} from '@angular/forms';
     IonToolbar,
     DatePipe,
     ExHistory,
-    MatButtonToggle,
-    MatButtonToggleGroup,
     ShowSets,
     IonTextarea,
     FormsModule,
@@ -55,10 +53,19 @@ export class ModalSets implements OnInit{
   activity =  input.required<Activity>();
   open = input.required<boolean>();
   closed = output<boolean>();
-  reps: any;
-  kgs: any;
-  free: string = "";
-
+  values = {
+    reps: "",
+    kgs: "",
+    free: "",
+  }
+  constructor() {
+    effect(() => {
+      //Default value when OPEN
+      if (this.open()){
+       this.values = { reps: "", kgs: "",free: "",}
+      }
+    });
+  }
   note = linkedSignal(()=>{
     return this.activity().note;
   });
@@ -66,15 +73,19 @@ export class ModalSets implements OnInit{
   ngOnInit(): void {
     this.service.getHistory(this.activity().id);
   }
-  addSet(p0: Activity, reps: string, kgs: any, free: string) {
+  addSet(p0: Activity, values: {
+    reps: string
+    kgs: string
+    free: string
+  }) {
     this.service.startSessionIfNotStarted();
     let ex = Activity.exerciseById(p0.id);
       if (ex?.weightUnit && ex?.reps)
-        this.activity().sets.push(new SetClass(reps, kgs));
+        this.activity().sets.push(new SetClass(values.reps, values.kgs));
       else if  (!ex?.weightUnit && ex?.reps)
-        this.activity().sets.push(new SetClass(reps, ""));
+        this.activity().sets.push(new SetClass(values.reps, ""));
       else
-        this.activity().sets.push(new SetClass(free, ""));
+        this.activity().sets.push(new SetClass(values.free, ""));
 
       this.service.save();
   }
@@ -87,11 +98,11 @@ export class ModalSets implements OnInit{
     this.service.save();
   }
 
-  onNoteChange($event: any) {
-    this.activity().note = $event.valueOf();
-    this.service.save();
-    this.note = $event;
-  }
+  // onNoteChange($event: any) {
+  //   this.activity().note = $event.valueOf();
+  //   this.service.save();
+  //   this.note = $event;
+  // }
 
   getNote():string {
     return this.note()
