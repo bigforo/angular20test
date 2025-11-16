@@ -3,11 +3,15 @@ import {provideRouter, RouteReuseStrategy, withComponentInputBinding} from '@ang
 
 import { routes } from './app.routes';
 import {IonicRouteStrategy, provideIonicAngular} from '@ionic/angular/standalone';
+import {options} from 'ionicons/icons';
+import {config} from 'rxjs';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideIonicAngular(),
+    provideIonicAngular({
+      mode:"ios"
+    }),
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding())
