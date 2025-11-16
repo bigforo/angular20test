@@ -38,12 +38,8 @@ import {ExHistory} from '../../components/ex-history/ex-history';
     IonContent,
     IonBackButton,
     IonButton,
-    IonCol,
-    IonGrid,
-    IonRow,
-    ExerciseSets,
     ExHistory
-  ],
+],
   templateUrl: './show-exercise.html',
   styleUrl: './show-exercise.scss'
 })

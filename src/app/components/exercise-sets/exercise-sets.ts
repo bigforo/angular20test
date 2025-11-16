@@ -8,10 +8,6 @@ import {CommonService} from '../../classes/common.service';
 @Component({
   selector: 'app-exercise-sets',
   imports: [
-    DatePipe,
-    IonCol,
-    IonGrid,
-    IonRow,
     IonPicker,
     IonPickerColumn,
     IonPickerColumnOption
