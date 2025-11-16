@@ -35,13 +35,22 @@ export class Session{
     this.activities = [];
   }
 
-  toggleVisible(): void {
-    this.visibility = !this.visibility;
-  }
   visibility: boolean = false;
 }
 
 export class Activity  {
+  static newActivity(a:Activity): Activity {
+    return {
+      visible: a.visible,
+      id: a.id,
+      created: a.created,
+      sets: a.sets,
+      hasSize: a.hasSize,
+      note: a.note,
+      date: a.date,
+      time: a.time,
+    }
+  }
   id: string;
   created = new Date();
   sets: SetClass[] = [];
@@ -64,22 +73,22 @@ export class Activity  {
     return this.created.toTimeString();
   }
 
-  toggleVisible(): void {
-    this.visible = !this.visible;
-  }
-  addSet(reps: string, kilo: string = ""): void {
-    if (this.hasSize)
-      this.sets.push(new SetClass(reps, kilo));
-    else
-      this.sets.push(new SetClass(reps, ""));
-
-  }
-  removeSet(index: number | null = null): void {
-    if (index == null)
-      this.sets.pop();
-    else
-      this.sets.splice(index, 1);
-  }
+  // toggleVisible(): void {
+  //   this.visible = !this.visible;
+  // }
+  // addSet(reps: string, kilo: string = ""): void {
+  //   if (this.hasSize)
+  //     this.sets.push(new SetClass(reps, kilo));
+  //   else
+  //     this.sets.push(new SetClass(reps, ""));
+  //
+  // }
+  // removeSet(index: number | null = null): void {
+  //   if (index == null)
+  //     this.sets.pop();
+  //   else
+  //     this.sets.splice(index, 1);
+  // }
 
   static unknowActivity(){
     return new Activity("");

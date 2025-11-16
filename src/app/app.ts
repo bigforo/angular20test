@@ -23,10 +23,8 @@ import {
 } from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
-import {ToastController} from '@ionic/angular';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Activity, Session} from './classes/state.interface';
-import {EXERCISES} from './classes/all-exercises.data';
 
 @Component({
   selector: 'app-root',
