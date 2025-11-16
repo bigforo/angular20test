@@ -14,6 +14,7 @@ import {
   IonIcon,
   IonMenuButton, IonTextarea, IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-page-import-export',
@@ -29,12 +30,13 @@ export class PageImportExport {
   constructor() {
     this.data = JSON.stringify(this.appState().history);
   }
-
+  router = inject(Router);
   import() {
     const val = JSON.parse(this.data) as Session[];
     if (val){
       this.service.setHistory(val);
     }
+    this.router.navigateByUrl('/');
   }
 
 }

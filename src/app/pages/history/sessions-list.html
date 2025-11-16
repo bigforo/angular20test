@@ -13,15 +13,13 @@
     <ion-item-sliding #sliding>
       <ion-item lines="full" [routerLink]="['/session']" [queryParams]="{id: $index}" >
         <ion-label color="secondary">
-         <strong>{{session.name}} {{ session.created | date:"EEE d-MMM-yy" }}</strong>
-          <ion-text color="warning" class="ion-text-lowercase" > {{session.type}} </ion-text>
-         <p>
-           &mdash;
+         <strong>{{ session.created | date:"EEE d-MMM-yy" }}</strong>
+          <ion-text color="warning" class="ion-text-lowercase io" > -{{session.type}}- </ion-text>
+
           @for (i of session.activities; track $index){
             @let exercise = Activity.exerciseById(i.id);
-            {{exercise?.name}}  &mdash;
+            <p>- {{exercise?.name}}</p>
           }
-         </p>
           @if(session.note){
           <p>note: {{session.note}}</p>
           }
