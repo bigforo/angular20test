@@ -1,4 +1,4 @@
-import {Component, inject, ViewChild} from '@angular/core';
+import {Component, computed, inject, signal, ViewChild} from '@angular/core';
 import {
   IonAvatar,
   IonButton, IonButtons,
@@ -44,7 +44,6 @@ export class ModalExercises {
   @ViewChild(IonModal) modal!: IonModal;
   service = inject(CommonService);
   router = inject(Router);
-  protected readonly EXERCISES = EXERCISES;
   constructor() {
     addIcons({
       shareSocial,
@@ -59,5 +58,18 @@ export class ModalExercises {
       this.service.findOrStartActivityByExercise(id);
       this.modal.dismiss(null);
     }
+  }
+
+  items = signal(EXERCISES);
+  query = signal('');
+
+  filteredItems = computed(() =>
+    this.items().filter(i =>
+      i.name?.toLowerCase().includes(this.query().toLowerCase())
+    )
+  );
+
+  searchInput(value: any) {
+    this.query.set(value.detail.value);
   }
 }

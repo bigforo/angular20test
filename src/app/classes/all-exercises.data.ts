@@ -9,6 +9,7 @@ export const EXERCISES: Exercise[] = [
   { id: 'b5',  name: 'bench smith incline',      color: 'orange',weightUnit: 'kg',reps:true,  weight:true,   description: 'bench press on smith. incline or flat.' },
   { id: 'b6',  name: 'bench flies',              color: 'orange',weightUnit: 'kg',reps:true,  weight:true,   description: 'bench fly machine.' },
   { id: 'c1',  name: 'cables upper chest',       color: 'orange',weightUnit: 'kg',reps:true,  weight:true,   description: 'cable press from bottom up. upper chest.' },
+  { id: 'b7',  name: 'bench dumbbells upper',    color: 'orange',weightUnit: 'kg',reps:true,  weight:true,   description: 'incline bench with dumbbells upper chest.' },
   { id: 'dips',name: 'dips',                     color: 'orange',weightUnit: 'kg',reps:true,  weight:false,  description: 'dips. triceps or lower chest' },
   { id: 'ab1', name: 'abs bench decline',        color: 'red',   weightUnit: 'kg',reps:true,  weight:true,   description: 'abs on decline bench.' },
   { id: 'ab2', name: 'abs roller',               color: 'red',   weightUnit: 'kg',reps:true,  weight:false,  description: 'abs with roller.' },
@@ -42,6 +43,6 @@ export const EXERCISES: Exercise[] = [
   { id: 'run', name: 'running',                  color: 'red',   weightUnit: 'kg',reps:false, weight:false,  description: 'Running around. Zone 2 baby!' },
   { id: 'hike',name: 'hike',                     color: 'red',   weightUnit: 'kg',reps:false, weight:false,  description: 'Hiking around' },
   { id: 'hang',name: 'dead hang',                color: 'purple',weightUnit: '',  reps:false, weight:false,  description: 'Daily Hang for 60 sec lats engaged' },
-  { id: 'th',  name: 'threadmill',               color: 'purple',weightUnit: '',  reps:false, weight:false,    description: 'Threadmill. Run. Backward walk. Sprints.' },
-  { id: 'em',  name: 'empty',                    color: 'black', weightUnit: '',  reps:false, weight:false,    description: 'Place Holder for new exercise.' },
+  { id: 'th',  name: 'threadmill',               color: 'purple',weightUnit: '',  reps:false, weight:false,  description: 'Threadmill. Run. Backward walk. Sprints.' },
+  { id: 'em',  name: 'empty',                    color: 'black', weightUnit: '',  reps:false, weight:false,  description: 'Place Holder for new exercise.' },
 ];
