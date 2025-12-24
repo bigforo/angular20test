@@ -54,6 +54,7 @@
             <ion-text color="medium" class="ion-text-lowercase">- {{exercise?.name}} -</ion-text>
             @if (activity.sets.length > 0){
               <app-show-sets style="width: 100%" [activity]="activity" />
+<!--              exercise comment-->
               @if (activity?.note?.length ?? 0 > 0){
                 <ion-label> <p>{{ activity.note }} </p> </ion-label>
               }

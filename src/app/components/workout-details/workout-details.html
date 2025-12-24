@@ -3,42 +3,46 @@
 
   @for (activity of session()?.activities; track $index) {
     @let exercise = Activity.exerciseById(activity.id);
+
     <ion-list inset="true">
-      <ion-item lines="full" >
-        <ion-label>
-          <h1 class="ion-text-capitalize">{{exercise?.name}}</h1>
-          <p>started at {{ activity.created | date:'HH:mm' }}</p>
-        </ion-label>
-      </ion-item>
+    <ion-label>
+      <h1 class="ion-text-capitalize">{{exercise?.name}}</h1>
+<!--      <p>started at {{ activity.created | date:'HH:mm' }}</p>-->
+    </ion-label>
 
-      @for (i of activity.sets; track $index){
-      <ion-item>
-        <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>
-        <ion-label color="tertiary">
-          @if (exercise?.reps) {
-            set {{ $index + 1 }}
-          }
-        </ion-label>
-        <ion-label color="tertiary">
-          @if (exercise?.reps) {
-            {{i.reps}}
-          }
-          @if (exercise?.weight) {
-            {{'x ' + i.size}}{{exercise?.weightUnit}}
-          }
-          @if (!exercise?.reps && !exercise?.weight) {
-            {{i.reps}}
-          }
-        </ion-label>
-      </ion-item>
-      }
-      @if (activity?.note?.length ?? 0 > 0){
-      <ion-item>
-        <ion-label color="medium"> {{activity.note}} </ion-label>
-      </ion-item>
-      }
+<!--      @for (i of activity.sets; track $index){-->
+<!--      <ion-item>-->
+<!--        <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>-->
+<!--        <ion-label color="tertiary">-->
+<!--          @if (exercise?.reps) {-->
+<!--            set {{ $index + 1 }}-->
+<!--          }-->
+<!--        </ion-label>-->
+<!--        <ion-label color="tertiary">-->
+<!--          @if (exercise?.reps) {-->
+<!--            {{i.reps}}-->
+<!--          }-->
+<!--          @if (exercise?.weight) {-->
+<!--            {{'x ' + i.size}}{{exercise?.weightUnit}}-->
+<!--          }-->
+<!--          @if (!exercise?.reps && !exercise?.weight) {-->
+<!--            {{i.reps}}-->
+<!--          }-->
+<!--        </ion-label>-->
+<!--      </ion-item>-->
+<!--      }-->
+<!--      @if (activity?.note?.length ?? 0 > 0){-->
+<!--      <ion-item>-->
+<!--        <ion-label color="medium"> {{activity.note}} </ion-label>-->
+<!--      </ion-item>-->
+<!--      }-->
+
+    <app-show-sets style="width: 100%" [activity]="activity" />
+    @if (activity?.note?.length ?? 0 > 0){
+      <ion-label> <p>{{ activity.note }} </p> </ion-label>
+    }
+
     </ion-list>
-
   }
   @if (session()?.note){
     <div>
