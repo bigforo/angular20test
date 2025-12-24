@@ -85,10 +85,10 @@ import {ModalDescription} from '../../components/modal-description/modal-descrip
     ModalSets,
     ModalDescription
   ],
-  templateUrl: './summary.html',
-  styleUrl: './summary.scss'
+  templateUrl: './active.html',
+  styleUrl: './active.scss'
 })
-export class Summary {
+export class ActiveComponent {
 
   service = inject(CommonService);
   appState = this.service.appState;
@@ -104,7 +104,7 @@ export class Summary {
     this.service.save();
   }
 
-  deleteConfirmation(event: CustomEvent<OverlayEventDetail>) {
+  endSessionConfirmation(event: CustomEvent<OverlayEventDetail>) {
     if (event.detail.role === 'yes') {
       this.service.stopSession();
       this.service.save();

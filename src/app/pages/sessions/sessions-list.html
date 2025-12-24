@@ -9,7 +9,7 @@
 
 <ion-content fullscreen="true">
   <ion-list>
-@for (session of sessions(); track $index){
+@for (session of this.appState().history; track $index){
     <ion-item-sliding #sliding>
       <ion-item lines="full" [routerLink]="['/session']" [queryParams]="{id: $index}" >
         <ion-label color="secondary">

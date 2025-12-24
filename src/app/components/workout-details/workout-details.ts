@@ -2,7 +2,16 @@ import {Component, inject, input} from '@angular/core';
 import {Activity, Session} from '../../classes/state.interface';
 import {CommonService} from '../../classes/common.service';
 import {DatePipe} from '@angular/common';
-import {IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList} from '@ionic/angular/standalone';
+import {
+  IonCol,
+  IonItem,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
+  IonLabel,
+  IonList, IonRow
+} from '@ionic/angular/standalone';
+import {ShowSets} from '../show-sets/show-sets';
 
 @Component({
   selector: 'app-workout-details',
@@ -10,8 +19,11 @@ import {IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonLis
     DatePipe,
     IonItem,
     IonLabel,
-    IonList
-],
+    IonList,
+    ShowSets,
+    IonCol,
+    IonRow
+  ],
   templateUrl: './workout-details.html',
   styleUrl: './workout-details.scss'
 })

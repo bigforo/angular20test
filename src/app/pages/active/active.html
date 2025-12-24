@@ -16,7 +16,7 @@
         header="Stop Active Workout?"
         message="Older workout sessions can be found in the history tab."
         [buttons]="alertButtons"
-        (didDismiss)="deleteConfirmation($event)"
+        (didDismiss)="endSessionConfirmation($event)"
       ></ion-alert>
     }
 
@@ -54,6 +54,9 @@
             <ion-text color="medium" class="ion-text-lowercase">- {{exercise?.name}} -</ion-text>
             @if (activity.sets.length > 0){
               <app-show-sets style="width: 100%" [activity]="activity" />
+              @if (activity?.note?.length ?? 0 > 0){
+                <ion-label> <p>{{ activity.note }} </p> </ion-label>
+              }
             }
           </ion-label>
 <!--          <div class="metadata-end-wrapper" slot="end">-->

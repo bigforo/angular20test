@@ -47,8 +47,6 @@ export class Activity  {
       sets: a.sets,
       hasSize: a.hasSize,
       note: a.note,
-      date: a.date,
-      time: a.time,
     }
   }
   id: string;
@@ -66,29 +64,12 @@ export class Activity  {
     this.note = "";
   }
 
-  get date(){
-    return this.created.toDateString();
+  static date(created: Date){
+    return created.toDateString();
   }
-  get time(){
-    return this.created.toTimeString();
+  static time(created: Date){
+    return created.toTimeString();
   }
-
-  // toggleVisible(): void {
-  //   this.visible = !this.visible;
-  // }
-  // addSet(reps: string, kilo: string = ""): void {
-  //   if (this.hasSize)
-  //     this.sets.push(new SetClass(reps, kilo));
-  //   else
-  //     this.sets.push(new SetClass(reps, ""));
-  //
-  // }
-  // removeSet(index: number | null = null): void {
-  //   if (index == null)
-  //     this.sets.pop();
-  //   else
-  //     this.sets.splice(index, 1);
-  // }
 
   static unknowActivity(){
     return new Activity("");

@@ -1,4 +1,4 @@
-import {Component, inject, linkedSignal} from '@angular/core';
+import {Component, inject, linkedSignal, OnInit} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {AllSummary} from '../../components/all-summary/all-summary';
 import {Activity, Session} from '../../classes/state.interface';
@@ -40,21 +40,18 @@ import {AlertController} from '@ionic/angular';
   templateUrl: './sessions-list.html',
   styleUrl: './sessions-list.scss'
 })
-export class SessionsList {
+export class SessionsList implements OnInit {
   service = inject(CommonService);
   appState = this.service.appState;
-  sessions = linkedSignal(()=>{
-    return this.appState().history
-  });
   router = inject(Router);
 
-  constructor() {
+  ngOnInit(): void {
     this.service.load();
   }
 
-  delete(session: Session, sliding: IonItemSliding) {
+  async delete(session: Session, sliding: IonItemSliding) {
     this.service.deleteSessionFromHis(session);
-    sliding.close();
+    await sliding.close();
   }
 
   protected readonly Activity = Activity;
