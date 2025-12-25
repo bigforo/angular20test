@@ -19,7 +19,12 @@ import {CommonService} from '../../classes/common.service';
 })
 export class ShowSets {
   diff(time: Date, time1: Date) {
-      console.log("diff",time,time1);
+    const d1 = new Date(time.toString());
+    const d2 = new Date(time1.toString());
+    const diffMs = d1.getTime() - d2.getTime();
+    const seconds = Math.floor(diffMs / 1000);
+    const minutes = Math.floor(diffMs / (1000 * 60));
+    return minutes;
   }
   activity = input.required<Activity>();
   service = inject(CommonService);

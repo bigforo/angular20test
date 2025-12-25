@@ -1,49 +1,41 @@
 
 @if (session()?.activities?.length ?? 0 > 0){
+  <!--  Session DATE TIME-->
+
+  <ion-item button="true" (click)="modalSessionTimeUpdate.set(true)" >
+    <ion-label class="ion-text-center">
+      {{ session()?.created | date:'yyyy-mm-dd'}}
+<!--      @if(appState().current?.note?.length ?? 0 > 0){-->
+<!--        <p>{{appState().current?.note}}</p>-->
+<!--      }-->
+    </ion-label>
+  </ion-item>
+
+<!--    <ion-button id="present-alert" color="light" expand="full">-->
+<!--      {{ session()?.created | date:'yyyy-mm-dd'}}-->
+<!--    </ion-button>-->
 
   @for (activity of session()?.activities; track $index) {
     @let exercise = Activity.exerciseById(activity.id);
 
     <ion-list inset="true">
-    <ion-label>
-      <h1 class="ion-text-capitalize">{{exercise?.name}}</h1>
-<!--      <p>started at {{ activity.created | date:'HH:mm' }}</p>-->
-    </ion-label>
-
-<!--      @for (i of activity.sets; track $index){-->
-<!--      <ion-item>-->
-<!--        <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>-->
-<!--        <ion-label color="tertiary">-->
-<!--          @if (exercise?.reps) {-->
-<!--            set {{ $index + 1 }}-->
-<!--          }-->
-<!--        </ion-label>-->
-<!--        <ion-label color="tertiary">-->
-<!--          @if (exercise?.reps) {-->
-<!--            {{i.reps}}-->
-<!--          }-->
-<!--          @if (exercise?.weight) {-->
-<!--            {{'x ' + i.size}}{{exercise?.weightUnit}}-->
-<!--          }-->
-<!--          @if (!exercise?.reps && !exercise?.weight) {-->
-<!--            {{i.reps}}-->
-<!--          }-->
-<!--        </ion-label>-->
-<!--      </ion-item>-->
-<!--      }-->
-<!--      @if (activity?.note?.length ?? 0 > 0){-->
-<!--      <ion-item>-->
-<!--        <ion-label color="medium"> {{activity.note}} </ion-label>-->
-<!--      </ion-item>-->
-<!--      }-->
-
-    <app-show-sets style="width: 100%" [activity]="activity" />
-    @if (activity?.note?.length ?? 0 > 0){
-      <ion-label> <p>{{ activity.note }} </p> </ion-label>
-    }
+      <!--      Exercise NAME-->
+      <ion-label>
+        <h1 class="ion-text-capitalize">{{exercise?.name}}</h1>
+      <!--      <p>started at {{ activity.created | date:'HH:mm' }}</p>-->
+      </ion-label>
+      <!--    <app-show-sets-with-ion-items style="width: 100%" [activity]="activity"/>-->
+      <app-show-sets style="width: 100%" [activity]="activity" />
+      <!--      Note-->
+      <ion-item>
+        @if (activity?.note?.length ?? 0 > 0){
+          <ion-label> <p>{{ activity.note }} </p> </ion-label>
+        }
+      </ion-item>
 
     </ion-list>
   }
+  <!--  Workout/Session Note-->
   @if (session()?.note){
     <div>
       <h2 class="ion-padding-top ion-padding-start">Note</h2>

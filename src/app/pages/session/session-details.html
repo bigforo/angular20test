@@ -33,12 +33,12 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-    <button
-            (click)="shareLink()"
-            class="fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg"
-    >
-        <ion-icon name="share-outline"></ion-icon>
-    </button>
+<!--    <button-->
+<!--            (click)="shareLink()"-->
+<!--            class="fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg"-->
+<!--    >-->
+<!--        <ion-icon name="share-outline"></ion-icon>-->
+<!--    </button>-->
     @if (session()){
         <app-workout-details [session]="session()"/>
     } @else {
@@ -48,7 +48,7 @@
 
 <ion-footer>
     <ion-toolbar>
-        <ion-button id="present-alert" color="light" expand="full" (click)="copy()" >Copy This Session</ion-button>
+          <ion-button id="present-alert" color="light" expand="full" (click)="copy()" >Copy This Session</ion-button>
 <!--        <ion-button id="present-alert" color="light" expand="full" (click)="shareLink()" >Share</ion-button>-->
     </ion-toolbar>
 </ion-footer>
