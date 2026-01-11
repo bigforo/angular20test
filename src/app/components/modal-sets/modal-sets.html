@@ -41,18 +41,31 @@
               </ion-col>
             }
           </ion-row>
-<!--   Button -->
+
+          <!-- Comment-->
+
+          <ion-textarea mode="md" label-placement="floating" fill="outline"
+                        [ngModel]="getNote()"
+                        (ngModelChange)="setNote($event)"
+                        label="Activity Comments"
+                        labelPlacement="floating"
+                        rows="2">
+          </ion-textarea>
+
+
+          <!--   Button -->
           <ion-row>
             <ion-col>
               <ion-button color="light" expand="full" (click)="addSet(activity(),values)">Add Set</ion-button>
             </ion-col>
           </ion-row>
-<!--   SETS-->
+          <!--   SETS-->
           <ion-row>
             <ion-col>
               <app-show-sets [sets]="activity().sets"/>
             </ion-col>
           </ion-row>
+
         </ion-grid>
       </div>
 
@@ -60,15 +73,6 @@
       <div class="ion-padding">
         <app-ex-history [id]="activity().id"/>
       </div>
-
-      <!-- Comment-->
-      <ion-textarea mode="md" class="ion-padding" label-placement="floating" fill="outline"
-        [ngModel]="getNote()"
-        (ngModelChange)="setNote($event)"
-        label="Activity Comments"
-        labelPlacement="floating"
-        rows="5">
-      </ion-textarea>
 
 
     </ion-content>

@@ -12,10 +12,10 @@
         </ion-label>
       </ion-col>
       <!-- Delta-->
-      <ion-col size="60px" style="position: absolute; left:55px; top:-14px">
+      <ion-col size="60px" style="position: absolute; left:75px; top:-15px">
         @if ($index > 0){
             <ion-text style="font-size: small" color="warning">
-              [{{diff(activity().sets[$index].time,activity().sets[$index-1].time)}}]
+              [{{service.diff(activity().sets[$index].time,activity().sets[$index-1].time)}}]
             </ion-text>
         }
       </ion-col>

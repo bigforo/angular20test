@@ -23,7 +23,7 @@ export class ExHistory {
   histActivities = linkedSignal(() => {
     let ex = EXERCISES.find(a=> a.id === this.id());
     if (ex){
-      return this.service.getHistory(ex.id as string);
+      return this.service.getHistoryEx(ex.id as string);
     }
     return [];
   })

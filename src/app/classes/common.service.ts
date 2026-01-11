@@ -155,4 +155,45 @@ export class CommonService {
       (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
     );
   }
+
+  getHistoryEx(exId: string) {
+    const hist = this.appState().history;
+
+    let foundActivities : ActivityEx[] = [];
+    hist.forEach(session => {
+      let i = 0;
+      session.activities.forEach(activity => {
+
+        if (activity.id == exId) {
+          foundActivities.push({
+            sessionOrder:i+1,
+            activity:activity,
+            prevActivity: (i==0 ? null : session.activities[i-1]),
+            created:activity.created
+          });
+        }
+        i++;
+
+      })
+    });
+    return [...foundActivities].sort(
+      (a, b) => new Date(b.created).getTime() - new Date(a.created).getTime()
+    );
+  }
+
+  diff(time: Date, time1: Date) {
+    const d1 = new Date(time.toString());
+    const d2 = new Date(time1.toString());
+    const diffMs = d1.getTime() - d2.getTime();
+    const seconds = Math.floor(diffMs / 1000);
+    const minutes = Math.floor(diffMs / (1000 * 60));
+    return minutes;
+  }
+}
+
+export type ActivityEx = {
+  sessionOrder:number,
+  created:Date,
+  activity:Activity,
+  prevActivity:Activity | null
 }

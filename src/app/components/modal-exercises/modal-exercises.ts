@@ -31,8 +31,6 @@ import {addIcons} from 'ionicons';
     IonToolbar,
     IonTitle,
     IonButtons,
-    RouterLink,
-    RouterLinkActive,
     IonFab,
     IonFabButton,
     IonIcon
@@ -66,6 +64,7 @@ export class ModalExercises {
   filteredItems = computed(() =>
     this.items().filter(i =>
       i.name?.toLowerCase().includes(this.query().toLowerCase())
+      || i.description?.toLowerCase().includes(this.query().toLowerCase())
     )
   );
 
