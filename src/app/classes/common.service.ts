@@ -189,6 +189,16 @@ export class CommonService {
     const minutes = Math.floor(diffMs / (1000 * 60));
     return minutes;
   }
+
+  getActivityEx(currentActIndex: number) : ActivityEx {
+    return {
+      activity: this.appState().current!.activities[currentActIndex],
+      prevActivity: this.appState().current!.activities[currentActIndex],
+      sessionOrder: currentActIndex + 1,
+      created: this.appState().current!.activities[currentActIndex].created
+    }
+  }
+
 }
 
 export type ActivityEx = {

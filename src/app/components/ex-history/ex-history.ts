@@ -30,7 +30,7 @@ export class ExHistory {
 
   checkSize(size: string) {
     if (size !== "")
-      return " x " + size ;
+      return " x " + size + ' kg' ;
     return "";
   }
 }

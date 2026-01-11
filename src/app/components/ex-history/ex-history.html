@@ -1,12 +1,12 @@
 @if (histActivities().length > 0){
 <ion-grid [fixed]="true">
   <ion-row class="ion-justify-content-center">
-    <h2><ion-label color="medium"> History </ion-label> </h2>
+    <h2><ion-label color="medium"> Activity History </ion-label> </h2>
   </ion-row>
   @for (activityEx of histActivities(); track activityEx;let i = $index) {
     <ion-row class="ion-justify-content-center">
       <ion-col size="6" class="ion-text-center">
-        <ion-label color="secondary">#{{activityEx.sessionOrder }} - {{activityEx.activity.created | date:'EEE dd-MMM'}} </ion-label>
+        <ion-label color="secondary">#{{activityEx.sessionOrder }} on {{activityEx.activity.created | date:'EEE, dd MMM'}} </ion-label>
       </ion-col>
     </ion-row>
     @for (set of activityEx.activity.sets; track $index){
@@ -34,7 +34,7 @@
         }
         </ion-col>
         <!--  Set      -->
-        <ion-col size="3" class="ion-text-center">{{set.reps}} {{checkSize(set.size)}}</ion-col>
+        <ion-col size="4" class="ion-text-center">{{set.reps}} {{checkSize(set.size)}}</ion-col>
       </ion-row>
     }
     @if (activityEx.activity?.note?.length ?? 0 > 0){

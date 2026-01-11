@@ -23,27 +23,29 @@
         <h2 class="ion-text-center"><ion-label class="ion-text-capitalize" color="primary"> - {{exercise?.name}} -</ion-label></h2>
         <div class="ion-text-center"> <ion-label color="secondary"> {{ activity().created | date}} </ion-label></div>
         <ion-grid>
-<!--   SET-->
+          <!--   SET-->
           <ion-row>
             @if (exercise?.reps) {
             <ion-col>
-              <ion-input mode="md" label="REPS" label-placement="floating" fill="outline"  inputmode="numeric" placeholder="" [(ngModel)]="values.reps"></ion-input>
+              <ion-input mode="md" label="REPS" label-placement="floating" fill="outline"  inputmode="numeric"
+                         [(ngModel)]="values.reps"/>
             </ion-col>
             }
             @if (exercise?.weight) {
             <ion-col>
-              <ion-input mode="md" label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal" placeholder="" [(ngModel)]="values.kgs" ></ion-input>
+              <ion-input mode="md" label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal"
+                         [(ngModel)]="values.kgs" />
             </ion-col>
             }
             @if (!exercise?.weight && !exercise?.reps) {
               <ion-col>
-                <ion-input mode="md" label="FREE TEXT" label-placement="floating" fill="outline" placeholder="" [(ngModel)]="values.free" ></ion-input>
+                <ion-input mode="md" label="FREE TEXT" label-placement="floating" fill="outline"
+                           [(ngModel)]="values.free" />
               </ion-col>
             }
           </ion-row>
 
           <!-- Comment-->
-
           <ion-textarea mode="md" label-placement="floating" fill="outline"
                         [ngModel]="getNote()"
                         (ngModelChange)="setNote($event)"
@@ -51,7 +53,6 @@
                         labelPlacement="floating"
                         rows="2">
           </ion-textarea>
-
 
           <!--   Button -->
           <ion-row>

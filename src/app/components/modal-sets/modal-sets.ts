@@ -1,21 +1,17 @@
-import {Component, computed, effect, inject, input, linkedSignal, OnInit, output, signal} from '@angular/core';
+import {Component, effect, inject, input, linkedSignal, OnInit, output} from '@angular/core';
 import {
   IonButton,
   IonButtons,
   IonContent,
   IonHeader,
-  IonItem,
   IonLabel,
-  IonList, IonInput,
-  IonModal, IonSearchbar, IonTextarea, IonTitle, IonToolbar, IonGrid, IonCol, IonRow
+  IonInput,
+  IonModal, IonTextarea, IonTitle, IonToolbar, IonGrid, IonCol, IonRow
 } from "@ionic/angular/standalone";
-import {EXERCISES} from '../../classes/all-exercises.data';
 import {DatePipe} from '@angular/common';
 import {ExHistory} from '../ex-history/ex-history';
 import {ShowSets} from '../../pages/page-show-exercise/show-sets/show-sets';
 import {Activity} from '../../classes/state.interface';
-import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
-import {Router} from '@angular/router';
 import {SetClass} from '../../classes/set.class';
 import {CommonService} from '../../classes/common.service';
 import {OverlayEventDetail} from '@ionic/core';
@@ -28,11 +24,8 @@ import {FormsModule} from '@angular/forms';
     IonButtons,
     IonContent,
     IonHeader,
-    IonItem,
     IonLabel,
-    IonList,
     IonModal,
-    IonSearchbar,
     IonTitle,
     IonToolbar,
     DatePipe,
@@ -61,15 +54,19 @@ export class ModalSets implements OnInit{
   constructor() {
     effect(() => {
       //Default value when OPEN
-      if (this.open()){
-       this.values = { reps: "", kgs: "",free: "",}
-      }
+       this.values = {
+         reps: this.lastSet()?.reps ?? "",
+         kgs: this.lastSet()?.size ?? "",
+         free: this.note(),
+       }
     });
   }
   note = linkedSignal(()=>{
     return this.activity().note;
   });
-
+  lastSet =  linkedSignal(()=>{
+    return this.activity().sets.at(-1);
+  })
   ngOnInit(): void {
     this.service.getHistory(this.activity().id);
   }

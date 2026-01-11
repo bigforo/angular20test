@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Active Workout Session</ion-title>
 
-    @if (appState().current?.activities?.length??0>0){
+    @if (appState().current?.activities?.length ?? 0 > 0){
     <ion-buttons slot="end">
       <ion-button id="present-alert">
         <ion-icon size="large" color="danger" name="stop-circle-outline"></ion-icon>
@@ -26,11 +26,11 @@
 <ion-content fullscreen="true">
 
   @if (appState().current?.activities?.length??0>0){
-  <!-- Header -->
+    <!-- Header -->
     <div class="ion-text-center" >
       <h1 >Workout session started</h1>
     </div>
-<!-- Chips -->
+    <!-- Chips -->
     <div class="ion-text-center">
       @for (item of items; track item) {
         <ion-chip
@@ -40,10 +40,10 @@
         </ion-chip>
       }
     </div>
-<!--  Tips -->
+    <!--  Tips -->
     <app-session-tips/>
   }
-<!-- Activities -->
+  <!-- Activities -->
   @for (activity of appState().current?.activities; track $index) {
     @let exercise = Activity.exerciseById(activity.id);
     <ion-list inset="true" style="border-right: 5px solid var(--ion-color-warning)">
