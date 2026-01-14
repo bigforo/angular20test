@@ -44,5 +44,6 @@ export const EXERCISES: Exercise[] = [
   { id: 'hike',name: 'hike',                     color: 'red',   weightUnit: 'kg',reps:false, weight:false,  description: 'Hiking around' },
   { id: 'hang',name: 'dead hang',                color: 'purple',weightUnit: '',  reps:false, weight:false,  description: 'Daily Hang for 60 sec lats engaged' },
   { id: 'th',  name: 'threadmill',               color: 'purple',weightUnit: '',  reps:false, weight:false,  description: 'Threadmill. Run. Backward walk. Sprints.' },
+  { id: 'sw',  name: 'swimming',                 color: 'purple',weightUnit: '',  reps:false, weight:false,  description: 'Swimming pool. 500m 1km 2km' },
   { id: 'em',  name: 'empty',                    color: 'black', weightUnit: '',  reps:false, weight:false,  description: 'Place Holder for new exercise.' },
 ];
