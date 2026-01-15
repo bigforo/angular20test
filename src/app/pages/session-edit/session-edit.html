@@ -18,13 +18,13 @@
       </ion-modal>
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [(ngModel)]="session.note" label="session.note" label-placement="floating" fill="outline" inputmode="numeric"/>
+      <ion-input mode="md" [(ngModel)]="session.note" label="session.note" label-placement="floating" fill="outline"/>
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [(ngModel)]="session.type" label="session.type" label-placement="floating" fill="outline" inputmode="numeric"/>
+      <ion-input mode="md" [(ngModel)]="session.type" label="session.type" label-placement="floating" fill="outline"/>
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [(ngModel)]="session.name" label="session.name" label-placement="floating" fill="outline" inputmode="numeric"/>
+      <ion-input mode="md" [(ngModel)]="session.name" label="session.name" label-placement="floating" fill="outline"/>
     </ion-item>
   @for (activity of session.activities; track $index; let j = $index) {
     @let exercise = Activity.exerciseById(activity.id);
@@ -38,10 +38,9 @@
           <ion-datetime id="activity.created" presentation="date-time" [value]="activity.created" [(ngModel)]="activity.created"/>
         </ng-template>
       </ion-modal>
-<!--      <ion-input mode="md" [value]="activity.created" label="activity.created" label-placement="floating" fill="outline" inputmode="numeric"/>-->
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [value]="activity.note" label="activity.note" label-placement="floating" fill="outline" inputmode="numeric"/>
+      <ion-input mode="md" [value]="activity.note" label="activity.note" label-placement="floating" fill="outline" />
     </ion-item>
 
     @for (set of activity.sets; track set; let i = $index){
@@ -53,7 +52,7 @@
           </ng-template>
         </ion-modal>
         <ion-input mode="md" [value]="set.reps" label="set.reps" label-placement="floating" fill="outline" inputmode="numeric"/>
-        <ion-input mode="md" [value]="set.size" label="set.size" label-placement="floating" fill="outline" inputmode="numeric"/>
+        <ion-input mode="md" [value]="set.size" label="set.size" label-placement="floating" fill="outline" inputmode="decimal"/>
       </ion-item>
     }
   }
