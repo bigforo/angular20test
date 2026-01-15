@@ -4,10 +4,7 @@
 
   <ion-item button="true" (click)="modalSessionTimeUpdate.set(true)" >
     <ion-label class="ion-text-center">
-      {{ session()?.created | date:'yyyy-mm-dd'}}
-<!--      @if(appState().current?.note?.length ?? 0 > 0){-->
-<!--        <p>{{appState().current?.note}}</p>-->
-<!--      }-->
+      {{ session()?.created | date:'yyyy-MM-dd'}}
     </ion-label>
   </ion-item>
 
