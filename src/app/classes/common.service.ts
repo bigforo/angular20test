@@ -112,7 +112,7 @@ export class CommonService {
   }
   router = inject(Router);
   _snackBar = inject(MatSnackBar);
-  createSessionBasedOnOlderSession(oldSession: Session) {
+  createOrUpdateActiveSessionBasedOnOldSession(oldSession: Session) {
 
     const currentSession = this.appState().current ?? new Session("session");
     let num = 0;

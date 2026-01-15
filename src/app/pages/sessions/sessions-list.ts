@@ -54,5 +54,9 @@ export class SessionsList implements OnInit {
     await sliding.close();
   }
 
+  async update(session: Session, sliding: IonItemSliding) {
+
+  }
+
   protected readonly Activity = Activity;
 }

@@ -68,7 +68,7 @@ export class SessionDetails {
 
   public copy(){
     if(this.session())
-        this.service.createSessionBasedOnOlderSession(this.session()?? new Session("aaa"));
+        this.service.createOrUpdateActiveSessionBasedOnOldSession(this.session()?? new Session("aaa"));
   }
   private popoverCtrl = inject(PopoverController);
   async presentPopover(event: Event) {
