@@ -1,4 +1,4 @@
-import {Component, inject, linkedSignal, OnInit} from '@angular/core';
+import {Component, inject, linkedSignal, OnInit, signal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {AllSummary} from '../../components/all-summary/all-summary';
 import {Activity, Session} from '../../classes/state.interface';
@@ -17,6 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import {DatePipe} from '@angular/common';
 import {AlertController} from '@ionic/angular';
+import type {OverlayEventDetail} from '@ionic/core';
 
 @Component({
   selector: 'app-state',
@@ -35,8 +36,9 @@ import {AlertController} from '@ionic/angular';
     IonList,
     IonItemOptions,
     IonItemOption,
-    IonText
-],
+    IonText,
+    IonAlert
+  ],
   templateUrl: './sessions-list.html',
   styleUrl: './sessions-list.scss'
 })
@@ -49,14 +51,30 @@ export class SessionsList implements OnInit {
     this.service.load();
   }
 
+  alertDelete = signal<Session | null> (null);
   async delete(session: Session, sliding: IonItemSliding) {
-    this.service.deleteSessionFromHis(session);
+
     await sliding.close();
+    this.alertDelete.set(session);
   }
 
-  async update(session: Session, sliding: IonItemSliding) {
-
+  deleteConfirmation(event: CustomEvent<OverlayEventDetail>) {
+    if (event.detail.role === 'yes') {
+      if (this.alertDelete() != null) {
+        this.service.deleteSessionFromHis(this.alertDelete() as Session);
+      }
+      this.alertDelete.set(null);
+    }
+    if (event.detail.role === 'no') {
+      this.alertDelete.set(null);
+    }
   }
+
 
   protected readonly Activity = Activity;
+
+  async edit($index: number, sliding: IonItemSliding) {
+    await sliding.close();
+    await this.router.navigate(['/session-edit'],{queryParams:{id: $index}});
+  }
 }
