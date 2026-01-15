@@ -9,52 +9,53 @@
 @let session = session_copy;
 <ion-content fullscreen="true">
   <ion-list inset="none">
-    <ion-item>
+    <div class="ion-display-flex ion-justify-content-center ion-padding-bottom">
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
           <ion-datetime id="datetime" presentation="date-time" [(ngModel)]="session.created"/>
         </ng-template>
       </ion-modal>
+    </div>
+    <ion-item>
+      <ion-input mode="md" [(ngModel)]="session.name" label="session.name" label-placement="stacked" fill="outline"/>
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [(ngModel)]="session.note" label="session.note" label-placement="floating" fill="outline"/>
+      <ion-input mode="md" [(ngModel)]="session.type" label="session.type" label-placement="stacked" fill="outline"/>
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [(ngModel)]="session.type" label="session.type" label-placement="floating" fill="outline"/>
-    </ion-item>
-    <ion-item>
-      <ion-input mode="md" [(ngModel)]="session.name" label="session.name" label-placement="floating" fill="outline"/>
+      <ion-input mode="md" [(ngModel)]="session.note" label="session.note" label-placement="stacked" fill="outline"/>
     </ion-item>
   @for (activity of session.activities; track $index; let j = $index) {
     @let exercise = Activity.exerciseById(activity.id);
-    <ion-item>
-      - {{exercise?.name}} - [{{exercise?.id}}]
-    </ion-item>
-    <ion-item>
-      <ion-datetime-button datetime="activity.created"></ion-datetime-button>
-      <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime id="activity.created" presentation="date-time" [value]="activity.created" [(ngModel)]="activity.created"/>
-        </ng-template>
-      </ion-modal>
-    </ion-item>
-    <ion-item>
-      <ion-input mode="md" [value]="activity.note" label="activity.note" label-placement="floating" fill="outline" />
-    </ion-item>
+    <div class="ion-display-flex ion-justify-content-center ion-align-items-center">
+      <h2>- {{exercise?.name}} -</h2>
+    </div>
+<!--    <div class="ion-display-flex ion-justify-content-center ion-align-items-center ion-padding-vertical">-->
+<!--      <ion-datetime-button datetime="activity.created"></ion-datetime-button>-->
+<!--      <ion-modal [keepContentsMounted]="true">-->
+<!--        <ng-template>-->
+<!--          <ion-datetime id="activity.created" presentation="date" [value]="activity.created" [(ngModel)]="activity.created"/>-->
+<!--        </ng-template>-->
+<!--      </ion-modal>-->
+<!--    </div>-->
+
 
     @for (set of activity.sets; track set; let i = $index){
-      <ion-item>
+      <div class="ion-padding-horizontal ion-display-flex ion-justify-content-center">
         <ion-datetime-button class="ion-padding-end" datetime="set.time{{j}}{{i}}"></ion-datetime-button>
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
             <ion-datetime id="set.time{{j}}{{i}}" presentation="time" [value]="set.time" [(ngModel)]="set.time"/>
           </ng-template>
         </ion-modal>
-        <ion-input mode="md" [value]="set.reps" label="set.reps" label-placement="floating" fill="outline" inputmode="numeric"/>
-        <ion-input mode="md" [value]="set.size" label="set.size" label-placement="floating" fill="outline" inputmode="decimal"/>
-      </ion-item>
+        <ion-input style="width: 100px;" mode="md" [value]="set.reps" label="set.reps" [(ngModel)]="set.reps" label-placement="stacked" fill="outline" />
+        <ion-input style="width: 100px;" mode="md" [value]="set.size" label="set.size" [(ngModel)]="set.size" label-placement="stacked" fill="outline" inputmode="decimal"/>
+      </div>
     }
+    <ion-item>
+      <ion-input mode="md" [(ngModel)]="activity.note" label="activity.note" label-placement="stacked" fill="outline" />
+    </ion-item>
   }
   </ion-list>
 </ion-content>
