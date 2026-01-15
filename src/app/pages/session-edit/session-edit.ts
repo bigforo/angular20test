@@ -1,4 +1,4 @@
-import {Component, inject, input, linkedSignal} from '@angular/core';
+import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {
   IonBackButton, IonButton,
@@ -8,7 +8,7 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {LocalStorageService} from '../../classes/ls';
 import {addIcons} from 'ionicons';
 import {
@@ -50,25 +50,26 @@ import {FormsModule} from '@angular/forms';
   templateUrl: './session-edit.html',
   styleUrl: './session-edit.scss'
 })
-export class SessionEdit {
+export class SessionEdit implements OnInit {
   service = inject(CommonService);
+  router = inject(Router);
   appState = this.service.appState;
   id = input<string>();
-  session = linkedSignal(()=>{
-        let id = +(this.id() ?? "0");
-        return this.appState().history[id];
-    }
-  );
+  session_copy = {...this.appState().history[+(this.id() ?? "0")]} as  Session;
   constructor() {
     addIcons({ shareOutline, starOutline, star, cloudDownload, share, ellipsisHorizontal,
       ellipsisVertical });
   }
 
+  ngOnInit(): void {
+    this.session_copy = {...this.appState().history[+(this.id() ?? "0")]} as  Session;
+
+  }
+
   public update(){
-    if(this.session())
-    {
-      this.service.save()
-    }
+    this.appState().history[+(this.id() ?? "0")] = this.session_copy;
+    this.service.save();
+    this.router.navigate(['/app/tabs/sessions']);
   }
 
   protected readonly Activity = Activity;

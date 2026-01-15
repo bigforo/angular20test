@@ -6,27 +6,27 @@
     <ion-title>Workout Session EDIT</ion-title>
   </ion-toolbar>
 </ion-header>
-@let session_ = session();
+@let session = session_copy;
 <ion-content fullscreen="true">
   <ion-list inset="none">
     <ion-item>
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="datetime" presentation="date-time" [(ngModel)]="session().created"/>
+          <ion-datetime id="datetime" presentation="date-time" [(ngModel)]="session.created"/>
         </ng-template>
       </ion-modal>
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [(ngModel)]="session().note" label="session.note" label-placement="floating" fill="outline" inputmode="numeric"/>
+      <ion-input mode="md" [(ngModel)]="session.note" label="session.note" label-placement="floating" fill="outline" inputmode="numeric"/>
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [(ngModel)]="session().type" label="session.type" label-placement="floating" fill="outline" inputmode="numeric"/>
+      <ion-input mode="md" [(ngModel)]="session.type" label="session.type" label-placement="floating" fill="outline" inputmode="numeric"/>
     </ion-item>
     <ion-item>
-      <ion-input mode="md" [(ngModel)]="session().name" label="session.name" label-placement="floating" fill="outline" inputmode="numeric"/>
+      <ion-input mode="md" [(ngModel)]="session.name" label="session.name" label-placement="floating" fill="outline" inputmode="numeric"/>
     </ion-item>
-  @for (activity of session()?.activities; track $index; let j = $index) {
+  @for (activity of session.activities; track $index; let j = $index) {
     @let exercise = Activity.exerciseById(activity.id);
     <ion-item>
       - {{exercise?.name}} - [{{exercise?.id}}]
