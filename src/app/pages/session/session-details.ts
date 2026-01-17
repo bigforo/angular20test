@@ -4,8 +4,8 @@ import {CommonService} from '../../classes/common.service';
 import {
   IonBackButton, IonButton,
   IonButtons,
-  IonContent, IonFooter,
-  IonHeader, IonIcon,
+  IonContent, IonFabButton, IonFooter,
+  IonHeader, IonIcon, IonItem, IonItemOption, IonLabel,
   IonTitle,
   IonToolbar, PopoverController
 } from '@ionic/angular/standalone';
@@ -13,6 +13,7 @@ import {RouterLink} from '@angular/router';
 import {LocalStorageService} from '../../classes/ls';
 import {addIcons} from 'ionicons';
 import {
+  arrowBack, arrowBackOutline,
   cloudDownload,
   copy,
   ellipsisHorizontal,
@@ -25,6 +26,7 @@ import {
 import {WorkoutDetails} from "../../components/workout-details/workout-details";
 import {PopoverPage} from './about-popover';
 import {Session} from '../../classes/state.interface';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-view',
@@ -39,8 +41,13 @@ import {Session} from '../../classes/state.interface';
     IonIcon,
     RouterLink,
     WorkoutDetails,
-    IonFooter
-],
+    IonFooter,
+    IonFabButton,
+    DatePipe,
+    IonItem,
+    IonLabel,
+    IonItemOption
+  ],
   templateUrl: './session-details.html',
   styleUrl: './session-details.scss'
 })
@@ -62,8 +69,16 @@ export class SessionDetails {
     return  linkId;
   });
   constructor() {
-    addIcons({ shareOutline, starOutline, star, cloudDownload, share, ellipsisHorizontal,
-      ellipsisVertical });
+    addIcons({
+      shareOutline,
+      starOutline,
+      star,
+      cloudDownload,
+      share,
+      ellipsisHorizontal,
+      ellipsisVertical,
+      arrowBackOutline,
+    });
   }
 
   public copy(){

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [defaultHref]=""></ion-back-button>
+      <ion-back-button [defaultHref]="'/app/tabs/sessions'"></ion-back-button>
     </ion-buttons>
     <ion-title>Workout Session EDIT</ion-title>
   </ion-toolbar>
@@ -31,22 +31,12 @@
     <div class="ion-display-flex ion-justify-content-center ion-align-items-center">
       <h2>- {{exercise?.name}} -</h2>
     </div>
-<!--    <div class="ion-display-flex ion-justify-content-center ion-align-items-center ion-padding-vertical">-->
-<!--      <ion-datetime-button datetime="activity.created"></ion-datetime-button>-->
-<!--      <ion-modal [keepContentsMounted]="true">-->
-<!--        <ng-template>-->
-<!--          <ion-datetime id="activity.created" presentation="date" [value]="activity.created" [(ngModel)]="activity.created"/>-->
-<!--        </ng-template>-->
-<!--      </ion-modal>-->
-<!--    </div>-->
-
-
     @for (set of activity.sets; track set; let i = $index){
       <div class="ion-padding-horizontal ion-display-flex ion-justify-content-center">
         <ion-datetime-button class="ion-padding-end" datetime="set.time{{j}}{{i}}"></ion-datetime-button>
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
-            <ion-datetime id="set.time{{j}}{{i}}" presentation="time" [value]="set.time" [(ngModel)]="set.time"/>
+            <ion-datetime id="set.time{{j}}{{i}}"  presentation="time" [value]="set.time" (ngModelChange)="setTimeChange($event)" [(ngModel)]="set.time"/>
           </ng-template>
         </ion-modal>
         <ion-input style="width: 100px;" mode="md" [value]="set.reps" label="set.reps" [(ngModel)]="set.reps" label-placement="stacked" fill="outline" />

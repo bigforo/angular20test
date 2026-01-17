@@ -10,6 +10,12 @@
 <ion-content fullscreen="true">
   <ion-list>
 @for (session of this.appState().history; track $index){
+  @let nextSession = $index == 0 ? null : this.appState().history[$index-1];
+  @if (diff(session.created,nextSession?.created ?? null)){
+    <ion-item-divider color="light">
+      <ion-label> Week {{ session.created | date:"w of yyyy" }}</ion-label>
+    </ion-item-divider>
+  }
     <ion-item-sliding #sliding>
       <ion-item lines="full" [routerLink]="['/session']" [queryParams]="{id: $index}" >
         <ion-label color="secondary">

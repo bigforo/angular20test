@@ -9,9 +9,10 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {Router, RouterLink} from '@angular/router';
-import {LocalStorageService} from '../../classes/ls';
+import {DatePipe, Location} from '@angular/common';
 import {addIcons} from 'ionicons';
 import {
+  arrowBackOutline,
   cloudDownload,
   copy,
   ellipsisHorizontal,
@@ -58,20 +59,22 @@ export class SessionEdit implements OnInit {
   session_copy = {...this.appState().history[+(this.id() ?? "0")]} as  Session;
   constructor() {
     addIcons({ shareOutline, starOutline, star, cloudDownload, share, ellipsisHorizontal,
-      ellipsisVertical });
+      ellipsisVertical,      });
   }
-
   ngOnInit(): void {
     this.session_copy = {...this.appState().history[+(this.id() ?? "0")]} as  Session;
-
   }
-
+  private location = inject(Location);
   public update(){
     this.appState().history[+(this.id() ?? "0")] = this.session_copy;
     this.service.save();
-    this.router.navigate(['/app/tabs/sessions']);
+    this.location.back();
   }
 
   protected readonly Activity = Activity;
   protected readonly Session = Session;
+
+  setTimeChange($event: any) {
+    // console.log("set time",$event);
+  }
 }

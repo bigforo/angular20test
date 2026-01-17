@@ -2,7 +2,9 @@
     <ion-toolbar>
 
     <ion-buttons slot="start">
-      <ion-back-button [defaultHref]=""></ion-back-button>
+      <ion-button [routerLink]="['/app/tabs/sessions']">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
 
     <ion-title>Workout Session Details</ion-title>
@@ -39,7 +41,13 @@
 <!--    >-->
 <!--        <ion-icon name="share-outline"></ion-icon>-->
 <!--    </button>-->
-    @if (session()){
+  <ion-item button="true" [routerLink]="['/session-edit']" [queryParams]="{id: id()}" >
+    <ion-label class="ion-text-center">
+      EDIT
+    </ion-label>
+  </ion-item>
+
+  @if (session()){
         <app-workout-details [session]="session()"/>
     } @else {
       no history data

@@ -37,8 +37,10 @@ import type {OverlayEventDetail} from '@ionic/core';
     IonItemOptions,
     IonItemOption,
     IonText,
-    IonAlert
+    IonAlert,
+    IonItemDivider
   ],
+  providers: [DatePipe],
   templateUrl: './sessions-list.html',
   styleUrl: './sessions-list.scss'
 })
@@ -46,6 +48,7 @@ export class SessionsList implements OnInit {
   service = inject(CommonService);
   appState = this.service.appState;
   router = inject(Router);
+  datepipe = inject(DatePipe);
 
   ngOnInit(): void {
     this.service.load();
@@ -76,5 +79,11 @@ export class SessionsList implements OnInit {
   async edit($index: number, sliding: IonItemSliding) {
     await sliding.close();
     await this.router.navigate(['/session-edit'],{queryParams:{id: $index}});
+  }
+
+  diff(d1: Date, d2: Date | null) {
+    const one =+(this.datepipe.transform(d1, 'w') as string);
+    const two =+(this.datepipe.transform(d2, 'w') as string);
+    return  (two - one) != 0;
   }
 }
