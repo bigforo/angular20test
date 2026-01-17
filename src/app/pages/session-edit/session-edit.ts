@@ -25,6 +25,7 @@ import {
 import {WorkoutDetails} from "../../components/workout-details/workout-details";
 import {Activity, Session} from '../../classes/state.interface';
 import {FormsModule} from '@angular/forms';
+import {SetClass} from '../../classes/set.class';
 
 @Component({
   selector: 'app-view',
@@ -48,6 +49,7 @@ import {FormsModule} from '@angular/forms';
     IonDatetimeButton,
     FormsModule
   ],
+  providers:[DatePipe],
   templateUrl: './session-edit.html',
   styleUrl: './session-edit.scss'
 })
@@ -74,7 +76,13 @@ export class SessionEdit implements OnInit {
   protected readonly Activity = Activity;
   protected readonly Session = Session;
 
-  setTimeChange($event: any) {
-    // console.log("set time",$event);
+  datepipe = inject(DatePipe);
+  setTime(time: Date) {
+    // Date Pipe considers Local Time Zones
+    return this.datepipe.transform(time, 'yyyy-MM-ddTHH:mm:ss');
+  }
+
+  change($event: string, set: SetClass) {
+    set.time = new Date($event);
   }
 }

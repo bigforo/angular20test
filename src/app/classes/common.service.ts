@@ -105,6 +105,13 @@ export class CommonService {
   }
   load(){
     let state = this.ls.getItem<StateInterface>("gym-day-state");
+    state?.history?.forEach(history=>{
+      history.activities.forEach(activities=>{
+        activities.sets.forEach(set =>{
+          set.time = new Date(set.time);
+        })
+      })
+    });
     if (state){
       this.appState.set(state);
     }
