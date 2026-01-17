@@ -9,15 +9,27 @@ import {
   IonButton,
   IonButtons,
   IonContent, IonFooter,
-  IonHeader, IonItem, IonItemDivider,
+  IonHeader, IonIcon, IonItem, IonItemDivider,
   IonItemGroup, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList,
   IonMenuButton, IonNote, IonText,
   IonTitle,
-  IonToolbar
+  IonToolbar, PopoverController
 } from '@ionic/angular/standalone';
 import {DatePipe} from '@angular/common';
 import {AlertController} from '@ionic/angular';
 import type {OverlayEventDetail} from '@ionic/core';
+import {PopoverPage} from './about-popover';
+import {addIcons} from 'ionicons';
+import {
+  arrowBackOutline,
+  cloudDownload,
+  ellipsisHorizontal,
+  ellipsisVertical,
+  share,
+  shareOutline,
+  star,
+  starOutline
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-state',
@@ -38,7 +50,9 @@ import type {OverlayEventDetail} from '@ionic/core';
     IonItemOption,
     IonText,
     IonAlert,
-    IonItemDivider
+    IonItemDivider,
+    IonButton,
+    IonIcon
   ],
   providers: [DatePipe],
   templateUrl: './sessions-list.html',
@@ -52,6 +66,18 @@ export class SessionsList implements OnInit {
 
   ngOnInit(): void {
     this.service.load();
+  }
+  constructor() {
+    addIcons({
+      shareOutline,
+      starOutline,
+      star,
+      cloudDownload,
+      share,
+      ellipsisHorizontal,
+      ellipsisVertical,
+      arrowBackOutline,
+    });
   }
 
   alertDelete = signal<Session | null> (null);
@@ -85,5 +111,15 @@ export class SessionsList implements OnInit {
     const one =+(this.datepipe.transform(d1, 'w') as string);
     const two =+(this.datepipe.transform(d2, 'w') as string);
     return  (two - one) != 0;
+  }
+
+  private popoverCtrl = inject(PopoverController);
+  async presentPopover(event: Event) {
+    const popover = await this.popoverCtrl.create({
+      component: PopoverPage,
+      // componentProps: { link: this.generatedLink() },
+      event,
+    });
+    await popover.present();
   }
 }

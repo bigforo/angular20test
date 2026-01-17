@@ -11,23 +11,17 @@ import {
 @Component({
     template: `
     <ion-list>
-      <ion-item
-        button
-        (click)="close('https://ionicframework.com/getting-started')"
-      >
-        <ion-label>Learn Ionic</ion-label>
+      <ion-item button (click)="close('https://go.foro.mk/')">
+        <ion-label>Pico8 Tabla</ion-label>
       </ion-item>
-      <ion-item button (click)="close('https://ionicframework.com/docs/')">
-        <ion-label>Documentation</ion-label>
+      <ion-item button (click)="close('http://foro.mk/aeropress')">
+        <ion-label>Aeropress</ion-label>
       </ion-item>
-      <ion-item button (click)="close('https://showcase.ionicframework.com')">
-        <ion-label>Showcase</ion-label>
-      </ion-item>
-      <ion-item button (click)="close('https://github.com/ionic-team/ionic')">
-        <ion-label>GitHub Repo</ion-label>
+      <ion-item button (click)="close('http://foro.mk/v60')">
+        <ion-label>V60</ion-label>
       </ion-item>
       <ion-item button (click)="support()">
-        <ion-label>Support</ion-label>
+        <ion-label>Go to gym</ion-label>
       </ion-item>
     </ion-list>
   `,
@@ -39,7 +33,7 @@ export class PopoverPage {
   private popoverCtrl = inject(PopoverController);
 
   support() {
-    this.router.navigate(['/support']);
+    this.router.navigate(['/']);
     this.popoverCtrl.dismiss();
   }
 

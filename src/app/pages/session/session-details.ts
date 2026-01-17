@@ -24,7 +24,7 @@ import {
   starOutline
 } from 'ionicons/icons';
 import {WorkoutDetails} from "../../components/workout-details/workout-details";
-import {PopoverPage} from './about-popover';
+import {PopoverPage} from '../sessions/about-popover';
 import {Session} from '../../classes/state.interface';
 import {DatePipe} from '@angular/common';
 
@@ -85,15 +85,8 @@ export class SessionDetails {
     if(this.session())
         this.service.createOrUpdateActiveSessionBasedOnOldSession(this.session()?? new Session("aaa"));
   }
-  private popoverCtrl = inject(PopoverController);
-  async presentPopover(event: Event) {
-    const popover = await this.popoverCtrl.create({
-      component: PopoverPage,
-      componentProps: { link: this.generatedLink() },
-      event,
-    });
-    await popover.present();
-  }
+
+
 
   shareLink() {
 

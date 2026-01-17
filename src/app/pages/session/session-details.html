@@ -7,7 +7,7 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title>Workout Session Details</ion-title>
+    <ion-title>Old Session Details</ion-title>
 
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/view']" [queryParams]="{id: generatedLink()}">
@@ -15,37 +15,11 @@
       </ion-button>
     </ion-buttons>
 
-<!--        <ion-buttons slot="end">-->
-<!--            <ion-button (click)="shareLink()">-->
-<!--                <ion-icon slot="icon-only" name="share"></ion-icon>-->
-<!--            </ion-button>-->
-<!--        </ion-buttons>-->
-
-<!--        <ion-buttons slot="end">-->
-<!--            <ion-button (click)="presentPopover($event)">-->
-<!--                <ion-icon-->
-<!--                        slot="icon-only"-->
-<!--                        ios="ellipsis-horizontal"-->
-<!--                        md="ellipsis-vertical"-->
-<!--                ></ion-icon>-->
-<!--            </ion-button>-->
-<!--        </ion-buttons>-->
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen="true">
-<!--    <button-->
-<!--            (click)="shareLink()"-->
-<!--            class="fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg"-->
-<!--    >-->
-<!--        <ion-icon name="share-outline"></ion-icon>-->
-<!--    </button>-->
-  <ion-item button="true" [routerLink]="['/session-edit']" [queryParams]="{id: id()}" >
-    <ion-label class="ion-text-center">
-      EDIT
-    </ion-label>
-  </ion-item>
+
 
   @if (session()){
         <app-workout-details [session]="session()"/>
@@ -55,8 +29,14 @@
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar>
-          <ion-button id="present-alert" color="light" expand="full" (click)="copy()" >Copy This Session</ion-button>
-<!--        <ion-button id="present-alert" color="light" expand="full" (click)="shareLink()" >Share</ion-button>-->
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="copy()" >Copy </ion-button>
+    </ion-buttons>
+  <ion-title>Session Actions</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/session-edit']" [queryParams]="{id: id()}" >Edit</ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
 </ion-footer>
