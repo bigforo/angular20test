@@ -3,6 +3,7 @@ import {DatePipe} from "@angular/common";
 import {IonCol, IonGrid, IonLabel, IonRow, IonText} from "@ionic/angular/standalone";
 import {CommonService} from '../../classes/common.service';
 import {EXERCISES} from '../../classes/all-exercises.data';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-ex-history',
@@ -12,7 +13,8 @@ import {EXERCISES} from '../../classes/all-exercises.data';
     IonGrid,
     IonRow,
     IonLabel,
-    IonText
+    IonText,
+    RouterLink
   ],
   templateUrl: './ex-history.html',
   styleUrl: './ex-history.scss'

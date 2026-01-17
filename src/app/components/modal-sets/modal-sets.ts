@@ -1,4 +1,4 @@
-import {Component, effect, inject, input, linkedSignal, OnInit, output} from '@angular/core';
+import {Component, effect, inject, input, linkedSignal, model, OnInit, output} from '@angular/core';
 import {
   IonButton,
   IonButtons,
@@ -16,6 +16,7 @@ import {SetClass} from '../../classes/set.class';
 import {CommonService} from '../../classes/common.service';
 import {OverlayEventDetail} from '@ionic/core';
 import {FormsModule} from '@angular/forms';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-modal-sets',
@@ -36,7 +37,8 @@ import {FormsModule} from '@angular/forms';
     IonInput,
     IonGrid,
     IonCol,
-    IonRow
+    IonRow,
+    RouterLink
   ],
   templateUrl: './modal-sets.html',
   styleUrl: './modal-sets.scss'
@@ -45,6 +47,7 @@ export class ModalSets implements OnInit{
   service = inject(CommonService)
   activity =  input.required<Activity>();
   open = input.required<boolean>();
+  router = inject(Router);
   closed = output<boolean>();
   values = {
     reps: "",
@@ -111,4 +114,11 @@ export class ModalSets implements OnInit{
   }
 
   protected readonly Activity = Activity;
+
+  redirect(_t21: IonModal) {
+    _t21.isOpen = false;
+    this.router.navigate(['/exercise/'+this.activity().id]);
+  }
+
+  protected readonly model = model;
 }

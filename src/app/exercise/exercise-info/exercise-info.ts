@@ -57,7 +57,8 @@ import {OverlayEventDetail} from '@ionic/core';
     RouterLink,
     IonToggle,
     JsonPipe,
-    IonRow
+    IonRow,
+    IonBackButton
   ],
   selector: 'app-exercise-info',
   styleUrl: './exercise-info.scss',

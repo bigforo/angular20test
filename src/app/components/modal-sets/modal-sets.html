@@ -1,4 +1,5 @@
 <ion-modal
+            #modal
             [isOpen]="open()"
             [canDismiss]="canDismiss"
             (willDismiss)="onWillDismiss($event)"
@@ -20,7 +21,7 @@
       @let exercise = Activity.exerciseById(activity().id);
       <div class="ion-padding">
 <!--   Header-->
-        <h2 class="ion-text-center"><ion-label class="ion-text-capitalize" color="primary"> - {{exercise?.name}} -</ion-label></h2>
+        <h2 class="ion-text-center"><ion-label (click)="redirect(modal)" class="ion-text-capitalize" color="primary"> - {{exercise?.name}} -</ion-label></h2>
         <div class="ion-text-center"> <ion-label color="secondary"> {{ activity().created | date}} </ion-label></div>
         <ion-grid>
           <!--   SET-->
