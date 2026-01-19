@@ -43,9 +43,8 @@ export class ViewExternal {
   }
   service = inject(CommonService);
   ls = inject(LocalStorageService);
-  id = input<string>();
-  uncomm = linkedSignal(
-    ()=>{
+  id = input.required<string>();
+  uncomm = linkedSignal(()=>{
       return this.ls.getUncompressed<Session>(this.id());
     }
   )

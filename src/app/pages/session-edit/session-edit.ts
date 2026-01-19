@@ -1,10 +1,24 @@
 import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {
-  IonBackButton, IonButton,
+  IonBackButton,
+  IonButton,
   IonButtons,
-  IonContent, IonDatetime, IonDatetimeButton, IonFooter,
-  IonHeader, IonIcon, IonInput, IonItem, IonList, IonModal,
+  IonContent,
+  IonDatetime,
+  IonDatetimeButton,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonInput,
+  IonItem,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
+  IonLabel,
+  IonList,
+  IonModal,
+  IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -47,7 +61,12 @@ import {SetClass} from '../../classes/set.class';
     IonDatetime,
     IonModal,
     IonDatetimeButton,
-    FormsModule
+    FormsModule,
+    IonItemSliding,
+    IonItemOptions,
+    IonItemOption,
+    IonText,
+    IonLabel
   ],
   providers:[DatePipe],
   templateUrl: './session-edit.html',

@@ -1,6 +1,6 @@
 <ion-grid [fixed]="true">
   @let exercise = Activity.exerciseById(activity().id);
-  @for (i of activity().sets; track $index) {
+  @for (set of activity().sets; track $index) {
     <ion-row style="position:relative;">
       <!--  Index -->
       <ion-col size="60px">
@@ -8,29 +8,29 @@
       </ion-col>
       <!-- Time -->
       <ion-col size="60px">
-        <ion-label color="secondary"><small>{{ i.time| date:'HH:mm' }} </small>
+        <ion-label color="secondary"><small>{{ set.time| date:'HH:mm' }} </small>
         </ion-label>
       </ion-col>
       <!-- Delta-->
       <ion-col size="60px" style="position: absolute; left:75px; top:-15px">
-        @if ($index > 0){
-            <ion-text style="font-size: small" color="warning">
-              [{{service.diff(activity().sets[$index].time,activity().sets[$index-1].time)}}]
-            </ion-text>
-        }
+      @if ($index > 0){
+        <ion-text style="font-size: small" color="warning">
+          [{{service.diff(activity().sets[$index].time,activity().sets[$index-1].time)}}]
+        </ion-text>
+      }
       </ion-col>
 
       <!-- Reps X Sets -->
       <ion-col class="ion-text-center">
         <ion-label color="tertiary">
           @if (exercise?.reps) {
-          {{ i.reps }}
+          {{ set.reps }}
           }
           @if (exercise?.weight) {
-            {{ 'x ' + i.size }}{{ exercise?.weightUnit }}
+            {{ 'x ' + set.size }}{{ exercise?.weightUnit }}
           }
           @if (!exercise?.reps && !exercise?.weight){
-            {{ i.reps }}
+            {{ set.reps }}
           }
         </ion-label>
       </ion-col>

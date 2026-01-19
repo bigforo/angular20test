@@ -18,7 +18,10 @@
     </p>
   </div>
 <!--  <app-daily-summary [session]="uncomm()" />-->
-    <app-workout-details [session]="uncomm()"/>
+  @if (uncomm() != null){
+    <app-workout-details [session]="uncomm()!"/>
+  }
+
 
 </ion-content>
 

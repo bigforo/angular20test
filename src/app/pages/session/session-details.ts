@@ -1,4 +1,4 @@
-import {Component, inject, input, linkedSignal} from '@angular/core';
+import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
 import {DailySummary} from "../../components/daily-summary/daily-summary";
 import {CommonService} from '../../classes/common.service';
 import {
@@ -9,7 +9,7 @@ import {
   IonTitle,
   IonToolbar, PopoverController
 } from '@ionic/angular/standalone';
-import {RouterLink} from '@angular/router';
+import {NavigationEnd, Router, RouterLink} from '@angular/router';
 import {LocalStorageService} from '../../classes/ls';
 import {addIcons} from 'ionicons';
 import {
@@ -27,6 +27,8 @@ import {WorkoutDetails} from "../../components/workout-details/workout-details";
 import {PopoverPage} from '../sessions/about-popover';
 import {Session} from '../../classes/state.interface';
 import {DatePipe} from '@angular/common';
+import {filter, take} from 'rxjs';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-view',
@@ -51,24 +53,33 @@ import {DatePipe} from '@angular/common';
   templateUrl: './session-details.html',
   styleUrl: './session-details.scss'
 })
-export class SessionDetails {
+export class SessionDetails implements OnInit{
   service = inject(CommonService);
+  router = inject(Router);
   appState = this.service.appState;
-  id = input<string>();
+  id = input<number>();
   session = linkedSignal(()=>{
-      if (this.id()){
-        let id = +(this.id()??"0");
-        return this.appState().history[id];
-      }
-      return null;
+      let id = this.id();
+      return this.appState().history[id??0];
     }
   );
   ls = inject(LocalStorageService);
   generatedLink = linkedSignal(()=>{
-    const linkId = this.ls.getCompressed(this.session());
-    return  linkId;
+    return  this.ls.getCompressed(this.session());
   });
+  ngOnInit(): void {
+
+
+  }
   constructor() {
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),takeUntilDestroyed(),
+        filter(event => event.url.includes('/session?')),
+        )
+      .subscribe((event: NavigationEnd) => {
+        this.service.load();
+      });
     addIcons({
       shareOutline,
       starOutline,
