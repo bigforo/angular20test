@@ -23,20 +23,7 @@
 
   @if (session()){
     <app-workout-details [session]="session()"/>
-    <div class="ion-display-flex ion-justify-content-center">
-      <add-to-calendar-button
-        buttonStyle="text"
-        [attr.name]="getCalName()"
-        options="'Apple','Google'"
-        location="Gym"
-        [attr.startDate]="getDate()"
-        [attr.endDate]="getDate()"
-        [attr.startTime]="getTime()"
-        [attr.endTime]="getTimeLater()"
-        [attr.description]="getCalDesc()"
-        [attr.timeZone]="timeZone"
-      ></add-to-calendar-button>
-    </div>
+
 
   } @else {
     no history data
@@ -48,10 +35,23 @@
     <ion-buttons slot="end">
       <ion-button (click)="copy()" >Copy </ion-button>
     </ion-buttons>
-  <ion-title>Session Actions</ion-title>
+    <div class="ion-display-flex ion-justify-content-center">
+      <add-to-calendar-button
+        buttonStyle="date"
+        size="1"
+        [attr.name]="getCalName()"
+        options="'Apple','Google'"
+        location="Gym"
+        [attr.startDate]="getDate()"
+        [attr.endDate]="getDate()"
+        [attr.startTime]="getTime()"
+        [attr.endTime]="getTimeLater()"
+        [attr.description]="getCalDesc()"
+        timeZone="currentBrowser"
+      />
+    </div>
     <ion-buttons slot="start">
       <ion-button [routerLink]="['/session-edit']" [queryParams]="{id: id()}" >Edit</ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-footer>
