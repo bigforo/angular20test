@@ -3,7 +3,7 @@
 
     <ion-buttons slot="start">
       <ion-button [routerLink]="['/app/tabs/sessions']">
-        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+        <ion-icon slot="icon-only" name="arrow-back-outline"/>
       </ion-button>
     </ion-buttons>
 
@@ -11,7 +11,7 @@
 
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/view']" [queryParams]="{id: generatedLink()}">
-        <ion-icon slot="icon-only" name="share"></ion-icon>
+        <ion-icon slot="icon-only" name="share"/>
       </ion-button>
     </ion-buttons>
 
@@ -22,10 +22,25 @@
 
 
   @if (session()){
-        <app-workout-details [session]="session()"/>
-    } @else {
-      no history data
-    }
+    <app-workout-details [session]="session()"/>
+    <div class="ion-display-flex ion-justify-content-center">
+      <add-to-calendar-button
+        buttonStyle="text"
+        [attr.name]="getCalName()"
+        options="'Apple','Google'"
+        location="Gym"
+        [attr.startDate]="getDate()"
+        [attr.endDate]="getDate()"
+        [attr.startTime]="getTime()"
+        [attr.endTime]="getTimeLater()"
+        [attr.description]="getCalDesc()"
+        [attr.timeZone]="timeZone"
+      ></add-to-calendar-button>
+    </div>
+
+  } @else {
+    no history data
+  }
 </ion-content>
 
 <ion-footer>
