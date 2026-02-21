@@ -19,12 +19,11 @@ import {
   logOut,
   mapOutline, moonOutline,
   peopleOutline,
-  person, personAdd, radioButtonOn, walk
+  person, personAdd, radioButtonOn, walk, walkOutline
 } from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Activity, Session} from './classes/state.interface';
 
 @Component({
   selector: 'app-root',
@@ -58,7 +57,8 @@ export class App implements  OnInit {
       radioButtonOn,
       walk,
       logoBuffer,
-      accessibilityOutline
+      accessibilityOutline,
+      walkOutline,
     });
   }
   dark_: boolean = true;
