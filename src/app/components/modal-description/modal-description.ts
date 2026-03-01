@@ -1,4 +1,4 @@
-import {Component, inject, input, output} from '@angular/core';
+import {Component, inject, input, model, output} from '@angular/core';
 import {IonButton,IonButtons,IonContent,IonHeader,IonModal, IonTextarea, IonTitle, IonToolbar} from "@ionic/angular/standalone";
 import {FormsModule} from '@angular/forms';
 import {OverlayEventDetail} from '@ionic/core';
@@ -16,7 +16,7 @@ import {CommonService} from '../../classes/common.service';
           <ion-toolbar>
             <ion-title>Session/Workout Notes</ion-title>
             <ion-buttons slot="end">
-              <ion-button (click)="closed.emit(true);">Close</ion-button>
+              <ion-button (click)="open.set(false)">Close</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
@@ -40,13 +40,12 @@ import {CommonService} from '../../classes/common.service';
 export class ModalDescription {
   service = inject(CommonService);
   appState = this.service.appState;
-  open = input.required<boolean>();
-  closed = output<boolean>();
+  open = model.required<boolean>();
   async canDismiss(data?: undefined, role?: string) {
     return role !== 'gesture';// && role !== 'backdrop';
   }
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
-    this.closed.emit(true);
+    this.open.update(()=>false);
   }
   change($event: any) {
     this.service.addNoteToCurrentSession($event.target.value);

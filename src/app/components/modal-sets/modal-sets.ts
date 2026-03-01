@@ -16,7 +16,7 @@ import {SetClass} from '../../classes/set.class';
 import {CommonService} from '../../classes/common.service';
 import {OverlayEventDetail} from '@ionic/core';
 import {FormsModule} from '@angular/forms';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-modal-sets',
@@ -37,9 +37,8 @@ import {Router, RouterLink} from '@angular/router';
     IonInput,
     IonGrid,
     IonCol,
-    IonRow,
-    RouterLink
-  ],
+    IonRow
+],
   templateUrl: './modal-sets.html',
   styleUrl: './modal-sets.scss'
 })

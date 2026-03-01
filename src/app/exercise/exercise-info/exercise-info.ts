@@ -1,36 +1,30 @@
-import {Component, inject, input, linkedSignal, signal, ViewChild} from '@angular/core';
+import {Component, inject, input, linkedSignal} from '@angular/core';
 import {
   IonBackButton,
   IonButton,
   IonButtons,
   IonContent,
-  IonDatetime,
   IonFooter,
   IonHeader,
   IonIcon,
-  IonInput,
   IonItem,
   IonLabel,
   IonList,
-  IonMenuButton, IonModal,
-  IonPopover, IonRouterLink, IonRow,
-  IonSelect,
-  IonSelectOption,
-  IonText, IonTextarea,
+
+  IonRouterLink,
+
   IonTitle, IonToggle,
   IonToolbar,
   NavController
 } from '@ionic/angular/standalone';
 import {CommonService} from '../../classes/common.service';
 import {Router, RouterLink} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {Activity, Exercise, repeatOptions, weightOptions1} from '../../classes/state.interface';
+import {Activity} from '../../classes/state.interface';
 import {EXERCISES} from '../../classes/all-exercises.data';
-import {DatePipe, JsonPipe, NgIf, NgStyle} from '@angular/common';
+import {NgStyle} from '@angular/common';
 import {addIcons} from 'ionicons';
-import {chevronBackOutline, chevronForwardOutline, location} from 'ionicons/icons';
+import {chevronBackOutline, chevronForwardOutline} from 'ionicons/icons';
 import {FormsModule} from '@angular/forms';
-import {OverlayEventDetail} from '@ionic/core';
 import {ExHistory} from '../../components/ex-history/ex-history';
 
 @Component({
@@ -43,25 +37,17 @@ import {ExHistory} from '../../components/ex-history/ex-history';
     IonButton,
     IonContent,
     IonLabel,
-    IonMenuButton,
     NgStyle,
     IonIcon,
     IonList,
     IonItem,
-    IonSelect,
     FormsModule,
-    IonSelectOption,
-    IonText,
-    IonTextarea,
-    IonModal,
     IonRouterLink,
     RouterLink,
     IonToggle,
-    JsonPipe,
-    IonRow,
     IonBackButton,
     ExHistory
-  ],
+],
   selector: 'app-exercise-info',
   styleUrl: './exercise-info.scss',
   templateUrl: './exercise-info.html'

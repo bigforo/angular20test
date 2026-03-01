@@ -1,24 +1,19 @@
 import {Component, inject} from '@angular/core';
-import {MatInput, MatLabel} from '@angular/material/input';
 import {CommonService} from '../../classes/common.service';
 import {LocalStorageService} from '../../classes/ls';
-import {MatButton} from '@angular/material/button';
 import {Session} from '../../classes/state.interface';
 import {FormsModule} from '@angular/forms';
 import {
-  IonAlert,
   IonButton,
-  IonButtons,
   IonContent, IonFooter,
   IonHeader,
-  IonIcon,
-  IonMenuButton, IonTextarea, IonTitle, IonToolbar
+  IonTextarea, IonTitle, IonToolbar
 } from '@ionic/angular/standalone';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-page-import-export',
-  imports: [MatInput, MatButton, FormsModule, IonAlert, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonTitle, IonToolbar, IonTextarea, IonFooter],
+  imports: [FormsModule, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, IonTextarea, IonFooter],
   templateUrl: './page-import-export.html',
   styleUrl: './page-import-export.scss'
 })

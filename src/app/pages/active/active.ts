@@ -1,6 +1,5 @@
 import {Component, inject, linkedSignal, signal} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
-import {LocalStorageService} from '../../classes/ls';
 import {Router, RouterLink} from '@angular/router';
 import {
   IonAlert,
@@ -8,7 +7,7 @@ import {
   IonButtons,
   IonChip,
   IonCol,
-  IonContent,
+  IonContent, IonFab, IonFabButton,
   IonFooter,
   IonGrid,
   IonHeader,
@@ -25,8 +24,6 @@ import {
   IonPicker,
   IonPickerColumn, IonPickerColumnOption,
   IonRow,
-  IonSelect,
-  IonSelectOption,
   IonText,
   IonTextarea,
   IonTitle,
@@ -34,9 +31,8 @@ import {
 } from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
 import {cloudDownload, shareOutline, star, starOutline, share, stopCircleOutline, chevronForward, people, timerOutline} from 'ionicons/icons';
-import {DatePipe, NgClass} from '@angular/common';
-import {Activity, repeatOptions, Session, weightOptions1} from '../../classes/state.interface';
-import {AlertController} from '@ionic/angular';
+import {DatePipe} from '@angular/common';
+import {Activity, Session} from '../../classes/state.interface';
 import type { OverlayEventDetail } from '@ionic/core';
 import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
 import {SessionTips} from '../../components/session-tips/session-tips';
@@ -45,6 +41,7 @@ import {ModalExercises} from '../../components/modal-exercises/modal-exercises';
 import {ModalSets} from '../../components/modal-sets/modal-sets';
 import {EXERCISES} from '../../classes/all-exercises.data';
 import {ModalDescription} from '../../components/modal-description/modal-description';
+import {PopupExercises} from '../../components/popup-exercises/popup-exercises';
 
 @Component({
   selector: 'app-summary',
@@ -61,29 +58,21 @@ import {ModalDescription} from '../../components/modal-description/modal-descrip
     IonList,
     IonItem,
     IonLabel,
-    DatePipe,
     IonItemOptions,
     IonItemOption,
     IonItemSliding,
     IonNote,
     IonText,
-    IonTextarea,
     IonAlert,
     IonChip,
-    IonModal,
-    IonCol,
-    IonGrid,
-    IonPicker,
-    IonPickerColumn,
-    IonPickerColumnOption,
-    IonRow,
-    ExerciseSets,
     SessionTips,
     ShowSets,
-    ModalExercises,
     IonFooter,
     ModalSets,
-    ModalDescription
+    ModalDescription,
+    PopupExercises,
+    IonFab,
+    IonFabButton
   ],
   templateUrl: './active.html',
   styleUrl: './active.scss'
@@ -138,9 +127,7 @@ export class ActiveComponent {
   }
 
   modalCommentsSetOpen = signal<boolean> (false);
-  modalCommentClosed() {
-    this.modalCommentsSetOpen.set(false);
-  }
+
 
   clear(current: Session | null | undefined, sliding: IonItemSliding) {
     if (current) {
@@ -152,4 +139,10 @@ export class ActiveComponent {
   }
 
   protected readonly Activity = Activity;
+
+  popupExercisesOpen = signal<boolean>(false);
+  popupExercisesSelected(id: string) {
+    this.service.startSessionIfNotStarted();
+    this.service.findOrStartActivityByExercise(id);
+  }
 }

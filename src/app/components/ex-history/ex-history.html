@@ -39,7 +39,7 @@
         <ion-col size="4" class="ion-text-center">{{set.reps}} {{checkSize(set.size)}}</ion-col>
       </ion-row>
     }
-    @if (activityEx.activity?.note?.length ?? 0 > 0){
+    @if (activityEx.activity.note && activityEx.activity.note.length > 0){
       <ion-row>
         <ion-col class="ion-text-center">
           Comment: <ion-text color="medium">{{activityEx.activity.note }}</ion-text>

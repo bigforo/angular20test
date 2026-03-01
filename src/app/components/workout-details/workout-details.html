@@ -1,4 +1,4 @@
-@if (session().activities?.length ?? 0 > 0){
+@if (session().activities.length > 0){
   <!--  Session DATE TIME-->
   @for (actEx of service.getActivitiesExBySession(session()); track $index) {
     @let exercise = Activity.exerciseById(actEx.activity.id);
@@ -11,7 +11,7 @@
       <app-show-sets style="width: 100%" [actEx]="actEx" />
       <!--     Activity Note-->
       <ion-item>
-        @if (actEx.activity.note?.length ?? 0 > 0) {
+        @if (actEx.activity.note && actEx.activity.note.length > 0) {
           <ion-label><p>{{ actEx.activity.note }} </p></ion-label>
         }
       </ion-item>

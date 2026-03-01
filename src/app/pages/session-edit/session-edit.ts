@@ -1,4 +1,4 @@
-import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
+import {Component, inject, input, OnInit} from '@angular/core';
 import {CommonService} from '../../classes/common.service';
 import {
   IonBackButton,
@@ -9,7 +9,6 @@ import {
   IonDatetimeButton,
   IonFooter,
   IonHeader,
-  IonIcon,
   IonInput,
   IonItem,
   IonItemOption,
@@ -18,17 +17,14 @@ import {
   IonLabel,
   IonList,
   IonModal,
-  IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {DatePipe, Location} from '@angular/common';
 import {addIcons} from 'ionicons';
 import {
-  arrowBackOutline,
   cloudDownload,
-  copy,
   ellipsisHorizontal,
   ellipsisVertical,
   share,
@@ -36,10 +32,10 @@ import {
   star,
   starOutline
 } from 'ionicons/icons';
-import {WorkoutDetails} from "../../components/workout-details/workout-details";
 import {Activity, Session} from '../../classes/state.interface';
 import {FormsModule} from '@angular/forms';
 import {SetClass} from '../../classes/set.class';
+import {PopupExercises} from '../../components/popup-exercises/popup-exercises';
 
 @Component({
   selector: 'app-view',
@@ -51,9 +47,6 @@ import {SetClass} from '../../classes/set.class';
     IonContent,
     IonBackButton,
     IonButton,
-    IonIcon,
-    RouterLink,
-    WorkoutDetails,
     IonFooter,
     IonList,
     IonItem,
@@ -65,8 +58,8 @@ import {SetClass} from '../../classes/set.class';
     IonItemSliding,
     IonItemOptions,
     IonItemOption,
-    IonText,
-    IonLabel
+    IonLabel,
+    PopupExercises
   ],
   providers:[DatePipe],
   templateUrl: './session-edit.html',
@@ -78,13 +71,14 @@ export class SessionEdit implements OnInit {
   appState = this.service.appState;
   id = input<string>();
   session_copy = {...this.appState().history[+(this.id() ?? "0")]} as  Session;
+
   constructor() {
-    addIcons({ shareOutline, starOutline, star, cloudDownload, share, ellipsisHorizontal,
-      ellipsisVertical,      });
+    addIcons({ shareOutline, starOutline, star, cloudDownload, share, ellipsisHorizontal, ellipsisVertical });
   }
   ngOnInit(): void {
     this.session_copy = {...this.appState().history[+(this.id() ?? "0")]} as  Session;
   }
+
   private location = inject(Location);
   public update(){
     this.appState().history[+(this.id() ?? "0")] = this.session_copy;
@@ -96,6 +90,7 @@ export class SessionEdit implements OnInit {
   protected readonly Session = Session;
 
   datepipe = inject(DatePipe);
+  popupOpen = false;
   setTime(time: Date) {
     // Date Pipe considers Local Time Zones
     return this.datepipe.transform(time, 'yyyy-MM-ddTHH:mm:ss');
@@ -103,5 +98,19 @@ export class SessionEdit implements OnInit {
 
   change($event: string, set: SetClass) {
     set.time = new Date($event);
+  }
+
+  selectedActivity: Activity | null = null;
+  clickChange(sliding: IonItemSliding, activity: Activity) {
+    void sliding.close();
+    this.selectedActivity = activity;
+    this.popupOpen = true;
+  }
+
+
+  selected(id: string) {
+    if (this.selectedActivity) {
+      this.selectedActivity.id = id;
+    }
   }
 }

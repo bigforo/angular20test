@@ -1,5 +1,5 @@
 import {Component, computed, inject, input} from '@angular/core';
-import {DatePipe, JsonPipe} from "@angular/common";
+import {DatePipe} from "@angular/common";
 import {IonCol, IonGrid, IonLabel, IonRow, IonText} from "@ionic/angular/standalone";
 import {Activity} from '../../classes/state.interface';
 import {ActivityEx, CommonService} from '../../classes/common.service';
@@ -12,9 +12,8 @@ import {ActivityEx, CommonService} from '../../classes/common.service';
     IonLabel,
     IonRow,
     IonGrid,
-    IonText,
-    JsonPipe
-  ],
+    IonText
+],
   templateUrl: './show-sets.html',
   styleUrl: './show-sets.scss'
 })

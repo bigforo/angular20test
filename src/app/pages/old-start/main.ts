@@ -20,8 +20,7 @@ import {CommonService} from '../../classes/common.service';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterLink,
-    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonMenuButton, IonLabel,
+  imports: [IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonMenuButton, IonLabel,
     IonLabel, IonList, IonItem, IonAvatar, IonImg, IonSearchbar],
   templateUrl: './main.html',
   styleUrl: './main.scss',

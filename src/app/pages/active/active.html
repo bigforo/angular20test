@@ -55,7 +55,7 @@
             @if (actEx.activity.sets.length > 0){
               <app-show-sets style="width: 100%" [actEx]="actEx" />
               <!--   exercise comment-->
-              @if (actEx.activity.note?.length ?? 0 > 0){
+              @if (actEx.activity.note && actEx.activity.note.length > 0){
                 <ion-label> <p>{{ actEx.activity.note }} </p> </ion-label>
               }
             }
@@ -125,21 +125,16 @@
 </ion-content>
 
 <ion-footer>
-  <app-modal-exercises/>
+  <div class="fab-container">
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" size="small" >
+      <ion-fab-button (click)="popupExercisesOpen.set(true)" [translucent]="true">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
 </ion-footer>
 
 <app-modal-sets [activity]="modalSetActivity()" [open]="modalSetOpen()" (closed)="modalClosed()"/>
-<app-modal-description [open]="modalCommentsSetOpen()" (closed)="modalCommentClosed()" />
 
-<!--  <ion-modal-->
-<!--    [isOpen]="openModal()"-->
-<!--    (didDismiss)="openModal.set(false)"-->
-<!--    [initialBreakpoint]="1"-->
-<!--    [breakpoints]="[1, 0.75]"-->
-<!--    handleBehavior="cycle">-->
-<!--    <ng-template>-->
-<!--      <div class="block">-->
-<!--        <app-exercise-sets [id]="viewId" />-->
-<!--      </div>-->
-<!--    </ng-template>-->
-<!--  </ion-modal>-->
+<app-modal-description [(open)]="modalCommentsSetOpen" />
+<app-popup-exercises [(open)]="popupExercisesOpen"  (selected)="popupExercisesSelected($event)" />

@@ -1,4 +1,4 @@
-import {Component, inject, input, signal, Signal} from '@angular/core';
+import {Component, inject, input} from '@angular/core';
 import {Activity, Session} from '../../classes/state.interface';
 
 import {IonItem, IonLabel, IonList} from '@ionic/angular/standalone';
