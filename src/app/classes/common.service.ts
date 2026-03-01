@@ -49,7 +49,7 @@ export class CommonService {
       // Add exercise to daily
       let findActivity = this.findActivityByExercise(exerciseId);
       // If not found:
-      if (findActivity === undefined) {
+      if (findActivity === undefined || findActivity.id === "em") {
         let ss = this.appState();
         const act : Activity = new Activity(exerciseId);
         ss.current?.activities.push(act);
