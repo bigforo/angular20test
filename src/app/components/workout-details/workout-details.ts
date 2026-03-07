@@ -1,7 +1,7 @@
 import {Component, inject, input} from '@angular/core';
 import {Activity, Session} from '../../classes/state.interface';
 
-import {IonItem, IonLabel, IonList} from '@ionic/angular/standalone';
+import {IonItem, IonLabel, IonList, NavController} from '@ionic/angular/standalone';
 import {ShowSets} from '../show-sets/show-sets';
 import {CommonService} from '../../classes/common.service';
 
@@ -20,4 +20,9 @@ export class WorkoutDetails {
   service = inject(CommonService);
   session = input.required<Session>();
   protected readonly Activity = Activity;
+
+  navyController = inject(NavController);
+  redirect(id:string) {
+    void this.navyController.navigateForward("exercise/" + id)
+  }
 }
