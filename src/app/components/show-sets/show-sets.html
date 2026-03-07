@@ -30,9 +30,11 @@
     <!-- Reps X Sets -->
     <ion-col class="ion-text-center">
       <ion-label color="tertiary">
-        @if (exercise?.reps) { {{ set.reps }} } @if (exercise?.weight) { {{ 'x '
-        + set.size }}{{ exercise?.weightUnit }} } @if (!exercise?.reps &&
-        !exercise?.weight){ {{ set.reps }} }
+        @if (set.size === "") { 
+          {{ set.reps }} 
+        } @else{ 
+          {{ set.reps }} x {{set.size }}{{ exercise?.weightUnit }} 
+        }
       </ion-label>
     </ion-col>
   </ion-row>
