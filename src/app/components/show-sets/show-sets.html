@@ -1,29 +1,32 @@
 <ion-grid [fixed]="true">
-  @let exercise = Activity.exerciseById(activity().id); @for (set of
-  activity().sets; track $index) {
+  @for (set of activity().sets; track $index) {
   <ion-row>
     <!--  Index -->
-    <ion-col size="60px">
-      <ion-label color="secondary"
-        ><small> #{{ $index + 1 }} </small></ion-label
-      >
+    <ion-col class="max-index-30">
+      <ion-label color="secondary">
+        <small> #{{ $index + 1 }} </small>
+      </ion-label>
     </ion-col>
     <!-- Time -->
-    <ion-col size="60px">
-      <ion-label color="secondary"
-        ><small>{{ set.time| date:'HH:mm' }} </small>
+    <ion-col class="max-index-50">
+      <ion-label color="secondary">
+        <small>{{ set.time| date:'HH:mm' }} </small>
       </ion-label>
     </ion-col>
     <!-- Delta-->
-    <ion-col size="60px">
+    <ion-col class="max-index-60">
       <ion-text style="font-size: small" color="warning">
-        @if ($index == 0 && (actEx().prevActivity === null ||
-        (actEx().prevActivity?.sets?.length ?? 0) == 0) ){ / } @else if ($index
-        == 0 ){ {{ service.diff( actEx().activity.sets[$index].time,
-        actEx().prevActivity!.sets.at(-1)!.time) }} min } @if ($index > 0 &&
-        actEx().activity.sets.length > 0){ {{ service.diff(
-        actEx().activity.sets[$index].time,
-        actEx().activity.sets[$index-1].time) }} min }
+      @if ($index == 0 && (actEx().prevActivity === null ||
+        (actEx().prevActivity?.sets?.length ?? 0) == 0) ){
+           / 
+      } @else if ($index == 0 ) { 
+        {{ service.diff( actEx().activity.sets[$index].time,
+        actEx().prevActivity!.sets.at(-1)!.time) }} min 
+      } 
+
+      @if ($index > 0 && actEx().activity.sets.length > 0){ 
+          {{ service.diff(actEx().activity.sets[$index].time, actEx().activity.sets[$index-1].time) }} min 
+      }
       </ion-text>
     </ion-col>
 
@@ -33,7 +36,7 @@
         @if (set.size === "") { 
           {{ set.reps }} 
         } @else{ 
-          {{ set.reps }} x {{set.size }}{{ exercise?.weightUnit }} 
+          {{ set.reps }} x {{set.size }} kg 
         }
       </ion-label>
     </ion-col>
