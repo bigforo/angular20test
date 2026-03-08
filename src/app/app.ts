@@ -24,6 +24,7 @@ import {
 import {addIcons} from 'ionicons';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { VERSION } from '../environments/version'; 
 
 @Component({
   selector: 'app-root',
@@ -35,6 +36,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class App implements  OnInit {
   service = inject(CommonService);
   dark = this.service.darkModeOn;
+  ver = VERSION;
+
 
   ngOnInit() {
     this.service.load();

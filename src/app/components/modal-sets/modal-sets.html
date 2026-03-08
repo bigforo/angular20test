@@ -26,24 +26,15 @@
         <ion-grid>
           <!--   SET-->
           <ion-row>
-            @if (exercise?.reps) {
             <ion-col>
               <ion-input mode="md" label="REPS" label-placement="floating" fill="outline"  inputmode="numeric"
                          [(ngModel)]="values.reps"/>
             </ion-col>
-            }
-            @if (exercise?.weight) {
             <ion-col>
               <ion-input mode="md" label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal"
                          [(ngModel)]="values.kgs" />
             </ion-col>
-            }
-            @if (!exercise?.weight && !exercise?.reps) {
-              <ion-col>
-                <ion-input mode="md" label="FREE TEXT" label-placement="floating" fill="outline"
-                           [(ngModel)]="values.reps" />
-              </ion-col>
-            }
+ 
           </ion-row>
 
           <!-- Comment-->

@@ -10,8 +10,8 @@
 
           <div class="text-xs w-50px text-indigo-400 font-mono">{{ i.time| date:'HH:mm' }}</div>
           <div class="text-lg">{{i.reps}}
-          @if (activity.hasSize) {
-            {{'x ' + i.size}}{{exercise?.weightUnit}}
+          @if (i.size !== '') {
+            {{'x ' + i.size}} kg
           }
           </div>
           <div></div>

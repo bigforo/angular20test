@@ -1,20 +1,18 @@
-@let exercise = Activity.exerciseById(activity().id);
+
 @for (i of activity().sets; track $index){
   <ion-item>
     <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>
-    @if (exercise?.reps) {
+    @if (i.reps) {
       <ion-label color="tertiary"> set {{ $index + 1 }} </ion-label>
     }
-    @if (exercise?.reps) {
       <ion-label color="tertiary">
         {{i.reps}}
-        @if (exercise?.weight) {
-          {{'x ' + i.size}}{{exercise?.weightUnit}}
+        @if (i.size !== '') {
+          {{'x ' + i.size}} kg
         }
-        @if (!exercise?.reps && !exercise?.weight) {
+        @else {
           {{i.reps}}
         }
       </ion-label>
-    }
   </ion-item>
 }
