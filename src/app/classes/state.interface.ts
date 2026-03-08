@@ -30,7 +30,6 @@ export class Activity  {
       id: a.id,
       created: a.created,
       sets: a.sets,
-      hasSize: a.hasSize,
       note: a.note,
     }
   }
@@ -38,14 +37,12 @@ export class Activity  {
   created = new Date();
   sets: SetClass[] = [];
   visible: boolean;
-  readonly hasSize;
   note: string;
 
   constructor(exerciseId : string) {
     this.id = exerciseId;
     this.visible = true;
     let exercise = EXERCISES.find(ex => ex.id === exerciseId);
-    this.hasSize = exercise?.weightUnit;
     this.note = "";
   }
 
@@ -68,9 +65,6 @@ export interface Exercise{
   id: string,
   name?: string,
   color?:string,
-  weightUnit?:string,
-  reps: boolean,
-  weight: boolean,
   description?:string,
 }
 
