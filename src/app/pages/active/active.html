@@ -8,16 +8,15 @@
     @if (appState().current?.activities?.length ?? 0 > 0){
     <ion-buttons slot="end">
       <ion-button id="present-alert">
-        <ion-icon size="large" color="danger" name="stop-circle-outline"></ion-icon>
+        <ion-icon size="large" color="danger" name="stop-circle-outline" />
       </ion-button>
     </ion-buttons>
-      <ion-alert
-        trigger="present-alert"
+      <ion-alert trigger="present-alert"
         header="Stop Active Workout?"
         message="Older workout sessions can be found in the history tab."
         [buttons]="alertButtons"
         (didDismiss)="endSessionConfirmation($event)"
-      ></ion-alert>
+       />
     }
 
   </ion-toolbar>
@@ -128,7 +127,7 @@
   <div class="fab-container">
     <ion-fab slot="fixed" vertical="bottom" horizontal="end" size="small" >
       <ion-fab-button (click)="popupExercisesOpen.set(true)" [translucent]="true">
-        <ion-icon name="add-outline"></ion-icon>
+        <ion-icon name="add-outline" />
       </ion-fab-button>
     </ion-fab>
   </div>

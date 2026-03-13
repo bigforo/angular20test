@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button />
     </ion-buttons>
     <ion-title>Previous Sessions</ion-title>
 
@@ -47,12 +47,11 @@
 
 </ion-content>
 
-<ion-alert
-  [isOpen]="alertDelete() != null"
+<ion-alert [isOpen]="alertDelete() != null"
   header="Delete session?"
   message="Deleting session will remove all activities/exercises history."
   [buttons]="[{text: 'Yes', role: 'yes',},{text: 'No',role: 'no',},]"
   (willDismiss)="deleteConfirmation($event)"
-></ion-alert>
+ />
 
 

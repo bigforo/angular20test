@@ -28,8 +28,7 @@ import {CommonService} from '../../classes/common.service';
                         [value]="appState().current?.note"
                         label="Session/Workout Notes"
                         label-placement="floating" fill="outline"
-                        rows="10">
-          </ion-textarea>
+                        rows="10" />
 
         </ion-content>
       </ng-template>

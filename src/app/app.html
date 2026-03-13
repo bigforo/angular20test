@@ -14,7 +14,7 @@
       <ion-content>
         <ion-menu-toggle autoHide="false">
           <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">
-            <ion-icon slot="start" name="radio-button-on"></ion-icon>
+            <ion-icon slot="start" name="radio-button-on" />
             <ion-label> Home - Active Workout </ion-label>
           </ion-item>
         </ion-menu-toggle>
@@ -49,7 +49,7 @@
 
           <ion-menu-toggle autoHide="false">
             <ion-item [routerLink]="'/app/tabs/sessions'" routerLinkActive="selected" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="logo-buffer"></ion-icon>
+              <ion-icon slot="start" name="logo-buffer" />
               <ion-label> History - Older Activities </ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -79,7 +79,7 @@
         <ion-list lines="none">
           <ion-list-header> Settings </ion-list-header>
           <ion-item>
-            <ion-icon slot="start" name="moon-outline"></ion-icon>
+            <ion-icon slot="start" name="moon-outline" />
             <ion-toggle [(ngModel)] ="dark_" (ionChange)="toggleDarkMode()">
               Dark Mode
             </ion-toggle>
@@ -92,7 +92,7 @@
           <ion-list-header> Tutorial </ion-list-header>
           <ion-menu-toggle autoHide="false">
             <ion-item button (click)="openTutorial()" detail="false">
-              <ion-icon slot="start" name="hammer"></ion-icon>
+              <ion-icon slot="start" name="hammer" />
               <ion-label>Show Tutorial</ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -104,28 +104,28 @@
 
           <ion-menu-toggle autoHide="false">
             <ion-item button (click)="openTutorial()" detail="false">
-              <ion-icon slot="start" name="walk-outline"></ion-icon>
+              <ion-icon slot="start" name="walk-outline" />
               <ion-label>Chest Day</ion-label>
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
             <ion-item button (click)="openTutorial()" detail="false">
-              <ion-icon slot="start" name="walk-outline"></ion-icon>
+              <ion-icon slot="start" name="walk-outline" />
               <ion-label>Back Day</ion-label>
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
             <ion-item button (click)="openTutorial()" detail="false">
-              <ion-icon slot="start" name="walk-outline"></ion-icon>
+              <ion-icon slot="start" name="walk-outline" />
               <ion-label>Shoulders Day</ion-label>
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
             <ion-item button (click)="openTutorial()" detail="false">
-              <ion-icon slot="start" name="walk-outline"></ion-icon>
+              <ion-icon slot="start" name="walk-outline" />
               <ion-label>Legs Day</ion-label>
             </ion-item>
           </ion-menu-toggle>
