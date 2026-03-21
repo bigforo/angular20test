@@ -26,9 +26,9 @@ export class ShowExercise implements OnInit {
 
   id = input<string>();
   activity = linkedSignal(() => {
-    let ex = EXERCISES.find((a) => a.id === this.id());
+    const ex = EXERCISES.find((a) => a.id === this.id());
     if (ex === undefined) return Activity.unknowActivity();
-    let act = this.service.findActivityByExercise(ex.id);
+    const act = this.service.findActivityByExercise(ex.id);
     if (act === undefined) return new Activity(ex.id);
     return act;
   });
@@ -42,7 +42,7 @@ export class ShowExercise implements OnInit {
 
   addSet(reps: string, kgs: string) {
     this.service.startSessionIfNotStarted();
-    let act = this.service.findOrStartActivityByExercise(this.activity().id);
+    const act = this.service.findOrStartActivityByExercise(this.activity().id);
     this.activity.set(act);
 
     if (reps !== '') {

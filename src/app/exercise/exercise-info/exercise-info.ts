@@ -22,9 +22,9 @@ export class ExerciseInfo {
 
   id = input<string>();
   activity = linkedSignal(() => {
-    let ex = EXERCISES.find((a) => a.id === this.id());
+    const ex = EXERCISES.find((a) => a.id === this.id());
     if (ex === undefined) return Activity.unknowActivity();
-    let act = this.service.findActivityByExercise(ex.id);
+    const act = this.service.findActivityByExercise(ex.id);
     if (act === undefined) return new Activity(ex.id);
     return act;
   });
@@ -43,16 +43,16 @@ export class ExerciseInfo {
 
   navyController = inject(NavController);
   navBack() {
-    let exIndex = EXERCISES.findIndex((a) => a.id === this.id());
+    const exIndex = EXERCISES.findIndex((a) => a.id === this.id());
     if (exIndex == 0) return;
-    let ex = EXERCISES[exIndex - 1];
+    const ex = EXERCISES[exIndex - 1];
     this.navyController.navigateBack('exercise/' + ex.id);
   }
 
   navForward() {
-    let exIndex = EXERCISES.findIndex((a) => a.id === this.id());
+    const exIndex = EXERCISES.findIndex((a) => a.id === this.id());
     if (exIndex === EXERCISES.length - 1) return;
-    let ex = EXERCISES[exIndex + 1];
+    const ex = EXERCISES[exIndex + 1];
     this.navyController.navigateForward('exercise/' + ex.id);
   }
 

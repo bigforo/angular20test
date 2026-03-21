@@ -1,12 +1,12 @@
 {
-  "printWidth": 100,
+  "printWidth": 999999,
   "singleQuote": true,
   "semi": true,
   "tabWidth": 2,
   "useTabs": false,
   "trailingComma": "es5",
   "bracketSpacing": true,
-  "singleAttributePerLine": true,
+  "singleAttributePerLine": false,
   "overrides": [
     {
       "files": "*.html",

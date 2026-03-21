@@ -1,48 +1,27 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {CommonService} from './classes/common.service';
-import {
-  IonApp,
-  IonContent, IonIcon, IonItem, IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu, IonMenuToggle,
-  IonRouterOutlet,
-  IonSplitPane, IonToggle
-} from '@ionic/angular/standalone';
-import {FormsModule} from '@angular/forms';
-import {
-  accessibilityOutline,
-  calendarOutline,
-  hammer,
-  help,
-  informationCircleOutline, logIn, logoBuffer,
-  logOut,
-  mapOutline, moonOutline,
-  peopleOutline,
-  person, personAdd, radioButtonOn, walk, walkOutline
-} from 'ionicons/icons';
-import {addIcons} from 'ionicons';
-import {Router, RouterLink, RouterLinkActive} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import { VERSION } from '../environments/version'; 
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonRouterOutlet, IonSplitPane, IonToggle } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { accessibilityOutline, calendarOutline, hammer, help, informationCircleOutline, logIn, logoBuffer, logOut, mapOutline, moonOutline, peopleOutline, person, personAdd, radioButtonOn, walk, walkOutline } from 'ionicons/icons';
+import { VERSION } from '../environments/version';
+import { CommonService } from './classes/common.service';
 
 @Component({
   selector: 'app-root',
-  imports: [IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonMenuToggle, IonItem, IonLabel
-    , IonToggle, FormsModule, IonIcon, RouterLink, RouterLinkActive],
+  imports: [IonApp, IonRouterOutlet, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonMenuToggle, IonItem, IonLabel, IonToggle, FormsModule, IonIcon, RouterLink, RouterLinkActive],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App implements  OnInit {
+export class App implements OnInit {
   service = inject(CommonService);
   dark = this.service.darkModeOn;
   ver = VERSION;
 
-
   ngOnInit() {
     this.service.load();
   }
-
 
   constructor() {
     addIcons({
@@ -64,16 +43,14 @@ export class App implements  OnInit {
       walkOutline,
     });
   }
-  dark_: boolean = true;
+  dark_ = true;
 
   toggleDarkMode() {
     this.dark.set(this.dark_);
     document.documentElement.classList.toggle('ion-palette-dark', this.dark());
   }
 
-  openTutorial() {
-
-  }
+  openTutorial() {}
   router = inject(Router);
   // toast = inject(ToastController);
   _snackBar = inject(MatSnackBar);

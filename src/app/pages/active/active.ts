@@ -1,84 +1,25 @@
-import {Component, inject, linkedSignal, signal} from '@angular/core';
-import {CommonService} from '../../classes/common.service';
-import {Router, RouterLink} from '@angular/router';
-import {
-  IonAlert,
-  IonButton,
-  IonButtons,
-  IonChip,
-  IonCol,
-  IonContent, IonFab, IonFabButton,
-  IonFooter,
-  IonGrid,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonItemOption,
-  IonItemOptions,
-  IonItemSliding,
-  IonLabel,
-  IonList,
-  IonMenuButton,
-  IonModal,
-  IonNote,
-  IonPicker,
-  IonPickerColumn, IonPickerColumnOption,
-  IonRow,
-  IonText,
-  IonTextarea,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
-import {addIcons} from 'ionicons';
-import {cloudDownload, shareOutline, star, starOutline, share, stopCircleOutline, chevronForward, people, timerOutline} from 'ionicons/icons';
-import {DatePipe} from '@angular/common';
-import {Activity, Session} from '../../classes/state.interface';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { IonAlert, IonButton, IonButtons, IonChip, IonContent, IonFab, IonFabButton, IonFooter, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonMenuButton, IonNote, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import type { OverlayEventDetail } from '@ionic/core';
-import {ExerciseSets} from '../../components/exercise-sets/exercise-sets';
-import {SessionTips} from '../../components/session-tips/session-tips';
-import {ShowSets} from '../../components/show-sets/show-sets';
-import {ModalExercises} from '../../components/modal-exercises/modal-exercises';
-import {ModalSets} from '../../components/modal-sets/modal-sets';
-import {EXERCISES} from '../../classes/all-exercises.data';
-import {ModalDescription} from '../../components/modal-description/modal-description';
-import {PopupExercises} from '../../components/popup-exercises/popup-exercises';
+import { addIcons } from 'ionicons';
+import { chevronForward, cloudDownload, share, shareOutline, star, starOutline, stopCircleOutline, timerOutline } from 'ionicons/icons';
+import { EXERCISES } from '../../classes/all-exercises.data';
+import { CommonService } from '../../classes/common.service';
+import { Activity, Session } from '../../classes/state.interface';
+import { ModalDescription } from '../../components/modal-description/modal-description';
+import { ModalSets } from '../../components/modal-sets/modal-sets';
+import { PopupExercises } from '../../components/popup-exercises/popup-exercises';
+import { SessionTips } from '../../components/session-tips/session-tips';
+import { ShowSets } from '../../components/show-sets/show-sets';
 
 @Component({
   selector: 'app-summary',
-  imports: [
-    RouterLink,
-    IonButtons,
-    IonHeader,
-    IonMenuButton,
-    IonTitle,
-    IonToolbar,
-    IonContent,
-    IonButton,
-    IonIcon,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonItemOptions,
-    IonItemOption,
-    IonItemSliding,
-    IonNote,
-    IonText,
-    IonAlert,
-    IonChip,
-    SessionTips,
-    ShowSets,
-    IonFooter,
-    ModalSets,
-    ModalDescription,
-    PopupExercises,
-    IonFab,
-    IonFabButton
-  ],
+  imports: [RouterLink, IonButtons, IonHeader, IonMenuButton, IonTitle, IonToolbar, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonItemOptions, IonItemOption, IonItemSliding, IonNote, IonText, IonAlert, IonChip, SessionTips, ShowSets, IonFooter, ModalSets, ModalDescription, PopupExercises, IonFab, IonFabButton],
   templateUrl: './active.html',
-  styleUrl: './active.scss'
+  styleUrl: './active.scss',
 })
 export class ActiveComponent {
-
   service = inject(CommonService);
   appState = this.service.appState;
   router = inject(Router);
@@ -99,13 +40,15 @@ export class ActiveComponent {
       this.service.save();
     }
   }
-  public alertButtons = [{text: 'Yes', role: 'yes',},{text: 'No',role: 'no',},];
+  public alertButtons = [
+    { text: 'Yes', role: 'yes' },
+    { text: 'No', role: 'no' },
+  ];
 
   items = ['Chest', 'Back', 'Shoulders', 'Legs'];
-  selectedItem? : string = this.service.appState().current?.type;
+  selectedItem?: string = this.service.appState().current?.type;
   chipClick(item: string) {
-    if (this.selectedItem === item)
-      this.selectedItem = undefined;
+    if (this.selectedItem === item) this.selectedItem = undefined;
     else {
       this.selectedItem = item;
     }
@@ -113,11 +56,11 @@ export class ActiveComponent {
   }
 
   modalSetActivity = signal<Activity>(Activity.unknowActivity());
-  modalSetOpen = signal<boolean> (false);
+  modalSetOpen = signal<boolean>(false);
   modalRedirect(id: string) {
-    let ex = EXERCISES.find(a=> a.id === id);
+    const ex = EXERCISES.find((a) => a.id === id);
     if (!ex) return;
-    let act = this.service.findActivityByExercise(id);
+    const act = this.service.findActivityByExercise(id);
     if (!act) return;
     this.modalSetActivity.set(act);
     this.modalSetOpen.set(true);
@@ -126,12 +69,11 @@ export class ActiveComponent {
     this.modalSetOpen.set(false);
   }
 
-  modalCommentsSetOpen = signal<boolean> (false);
-
+  modalCommentsSetOpen = signal<boolean>(false);
 
   clear(current: Session | null | undefined, sliding: IonItemSliding) {
     if (current) {
-      current.note = "";
+      current.note = '';
       this.service.save();
     }
 
