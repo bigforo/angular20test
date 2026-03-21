@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
+import { ActiveComponent } from '../pages/active/active';
+import { Main } from '../pages/old-start/main';
+import { SessionsList } from '../pages/sessions/sessions-list';
 import { TabsPage } from './tabs-page';
-import { SessionsList} from '../pages/sessions/sessions-list';
-import { ActiveComponent} from '../pages/active/active';
-import { Main} from '../pages/old-start/main';
 
 export const TABS_ROUTES: Routes = [
   {
@@ -11,15 +11,15 @@ export const TABS_ROUTES: Routes = [
     children: [
       {
         path: 'sessions',
-        component:SessionsList,
+        component: SessionsList,
       },
       {
         path: 'current',
-        component:ActiveComponent,
+        component: ActiveComponent,
       },
       {
         path: 'start',
-        component:Main,
+        component: Main,
       },
       {
         path: '',
@@ -33,5 +33,4 @@ export const TABS_ROUTES: Routes = [
     redirectTo: '/app/tabs/current',
     pathMatch: 'full',
   },
-
 ];

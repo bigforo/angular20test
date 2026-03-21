@@ -4,37 +4,39 @@
 @use '@angular/material' as mat;
 
 $angular-material-theming-css-vars-theme: mat.define-theme(
-    (
-      color: (
-        theme-type: dark,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-        use-system-variables: true, // 👈 Added
-      ),
-      typography: (
-        use-system-variables: true, // 👈 Added
-      ),
-      density: (
-        scale: 0,
-      ),
-    )
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+      use-system-variables: true,
+      // 👈 Added
+    ),
+    typography: (
+      use-system-variables: true,
+      // 👈 Added
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
 );
 
 /* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+@import '@ionic/angular/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+@import '@ionic/angular/css/normalize.css';
+@import '@ionic/angular/css/structure.css';
+@import '@ionic/angular/css/typography.css';
+@import '@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+@import '@ionic/angular/css/padding.css';
+@import '@ionic/angular/css/float-elements.css';
+@import '@ionic/angular/css/text-alignment.css';
+@import '@ionic/angular/css/text-transformation.css';
+@import '@ionic/angular/css/flex-utils.css';
 
 /**
  * Ionic Dark Mode
@@ -44,10 +46,11 @@ $angular-material-theming-css-vars-theme: mat.define-theme(
  */
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-@import "@ionic/angular/css/palettes/dark.class.css";
+@import '@ionic/angular/css/palettes/dark.class.css';
 //@import '@ionic/angular/css/palettes/dark.system.css';
 
-html, body {
+html,
+body {
   touch-action: manipulation;
 }
 
@@ -76,10 +79,14 @@ html, body {
   --step-5: clamp(4.6656rem, 3.6347rem + 5.1544vw, 7.6294rem);
 }
 
-html, body {
+html,
+body {
   height: 100%;
   //font-size: 50px;
   //font-size: var(--step-0);
   //--mat-list-list-item-one-line-container-height:200px;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

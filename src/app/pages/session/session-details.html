@@ -7,10 +7,7 @@
     <ion-title>Old Session Details</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button
-        [routerLink]="['/view']"
-        [queryParams]="{id: generatedLink()}"
-      >
+      <ion-button [routerLink]="['/view']" [queryParams]="{ id: generatedLink() }">
         <ion-icon slot="icon-only" name="share" />
       </ion-button>
     </ion-buttons>
@@ -18,28 +15,16 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-  @if (session()){
-  <div class="ion-display-flex ion-justify-content-center">
-    <br />
-    <add-to-calendar-button
-      buttonStyle="date"
-      size="1"
-      [attr.name]="getCalName()"
-      options="'Google'"
-      location="Gym"
-      [attr.startDate]="getDateStart(session().created)"
-      [attr.endDate]="getDateEnd(session().created, 60)"
-      [attr.startTime]="getTimeStart(session().created)"
-      [attr.endTime]="getTimeEnd(session().created, 60)"
-      [attr.description]="getCalDesc()"
-      timeZone="currentBrowser"
-      lightMode="bodyScheme"
-    />
-  </div>
+  @if (session()) {
+    <div class="ion-display-flex ion-justify-content-center">
+      <br />
+      <add-to-calendar-button buttonStyle="date" size="1" [attr.name]="getCalName()" options="'Google'" location="Gym" [attr.startDate]="getDateStart(session().created)" [attr.endDate]="getDateEnd(session().created, 60)" [attr.startTime]="getTimeStart(session().created)" [attr.endTime]="getTimeEnd(session().created, 60)" [attr.description]="getCalDesc()" timeZone="currentBrowser" lightMode="bodyScheme" />
+    </div>
 
-  <app-workout-details [session]="session()" />
-
-  } @else { no history data }
+    <app-workout-details [session]="session()" />
+  } @else {
+    no history data
+  }
 </ion-content>
 
 <ion-footer>
@@ -49,9 +34,7 @@
     </ion-buttons>
     <ion-title>Session Actions</ion-title>
     <ion-buttons slot="start">
-      <ion-button [routerLink]="['/session-edit']" [queryParams]="{id: id()}"
-        >Edit</ion-button
-      >
+      <ion-button [routerLink]="['/session-edit']" [queryParams]="{ id: id() }">Edit</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

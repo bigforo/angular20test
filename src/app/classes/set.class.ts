@@ -1,6 +1,6 @@
 export interface IExerciseSet {
-  reps: string,
-  size?: string,
+  reps: string;
+  size?: string;
 }
 
 export class SetClass implements IExerciseSet {
@@ -13,4 +13,3 @@ export class SetClass implements IExerciseSet {
     this.size = size;
   }
 }
-

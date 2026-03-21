@@ -1,19 +1,14 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {IonItem, IonLabel, IonText} from '@ionic/angular/standalone';
-import {RandomTip} from '../../classes/random-tip';
-import {AsyncPipe} from '@angular/common';
-import {delay} from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { IonItem, IonLabel, IonText } from '@ionic/angular/standalone';
+import { delay } from 'rxjs';
+import { RandomTip } from '../../classes/random-tip';
 
 @Component({
   selector: 'app-session-tips',
-  imports: [
-    IonLabel,
-    AsyncPipe,
-    IonItem,
-    IonText
-  ],
+  imports: [IonLabel, AsyncPipe, IonItem, IonText],
   templateUrl: './session-tips.html',
-  styleUrl: './session-tips.scss'
+  styleUrl: './session-tips.scss',
 })
 export class SessionTips implements OnInit {
   ngOnInit(): void {

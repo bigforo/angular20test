@@ -25,14 +25,14 @@ export class LocalStorageService {
       console.error('Error saving to local storage', error);
     }
   }
-  getCompressed(value: any) : string | null {
+  getCompressed(value: any): string | null {
     try {
       let jsonValue = JSON.stringify(value);
       jsonValue = LZString.compressToBase64(jsonValue);
       return encodeURIComponent(jsonValue);
     } catch (error) {
       console.error('Error saving to local storage', error);
-      return null
+      return null;
     }
   }
   getUncompressed<T>(value: any): T | null {

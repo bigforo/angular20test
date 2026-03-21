@@ -1,15 +1,9 @@
-import {Component, inject, input} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
-import {
-  IonButton, IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  PopoverController,
-} from '@ionic/angular/standalone';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { IonItem, IonLabel, IonList, PopoverController } from '@ionic/angular/standalone';
 
 @Component({
-    template: `
+  template: `
     <ion-list>
       <ion-item button (click)="close('https://go.foro.mk/')">
         <ion-label>Pico8 Tabla</ion-label>
@@ -26,7 +20,7 @@ import {
     </ion-list>
   `,
   imports: [IonList, IonItem, IonLabel],
-    providers: [PopoverController]
+  providers: [PopoverController],
 })
 export class PopoverPage {
   private router = inject(Router);

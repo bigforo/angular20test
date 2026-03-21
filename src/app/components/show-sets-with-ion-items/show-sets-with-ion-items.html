@@ -1,18 +1,18 @@
-
-@for (i of activity().sets; track $index){
+@for (i of activity().sets; track $index) {
   <ion-item>
-    <ion-label color="secondary"> <sub>{{ i.time| date:'HH:mm' }}</sub>  </ion-label>
+    <ion-label color="secondary">
+      <sub>{{ i.time | date: 'HH:mm' }}</sub>
+    </ion-label>
     @if (i.reps) {
       <ion-label color="tertiary"> set {{ $index + 1 }} </ion-label>
     }
-      <ion-label color="tertiary">
-        {{i.reps}}
-        @if (i.size !== '') {
-          {{'x ' + i.size}} kg
-        }
-        @else {
-          {{i.reps}}
-        }
-      </ion-label>
+    <ion-label color="tertiary">
+      {{ i.reps }}
+      @if (i.size !== '') {
+        {{ 'x ' + i.size }} kg
+      } @else {
+        {{ i.reps }}
+      }
+    </ion-label>
   </ion-item>
 }

@@ -1,20 +1,15 @@
-import {Component, inject, input} from '@angular/core';
-import {Activity, Session} from '../../classes/state.interface';
+import { Component, inject, input } from '@angular/core';
+import { Activity, Session } from '../../classes/state.interface';
 
-import {IonItem, IonLabel, IonList, NavController} from '@ionic/angular/standalone';
-import {ShowSets} from '../show-sets/show-sets';
-import {CommonService} from '../../classes/common.service';
+import { IonItem, IonLabel, IonList, NavController } from '@ionic/angular/standalone';
+import { CommonService } from '../../classes/common.service';
+import { ShowSets } from '../show-sets/show-sets';
 
 @Component({
   selector: 'app-workout-details',
-  imports: [
-    IonItem,
-    IonLabel,
-    IonList,
-    ShowSets,
-  ],
+  imports: [IonItem, IonLabel, IonList, ShowSets],
   templateUrl: './workout-details.html',
-  styleUrl: './workout-details.scss'
+  styleUrl: './workout-details.scss',
 })
 export class WorkoutDetails {
   service = inject(CommonService);
@@ -22,7 +17,7 @@ export class WorkoutDetails {
   protected readonly Activity = Activity;
 
   navyController = inject(NavController);
-  redirect(id:string) {
-    void this.navyController.navigateForward("exercise/" + id)
+  redirect(id: string) {
+    void this.navyController.navigateForward('exercise/' + id);
   }
 }

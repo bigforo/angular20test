@@ -1,15 +1,12 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, inject, linkedSignal, signal} from '@angular/core';
-import {CommonService} from '../../classes/common.service';
-import {MatButton} from '@angular/material/button';
-import {LocalStorageService} from '../../classes/ls';
-import {RouterLink} from '@angular/router';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, linkedSignal } from '@angular/core';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { CommonService } from '../../classes/common.service';
+import { LocalStorageService } from '../../classes/ls';
 
 @Component({
   selector: 'page-share',
-  imports: [
-    MatButton,
-    RouterLink
-  ],
+  imports: [MatButton, RouterLink],
   templateUrl: './page-share.html',
   styleUrl: './page-share.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -29,16 +26,15 @@ export class PageShare {
   addMinutes(date: Date, minutes: number): Date {
     return new Date(date.getTime() + minutes * 60000);
   }
-  public getTime(){
+  public getTime() {
     const now = new Date();
     return this.formatTimeHHMMSS(now);
   }
-  public getTimeLater(){
+  public getTimeLater() {
     const now = new Date();
     return this.formatTimeHHMMSS(this.addMinutes(now, 30));
   }
   timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
 
   // public getDescForCal() : string{
   //   let exercises = this.appState().current?.activities;
@@ -56,7 +52,7 @@ export class PageShare {
   // }
 
   ls = inject(LocalStorageService);
-  link = linkedSignal(()=>{
-    return this.ls.getCompressed(this.appState().current) ?? "";
+  link = linkedSignal(() => {
+    return this.ls.getCompressed(this.appState().current) ?? '';
   });
 }

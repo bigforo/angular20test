@@ -18,75 +18,71 @@
             <ion-label> Home - Active Workout </ion-label>
           </ion-item>
         </ion-menu-toggle>
-<!--        <ion-list lines="none">-->
-<!--          <ion-list-header> Exercises </ion-list-header>-->
-<!--          @for (ex of allExercises; track $index) {-->
-<!--            <ion-menu-toggle autoHide="false">-->
-<!--              <ion-item routerLink="/exercise/{{ex.id}}" routerLinkActive="selected" routerDirection="root" detail="false">-->
-<!--                <ion-icon slot="start" name="walk"></ion-icon>-->
-<!--                <ion-label color="primary">{{ex.name}}</ion-label>-->
-<!--              </ion-item>-->
-<!--            </ion-menu-toggle>-->
-<!--          }-->
-<!--        </ion-list>-->
+        <!--        <ion-list lines="none">-->
+        <!--          <ion-list-header> Exercises </ion-list-header>-->
+        <!--          @for (ex of allExercises; track $index) {-->
+        <!--            <ion-menu-toggle autoHide="false">-->
+        <!--              <ion-item routerLink="/exercise/{{ex.id}}" routerLinkActive="selected" routerDirection="root" detail="false">-->
+        <!--                <ion-icon slot="start" name="walk"></ion-icon>-->
+        <!--                <ion-label color="primary">{{ex.name}}</ion-label>-->
+        <!--              </ion-item>-->
+        <!--            </ion-menu-toggle>-->
+        <!--          }-->
+        <!--        </ion-list>-->
 
-<!--        <ion-list lines="none">-->
-<!--          <ion-list-header> Sessions </ion-list-header>-->
+        <!--        <ion-list lines="none">-->
+        <!--          <ion-list-header> Sessions </ion-list-header>-->
 
-<!--          <ion-menu-toggle autoHide="false">-->
-<!--            <ion-item [routerLink]="'/app/tabs/start'" routerLinkActive="selected" routerDirection="root" detail="false">-->
-<!--              <ion-icon slot="start" name="walk"></ion-icon>-->
-<!--              <ion-label> Exercises </ion-label>-->
-<!--            </ion-item>-->
-<!--          </ion-menu-toggle>-->
+        <!--          <ion-menu-toggle autoHide="false">-->
+        <!--            <ion-item [routerLink]="'/app/tabs/start'" routerLinkActive="selected" routerDirection="root" detail="false">-->
+        <!--              <ion-icon slot="start" name="walk"></ion-icon>-->
+        <!--              <ion-label> Exercises </ion-label>-->
+        <!--            </ion-item>-->
+        <!--          </ion-menu-toggle>-->
 
-<!--          <ion-menu-toggle autoHide="false">-->
-<!--            <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">-->
-<!--              <ion-icon slot="start" name="radio-button-on"></ion-icon>-->
-<!--              <ion-label> Active Workout </ion-label>-->
-<!--            </ion-item>-->
-<!--          </ion-menu-toggle>-->
+        <!--          <ion-menu-toggle autoHide="false">-->
+        <!--            <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">-->
+        <!--              <ion-icon slot="start" name="radio-button-on"></ion-icon>-->
+        <!--              <ion-label> Active Workout </ion-label>-->
+        <!--            </ion-item>-->
+        <!--          </ion-menu-toggle>-->
 
-          <ion-menu-toggle autoHide="false">
-            <ion-item [routerLink]="'/app/tabs/sessions'" routerLinkActive="selected" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="logo-buffer" />
-              <ion-label> History - Older Activities </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-<!--        </ion-list>-->
-<!--        <ion-list lines="none">-->
-<!--          <ion-list-header> Load Presets </ion-list-header>-->
-<!--          <ion-menu-toggle autoHide="false">-->
-<!--            <ion-item button (click)="presets('Chest day')" detail="false">-->
-<!--              <ion-icon slot="start" name="accessibility-outline"></ion-icon>-->
-<!--              <ion-label>Chest day</ion-label>-->
-<!--            </ion-item>-->
-<!--          </ion-menu-toggle>-->
-<!--          <ion-menu-toggle autoHide="false">-->
-<!--            <ion-item button (click)="presets('Back day')" detail="false">-->
-<!--              <ion-icon slot="start" name="accessibility-outline"></ion-icon>-->
-<!--              <ion-label>Back day</ion-label>-->
-<!--            </ion-item>-->
-<!--          </ion-menu-toggle>-->
-<!--          <ion-menu-toggle autoHide="false">-->
-<!--            <ion-item button (click)="presets('Shoulders day')" detail="false">-->
-<!--              <ion-icon slot="start" name="accessibility-outline"></ion-icon>-->
-<!--              <ion-label>Shoulders day</ion-label>-->
-<!--            </ion-item>-->
-<!--          </ion-menu-toggle>-->
-<!--        </ion-list>-->
+        <ion-menu-toggle autoHide="false">
+          <ion-item [routerLink]="'/app/tabs/sessions'" routerLinkActive="selected" routerDirection="root" detail="false">
+            <ion-icon slot="start" name="logo-buffer" />
+            <ion-label> History - Older Activities </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <!--        </ion-list>-->
+        <!--        <ion-list lines="none">-->
+        <!--          <ion-list-header> Load Presets </ion-list-header>-->
+        <!--          <ion-menu-toggle autoHide="false">-->
+        <!--            <ion-item button (click)="presets('Chest day')" detail="false">-->
+        <!--              <ion-icon slot="start" name="accessibility-outline"></ion-icon>-->
+        <!--              <ion-label>Chest day</ion-label>-->
+        <!--            </ion-item>-->
+        <!--          </ion-menu-toggle>-->
+        <!--          <ion-menu-toggle autoHide="false">-->
+        <!--            <ion-item button (click)="presets('Back day')" detail="false">-->
+        <!--              <ion-icon slot="start" name="accessibility-outline"></ion-icon>-->
+        <!--              <ion-label>Back day</ion-label>-->
+        <!--            </ion-item>-->
+        <!--          </ion-menu-toggle>-->
+        <!--          <ion-menu-toggle autoHide="false">-->
+        <!--            <ion-item button (click)="presets('Shoulders day')" detail="false">-->
+        <!--              <ion-icon slot="start" name="accessibility-outline"></ion-icon>-->
+        <!--              <ion-label>Shoulders day</ion-label>-->
+        <!--            </ion-item>-->
+        <!--          </ion-menu-toggle>-->
+        <!--        </ion-list>-->
 
         <ion-list lines="none">
           <ion-list-header> Settings </ion-list-header>
           <ion-item>
             <ion-icon slot="start" name="moon-outline" />
-            <ion-toggle [(ngModel)] ="dark_" (ionChange)="toggleDarkMode()">
-              Dark Mode
-            </ion-toggle>
+            <ion-toggle [(ngModel)]="dark_" (ionChange)="toggleDarkMode()"> Dark Mode </ion-toggle>
           </ion-item>
         </ion-list>
-
-
 
         <ion-list lines="none">
           <ion-list-header> Tutorial </ion-list-header>
@@ -98,7 +94,7 @@
           </ion-menu-toggle>
         </ion-list>
 
-<!--        PRESETS-->
+        <!--        PRESETS-->
         <ion-list lines="none">
           <ion-list-header> Presets </ion-list-header>
 
@@ -129,13 +125,12 @@
               <ion-label>Legs Day</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle autoHide="false" class="ion-padding" >
-              <ion-label color="warning">v.{{ver.version}} - {{ver.hash}} </ion-label>
+          <ion-menu-toggle autoHide="false" class="ion-padding">
+            <ion-label color="warning">v.{{ ver.version }} - {{ ver.hash }} </ion-label>
           </ion-menu-toggle>
         </ion-list>
-
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"/>
+    <ion-router-outlet id="main-content" />
   </ion-split-pane>
 </ion-app>
