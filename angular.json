@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-test-20": {
+    "gym-mate": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -62,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-test-20:build:production"
+              "buildTarget": "gym-mate:build:production"
             },
             "development": {
-              "buildTarget": "angular-test-20:build:development"
+              "buildTarget": "gym-mate:build:development"
             }
           },
           "defaultConfiguration": "development"
