@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* @link https://utopia.fyi/type/calculator?c=320,30,1.2,1240,40,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-@use "tailwindcss" as *;
+//@use "tailwindcss";
 @use '@angular/material' as mat;
 
 $angular-material-theming-css-vars-theme: mat.define-theme(
