@@ -1,4 +1,11 @@
-<ion-modal #modal [isOpen]="open()" [canDismiss]="canDismiss" (willDismiss)="onWillDismiss($event)" [initialBreakpoint]="1" [breakpoints]="[0, 0.75, 1]">
+<ion-modal
+  #modal
+  [isOpen]="open()"
+  [canDismiss]="canDismiss"
+  (willDismiss)="onWillDismiss($event)"
+  [initialBreakpoint]="1"
+  [breakpoints]="[0, 0.75, 1]"
+>
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -14,7 +21,9 @@
       <div class="ion-padding">
         <!--   Header-->
         <h2 class="ion-text-center">
-          <ion-label style="cursor: pointer" (click)="redirect(modal)" class="ion-text-capitalize" color="primary"> - {{ exercise?.name }} -</ion-label>
+          <ion-label style="cursor: pointer" (click)="redirect(modal)" class="ion-text-capitalize" color="primary">
+            - {{ exercise?.name }} -</ion-label
+          >
         </h2>
         <div class="ion-text-center">
           <ion-label color="secondary"> {{ activity().created | date }} </ion-label>
@@ -23,15 +32,68 @@
           <!--   SET-->
           <ion-row>
             <ion-col>
-              <ion-input mode="md" label="REPS" label-placement="floating" fill="outline" inputmode="numeric" [(ngModel)]="values.reps" />
+              <div class="autocomplete-field">
+                <ion-input
+                  mode="md"
+                  label="REPS"
+                  label-placement="floating"
+                  fill="outline"
+                  inputmode="numeric"
+                  [clearInput]="true"
+                  [ngModel]="values.reps"
+                  (ngModelChange)="setReps($event)"
+                  (ionFocus)="showRepsSuggestions()"
+                  (ionBlur)="hideRepsSuggestions()"
+                />
+                @if (repsSuggestionsOpen && filteredRepsOptions().length > 0) {
+                  <div class="autocomplete-suggestions">
+                    @for (reps of filteredRepsOptions(); track reps) {
+                      <button type="button" class="autocomplete-suggestion" (mousedown)="selectReps(reps)">
+                        {{ reps }}
+                      </button>
+                    }
+                  </div>
+                }
+              </div>
             </ion-col>
             <ion-col>
-              <ion-input mode="md" label="WEIGHT (KG)" label-placement="floating" fill="outline" inputmode="decimal" [(ngModel)]="values.kgs" />
+              <div class="autocomplete-field">
+                <ion-input
+                  mode="md"
+                  label="WEIGHT (KG)"
+                  label-placement="floating"
+                  fill="outline"
+                  inputmode="numeric"
+                  [clearInput]="true"
+                  [ngModel]="values.kgs"
+                  (ngModelChange)="setWeight($event)"
+                  (ionFocus)="showWeightSuggestions()"
+                  (ionBlur)="hideWeightSuggestions()"
+                />
+                @if (weightSuggestionsOpen && filteredWeightOptions().length > 0) {
+                  <div class="autocomplete-suggestions">
+                    @for (weight of filteredWeightOptions(); track weight) {
+                      <button type="button" class="autocomplete-suggestion" (mousedown)="selectWeight(weight)">
+                        {{ weight }}
+                      </button>
+                    }
+                  </div>
+                }
+              </div>
             </ion-col>
           </ion-row>
 
           <!-- Comment-->
-          <ion-textarea mode="md" label-placement="floating" fill="outline" [ngModel]="getNote()" (ngModelChange)="setNote($event)" label="Activity Comments" labelPlacement="floating" rows="2" />
+          <ion-textarea
+            mode="md"
+            label-placement="floating"
+            fill="outline"
+            [ngModel]="getNote()"
+            (ngModelChange)="setNote($event)"
+            label="Activity Comments"
+            labelPlacement="floating"
+            rows="2"
+          />
 
           <!--   Button -->
           <ion-row>

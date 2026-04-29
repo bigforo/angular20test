@@ -138,3 +138,38 @@ mat-button-toggle {
   //font-size: 1rem;
   padding: 2px 8px;
 }
+
+.autocomplete-field {
+  position: relative;
+  display: grid;
+}
+
+.autocomplete-suggestions {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  left: 0;
+  display: grid;
+  max-height: 12rem;
+  overflow-y: auto;
+  border: 1px solid var(--ion-color-step-250, hsl(0, 0%, 28%));
+  border-radius: 8px;
+  background: var(--ion-background-color, #fff);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 20%);
+}
+
+.autocomplete-suggestion {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ion-text-color, #000);
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--ion-color-step-100, hsl(0, 0%, 92%));
+  }
+}

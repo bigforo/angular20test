@@ -1,8 +1,23 @@
 import { DatePipe } from '@angular/common';
-import { Component, effect, inject, input, linkedSignal, model, OnInit, output } from '@angular/core';
+import { Component, effect, HostListener, inject, input, linkedSignal, model, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonInput, IonLabel, IonModal, IonRow, IonTextarea, IonTitle, IonToolbar, NavController } from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonButtons,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonInput,
+  IonLabel,
+  IonModal,
+  IonRow,
+  IonTextarea,
+  IonTitle,
+  IonToolbar,
+  NavController,
+} from '@ionic/angular/standalone';
 import { OverlayEventDetail } from '@ionic/core';
 import { CommonService } from '../../classes/common.service';
 import { SetClass } from '../../classes/set.class';
@@ -12,7 +27,25 @@ import { ExHistory } from '../ex-history/ex-history';
 
 @Component({
   selector: 'app-modal-sets',
-  imports: [IonButton, IonButtons, IonContent, IonHeader, IonLabel, IonModal, IonTitle, IonToolbar, DatePipe, ExHistory, ShowSets, IonTextarea, FormsModule, IonInput, IonGrid, IonCol, IonRow],
+  imports: [
+    IonButton,
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonLabel,
+    IonModal,
+    IonTitle,
+    IonToolbar,
+    DatePipe,
+    ExHistory,
+    ShowSets,
+    IonTextarea,
+    FormsModule,
+    IonInput,
+    IonGrid,
+    IonCol,
+    IonRow,
+  ],
   templateUrl: './modal-sets.html',
   styleUrl: './modal-sets.scss',
 })
@@ -26,6 +59,8 @@ export class ModalSets implements OnInit {
     reps: '',
     kgs: '',
   };
+  repsSuggestionsOpen = false;
+  weightSuggestionsOpen = false;
   constructor() {
     effect(() => {
       //Default value when OPEN
@@ -41,6 +76,101 @@ export class ModalSets implements OnInit {
   lastSet = linkedSignal(() => {
     return this.activity().sets.at(-1);
   });
+  historicalRepsOptions = linkedSignal(() => {
+    const reps = this.service
+      .getAllHistoryByActivityId(this.activity().id)
+      .flatMap((activity) => activity.sets.map((set) => set.reps))
+      .filter((reps) => reps !== '');
+
+    return [...new Set(reps)].sort((a, b) => Number(a) - Number(b));
+  });
+  historicalWeightOptions = linkedSignal(() => {
+    const weights = this.service
+      .getAllHistoryByActivityId(this.activity().id)
+      .flatMap((activity) => activity.sets.map((set) => set.size))
+      .filter((size) => size !== '');
+
+    return [...new Set(weights)].sort((a, b) => Number(a) - Number(b));
+  });
+
+  filteredRepsOptions() {
+    const query = this.values.reps.trim();
+    const options = this.historicalRepsOptions();
+
+    if (!query) {
+      return options;
+    }
+
+    return options.filter((reps) => reps.startsWith(query));
+  }
+
+  filteredWeightOptions() {
+    const query = this.values.kgs.trim();
+    const options = this.historicalWeightOptions();
+
+    if (!query) {
+      return options;
+    }
+
+    return options.filter((weight) => weight.startsWith(query));
+  }
+
+  setReps(value: string | number | null | undefined) {
+    this.values.reps = value == null ? '' : String(value);
+    this.repsSuggestionsOpen = true;
+  }
+
+  setWeight(value: string | number | null | undefined) {
+    this.values.kgs = value == null ? '' : String(value);
+    this.weightSuggestionsOpen = true;
+  }
+
+  showRepsSuggestions() {
+    this.repsSuggestionsOpen = true;
+  }
+
+  showWeightSuggestions() {
+    this.weightSuggestionsOpen = true;
+  }
+
+  hideRepsSuggestions() {
+    window.setTimeout(() => {
+      this.repsSuggestionsOpen = false;
+    });
+  }
+
+  hideWeightSuggestions() {
+    window.setTimeout(() => {
+      this.weightSuggestionsOpen = false;
+    });
+  }
+
+  selectReps(reps: string) {
+    this.values.reps = reps;
+    this.repsSuggestionsOpen = false;
+  }
+
+  selectWeight(weight: string) {
+    this.values.kgs = weight;
+    this.weightSuggestionsOpen = false;
+  }
+
+  @HostListener('document:pointerdown', ['$event'])
+  closeSuggestionsOnOutsidePointer(event: PointerEvent) {
+    const target = event.target;
+
+    if (target instanceof Element && target.closest('.autocomplete-field')) {
+      return;
+    }
+
+    this.closeSuggestions();
+  }
+
+  closeSuggestions() {
+    this.repsSuggestionsOpen = false;
+    this.weightSuggestionsOpen = false;
+  }
+
   ngOnInit(): void {
     this.service.getAllHistoryByActivityId(this.activity().id);
   }
