@@ -13,7 +13,12 @@
     <ion-menu contentId="main-content">
       <ion-content>
         <ion-menu-toggle autoHide="false">
-          <ion-item [routerLink]="'/app/tabs/current'" routerLinkActive="selected" routerDirection="root" detail="false">
+          <ion-item
+            [routerLink]="'/app/tabs/current'"
+            routerLinkActive="selected"
+            routerDirection="root"
+            detail="false"
+          >
             <ion-icon slot="start" name="radio-button-on" />
             <ion-label> Home - Active Workout </ion-label>
           </ion-item>
@@ -48,7 +53,12 @@
         <!--          </ion-menu-toggle>-->
 
         <ion-menu-toggle autoHide="false">
-          <ion-item [routerLink]="'/app/tabs/sessions'" routerLinkActive="selected" routerDirection="root" detail="false">
+          <ion-item
+            [routerLink]="'/app/tabs/sessions'"
+            routerLinkActive="selected"
+            routerDirection="root"
+            detail="false"
+          >
             <ion-icon slot="start" name="logo-buffer" />
             <ion-label> History - Older Activities </ion-label>
           </ion-item>
@@ -90,6 +100,16 @@
             <ion-item button (click)="openTutorial()" detail="false">
               <ion-icon slot="start" name="hammer" />
               <ion-label>Show Tutorial</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <!--        ISO-->
+        <ion-list lines="none">
+          <ion-list-header> Native </ion-list-header>
+          <ion-menu-toggle autoHide="false">
+            <ion-item button (click)="sendSwift()" detail="false">
+              <ion-icon slot="start" name="walk-outline" />
+              <ion-label>SWIFT</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
