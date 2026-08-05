@@ -11,7 +11,6 @@ import { Activity, type Exercise, Session, StateInterface } from './state.interf
 export class IndexedDbStateService {
   readonly stateChanges = liveQuery(() => this.getState());
   readonly exerciseChanges: Observable<Exercise[]> = liveQuery(async () => {
-    await this.populateExercises();
     return db.exercises.toArray();
   });
 
@@ -53,12 +52,10 @@ export class IndexedDbStateService {
   }
 
   async getExercises(): Promise<Exercise[]> {
-    await this.populateExercises();
     return db.exercises.toArray();
   }
 
   async getExerciseById(exId: string): Promise<Exercise | undefined> {
-    await this.populateExercises();
     return db.exercises.get(exId);
   }
 

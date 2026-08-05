@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import exampleHistory from '../../../example-json.json';
-import { EXERCISES } from './all-exercises.data';
+import { EXERCISES_ } from './all-exercises.data';
 import { db } from './gym-mate-db';
 import { IndexedDbStateService } from './indexed-db-state.service';
 import { Activity, Session } from './state.interface';
@@ -34,14 +34,14 @@ describe('IndexedDbStateService', () => {
   it('populates exercises into the database', async () => {
     const exercises = await service.getExercises();
 
-    expect(exercises.length).toBe(EXERCISES.length);
-    expect(await db.exercises.get('b1')).toEqual(EXERCISES.find((exercise) => exercise.id === 'b1'));
+    expect(exercises.length).toBe(EXERCISES_.length);
+    expect(await db.exercises.get('b1')).toEqual(EXERCISES_.find((exercise) => exercise.id === 'b1'));
   });
 
   it('gets an exercise by id from the database', async () => {
     const exercise = await service.getExerciseById('b1');
 
-    expect(exercise).toEqual(EXERCISES.find((item) => item.id === 'b1'));
+    expect(exercise).toEqual(EXERCISES_.find((item) => item.id === 'b1'));
   });
 
   it('returns undefined for an unknown exercise id', async () => {

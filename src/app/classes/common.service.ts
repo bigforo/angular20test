@@ -3,7 +3,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { IndexedDbStateService } from './indexed-db-state.service';
-// import { LocalStorageService } from './ls';
 import { Activity, Exercise, Session, StateInterface } from './state.interface';
 
 @Injectable({
