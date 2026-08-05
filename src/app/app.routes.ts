@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { PageImportExport } from './pages/import/page-import-export';
-import { ShowExercise } from './pages/page-show-exercise/show-exercise';
 import { SessionEdit } from './pages/session-edit/session-edit';
 import { SessionDetails } from './pages/session/session-details';
 import { ViewExternal } from './pages/shared-view/view-external';
@@ -14,6 +13,5 @@ export const routes: Routes = [
   { path: 'import', component: PageImportExport },
   { path: 'app', loadChildren: () => import('./tabs-page/routes').then((m) => m.TABS_ROUTES) },
   { path: 'exercise', loadChildren: () => import('./pages/exercise/routes').then((m) => m.EXERCISE_ROUTES) },
-  { path: 'work', loadChildren: () => import('./pages/exercise/routes').then((m) => m.WORK_ROUTES) },
-  { path: ':id', component: ShowExercise, children: [{ path: '**', redirectTo: '/' }] },
+  { path: ':id', children: [{ path: '**', redirectTo: '/' }] },
 ];

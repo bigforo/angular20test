@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ShowExercise } from '../page-show-exercise/show-exercise';
 import { ExerciseInfo } from './exercise-info/exercise-info';
 
 export const EXERCISE_ROUTES: Routes = [
@@ -7,7 +6,7 @@ export const EXERCISE_ROUTES: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
 ];
 
-export const WORK_ROUTES: Routes = [
-  { path: ':id', component: ShowExercise },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-];
+// export const WORK_ROUTES: Routes = [
+//   { path: ':id', component: ShowExercise },
+//   { path: '', redirectTo: '/', pathMatch: 'full' },
+// ];

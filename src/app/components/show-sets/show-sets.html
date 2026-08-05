@@ -16,9 +16,9 @@
       <!-- Delta-->
       <ion-col class="max-index-60">
         <ion-text style="font-size: small" color="warning">
-          @if ($index == 0 && (actEx().prevActivity === null || (actEx().prevActivity?.sets?.length ?? 0) == 0)) {
+          @if ($index === 0 && (actEx().prevActivity === null || (actEx().prevActivity?.sets?.length ?? 0) === 0)) {
             /
-          } @else if ($index == 0) {
+          } @else if ($index === 0) {
             {{ service.diff(actEx().activity.sets[$index].time, actEx().prevActivity!.sets.at(-1)!.time) }} min
           }
 

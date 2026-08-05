@@ -98,13 +98,13 @@
           <!--   Button -->
           <ion-row>
             <ion-col>
-              <ion-button color="light" expand="full" (click)="addSet(activity(), values)">Add Set</ion-button>
+              <ion-button color="light" expand="full" (click)="addSet()">Add Set</ion-button>
             </ion-col>
           </ion-row>
           <!--   SETS-->
           <ion-row>
             <ion-col>
-              <app-show-sets [sets]="activity().sets" />
+              <app-modal-show-sets [sets]="activity().sets" />
             </ion-col>
           </ion-row>
         </ion-grid>
