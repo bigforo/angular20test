@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { ActiveComponent } from '../pages/active/active';
-import { Main } from '../pages/old-start/main';
-import { SessionsList } from '../pages/sessions/sessions-list';
+import { ActiveComponent } from './active/active';
+import { SessionsList } from './sessions/sessions-list';
+import { Main } from './start/main';
 import { TabsPage } from './tabs-page';
 
 export const TABS_ROUTES: Routes = [

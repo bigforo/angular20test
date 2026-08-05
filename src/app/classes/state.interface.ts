@@ -2,7 +2,6 @@ import { SetClass } from './set.class';
 
 export interface StateInterface {
   current?: Session | null;
-  history: Session[];
 }
 
 export class Session {

@@ -1,6 +1,6 @@
 {
   "name": "gym-mate",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "scripts": {
     "ng": "ng",
     "postinstall": "node git-version.js",

@@ -10,10 +10,9 @@ import { Activity, Exercise, Session, StateInterface } from './state.interface';
 })
 export class CommonService {
   public darkModeOn = signal<boolean>(true);
-  public appState = signal<StateInterface>({ history: [] });
+  public appState = signal<StateInterface>({});
   indexedDb = inject(IndexedDbStateService);
-  public dbState: Signal<StateInterface | null> = toSignal(this.indexedDb.stateChanges, { initialValue: null });
-  public history: Signal<Session[]> = computed(() => this.dbState()?.history ?? []);
+  public history: Signal<Session[]> = toSignal(this.indexedDb.historyChanges, { initialValue: [] });
   public historyRecord: Signal<Record<string, Session>> = computed(() =>
     Object.fromEntries(this.history().map((session) => [session.created.toISOString(), session]))
   );
@@ -33,10 +32,8 @@ export class CommonService {
   // TODO save history
   public stopSession() {
     if (this.appState().current) {
+      void this.indexedDb.addHistorySession(this.appState().current as Session);
       const cc = this.appState();
-      cc.history = [...this.history(), this.appState().current as Session];
-      // Sort na History by Date Desc... Newest first
-      cc.history = [...cc.history].sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
       cc.current = null;
       this.appState.set(cc);
     }
@@ -89,24 +86,18 @@ export class CommonService {
   }
 
   setHistory(history: Session[]) {
-    this.appState.set({ ...this.appState(), history });
-    this.save();
+    void this.indexedDb.setHistory(history);
   }
 
   save() {
     const state = this.indexedDb.normalizeState(this.appState());
     this.appState.set(state);
-    void this.indexedDb.saveState(state);
   }
   async load() {
     await this.loadFromIndexedDb();
   }
 
   private async loadFromIndexedDb() {
-    const state = await this.indexedDb.getState();
-    if (state) {
-      this.appState.set(state);
-    }
     const exercises = await this.indexedDb.getExercises();
     if (exercises.length === 0) {
       await this.indexedDb.populateFromExampleJson();
