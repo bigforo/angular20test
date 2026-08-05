@@ -1,24 +1,71 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { IonAlert, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonItemDivider, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonMenuButton, IonText, IonTitle, IonToolbar, PopoverController } from '@ionic/angular/standalone';
+import {
+  IonAlert,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonItemDivider,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
+  IonLabel,
+  IonList,
+  IonMenuButton,
+  IonText,
+  IonTitle,
+  IonToolbar,
+  PopoverController,
+} from '@ionic/angular/standalone';
 import type { OverlayEventDetail } from '@ionic/core';
 import { addIcons } from 'ionicons';
-import { arrowBackOutline, cloudDownload, ellipsisHorizontal, ellipsisVertical, share, shareOutline, star, starOutline } from 'ionicons/icons';
+import {
+  arrowBackOutline,
+  cloudDownload,
+  ellipsisHorizontal,
+  ellipsisVertical,
+  share,
+  shareOutline,
+  star,
+  starOutline,
+} from 'ionicons/icons';
 import { CommonService } from '../../classes/common.service';
 import { Activity, Session } from '../../classes/state.interface';
 import { PopoverPage } from './about-popover';
 
 @Component({
   selector: 'app-state',
-  imports: [IonButtons, IonContent, IonHeader, IonMenuButton, IonTitle, IonToolbar, DatePipe, RouterLink, IonLabel, IonItemSliding, IonItem, IonList, IonItemOptions, IonItemOption, IonText, IonAlert, IonItemDivider, IonButton, IonIcon],
+  imports: [
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonMenuButton,
+    IonTitle,
+    IonToolbar,
+    DatePipe,
+    RouterLink,
+    IonLabel,
+    IonItemSliding,
+    IonItem,
+    IonList,
+    IonItemOptions,
+    IonItemOption,
+    IonText,
+    IonAlert,
+    IonItemDivider,
+    IonButton,
+    IonIcon,
+  ],
   providers: [DatePipe],
   templateUrl: './sessions-list.html',
   styleUrl: './sessions-list.scss',
 })
 export class SessionsList implements OnInit {
   service = inject(CommonService);
-  appState = this.service.appState;
   router = inject(Router);
   datepipe = inject(DatePipe);
 

@@ -15,8 +15,8 @@
 
 <ion-content fullscreen="true">
   <ion-list>
-    @for (session of this.appState().history; track $index) {
-      @let nextSession = $index == 0 ? null : this.appState().history[$index - 1];
+    @for (session of service.history(); track $index) {
+      @let nextSession = $index === 0 ? null : service.history()[$index - 1];
       @if (diff(session.created, nextSession?.created ?? null)) {
         <ion-item-divider color="light">
           <ion-label> Week {{ session.created | date: 'w of yyyy' }}</ion-label>
@@ -28,7 +28,7 @@
             <strong>{{ session.created | date: 'EEE d-MMM-yy' }}</strong>
             <ion-text color="warning" class="ion-text-lowercase io"> -{{ session.type }}- </ion-text>
             @for (i of session.activities; track $index) {
-              @let exercise = Activity.exerciseById(i.id);
+              @let exercise = service.exerciseById(i.id);
               <p>- {{ exercise?.name }}</p>
             }
             @if (session.note) {
@@ -38,7 +38,13 @@
         </ion-item>
         <ion-item-options side="end">
           <ion-item-option color="danger" (click)="delete(session, sliding)">Delete</ion-item-option>
-          <ion-item-option color="warning" (click)="edit($index, sliding)" [routerLink]="['/session-edit']" [queryParams]="{ id: $index }">Edit</ion-item-option>
+          <ion-item-option
+            color="warning"
+            (click)="edit($index, sliding)"
+            [routerLink]="['/session-edit']"
+            [queryParams]="{ id: $index }"
+            >Edit</ion-item-option
+          >
         </ion-item-options>
       </ion-item-sliding>
     }
@@ -46,7 +52,7 @@
 </ion-content>
 
 <ion-alert
-  [isOpen]="alertDelete() != null"
+  [isOpen]="alertDelete() !== null"
   header="Delete session?"
   message="Deleting session will remove all activities/exercises history."
   [buttons]="[

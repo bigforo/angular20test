@@ -1,14 +1,47 @@
 import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonAvatar, IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonList, IonModal, IonSearchbar, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonAvatar,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonFab,
+  IonFabButton,
+  IonHeader,
+  IonIcon,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonModal,
+  IonSearchbar,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { addCircleOutline, addOutline, shareSocial } from 'ionicons/icons';
-import { EXERCISES } from '../../classes/all-exercises.data';
 import { CommonService } from '../../classes/common.service';
 
 @Component({
   selector: 'app-modal-exercises',
-  imports: [IonModal, IonButton, IonContent, IonSearchbar, IonList, IonItem, IonAvatar, IonImg, IonLabel, IonHeader, IonToolbar, IonTitle, IonButtons, IonFab, IonFabButton, IonIcon],
+  imports: [
+    IonModal,
+    IonButton,
+    IonContent,
+    IonSearchbar,
+    IonList,
+    IonItem,
+    IonAvatar,
+    IonImg,
+    IonLabel,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonFab,
+    IonFabButton,
+    IonIcon,
+  ],
   templateUrl: './modal-exercises.html',
   styleUrl: './modal-exercises.scss',
 })
@@ -25,7 +58,7 @@ export class ModalExercises {
   }
 
   clickToAddToCurrentWorkout(id: string) {
-    const ex = EXERCISES.find((a) => a.id === id);
+    const ex = this.service.exerciseById(id);
     if (ex != undefined) {
       this.service.startSessionIfNotStarted();
       this.service.findOrStartActivityByExercise(id);
@@ -33,10 +66,17 @@ export class ModalExercises {
     }
   }
 
-  items = signal(EXERCISES);
   query = signal('');
 
-  filteredItems = computed(() => this.items().filter((i) => i.name?.toLowerCase().includes(this.query().toLowerCase()) || i.description?.toLowerCase().includes(this.query().toLowerCase())));
+  filteredItems = computed(() =>
+    this.service
+      .exercises()
+      .filter(
+        (i) =>
+          i.name?.toLowerCase().includes(this.query().toLowerCase()) ||
+          i.description?.toLowerCase().includes(this.query().toLowerCase())
+      )
+  );
 
   searchInput(value: any) {
     this.query.set(value.detail.value);

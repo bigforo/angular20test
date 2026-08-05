@@ -1,10 +1,40 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { IonAlert, IonButton, IonButtons, IonChip, IonContent, IonFab, IonFabButton, IonFooter, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonMenuButton, IonNote, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonAlert,
+  IonButton,
+  IonButtons,
+  IonChip,
+  IonContent,
+  IonFab,
+  IonFabButton,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
+  IonLabel,
+  IonList,
+  IonMenuButton,
+  IonNote,
+  IonText,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import type { OverlayEventDetail } from '@ionic/core';
 import { addIcons } from 'ionicons';
-import { chevronForward, cloudDownload, share, shareOutline, star, starOutline, stopCircleOutline, timerOutline } from 'ionicons/icons';
-import { EXERCISES } from '../../classes/all-exercises.data';
+import {
+  chevronForward,
+  cloudDownload,
+  share,
+  shareOutline,
+  star,
+  starOutline,
+  stopCircleOutline,
+  timerOutline,
+} from 'ionicons/icons';
 import { CommonService } from '../../classes/common.service';
 import { Activity, Session } from '../../classes/state.interface';
 import { ModalDescription } from '../../components/modal-description/modal-description';
@@ -15,7 +45,35 @@ import { ShowSets } from '../../components/show-sets/show-sets';
 
 @Component({
   selector: 'app-summary',
-  imports: [RouterLink, IonButtons, IonHeader, IonMenuButton, IonTitle, IonToolbar, IonContent, IonButton, IonIcon, IonList, IonItem, IonLabel, IonItemOptions, IonItemOption, IonItemSliding, IonNote, IonText, IonAlert, IonChip, SessionTips, ShowSets, IonFooter, ModalSets, ModalDescription, PopupExercises, IonFab, IonFabButton],
+  imports: [
+    RouterLink,
+    IonButtons,
+    IonHeader,
+    IonMenuButton,
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonButton,
+    IonIcon,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonItemOptions,
+    IonItemOption,
+    IonItemSliding,
+    IonNote,
+    IonText,
+    IonAlert,
+    IonChip,
+    SessionTips,
+    ShowSets,
+    IonFooter,
+    ModalSets,
+    ModalDescription,
+    PopupExercises,
+    IonFab,
+    IonFabButton,
+  ],
   templateUrl: './active.html',
   styleUrl: './active.scss',
 })
@@ -25,7 +83,16 @@ export class ActiveComponent {
   router = inject(Router);
 
   constructor() {
-    addIcons({ shareOutline, starOutline, star, cloudDownload, share, stopCircleOutline, chevronForward, timerOutline });
+    addIcons({
+      shareOutline,
+      starOutline,
+      star,
+      cloudDownload,
+      share,
+      stopCircleOutline,
+      chevronForward,
+      timerOutline,
+    });
   }
 
   async deleteActivity(activity: Activity, sliding: IonItemSliding) {
@@ -58,7 +125,7 @@ export class ActiveComponent {
   modalSetActivity = signal<Activity>(Activity.unknowActivity());
   modalSetOpen = signal<boolean>(false);
   modalRedirect(id: string) {
-    const ex = EXERCISES.find((a) => a.id === id);
+    const ex = this.service.exerciseById(id);
     if (!ex) return;
     const act = this.service.findActivityByExercise(id);
     if (!act) return;

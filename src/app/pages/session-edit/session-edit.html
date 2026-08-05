@@ -31,7 +31,7 @@
       <ion-input mode="md" [(ngModel)]="session.note" label="session.note" label-placement="stacked" fill="outline" />
     </ion-item>
     @for (activity of session.activities; track $index; let j = $index) {
-      @let exercise = Activity.exerciseById(activity.id);
+      @let exercise = service.exerciseById(activity.id);
       <!-- ACTIVITY NAME-->
       <ion-list inset="none" style="border-right: 5px solid var(--ion-color-warning)">
         <ion-item-sliding #sliding>
@@ -52,18 +52,44 @@
           <ion-datetime-button class="ion-padding-end" datetime="set.time{{ j }}{{ i }}" />
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime id="set.time{{ j }}{{ i }}" presentation="time" [ngModel]="setTime(set.time)" (ngModelChange)="change($event, set)" />
+              <ion-datetime
+                id="set.time{{ j }}{{ i }}"
+                presentation="time"
+                [ngModel]="setTime(set.time)"
+                (ngModelChange)="change($event, set)"
+              />
             </ng-template>
           </ion-modal>
           <!-- ACTIVITY SET REPS-->
-          <ion-input style="width: 100px" mode="md" label="set.reps" [(ngModel)]="set.reps" label-placement="stacked" fill="outline" />
+          <ion-input
+            style="width: 100px"
+            mode="md"
+            label="set.reps"
+            [(ngModel)]="set.reps"
+            label-placement="stacked"
+            fill="outline"
+          />
           <!-- ACTIVITY SET SIZE-->
-          <ion-input style="width: 100px" mode="md" label="set.size" [(ngModel)]="set.size" label-placement="stacked" fill="outline" inputmode="decimal" />
+          <ion-input
+            style="width: 100px"
+            mode="md"
+            label="set.size"
+            [(ngModel)]="set.size"
+            label-placement="stacked"
+            fill="outline"
+            inputmode="decimal"
+          />
         </div>
       }
       <!-- ACTIVITY NOTE-->
       <ion-item>
-        <ion-input mode="md" [(ngModel)]="activity.note" label="activity.note" label-placement="stacked" fill="outline" />
+        <ion-input
+          mode="md"
+          [(ngModel)]="activity.note"
+          label="activity.note"
+          label-placement="stacked"
+          fill="outline"
+        />
       </ion-item>
     }
   </ion-list>

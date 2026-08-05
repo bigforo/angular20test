@@ -8,10 +8,14 @@
 </ion-header>
 
 <ion-content>
-  @if (activity() != null) {
-    @let exercise = Activity.exerciseById(id() ?? '');
+  @if (activity()) {
+    @let exercise = selectedExercise();
     <div class="about-header">
-      <div class="about-image ion-display-flex ion-justify-content-center ion-align-items-center ion-flex-column" [ngStyle]="{ opacity: '1' }" [class]="exercise?.color ?? ''">
+      <div
+        class="about-image ion-display-flex ion-justify-content-center ion-align-items-center ion-flex-column"
+        [ngStyle]="{ opacity: '1' }"
+        [class]="exercise?.color ?? ''"
+      >
         <div>
           <h1>- {{ exercise?.name }} -</h1>
         </div>
@@ -71,13 +75,15 @@
 </ion-content>
 
 <ion-footer>
-  @if (activity() != null) {
+  @if (activity()) {
     <ion-toolbar>
       <ion-button slot="start" router-direction="back" color="light" (click)="navBack()">
         <ion-icon name="chevron-back-outline" />
       </ion-button>
 
-      <ion-button slot="start" color="light" router-direction="root" expand="block" (click)="click(activity())">Add</ion-button>
+      <ion-button slot="start" color="light" router-direction="root" expand="block" (click)="click(activity())"
+        >Add</ion-button
+      >
       <ion-button color="light" expand="block" [routerLink]="'/app/tabs/current'">Goto Session</ion-button>
 
       <ion-button slot="end" router-direction="forward" color="light" (click)="navForward()">

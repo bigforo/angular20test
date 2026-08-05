@@ -1,11 +1,13 @@
 @if (session().activities.length > 0) {
   <!--  Session DATE TIME-->
   @for (actEx of service.getActivitiesExBySession(session()); track $index) {
-    @let exercise = Activity.exerciseById(actEx.activity.id);
+    @let exercise = service.exerciseById(actEx.activity.id);
     <ion-list inset="true">
       <!--     Exercise NAME-->
       <ion-label>
-        <h1 class="ion-text-capitalize" (click)="redirect(actEx.activity.id)">#{{ $index + 1 }} {{ exercise?.name }}</h1>
+        <h1 class="ion-text-capitalize" (click)="redirect(actEx.activity.id)">
+          #{{ $index + 1 }} {{ exercise?.name }}
+        </h1>
       </ion-label>
       <!--     SETS -->
       <app-show-sets style="width: 100%" [actEx]="actEx" />

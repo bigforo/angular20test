@@ -2,18 +2,50 @@ import { DatePipe } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, input, linkedSignal, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { IonBackButton, IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { arrowBackOutline, calendarNumberOutline, cloudDownload, ellipsisHorizontal, ellipsisVertical, share, shareOutline, star, starOutline } from 'ionicons/icons';
+import {
+  arrowBackOutline,
+  calendarNumberOutline,
+  cloudDownload,
+  ellipsisHorizontal,
+  ellipsisVertical,
+  share,
+  shareOutline,
+  star,
+  starOutline,
+} from 'ionicons/icons';
 import { filter } from 'rxjs';
 import { CommonService } from '../../classes/common.service';
 import { LocalStorageService } from '../../classes/ls';
-import { Activity, Session } from '../../classes/state.interface';
+import { Session } from '../../classes/state.interface';
 import { WorkoutDetails } from '../../components/workout-details/workout-details';
 
 @Component({
   selector: 'app-view',
-  imports: [IonButtons, IonHeader, IonTitle, IonToolbar, IonContent, IonButton, IonIcon, RouterLink, WorkoutDetails, IonFooter, IonBackButton],
+  imports: [
+    IonButtons,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonButton,
+    IonIcon,
+    RouterLink,
+    WorkoutDetails,
+    IonFooter,
+    IonBackButton,
+  ],
   providers: [DatePipe],
   templateUrl: './session-details.html',
   styleUrl: './session-details.scss',
@@ -22,11 +54,10 @@ import { WorkoutDetails } from '../../components/workout-details/workout-details
 export class SessionDetails implements OnInit {
   service = inject(CommonService);
   router = inject(Router);
-  appState = this.service.appState;
   id = input<number>();
   session = linkedSignal(() => {
     const id = this.id();
-    return this.appState().history[id ?? 0];
+    return this.service.history()[id ?? 0];
   });
   ls = inject(LocalStorageService);
   generatedLink = linkedSignal(() => {
@@ -89,7 +120,7 @@ export class SessionDetails implements OnInit {
     else desc += '[strong][u]GYM SESSION[/u][/strong]';
 
     exercises?.forEach((activity) => {
-      const exercise = Activity.exerciseById(activity.id);
+      const exercise = this.service.exerciseById(activity.id);
       desc += '[p]';
       desc += '[strong]' + exercise?.name?.toUpperCase() + '[/strong] \r';
       desc += '[ol]';

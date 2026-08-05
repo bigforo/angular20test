@@ -11,7 +11,13 @@
           <ion-icon size="large" color="danger" name="stop-circle-outline" />
         </ion-button>
       </ion-buttons>
-      <ion-alert trigger="present-alert" header="Stop Active Workout?" message="Older workout sessions can be found in the history tab." [buttons]="alertButtons" (didDismiss)="endSessionConfirmation($event)" />
+      <ion-alert
+        trigger="present-alert"
+        header="Stop Active Workout?"
+        message="Older workout sessions can be found in the history tab."
+        [buttons]="alertButtons"
+        (didDismiss)="endSessionConfirmation($event)"
+      />
     }
   </ion-toolbar>
 </ion-header>
@@ -35,8 +41,8 @@
   }
   <!-- Activities -->
   @for (actEx of service.getActivitiesExBySession(appState().current); track $index) {
-    @let exercise = Activity.exerciseById(actEx.activity.id);
-    <ion-list inset="true" style="border-right: 5px solid var(--ion-color-warning)">
+    @let exercise = service.exerciseById(actEx.activity.id);
+    <ion-list inset="true" style="border-right: 1px solid var(--ion-color-warning)">
       <ion-item-sliding #sliding>
         <ion-item button="true" lines="full" (click)="modalRedirect(actEx.activity.id)">
           <ion-label [style.border-left-color]="exercise?.color" class="label-color-border">
@@ -61,7 +67,9 @@
         </ion-item>
         <ion-item-options side="end">
           <ion-item-option color="danger" (click)="deleteActivity(actEx.activity, sliding)"> Delete</ion-item-option>
-          <ion-item-option [routerLink]="['/exercise/' + actEx.activity.id]" (click)="sliding.close()" color="warning">More</ion-item-option>
+          <ion-item-option [routerLink]="['/exercise/' + actEx.activity.id]" (click)="sliding.close()" color="warning"
+            >More</ion-item-option
+          >
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
@@ -69,7 +77,7 @@
 
   <!--Session Comment-->
   @if (appState().current?.activities?.length ?? 0 > 0) {
-    <ion-list inset="true" style="border-right: 5px solid var(--ion-color-medium)">
+    <ion-list inset="true" style="border-right: 1px solid var(--ion-color-medium)">
       <ion-item-sliding #slidingComment>
         <ion-item button="true" (click)="modalCommentsSetOpen.set(true)">
           <ion-label>

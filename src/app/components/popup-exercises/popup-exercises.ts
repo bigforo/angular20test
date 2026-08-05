@@ -1,14 +1,43 @@
 import { Component, computed, inject, model, output, signal, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonAvatar, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonList, IonModal, IonSearchbar, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonAvatar,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonModal,
+  IonSearchbar,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { addCircleOutline, addOutline, shareSocial } from 'ionicons/icons';
-import { EXERCISES } from '../../classes/all-exercises.data';
 import { CommonService } from '../../classes/common.service';
 
 @Component({
   selector: 'app-popup-exercises',
-  imports: [IonAvatar, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonList, IonModal, IonSearchbar, IonTitle, IonToolbar],
+  imports: [
+    IonAvatar,
+    IonButton,
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonIcon,
+    IonImg,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonModal,
+    IonSearchbar,
+    IonTitle,
+    IonToolbar,
+  ],
   template: `
     <ion-modal [isOpen]="open()" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
       <ng-template>
@@ -66,9 +95,16 @@ export class PopupExercises {
     this.open.update(() => false);
   }
 
-  items = signal(EXERCISES);
   query = signal('');
-  filteredItems = computed(() => this.items().filter((i) => i.name?.toLowerCase().includes(this.query().toLowerCase()) || i.description?.toLowerCase().includes(this.query().toLowerCase())));
+  filteredItems = computed(() =>
+    this.service
+      .exercises()
+      .filter(
+        (i) =>
+          i.name?.toLowerCase().includes(this.query().toLowerCase()) ||
+          i.description?.toLowerCase().includes(this.query().toLowerCase())
+      )
+  );
   searchInput(value: any) {
     this.query.set(value.detail.value);
   }

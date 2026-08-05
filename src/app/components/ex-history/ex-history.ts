@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, inject, input, linkedSignal, output } from '@angular/core';
 import { IonCol, IonGrid, IonLabel, IonRow, IonText } from '@ionic/angular/standalone';
-import { EXERCISES } from '../../classes/all-exercises.data';
 import { CommonService } from '../../classes/common.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class ExHistory {
   id = input<string>();
   clickToNavigate = output<number>();
   histActivities = linkedSignal(() => {
-    const ex = EXERCISES.find((a) => a.id === this.id());
+    const ex = this.service.exerciseById(this.id() ?? '');
     if (ex) {
       return this.service.getAllHistoryByActivityIdExtended(ex.id as string);
     }

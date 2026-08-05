@@ -3,9 +3,16 @@ import { Component, inject, input, linkedSignal, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { Router } from '@angular/router';
-import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import 'add-to-calendar-button';
-import { EXERCISES } from '../../classes/all-exercises.data';
 import { CommonService } from '../../classes/common.service';
 import { SetClass } from '../../classes/set.class';
 import { Activity, repeatOptions, weightOptions1 } from '../../classes/state.interface';
@@ -14,7 +21,22 @@ import { ShowSets } from './show-sets/show-sets';
 
 @Component({
   selector: 'app-option4',
-  imports: [ReactiveFormsModule, ShowSets, MatButtonToggleGroup, MatButtonToggle, MatButtonToggleGroup, DatePipe, IonButtons, IonHeader, IonTitle, IonToolbar, IonContent, IonBackButton, IonButton, ExHistory],
+  imports: [
+    ReactiveFormsModule,
+    ShowSets,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    MatButtonToggleGroup,
+    DatePipe,
+    IonButtons,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonBackButton,
+    IonButton,
+    ExHistory,
+  ],
   templateUrl: './show-exercise.html',
   styleUrl: './show-exercise.scss',
 })
@@ -26,14 +48,14 @@ export class ShowExercise implements OnInit {
 
   id = input<string>();
   activity = linkedSignal(() => {
-    const ex = EXERCISES.find((a) => a.id === this.id());
+    const ex = this.service.exerciseById(this.id() ?? '');
     if (ex === undefined) return Activity.unknowActivity();
     const act = this.service.findActivityByExercise(ex.id);
     if (act === undefined) return new Activity(ex.id);
     return act;
   });
   exercise = linkedSignal(() => {
-    return Activity.exerciseById(this.id() ?? '');
+    return this.service.exerciseById(this.id() ?? '');
   });
 
   reps: any;
@@ -60,7 +82,6 @@ export class ShowExercise implements OnInit {
   }
 
   protected readonly Activity = Activity;
-  protected readonly EXERCISES = EXERCISES;
   protected readonly weightOptions1 = weightOptions1;
   protected readonly repeatOptions = repeatOptions;
 }

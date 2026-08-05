@@ -22,10 +22,6 @@ yarn-error.log
 
 # Visual Studio Code
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 .history/*
 
 # Miscellaneous
@@ -42,3 +38,5 @@ testem.log
 Thumbs.db
 
 src/environments/version.ts
+/backup-data-2026-07-12.json
+backup-2026-07-29.json

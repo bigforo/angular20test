@@ -1,14 +1,26 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Import/Export</ion-title>
+    <ion-title>Import/Export Page</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true">
-  <ion-textarea [autoGrow]="true" style="width: 90vw; height: 70vh" [(ngModel)]="data" />
+<ion-content class="ion-padding">
+  <ion-textarea #dataTextarea [autoGrow]="true" [(ngModel)]="data" />
 </ion-content>
+
 <ion-footer>
   <ion-toolbar>
-    <ion-button fill="full" (click)="import()"> Import (OVERWRITES!) </ion-button>
+    <ion-button slot="start" fill="outline" color="success" (click)="get()"> Get from phone </ion-button>
+    <ion-button slot="start" fill="outline" color="warning" (click)="save()"> Save to phone </ion-button>
+    <ion-button slot="start" fill="outline" (click)="selectAll(dataTextarea)"> Select all </ion-button>
+    <ion-button slot="end" id="import-confirm-alert" color="danger" fill="outline"> Import</ion-button>
   </ion-toolbar>
 </ion-footer>
+
+<ion-alert
+  trigger="import-confirm-alert"
+  header="Import history?"
+  message="Importing will overwrite your current workout history."
+  [buttons]="importAlertButtons"
+  (didDismiss)="importConfirmation($event)"
+/>

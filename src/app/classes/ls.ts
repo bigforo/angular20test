@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import * as LZString from 'lz-string';
+import { compressToBase64, decompressFromBase64 } from '@larrym/lz-string';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
-  constructor() {}
   // Set item in local storage
   setItem(key: string, value: any): void {
     try {
@@ -28,7 +27,7 @@ export class LocalStorageService {
   getCompressed(value: any): string | null {
     try {
       let jsonValue = JSON.stringify(value);
-      jsonValue = LZString.compressToBase64(jsonValue);
+      jsonValue = compressToBase64(jsonValue);
       return encodeURIComponent(jsonValue);
     } catch (error) {
       console.error('Error saving to local storage', error);
@@ -37,9 +36,9 @@ export class LocalStorageService {
   }
   getUncompressed<T>(value: any): T | null {
     try {
-      let decode = decodeURIComponent(value);
-      decode = LZString.decompressFromBase64(decode);
-      return value ? JSON.parse(decode) : null;
+      let decode: string | null = decodeURIComponent(value);
+      decode = decompressFromBase64(decode);
+      return value ? JSON.parse(decode ?? '') : null;
     } catch (error) {
       console.error('Error reading from local storage', error);
       return null;

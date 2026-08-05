@@ -37,21 +37,7 @@ import {
 } from 'ionicons/icons';
 import { VERSION } from '../environments/version';
 import { CommonService } from './classes/common.service';
-
-interface NativeAppMessage {
-  action: string;
-  value: string;
-}
-
-interface WebKitWindow extends Window {
-  webkit?: {
-    messageHandlers?: {
-      nativeApp?: {
-        postMessage(message: NativeAppMessage): void;
-      };
-    };
-  };
-}
+import { NativeGymMateStateService } from './native-gym-mate-state-service';
 
 @Component({
   selector: 'app-root',
@@ -113,21 +99,11 @@ export class App implements OnInit {
 
   openTutorial() {}
   router = inject(Router);
-  // toast = inject(ToastController);
   _snackBar = inject(MatSnackBar);
-
-  sendSwift() {
-    const message: NativeAppMessage = {
-      action: 'openMenu',
-      value: 'hello',
-    };
-    const nativeApp = (window as WebKitWindow).webkit?.messageHandlers?.nativeApp;
-
-    if (nativeApp) {
-      nativeApp.postMessage(message);
-      return;
-    }
-
+  native = inject(NativeGymMateStateService);
+  _state = inject;
+  async sendSwift() {
+    await this.native.openMenu();
     this._snackBar.open('Native iOS WebView bridge is not available.', 'Close', {
       duration: 3000,
     });

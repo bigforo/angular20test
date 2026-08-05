@@ -1,6 +1,6 @@
 import { Exercise } from './state.interface';
 
-export const EXERCISES: Exercise[] = [
+export const EXERCISES_: Exercise[] = [
   { id: 'b1', name: 'bench machine flat', color: 'orange', description: 'press machine flat press.' },
   { id: 'b2', name: 'bench bar flat', color: 'orange', description: 'flat bench barbell press.' },
   { id: 'b22', name: 'bench dumbbells flat', color: 'orange', description: 'flat bench with dumbbells.' },

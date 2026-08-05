@@ -1,8 +1,10 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, Signal, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LocalStorageService } from './ls';
-import { Activity, Session, StateInterface } from './state.interface';
+import { IndexedDbStateService } from './indexed-db-state.service';
+// import { LocalStorageService } from './ls';
+import { Activity, Exercise, Session, StateInterface } from './state.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +12,16 @@ import { Activity, Session, StateInterface } from './state.interface';
 export class CommonService {
   public darkModeOn = signal<boolean>(true);
   public appState = signal<StateInterface>({ history: [] });
-  ls = inject(LocalStorageService);
+  indexedDb = inject(IndexedDbStateService);
+  public dbState: Signal<StateInterface | null> = toSignal(this.indexedDb.stateChanges, { initialValue: null });
+  public history: Signal<Session[]> = computed(() => this.dbState()?.history ?? []);
+  public historyRecord: Signal<Record<string, Session>> = computed(() =>
+    Object.fromEntries(this.history().map((session) => [session.created.toISOString(), session]))
+  );
+  public exercises: Signal<Exercise[]> = toSignal(this.indexedDb.exerciseChanges, { initialValue: [] });
+  public exerciseRecord: Signal<Record<string, Exercise>> = computed(() =>
+    Object.fromEntries(this.exercises().map((exercise) => [exercise.id, exercise]))
+  );
 
   public startSessionIfNotStarted() {
     const currentSession = this.appState().current;
@@ -20,10 +31,11 @@ export class CommonService {
       this.appState().current = session;
     }
   }
+  // TODO save history
   public stopSession() {
     if (this.appState().current) {
       const cc = this.appState();
-      cc.history.push(this.appState().current as Session);
+      cc.history = [...this.history(), this.appState().current as Session];
       // Sort na History by Date Desc... Newest first
       cc.history = [...cc.history].sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
       cc.current = null;
@@ -31,10 +43,10 @@ export class CommonService {
     }
   }
   public deleteSessionFromHis(session: Session) {
-    this.appState().history.splice(this.appState().history.indexOf(session), 1);
-    this.save();
+    this.setHistory(this.history().filter((historySession) => historySession !== session));
   }
 
+  // Current Session Activities
   public findActivityByExercise(exerciseId: string): Activity | undefined {
     return this.appState().current?.activities.find((dayExercise) => dayExercise.id === exerciseId);
   }
@@ -56,12 +68,13 @@ export class CommonService {
     }
     throw new Error('Session not started');
   }
-  public stopActivity() {}
+
   public deleteActivity(activity: Activity) {
     const cc = this.appState();
     cc.current?.activities.splice(cc.current?.activities.indexOf(activity), 1);
     this.appState.set(cc);
   }
+
   public addNoteToCurrentSession(note: string) {
     const cc = this.appState();
     if (cc.current) cc.current.note = note;
@@ -76,39 +89,31 @@ export class CommonService {
     this.save();
   }
 
-  loadSession(session: Session) {
-    // this.appState.current = session;
-  }
-
-  clearSession() {
-    this.appState().current = null;
-    this.save();
-  }
-  clearHistory() {
-    this.appState.set({ ...this.appState(), history: [] });
-    this.save();
-  }
   setHistory(history: Session[]) {
-    this.appState.set({ ...this.appState(), history: history });
+    this.appState.set({ ...this.appState(), history });
     this.save();
   }
 
   save() {
-    this.ls.setItem('gym-day-state', this.appState());
+    const state = this.indexedDb.normalizeState(this.appState());
+    this.appState.set(state);
+    void this.indexedDb.saveState(state);
   }
-  load() {
-    const state = this.ls.getItem<StateInterface>('gym-day-state');
-    state?.history?.forEach((history) => {
-      history.activities.forEach((activities) => {
-        activities.sets.forEach((set) => {
-          set.time = new Date(set.time);
-        });
-      });
-    });
+  async load() {
+    await this.loadFromIndexedDb();
+  }
+
+  private async loadFromIndexedDb() {
+    const state = await this.indexedDb.getState();
     if (state) {
       this.appState.set(state);
     }
+    const exercises = await this.indexedDb.getExercises();
+    if (exercises.length === 0) {
+      await this.indexedDb.populateFromExampleJson();
+    }
   }
+
   router = inject(Router);
   _snackBar = inject(MatSnackBar);
   createOrUpdateActiveSessionBasedOnOldSession(oldSession: Session) {
@@ -139,8 +144,9 @@ export class CommonService {
     }
     this.save();
   }
+
   getAllHistoryByActivityId(exId: string) {
-    const hist = this.appState().history;
+    const hist = this.history();
     const foundActivities: Activity[] = [];
     hist.forEach((session) => {
       session.activities.forEach((activity) => {
@@ -151,8 +157,9 @@ export class CommonService {
     });
     return [...foundActivities].sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
   }
+
   getAllHistoryByActivityIdExtended(exId: string) {
-    const hist = this.appState().history;
+    const hist = this.history();
 
     const foundActivities: ActivityEx[] = [];
     hist.forEach((session, index) => {
@@ -179,6 +186,7 @@ export class CommonService {
     const minutes = Math.floor(diffMs / (1000 * 60));
     return minutes;
   }
+
   getActivitiesExBySession(session: Session | null | undefined) {
     if (session == null || session == undefined) {
       return [];
@@ -194,6 +202,11 @@ export class CommonService {
       });
     });
     return currentActivities;
+  }
+
+  exerciseById(exId: string) {
+    // return await this.indexedDb.getExerciseById(exId);
+    return this.exercises().find((x) => x.id == exId);
   }
 }
 
